@@ -28,6 +28,14 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Record interview</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record audio for interview</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Saving recorded interviews</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Saving recorded interviews</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -8,16 +8,17 @@
 
 import UIKit
 
-class LoginSummaryViewController: UIViewController {
+class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate {
 
     @IBOutlet weak var helloLabel: UILabel!
+
     @IBOutlet weak var volunteerNameLabel: UILabel!
-
     @IBOutlet weak var volunteerEmailLabel: UILabel!
-
     @IBOutlet weak var volunteerPhoneLabel: UILabel!
-
     @IBOutlet weak var volunteerLocationLabel: UILabel!
+
+    var pageViewController : UIPageViewController!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,8 @@ class LoginSummaryViewController: UIViewController {
         dismiss(animated: true, completion: nil)
 
     }
+
+
     func displayVolunteerInfo() -> Void {
         let defaults = UserDefaults.standard
         volunteerNameLabel.text = defaults.string(forKey: "name")
@@ -44,6 +47,7 @@ class LoginSummaryViewController: UIViewController {
         volunteerPhoneLabel.text = defaults.string(forKey: "phone")
         volunteerLocationLabel.text = defaults.string(forKey: "location")
     }
+
     /*
     // MARK: - Navigation
 
