@@ -7,16 +7,34 @@
 //
 
 import UIKit
+import AWSCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let cognitoAccountId = "xxxxxxxxxxxxxxxxx"
+    let cognitoIdentityPoolId = "us-west-2:22d14ee0-7c0a-4ddc-b74d-24b09e62a5d6"
+    let cognitoUnauthRoleArn = "xxxxxxxxxxxxxxxxx"
+    let cognitoAuthRoleArn = "xxxxxxxxxxxxxxxxx"
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+
+//        let credentialsProvider = AWSCognitoCredentialsProvider.init(regionType: AWSRegionType.usWest2, identityPoolId: cognitoIdentityPoolId, unauthRoleArn: cognitoUnauthRoleArn, authRoleArn: cognitoAuthRoleArn, identityProviderManager: nil)
+//        let defaultServiceConfiguration = AWSServiceConfiguration(
+//            region: AWSRegionType.usWest2,
+//            credentialsProvider: credentialsProvider)
+////        AWSServiceManager.defaultServiceManager().setDefaultServiceConfiguration(defaultServiceConfiguration)
+//
+//        AWSServiceManager.default
+
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.usWest2, identityPoolId: cognitoIdentityPoolId)
+        let configuration = AWSServiceConfiguration(region: AWSRegionType.usWest2, credentialsProvider: credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
 
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.lightGray

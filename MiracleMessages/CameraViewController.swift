@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
+import AWSS3
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
 
@@ -61,10 +62,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             previewLayer?.connection.videoOrientation = .landscapeRight
             break
         case .landscapeLeft:
-            previewLayer?.connection.videoOrientation = .landscapeLeft
+            previewLayer?.connection.videoOrientation = .landscapeRight
             break
         case .portraitUpsideDown:
-            previewLayer?.connection.videoOrientation = .portraitUpsideDown
+            previewLayer?.connection.videoOrientation = .portrait
             break
         default: break
             previewLayer?.connection.videoOrientation = .portrait
@@ -154,20 +155,41 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        let item = AVPlayerItem(url: outputFileURL)
-        player.replaceCurrentItem(with: item)
-        if (player.currentItem != nil) {
-            print("Starting playback!")
-            player.play()
-        } else {
-            print("Will not start playback")
-        }
-        return
+        uploadtoS3(url: outputFileURL)
+//        let item = AVPlayerItem(url: outputFileURL)
+//        player.replaceCurrentItem(with: item)
+//        if (player.currentItem != nil) {
+//            print("Starting playback!")
+//            player.play()
+//        } else {
+//            print("Will not start playback")
+//        }
+//        return
     }
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         isRecording = true
         return
+    }
+
+    func uploadtoS3(url: URL) -> Void {
+        let transferManager = AWSS3TransferManager.default()
+        let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+
+        uploadRequest1.bucket = "mm-interview-vids"
+        uploadRequest1.key =  "bingo"
+        uploadRequest1.body = url
+
+        let task = transferManager?.upload(uploadRequest1)
+        task?.continue( { (task) -> AnyObject! in
+            if task.error != nil {
+                print("Error: \(task.error)")
+            } else {
+                print("Upload successful")
+                self.dismiss(animated: true, completion: nil)
+            }
+            return nil
+        })
     }
 
 
