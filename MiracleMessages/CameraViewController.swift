@@ -10,8 +10,11 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 import AWSS3
+import CameraEngine
+import MessageUI
+import Photos
 
-class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var playbackView: UIView!
 
@@ -25,14 +28,24 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     var isRecording = false
 
-    let videoFileOutput = AVCaptureMovieFileOutput()
+    let dataOutput = AVCaptureMovieFileOutput()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Set up capture session
         cameraSession = AVCaptureSession()
         cameraSession!.sessionPreset = AVCaptureSessionPresetHigh
 
+        //Add inputs
+        configureCamera()
+
+        configurePreview()
+
+        cameraSession?.startRunning()
+    }
+
+    func configurePreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: cameraSession)
         previewView.layer.addSublayer(previewLayer!)
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -46,7 +59,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         rootLayer.insertSublayer(avPlayerLayer, at: 0)
 
         avPlayerLayer.backgroundColor = UIColor.blue.cgColor
-
     }
 
     override func viewDidLayoutSubviews() {
@@ -76,71 +88,48 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-
-        do {
-            let deviceInput = try AVCaptureDeviceInput(device: captureDevice)
-
-            cameraSession?.beginConfiguration() // 1
-
-            if (cameraSession?.canAddInput(deviceInput) == true) {
-                cameraSession?.addInput(deviceInput)
-            }
-
-            let dataOutput = AVCaptureVideoDataOutput() // 2
-
-            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString) : NSNumber(value: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)] // 3
-
-            dataOutput.alwaysDiscardsLateVideoFrames = true // 4
-
-            if (cameraSession?.canAddOutput(dataOutput) == true) {
-                cameraSession?.addOutput(dataOutput)
-            }
-            
-            cameraSession?.commitConfiguration() //5
-
-            let serialQueue = DispatchQueue(label: "com.invasivecode.queue")
-            serialQueue.sync {
-            }
-            dataOutput.setSampleBufferDelegate(self, queue: serialQueue)
-        }
-        catch let error as NSError {
-            NSLog("\(error), \(error.localizedDescription)")
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        cameraSession!.startRunning()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func didPressTakePhoto(_ sender: AnyObject) {
-        if isRecording {
-            videoFileOutput.stopRecording()
-            cameraSession!.stopRunning()
-            isRecording = false
-        } else {
-         cameraSession!.startRunning()
-            let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
 
-            if cameraSession?.canAddOutput(videoFileOutput) == true {
-                cameraSession?.addOutput(videoFileOutput)
+    func configureCamera() -> Void {
+        do {
+
+            cameraSession?.beginConfiguration()
+
+            let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+            let captureDeviceAudio = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
+
+
+            let deviceInput = try AVCaptureDeviceInput(device: captureDevice)
+            let audioInput = try AVCaptureDeviceInput(device: captureDeviceAudio)
+
+            if (cameraSession?.canAddInput(deviceInput) == true) {
+                cameraSession?.addInput(deviceInput)
             }
 
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let filePath = documentsURL.appendingPathComponent("temp.mp4")
+            if (cameraSession?.canAddInput(audioInput) == true) {
+                cameraSession?.addInput(audioInput)
+            }
 
-            videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
+
+            if (cameraSession?.canAddOutput(dataOutput) == true) {
+                cameraSession?.addOutput(dataOutput)
+            }
+
+            cameraSession?.commitConfiguration()
+
         }
-
-
+        catch let error as NSError {
+            NSLog("\(error), \(error.localizedDescription)")
+        }
     }
 
     /*
@@ -155,7 +144,50 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        uploadtoS3(url: outputFileURL)
+
+        guard let data = NSData(contentsOf: outputFileURL as URL) else {
+            return
+        }
+
+        print("File size before compression: \(Double(data.length / 1048576)) mb")
+        let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".mov")
+        compressVideo(inputURL: outputFileURL as URL, outputURL: compressedURL) { (exportSession) in
+            guard let session = exportSession else {
+                return
+            }
+
+            switch session.status {
+            case .unknown:
+                break
+            case .waiting:
+                break
+            case .exporting:
+                break
+            case .completed:
+                guard let compressedData = NSData(contentsOf: compressedURL) else {
+                    return
+                }
+                self.uploadtoS3(url: compressedURL)
+
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: compressedURL)
+                }) { saved, error in
+                    if saved {
+                        let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+
+                print("File size after compression: \(Double(compressedData.length / 1048576)) mb")
+                break
+            case .failed:
+                break
+            case .cancelled:
+                break
+            }
+        }
 //        let item = AVPlayerItem(url: outputFileURL)
 //        player.replaceCurrentItem(with: item)
 //        if (player.currentItem != nil) {
@@ -167,9 +199,73 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 //        return
     }
 
+    @IBAction func didPressTakePhoto(_ sender: AnyObject) {
+        if isRecording {
+            dataOutput.stopRecording()
+            isRecording = false
+        } else {
+            let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
+
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let filePath = documentsURL.appendingPathComponent("temp.mov")
+
+            dataOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
+        }
+        
+        
+    }
+
+    func sendEmail() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+
+    func showSendMailErrorAlert() {
+        let alertController = UIAlertController(title: "Error sending email.", message: "Could not send email.", preferredStyle: .alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        }
+        alertController.addAction(OKAction)
+
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+
+        mailComposerVC.setToRecipients(["nurdin@gmail.com"])
+        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+
+        return mailComposerVC
+    }
+
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         isRecording = true
+
         return
+    }
+
+    func compressVideo(inputURL: URL, outputURL: URL, handler:@escaping (_ exportSession: AVAssetExportSession?)-> Void) {
+        let urlAsset = AVURLAsset(url: inputURL, options: nil)
+        guard let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) else {
+            handler(nil)
+
+            return
+        }
+
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie
+        exportSession.shouldOptimizeForNetworkUse = true
+        exportSession.exportAsynchronously { () -> Void in
+            handler(exportSession)
+        }
     }
 
     func uploadtoS3(url: URL) -> Void {
@@ -177,8 +273,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
 
         uploadRequest1.bucket = "mm-interview-vids"
-        uploadRequest1.key =  "bingo"
+        uploadRequest1.key =  "mingo.mov"
+        uploadRequest1.acl = AWSS3ObjectCannedACL.publicRead
         uploadRequest1.body = url
+
+        uploadRequest1.uploadProgress = {(bytesSent:Int64,
+            totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
+
+            DispatchQueue.main.sync(execute: { () -> Void in
+                print("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \((Float(totalBytesSent)/Float(totalBytesExpectedToSend))*100)")
+                // you can have a loading stuff in here.
+            })
+        }
 
         let task = transferManager?.upload(uploadRequest1)
         task?.continue( { (task) -> AnyObject! in
@@ -186,10 +292,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 print("Error: \(task.error)")
             } else {
                 print("Upload successful")
-                self.dismiss(animated: true, completion: nil)
+                self.sendEmail()
             }
             return nil
         })
+
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+         self.dismiss(animated: true, completion: nil)
     }
 
 
