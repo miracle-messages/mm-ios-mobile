@@ -1,0 +1,28 @@
+PODS:
+  - AWSCore (2.4.9)
+  - AWSS3 (2.4.9):
+    - AWSCore (= 2.4.9)
+  - CameraEngine (1.0)
+
+DEPENDENCIES:
+  - AWSS3
+  - CameraEngine (from `https://github.com/remirobert/CameraEngine.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  CameraEngine:
+    :branch: master
+    :git: https://github.com/remirobert/CameraEngine.git
+
+CHECKOUT OPTIONS:
+  CameraEngine:
+    :commit: 797228706cf7420677596e41613d4440427ec6a1
+    :git: https://github.com/remirobert/CameraEngine.git
+
+SPEC CHECKSUMS:
+  AWSCore: 175208358b95492e0ebe0337df2ab415300bddac
+  AWSS3: e4959b48db48d5f3dcd5cdf9e24a07f60a313611
+  CameraEngine: f86486480cfbac977b5d42bb423bdfc7a2b7aecc
+
+PODFILE CHECKSUM: 3e55f3f8fc7a1e00843e2fd8d1ad2a2010745882
+
+COCOAPODS: 1.0.1

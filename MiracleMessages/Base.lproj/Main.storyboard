@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -317,7 +318,7 @@
                         <viewControllerLayoutGuide type="top" id="szd-Nb-10w"/>
                         <viewControllerLayoutGuide type="bottom" id="rL8-sk-wRe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="HFv-Qe-btS">
+                    <view key="view" contentMode="scaleToFill" id="HFv-Qe-btS">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -544,7 +545,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="gOP-GA-scO" kind="show" id="Yg9-KP-cdV"/>
+                                    <segue destination="gOP-GA-scO" kind="presentation" id="Yg9-KP-cdV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -576,41 +577,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsx-89-y2w">
-                                <color key="backgroundColor" red="1" green="0.2492442513" blue="0.2013350941" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rH-RB-l24">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rH-RB-l24">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="ARv-gu-hbs"/>
+                                            <constraint firstAttribute="width" constant="80" id="v6t-em-rZR"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="recordBtn"/>
+                                        <connections>
+                                            <action selector="didPressTakePhoto:" destination="gOP-GA-scO" eventType="touchUpInside" id="SIA-lv-b21"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-ah-h8i">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="107" id="Oid-UK-eY1"/>
+                                            <constraint firstAttribute="height" constant="33" id="bLD-Nb-cPl"/>
+                                            <constraint firstAttribute="width" secondItem="Hpd-ah-h8i" secondAttribute="height" multiplier="107:33" id="bu1-gs-BvK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="fde-4J-pL9"/>
-                                </constraints>
-                                <state key="normal" title="Take photo"/>
-                                <connections>
-                                    <action selector="didPressTakePhoto:" destination="gOP-GA-scO" eventType="touchUpInside" id="SIA-lv-b21"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAJ-gB-6Ql">
-                                <color key="backgroundColor" red="0.00054911432030000003" green="0.60720264670000001" blue="0.039686464159999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="153" id="2CM-mK-4qC"/>
+                                    <constraint firstAttribute="bottom" secondItem="0rH-RB-l24" secondAttribute="bottom" constant="28" id="1WT-Xp-sij"/>
+                                    <constraint firstItem="0rH-RB-l24" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="M3a-w9-5N8"/>
+                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" constant="30" id="OtW-mi-815"/>
+                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="vz6-ef-eQM"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RH-0I-EIY"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8rn-OB-urw">
+                                <frame key="frameInset" minX="168" minY="500" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailing" id="1kr-H2-nn1"/>
-                            <constraint firstAttribute="bottom" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="137" id="5kF-IG-JxY"/>
-                            <constraint firstItem="gAJ-gB-6Ql" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="32" id="Gcl-2n-R11"/>
-                            <constraint firstItem="0rH-RB-l24" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="32" id="PXU-Q3-Hzc"/>
+                            <constraint firstAttribute="bottom" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="123" id="5kF-IG-JxY"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="QCU-ki-NZI"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="RFa-LT-B5k"/>
-                            <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="gAJ-gB-6Ql" secondAttribute="bottom" constant="20" id="Srt-uy-WGy"/>
-                            <constraint firstItem="gAJ-gB-6Ql" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leadingMargin" id="Tyu-7o-RnL"/>
-                            <constraint firstItem="0rH-RB-l24" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="32" id="Zlq-kD-hAZ"/>
-                            <constraint firstItem="0rH-RB-l24" firstAttribute="trailing" secondItem="vfe-RP-1dz" secondAttribute="trailingMargin" id="b3i-iT-bV8"/>
+                            <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="2RH-0I-EIY" secondAttribute="bottom" id="X9f-6f-ai3"/>
+                            <constraint firstItem="2RH-0I-EIY" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="qf0-yg-9Du"/>
+                            <constraint firstAttribute="trailing" secondItem="2RH-0I-EIY" secondAttribute="trailing" id="t72-9O-Md8"/>
+                            <constraint firstItem="2RH-0I-EIY" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" id="wth-gH-S35"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playbackView" destination="gAJ-gB-6Ql" id="NmH-2s-aiy"/>
                         <outlet property="previewView" destination="Fsx-89-y2w" id="teI-Kn-hII"/>
+                        <outlet property="recordBtn" destination="0rH-RB-l24" id="TKz-nY-e0B"/>
+                        <outlet property="timerLabel" destination="Hpd-ah-h8i" id="VFz-Pz-MfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -637,6 +655,7 @@
     <resources>
         <image name="miracle_messages_white_logo" width="2969" height="1279"/>
         <image name="mm_icon" width="461" height="620"/>
+        <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yfU-2c-qRr"/>

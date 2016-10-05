@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AWSCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSS3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CameraEngine.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MiracleMessages.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0C81C802D8F6AEBCA97D9E63AE95D76E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14899DD2DE4794A659D6E3A53A2FE532</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9829149F9B234BCAA601C6AC1BC6CD45</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F25E6B62B29A660B11737B865AA2B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
