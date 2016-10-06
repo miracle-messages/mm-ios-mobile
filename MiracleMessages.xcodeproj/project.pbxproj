@@ -17,6 +17,7 @@
 		23B0B7ED1D98E466007DFDDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7EC1D98E466007DFDDE /* Assets.xcassets */; };
 		23B0B7F01D98E466007DFDDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */; };
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
+		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		23B0B7EF1D98E466007DFDDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23B0B7F11D98E466007DFDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSummaryViewController.swift; sourceTree = "<group>"; };
+		23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitNavigationControllerController.swift; sourceTree = "<group>"; };
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 				232265E21D9BBAAB009D1F2A /* IntroViewController.swift */,
 				232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
+				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2321551A1D9CD2D0008F2B2E /* BeginRecordingViewController.swift in Sources */,
+				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,

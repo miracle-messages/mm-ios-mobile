@@ -39,6 +39,16 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
 
     }
 
+    open override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+
 
     func displayVolunteerInfo() -> Void {
         let defaults = UserDefaults.standard

@@ -24,6 +24,17 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    open override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+
     
     func displayPreInterviewSlides() -> Void {
         pageViewController = self.storyboard?.instantiateViewController(withIdentifier: "PageViewController") as! UIPageViewController

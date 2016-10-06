@@ -23,6 +23,17 @@ class BeginRecordingViewController: UIViewController, UINavigationControllerDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    open override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+
     
     @IBAction func didPressBeginRecordingBtn(_ sender: AnyObject) {
         if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
