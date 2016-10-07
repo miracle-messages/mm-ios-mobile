@@ -12,10 +12,60 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
 
     var pageViewController : UIPageViewController!
 
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        displayPreInterviewSlides()
+        self.pageControl.backgroundColor = UIColor.clear
+
+        self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
+        
+        let scrollViewWidth:CGFloat = self.scrollView.frame.width
+        let scrollViewHeight:CGFloat = self.scrollView.frame.height
+        //2
+//        textView.textAlignment = .center
+//        textView.text = "Sweettutos.com is your blog of choice for Mobile tutorials"
+//        textView.textColor = UIColor.black
+//        self.startButton.layer.cornerRadius = 4.0
+        //3
+        let imgOne = UIImageView(frame: CGRect(x:0, y:0,width:scrollViewWidth, height:scrollViewHeight))
+        imgOne.image = UIImage(named: "Slide 1")
+        imgOne.contentMode = UIViewContentMode.scaleAspectFill
+        imgOne.clipsToBounds = true
+        let imgTwo = UIImageView(frame: CGRect(x:scrollViewWidth, y:0,width:scrollViewWidth, height:scrollViewHeight))
+        imgTwo.image = UIImage(named: "Slide 2")
+        imgTwo.contentMode = UIViewContentMode.scaleAspectFill
+        imgTwo.clipsToBounds = true
+        let imgThree = UIImageView(frame: CGRect(x:scrollViewWidth*2, y:0,width:scrollViewWidth, height:scrollViewHeight))
+        imgThree.image = UIImage(named: "Slide 3")
+        imgThree.contentMode = UIViewContentMode.scaleAspectFill
+        imgThree.clipsToBounds = true
+        let imgFour = UIImageView(frame: CGRect(x:scrollViewWidth*3, y:0,width:scrollViewWidth, height:scrollViewHeight))
+        imgFour.image = UIImage(named: "Slide 4")
+        imgFour.contentMode = UIViewContentMode.scaleAspectFill
+        imgFour.clipsToBounds = true
+
+        self.scrollView.addSubview(imgOne)
+        self.scrollView.addSubview(imgTwo)
+        self.scrollView.addSubview(imgThree)
+        self.scrollView.addSubview(imgFour)
+        //4
+        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * 4, height:self.scrollView.frame.height)
+        self.scrollView.delegate = self
+
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+
+//        displayPreInterviewSlides()
+
+
 
         // Do any additional setup after loading the view.
     }
@@ -129,6 +179,39 @@ extension IntroViewController: UIPageViewControllerDataSource {
     }
     
     
+}
+
+extension IntroViewController : UIScrollViewDelegate {
+    //MARK: UIScrollView Delegate
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
+        // Test the offset and calculate the current page after scrolling ends
+        let pageWidth:CGFloat = scrollView.frame.width
+        let currentPage:CGFloat = floor((scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1
+        // Change the indicator
+        self.pageControl.currentPage = Int(currentPage);
+        // Change the text accordingly
+        if Int(currentPage) == 0{
+            titleLabel.text = "Step 1: Ask the Question"
+
+            textView.text = "Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?"
+        }else if Int(currentPage) == 1{
+            titleLabel.text = "Step 2: Offer to Record Video"
+
+
+            textView.text = "As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
+        }else if Int(currentPage) == 2{
+            titleLabel.text = ""
+
+            textView.text = "First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
+        }else{
+            titleLabel.text = ""
+            textView.text = "Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
+            // Show the "Let's Start" button in the last slide (with a fade in animation)
+            UIView.animate(withDuration: 1.0, animations: { () -> Void in
+                self.startButton.alpha = 1.0
+            })
+        }
+    }
 }
 
 
