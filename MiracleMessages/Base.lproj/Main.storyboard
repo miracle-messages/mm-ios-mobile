@@ -330,12 +330,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuD-eX-r1x"/>
-                            <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvc-Qe-guP" userLabel="Gray View">
-                                <frame key="frameInset" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlO-UW-E4P">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Ask the Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghq-1U-gV7">
@@ -343,7 +337,7 @@
                                             <constraint firstAttribute="height" constant="71" id="IYg-2z-atU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taw-zu-qGf">
@@ -351,7 +345,7 @@
                                             <constraint firstAttribute="height" constant="120" id="NmK-tB-VRs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                 </subviews>
@@ -368,13 +362,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Oie-1Z-KVG" firstAttribute="top" secondItem="CuD-eX-r1x" secondAttribute="bottom" id="JXG-0M-xUF"/>
-                            <constraint firstItem="CuD-eX-r1x" firstAttribute="leading" secondItem="JTx-Fb-MS2" secondAttribute="leading" id="PeW-wU-693"/>
                             <constraint firstItem="tlO-UW-E4P" firstAttribute="leading" secondItem="JTx-Fb-MS2" secondAttribute="leadingMargin" constant="10" id="SJV-lh-fcZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tlO-UW-E4P" secondAttribute="trailing" constant="10" id="g1y-td-VN0"/>
-                            <constraint firstAttribute="trailing" secondItem="CuD-eX-r1x" secondAttribute="trailing" id="jWV-Rw-WaN"/>
                             <constraint firstItem="tlO-UW-E4P" firstAttribute="top" secondItem="YoN-KA-rMQ" secondAttribute="bottom" constant="138" id="klb-G3-JWs"/>
-                            <constraint firstItem="CuD-eX-r1x" firstAttribute="top" secondItem="JTx-Fb-MS2" secondAttribute="top" id="l4E-96-fUG"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -541,7 +531,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Egs-8x-x5k">
                                 <frame key="frameInset" minY="564" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Begin"/>
                                 <connections>
                                     <segue destination="gOP-GA-scO" kind="presentation" id="Yg9-KP-cdV"/>
                                 </connections>
