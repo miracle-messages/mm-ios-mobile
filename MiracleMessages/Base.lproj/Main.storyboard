@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -164,7 +164,7 @@
         <!--Login Summary View Controller-->
         <scene sceneID="E8a-nJ-ylx">
             <objects>
-                <viewController id="hvn-H8-pzd" customClass="LoginSummaryViewController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hvn-H8-pzd" customClass="LoginSummaryViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pgy-ev-kDf"/>
                         <viewControllerLayoutGuide type="bottom" id="8aG-zz-X52"/>
@@ -175,7 +175,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IMY-rQ-XsG">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="105" id="5GK-4e-wZc"/>
+                                    <constraint firstAttribute="height" constant="119" id="5GK-4e-wZc"/>
                                     <constraint firstAttribute="width" constant="95" id="aZ7-Lw-5hk"/>
                                 </constraints>
                             </imageView>
@@ -263,7 +263,7 @@
                             <constraint firstItem="gT3-b4-OYj" firstAttribute="top" secondItem="6BN-SY-ecl" secondAttribute="bottom" constant="10" id="Ryi-ac-lFl"/>
                             <constraint firstAttribute="trailing" secondItem="9BY-fh-QXj" secondAttribute="trailing" id="TqQ-f7-XWV"/>
                             <constraint firstItem="FcU-yf-mqa" firstAttribute="top" secondItem="IMY-rQ-XsG" secondAttribute="bottom" constant="12" id="Ur4-sP-Cw2"/>
-                            <constraint firstItem="IMY-rQ-XsG" firstAttribute="top" secondItem="Pgy-ev-kDf" secondAttribute="bottom" constant="22" id="YSD-Vc-i7M"/>
+                            <constraint firstItem="IMY-rQ-XsG" firstAttribute="top" secondItem="Pgy-ev-kDf" secondAttribute="bottom" constant="8" id="YSD-Vc-i7M"/>
                             <constraint firstAttribute="trailing" secondItem="FcU-yf-mqa" secondAttribute="trailing" id="ZR2-3c-rA7"/>
                             <constraint firstItem="6BN-SY-ecl" firstAttribute="top" secondItem="OA6-PY-016" secondAttribute="bottom" constant="56" id="Zge-dO-2hX"/>
                             <constraint firstAttribute="trailing" secondItem="RTH-fu-Ckj" secondAttribute="trailing" id="ab3-Rw-VRC"/>
@@ -302,7 +302,7 @@
         <!--Intro View Controller-->
         <scene sceneID="6DX-oy-vy0">
             <objects>
-                <viewController id="59a-U3-Awj" customClass="IntroViewController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="59a-U3-Awj" customClass="IntroViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="szd-Nb-10w"/>
                         <viewControllerLayoutGuide type="bottom" id="rL8-sk-wRe"/>
@@ -330,6 +330,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuD-eX-r1x"/>
+                            <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvc-Qe-guP" userLabel="Gray View">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlO-UW-E4P">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Ask the Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghq-1U-gV7">
@@ -337,19 +343,18 @@
                                             <constraint firstAttribute="height" constant="71" id="IYg-2z-atU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taw-zu-qGf">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="NmK-tB-VRs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ghq-1U-gV7" firstAttribute="top" secondItem="tlO-UW-E4P" secondAttribute="top" constant="58" id="3K3-Nk-fSw"/>
                                     <constraint firstItem="taw-zu-qGf" firstAttribute="top" secondItem="ghq-1U-gV7" secondAttribute="bottom" constant="14" id="4t0-cJ-Esh"/>
@@ -363,9 +368,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Oie-1Z-KVG" firstAttribute="top" secondItem="CuD-eX-r1x" secondAttribute="bottom" id="JXG-0M-xUF"/>
+                            <constraint firstItem="CuD-eX-r1x" firstAttribute="leading" secondItem="JTx-Fb-MS2" secondAttribute="leading" id="PeW-wU-693"/>
                             <constraint firstItem="tlO-UW-E4P" firstAttribute="leading" secondItem="JTx-Fb-MS2" secondAttribute="leadingMargin" constant="10" id="SJV-lh-fcZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tlO-UW-E4P" secondAttribute="trailing" constant="10" id="g1y-td-VN0"/>
+                            <constraint firstAttribute="trailing" secondItem="CuD-eX-r1x" secondAttribute="trailing" id="jWV-Rw-WaN"/>
                             <constraint firstItem="tlO-UW-E4P" firstAttribute="top" secondItem="YoN-KA-rMQ" secondAttribute="bottom" constant="138" id="klb-G3-JWs"/>
+                            <constraint firstItem="CuD-eX-r1x" firstAttribute="top" secondItem="JTx-Fb-MS2" secondAttribute="top" id="l4E-96-fUG"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -503,7 +512,7 @@
         <!--Begin Recording View Controller-->
         <scene sceneID="cjD-jl-1qw">
             <objects>
-                <viewController storyboardIdentifier="StepFiveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vfn-fa-AxR" customClass="BeginRecordingViewController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StepFiveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vfn-fa-AxR" customClass="BeginRecordingViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nr8-0a-GIK"/>
                         <viewControllerLayoutGuide type="bottom" id="ia4-VK-kaQ"/>
@@ -556,7 +565,7 @@
         <!--Camera View Controller-->
         <scene sceneID="Tgm-Rx-MeE">
             <objects>
-                <viewController id="gOP-GA-scO" customClass="CameraViewController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gOP-GA-scO" customClass="CameraViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L3G-cb-Shm"/>
                         <viewControllerLayoutGuide type="bottom" id="1OR-qU-1lw"/>
@@ -565,50 +574,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsx-89-y2w">
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rH-RB-l24">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="ARv-gu-hbs"/>
-                                            <constraint firstAttribute="width" constant="80" id="v6t-em-rZR"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="recordBtn"/>
-                                        <connections>
-                                            <action selector="didPressTakePhoto:" destination="gOP-GA-scO" eventType="touchUpInside" id="SIA-lv-b21"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-ah-h8i">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="107" id="Oid-UK-eY1"/>
-                                            <constraint firstAttribute="height" constant="33" id="bLD-Nb-cPl"/>
-                                            <constraint firstAttribute="width" secondItem="Hpd-ah-h8i" secondAttribute="height" multiplier="107:33" id="bu1-gs-BvK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-w9-H6h">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="F8u-ns-sro"/>
-                                            <constraint firstAttribute="width" constant="45" id="tSN-V1-m1D"/>
-                                        </constraints>
-                                        <state key="normal" image="closeCircle"/>
-                                        <connections>
-                                            <action selector="didPressCloseBtn:" destination="gOP-GA-scO" eventType="touchUpInside" id="vSW-Yt-Q6G"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="0rH-RB-l24" secondAttribute="bottom" constant="28" id="1WT-Xp-sij"/>
-                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="topMargin" constant="16" id="Cmh-Lt-F9S"/>
-                                    <constraint firstItem="0rH-RB-l24" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="M3a-w9-5N8"/>
-                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" constant="30" id="OtW-mi-815"/>
-                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailingMargin" id="PlZ-Vu-U4M"/>
-                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="vz6-ef-eQM"/>
-                                </constraints>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RH-0I-EIY"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zC-6Q-4zl" userLabel="ProgressContainerView">
                                 <subviews>
                                     <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTM-b6-Lzq" userLabel="backgroundView">
@@ -652,6 +617,63 @@
                                     <constraint firstItem="lfv-mF-hud" firstAttribute="leading" secondItem="5zC-6Q-4zl" secondAttribute="leading" constant="8" id="x1u-jd-gKn"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsx-89-y2w">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rH-RB-l24">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="ARv-gu-hbs"/>
+                                            <constraint firstAttribute="width" constant="80" id="v6t-em-rZR"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="recordBtn"/>
+                                        <connections>
+                                            <action selector="didPressTakePhoto:" destination="gOP-GA-scO" eventType="touchUpInside" id="SIA-lv-b21"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-ah-h8i">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="107" id="Oid-UK-eY1"/>
+                                            <constraint firstAttribute="height" constant="33" id="bLD-Nb-cPl"/>
+                                            <constraint firstAttribute="width" secondItem="Hpd-ah-h8i" secondAttribute="height" multiplier="107:33" id="bu1-gs-BvK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-w9-H6h">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="F8u-ns-sro"/>
+                                            <constraint firstAttribute="width" constant="45" id="tSN-V1-m1D"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="21"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="didPressCloseBtn:" destination="gOP-GA-scO" eventType="touchUpInside" id="vSW-Yt-Q6G"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="0rH-RB-l24" secondAttribute="bottom" constant="131" id="1WT-Xp-sij"/>
+                                    <constraint firstAttribute="trailing" secondItem="0rH-RB-l24" secondAttribute="trailing" constant="67" id="7La-TG-2aB"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="topMargin" constant="16" id="Cmh-Lt-F9S"/>
+                                    <constraint firstItem="0rH-RB-l24" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="M3a-w9-5N8"/>
+                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" constant="30" id="OtW-mi-815"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailingMargin" id="PlZ-Vu-U4M"/>
+                                    <constraint firstItem="0rH-RB-l24" firstAttribute="centerY" secondItem="Fsx-89-y2w" secondAttribute="centerY" id="atf-0Z-vos"/>
+                                    <constraint firstItem="Hpd-ah-h8i" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="vz6-ef-eQM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7La-TG-2aB"/>
+                                        <exclude reference="atf-0Z-vos"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RH-0I-EIY">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="whD-gb-mhX"/>
+                                </constraints>
+                            </scrollView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="12" translatesAutoresizingMaskIntoConstraints="NO" id="SJI-Zr-8E9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="BSH-Eu-Izq"/>
@@ -659,22 +681,20 @@
                                 <color key="pageIndicatorTintColor" red="0.26274509800000001" green="0.59999999999999998" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailing" id="1kr-H2-nn1"/>
-                            <constraint firstAttribute="bottom" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="123" id="5kF-IG-JxY"/>
+                            <constraint firstAttribute="bottom" secondItem="Fsx-89-y2w" secondAttribute="bottom" id="5kF-IG-JxY"/>
                             <constraint firstItem="5zC-6Q-4zl" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="C52-bP-DeF"/>
-                            <constraint firstItem="SJI-Zr-8E9" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="86" id="Cj5-Cj-dya"/>
+                            <constraint firstItem="SJI-Zr-8E9" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" constant="-36" id="Cj5-Cj-dya"/>
                             <constraint firstItem="5zC-6Q-4zl" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="EZp-EK-Li0"/>
+                            <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="2RH-0I-EIY" secondAttribute="bottom" id="Ga3-fk-pht"/>
                             <constraint firstItem="SJI-Zr-8E9" firstAttribute="centerX" secondItem="vfe-RP-1dz" secondAttribute="centerX" id="GgH-OH-4ey"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="QCU-ki-NZI"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="RFa-LT-B5k"/>
-                            <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="2RH-0I-EIY" secondAttribute="bottom" id="X9f-6f-ai3"/>
                             <constraint firstAttribute="trailing" secondItem="5zC-6Q-4zl" secondAttribute="trailing" id="df8-Xx-Roe"/>
                             <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="5zC-6Q-4zl" secondAttribute="bottom" id="mae-q3-uVM"/>
                             <constraint firstItem="2RH-0I-EIY" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="qf0-yg-9Du"/>
                             <constraint firstAttribute="trailing" secondItem="2RH-0I-EIY" secondAttribute="trailing" id="t72-9O-Md8"/>
-                            <constraint firstItem="2RH-0I-EIY" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="bottom" id="wth-gH-S35"/>
                         </constraints>
                     </view>
                     <connections>
@@ -686,6 +706,10 @@
                         <outlet property="progressView" destination="5zC-6Q-4zl" id="kIo-6r-hrS"/>
                         <outlet property="questionScrollView" destination="2RH-0I-EIY" id="Tlx-eu-tmy"/>
                         <outlet property="recordBtn" destination="0rH-RB-l24" id="TKz-nY-e0B"/>
+                        <outlet property="recordBtnBtmConstraint" destination="1WT-Xp-sij" id="XmJ-80-6f5"/>
+                        <outlet property="recordBtnCenterConstraint" destination="M3a-w9-5N8" id="vTh-YP-HQo"/>
+                        <outlet property="recordBtnCntrVrtConstraint" destination="atf-0Z-vos" id="dAi-R0-zJ5"/>
+                        <outlet property="recordBtnRtConstraint" destination="7La-TG-2aB" id="gMb-vS-Cux"/>
                         <outlet property="timerLabel" destination="Hpd-ah-h8i" id="VFz-Pz-MfG"/>
                     </connections>
                 </viewController>
@@ -696,7 +720,7 @@
         <!--Portrait Navigation Controller Controller-->
         <scene sceneID="PM9-fo-Hse">
             <objects>
-                <navigationController id="4Zi-NX-hpR" customClass="PortraitNavigationControllerController" customModule="MiracleMessages" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="4Zi-NX-hpR" customClass="PortraitNavigationControllerController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sEj-sc-UZH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -711,7 +735,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="closeCircle" width="580" height="572"/>
         <image name="miracle_messages_white_logo" width="2969" height="1279"/>
         <image name="mm_icon" width="461" height="620"/>
         <image name="recordBtn" width="640" height="583"/>

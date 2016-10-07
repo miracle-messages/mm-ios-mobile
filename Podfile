@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'MiracleMessages' do
     pod 'AWSS3'
-    pod 'CameraEngine', :git => 'https://github.com/remirobert/CameraEngine.git', :branch => 'master'
+#    pod 'CameraEngine', :git => 'https://github.com/remirobert/CameraEngine.git', :branch => 'master'
 end
 
 post_install do |installer|

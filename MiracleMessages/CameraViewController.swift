@@ -10,15 +10,23 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 import AWSS3
-import CameraEngine
 import MessageUI
 import Photos
+
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate {
 
     var startTime = TimeInterval()
     var timer = Timer()
     var videoFileName: String?
+
+    //Landscape constraints
+    @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
+    @IBOutlet weak var recordBtnRtConstraint: NSLayoutConstraint!
+
+    //Portrait constraints
+    @IBOutlet weak var recordBtnBtmConstraint: NSLayoutConstraint!
+    @IBOutlet weak var recordBtnCenterConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var percentageLbl: UILabel!
     @IBOutlet weak var progressView: UIView!
@@ -62,22 +70,31 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         self.progressBarView.progress = 0
         self.hideProgressView()
 
         //Set up capture session
         cameraSession = AVCaptureSession()
-        cameraSession!.sessionPreset = AVCaptureSessionPresetHigh
+        cameraSession!.sessionPreset = AVCaptureSessionPresetMedium
 
         //Add inputs
         configureCamera()
 
         configurePreview()
+
         cameraSession?.startRunning()
 
-        self.questionScrollView.frame = CGRect(x: 0, y: self.previewView.frame.size.height, width: self.view.frame.size.width, height: 123)
+        self.questionScrollView.frame = CGRect(x: 0, y: self.previewView.frame.size.height, width: self.view.frame.size.width, height: 125)
         let scrollViewHeight: CGFloat = self.questionScrollView.frame.height
         let scrollViewWidth: CGFloat = self.questionScrollView.frame.width
+
+        let scrollViewBgView = UIView(frame: CGRect(x: 0, y: 0, width: self.questionScrollView.frame.width, height: self.questionScrollView.frame.height))
+        scrollViewBgView.backgroundColor = UIColor.black
+        scrollViewBgView.alpha = 0.4
+
+        self.questionScrollView.addSubview(scrollViewBgView)
 
         var questionWidth: CGFloat = 0
         for question in questionsArray {
@@ -85,7 +102,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             questionLbl1.textAlignment = NSTextAlignment.center
             questionLbl1.numberOfLines = 0
             questionLbl1.font = UIFont.init(name: "Futura", size: 15)
+            questionLbl1.textColor = UIColor.white
             questionLbl1.text = question
+            questionLbl1.alpha = 1
             self.questionScrollView.addSubview(questionLbl1)
             questionWidth += scrollViewWidth
         }
@@ -121,28 +140,84 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 //        avPlayerLayer.backgroundColor = UIColor.blue.cgColor
     }
 
+    func reconfigureQuestionScrollView() -> Void {
+        var questionWidth: CGFloat = 0
+        var currentFrame = CGRect.zero
+        var page: Int = 0
+        for questionView in self.questionScrollView.subviews {
+            if let questionLbl = questionView as? UILabel {
+                questionLbl.frame = CGRect(x: questionWidth, y: 0, width: self.questionScrollView.frame.width, height: self.questionScrollView.frame.height)
+                questionWidth += self.questionScrollView.frame.width
+                if self.pageControl.currentPage == page {
+                    currentFrame = questionLbl.frame
+                }
+                page += 1
+            } else {
+                let backgroundViewFrame = questionView.frame
+                let newWidth = self.questionScrollView.frame.width * CGFloat(self.questionsArray.count)
+                questionView.frame = CGRect(x: -200, y: 0, width: newWidth + 500, height: backgroundViewFrame.height)
+            }
+        }
+        self.questionScrollView.contentSize = CGSize(width: self.questionScrollView.frame.width * CGFloat(self.questionsArray.count), height: self.questionScrollView.frame.height)
+        self.questionScrollView.scrollRectToVisible(currentFrame, animated: true)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        enableLandscapeConstraints()
         previewLayer!.frame = self.previewView.bounds
-        let orientation = UIApplication.shared.statusBarOrientation
 
+        reconfigureQuestionScrollView()
+
+        let orientation = UIApplication.shared.statusBarOrientation
+        let captureConnection = dataOutput.connection(withMediaType: AVMediaTypeVideo)
         switch orientation {
         case .portrait:
             previewLayer?.connection.videoOrientation = .portrait
+            captureConnection?.videoOrientation = AVCaptureVideoOrientation.portrait
+            enablePortraitConstraints()
             break
         case .landscapeRight:
             previewLayer?.connection.videoOrientation = .landscapeRight
+            captureConnection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+            enableLandscapeConstraints()
             break
         case .landscapeLeft:
-            previewLayer?.connection.videoOrientation = .landscapeRight
+            previewLayer?.connection.videoOrientation = .landscapeLeft
+            captureConnection?.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
+            enableLandscapeConstraints()
             break
         case .portraitUpsideDown:
             previewLayer?.connection.videoOrientation = .portrait
+            captureConnection?.videoOrientation = AVCaptureVideoOrientation.portrait
+            enablePortraitConstraints()
             break
         default: break
-            previewLayer?.connection.videoOrientation = .portrait
         }
+    }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+
+    }
+
+    func enablePortraitConstraints() -> Void {
+        //Landscape constraints
+        self.recordBtnCntrVrtConstraint.isActive = false
+        self.recordBtnRtConstraint.isActive = false
+
+        //Portrait constraints
+        self.recordBtnBtmConstraint.isActive = true
+        self.recordBtnCenterConstraint.isActive = true
+    }
+
+    func enableLandscapeConstraints() -> Void {
+        //Landscape constraints
+        self.recordBtnCntrVrtConstraint.isActive = true
+        self.recordBtnRtConstraint.isActive = true
+
+        //Portrait constraints
+        self.recordBtnBtmConstraint.isActive = false
+        self.recordBtnCenterConstraint.isActive = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -233,6 +308,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func hideProgressView() {
+        self.percentageLbl.text = "0%"
         self.view.sendSubview(toBack: self.progressView)
     }
 
@@ -242,49 +318,59 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             return
         }
 
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+        }) { saved, error in
+            if saved {
+                print("Saved successfully.")
+            }
+        }
+
         self.generateVideoFileName()
 
         self.showProgressView()
 
+        self.uploadtoS3(url: outputFileURL)
+
         print("File size before compression: \(Double(data.length / 1048576)) mb")
-        let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".mov")
-        compressVideo(inputURL: outputFileURL as URL, outputURL: compressedURL) { (exportSession) in
-            guard let session = exportSession else {
-                return
-            }
+        
+//        let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".mov")
+//        compressVideo(inputURL: outputFileURL as URL, outputURL: compressedURL) { (exportSession) in
+//            guard let session = exportSession else {
+//                return
+//            }
+//
+//            switch session.status {
+//            case .unknown:
+//                break
+//            case .waiting:
+//                break
+//            case .exporting:
+//                break
+//            case .completed:
+//                guard let compressedData = NSData(contentsOf: compressedURL) else {
+//                    return
+//                }
+//                self.uploadtoS3(url: compressedURL)
+//
+//                PHPhotoLibrary.shared().performChanges({
+//                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: compressedURL)
+//                }) { saved, error in
+//                    if saved {
+//                        print("Saved successfully.")
+//                    }
+//                }
+//
+//                print("File size after compression: \(Double(compressedData.length / 1048576)) mb")
+//                break
+//            case .failed:
+//                break
+//            case .cancelled:
+//                break
+//            }
+//        }
 
-            switch session.status {
-            case .unknown:
-                break
-            case .waiting:
-                break
-            case .exporting:
-                break
-            case .completed:
-                guard let compressedData = NSData(contentsOf: compressedURL) else {
-                    return
-                }
-                self.uploadtoS3(url: compressedURL)
 
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: compressedURL)
-                }) { saved, error in
-                    if saved {
-//                        let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
-//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                        alertController.addAction(defaultAction)
-//                        self.present(alertController, animated: true, completion: nil)
-                    }
-                }
-
-                print("File size after compression: \(Double(compressedData.length / 1048576)) mb")
-                break
-            case .failed:
-                break
-            case .cancelled:
-                break
-            }
-        }
 //        let item = AVPlayerItem(url: outputFileURL)
 //        player.replaceCurrentItem(with: item)
 //        if (player.currentItem != nil) {
@@ -299,10 +385,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBAction func didPressTakePhoto(_ sender: AnyObject) {
         if isRecording {
             stopTimer()
+            changeRecordBtn(recording: false)
             dataOutput.stopRecording()
             isRecording = false
         } else {
             startTimer()
+
+            changeRecordBtn(recording: true)
 
             let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
 
@@ -313,6 +402,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         
+    }
+
+    func changeRecordBtn(recording: Bool) -> Void {
+        if recording {
+            recordBtn.setBackgroundImage(UIImage(named:"stopRecordBtn"), for: .normal)
+        } else {
+            recordBtn.setBackgroundImage(UIImage(named:"recordBtn"), for: .normal)
+        }
     }
 
     func startTimer() {
@@ -364,7 +461,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
 
-        mailComposerVC.setToRecipients(["kevin@miraclemessages.org"])
+        mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
         mailComposerVC.setSubject("[MM] Interview video")
         mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\(self.videoLink())\n\nPlease add any additional notes here:", isHTML: false)
 
@@ -373,7 +470,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         isRecording = true
-
         return
     }
 
@@ -454,6 +550,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {
+        if isRecording {
+            stopTimer()
+            changeRecordBtn(recording: false)
+            dataOutput.stopRecording()
+            isRecording = false
+        }
         self.dismiss(animated: true, completion: nil)
     }
 

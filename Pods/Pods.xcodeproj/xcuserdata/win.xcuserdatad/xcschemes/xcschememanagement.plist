@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CameraEngine.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MiracleMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9829149F9B234BCAA601C6AC1BC6CD45</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E0F25E6B62B29A660B11737B865AA2B7</key>
+		<key>80953D98D46202153D612ECB5545F79A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

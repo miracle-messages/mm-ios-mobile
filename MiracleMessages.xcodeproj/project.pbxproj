@@ -27,7 +27,7 @@
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		232265E21D9BBAAB009D1F2A /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		23B0B7E21D98E466007DFDDE /* MiracleMessages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiracleMessages.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23B0B7E21D98E466007DFDDE /* MiracleMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiracleMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0B7E51D98E466007DFDDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23B0B7E71D98E466007DFDDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23B0B7EA1D98E466007DFDDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		23B0B7E31D98E466007DFDDE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23B0B7E21D98E466007DFDDE /* MiracleMessages.app */,
+				23B0B7E21D98E466007DFDDE /* MiracleMsg.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 			);
 			name = MiracleMessages;
 			productName = MiracleMessages;
-			productReference = 23B0B7E21D98E466007DFDDE /* MiracleMessages.app */;
+			productReference = 23B0B7E21D98E466007DFDDE /* MiracleMsg.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -365,7 +365,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MiracleMsg;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -380,7 +380,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MiracleMsg;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
