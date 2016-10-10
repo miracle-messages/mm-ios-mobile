@@ -330,7 +330,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.showProgressView()
 
-        self.uploadtoS3(url: outputFileURL)
+//        self.uploadtoS3(url: outputFileURL)
+        self.bgUploadToS3(url: outputFileURL)
 
         print("File size before compression: \(Double(data.length / 1048576)) mb")
         
@@ -498,6 +499,77 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         dayTimePeriodFormatter.dateFormat = "MM-dd-yyyy-HHmmss"
         let stringDate = dayTimePeriodFormatter.string(from: date)
         self.videoFileName = "\(name!)-\(stringDate).mov"
+    }
+
+    func bgUploadToS3(url: URL) -> Void {
+        let transferUtility = AWSS3TransferUtility.default()
+
+
+//        AWSS3TransferUtilityUploadExpression *expression = [AWSS3TransferUtilityUploadExpression new];
+//        expression.progressBlock = ^(AWSS3TransferUtilityTask *task, NSProgress *progress) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // Do something e.g. Update a progress bar.
+//                });
+//        };
+//
+//        AWSS3TransferUtilityUploadCompletionHandlerBlock completionHandler = ^(AWSS3TransferUtilityUploadTask *task, NSError *error) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // Do something e.g. Alert a user for transfer completion.
+//                // On failed uploads, `error` contains the error object.
+//                });
+//        };
+        let transferExpression = AWSS3TransferUtilityUploadExpression()
+
+        transferExpression.progressBlock = { (task, progress) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                print("Progress \(progress.fractionCompleted)")
+//                let percentage: Float = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
+//                self.progressBarView.progress = percentage
+//
+//                let percentFormatter = NumberFormatter()
+//                percentFormatter.numberStyle = .percent
+//
+//                let percentageNumber = NSNumber(value: percentage)
+//
+//                self.percentageLbl.text = percentFormatter.string(from:  percentageNumber)
+//                print("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \(percentage * 100)")
+//                // you can have a loading stuff in here.
+                })
+        }
+
+        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+
+        uploadCompletionHandlerBlock = { (task, error) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                if error != nil {
+                    print("Upload successful")
+                } else {
+                    print("Error here: \(error.debugDescription)")
+                }
+            })
+        }
+
+        let uploadExpression = AWSS3TransferUtilityUploadExpression()
+
+        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
+
+        if let newVideoFileName = self.videoFileName {
+            transferUtility.uploadFile(url, bucket: self.bucketName, key: newVideoFileName, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
+                if task.error != nil {
+                    print("Error: \(task.error)")
+                } else {
+                    print("Upload successful")
+                    DispatchQueue.main.async(execute: {[unowned self] in
+                        self.sendEmail()
+                        self.hideProgressView()
+                        })
+                }
+                return nil
+            })
+
+        }
+
+
     }
 
     func uploadtoS3(url: URL) -> Void {

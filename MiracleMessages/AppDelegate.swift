@@ -8,6 +8,8 @@
 
 import UIKit
 import AWSCore
+import AWSS3
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = UIColor.black
         pageControl.backgroundColor = UIColor.red
+
+        BITHockeyManager.shared().configure(withIdentifier: "f181897382a64cafaba5f2d86a98cf4a")
+        BITHockeyManager.shared().start()
+        BITHockeyManager.shared().authenticator.authenticateInstallation()
 
         return true
     }
@@ -52,6 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        AWSS3TransferUtility.interceptApplication(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
     }
 
 

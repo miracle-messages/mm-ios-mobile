@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2321551A1D9CD2D0008F2B2E /* BeginRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
-		232265E31D9BBAAB009D1F2A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232265E21D9BBAAB009D1F2A /* IntroViewController.swift */; };
+		232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232D86261DA8224C0078C68F /* IntroViewController.swift */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
 		23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E51D98E466007DFDDE /* AppDelegate.swift */; };
 		23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E71D98E466007DFDDE /* ViewController.swift */; };
@@ -25,7 +25,7 @@
 		1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiracleMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeginRecordingViewController.swift; sourceTree = "<group>"; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		232265E21D9BBAAB009D1F2A /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		232D86261DA8224C0078C68F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		23B0B7E21D98E466007DFDDE /* MiracleMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiracleMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0B7E51D98E466007DFDDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +83,7 @@
 		23B0B7E41D98E466007DFDDE /* MiracleMessages */ = {
 			isa = PBXGroup;
 			children = (
+				232D86261DA8224C0078C68F /* IntroViewController.swift */,
 				23B0B7E51D98E466007DFDDE /* AppDelegate.swift */,
 				23B0B7E71D98E466007DFDDE /* ViewController.swift */,
 				23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */,
@@ -90,7 +91,6 @@
 				23B0B7EC1D98E466007DFDDE /* Assets.xcassets */,
 				23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */,
 				23B0B7F11D98E466007DFDDE /* Info.plist */,
-				232265E21D9BBAAB009D1F2A /* IntroViewController.swift */,
 				232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
 				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
@@ -120,6 +120,7 @@
 				23B0B7E01D98E466007DFDDE /* Resources */,
 				D6F1B67F9744C89F7A3E83AA /* [CP] Embed Pods Frameworks */,
 				6584F3F853BEDC2917563D6F /* [CP] Copy Pods Resources */,
+				233E9AC11DAB6DFA0049A3FF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -180,6 +181,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		233E9AC11DAB6DFA0049A3FF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
 		6584F3F853BEDC2917563D6F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,10 +248,10 @@
 			files = (
 				2321551A1D9CD2D0008F2B2E /* BeginRecordingViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
+				232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
-				232265E31D9BBAAB009D1F2A /* IntroViewController.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
