@@ -606,9 +606,6 @@
                                 <frame key="frameInset" minY="564" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="gOP-GA-scO" kind="presentation" id="Yg9-KP-cdV"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPf-16-XPk">
                                 <frame key="frameInset" minX="10" minY="574" width="46" height="30"/>
@@ -810,6 +807,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yfU-2c-qRr"/>
-        <segue reference="T9q-bN-RqF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -2,14 +2,19 @@ PODS:
   - AWSCore (2.4.9)
   - AWSS3 (2.4.9):
     - AWSCore (= 2.4.9)
+  - HockeySDK (4.1.2):
+    - HockeySDK/DefaultLib (= 4.1.2)
+  - HockeySDK/DefaultLib (4.1.2)
 
 DEPENDENCIES:
   - AWSS3
+  - HockeySDK (~> 4.1.2)
 
 SPEC CHECKSUMS:
   AWSCore: 175208358b95492e0ebe0337df2ab415300bddac
   AWSS3: e4959b48db48d5f3dcd5cdf9e24a07f60a313611
+  HockeySDK: c7523379550a4305cefc1cdfa7b5f9a5a3538180
 
-PODFILE CHECKSUM: 991ece1c62ae4a6f22a7bf7b1ad1684a62be95b9
+PODFILE CHECKSUM: 6c14b715d85cd121eb45cff9c556c6a69eb06a4c
 
 COCOAPODS: 1.0.1

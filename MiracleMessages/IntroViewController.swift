@@ -198,7 +198,7 @@ extension IntroViewController : UIScrollViewDelegate {
             titleLabel.text = "Step 2: Offer to Record Video"
 
 
-            textView.text = "As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
+            textView.text = "As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. \n\nBefore I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
         }else if Int(currentPage) == 2{
             titleLabel.text = ""
 
