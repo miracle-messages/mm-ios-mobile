@@ -74,8 +74,6 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
 
-//        displayPreInterviewSlides()
-
 
 
         // Do any additional setup after loading the view.
@@ -101,42 +99,6 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         self.pageControl.currentPage = 5
         updateSlideText(currentPage: 5)
     }
-    
-    func displayPreInterviewSlides() -> Void {
-        pageViewController = self.storyboard?.instantiateViewController(withIdentifier: "PageViewController") as! UIPageViewController
-
-        self.pageViewController.dataSource = self
-
-        if let firstViewController = orderedViewControllers.first {
-            self.pageViewController.setViewControllers([firstViewController],
-                                                       direction: UIPageViewControllerNavigationDirection.forward,
-                                                       animated: true,
-                                                       completion: nil)
-        }
-
-        /* We are substracting 30 because we have a start again button whose height is 30*/
-        self.pageViewController.view.frame = CGRect(x:0, y:0, width:self.view.frame.width, height: self.view.frame.height)
-        self.addChildViewController(pageViewController)
-        self.view.addSubview(pageViewController.view)
-        self.pageViewController.didMove(toParentViewController: self)
-    }
-
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [
-            self.newStepViewController(stepNumber: "One"),
-            self.newStepViewController(stepNumber: "Two"),
-            self.newStepViewController(stepNumber: "Three"),
-            self.newStepViewController(stepNumber: "Four"),
-            self.newStepViewController(stepNumber: "Five")
-        ]
-    }()
-
-    private func newStepViewController(stepNumber: String) -> UIViewController {
-        let step = "Step\(stepNumber)ViewController"
-        return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewController(withIdentifier: step)
-    }
-
 
     /*
     // MARK: - Navigation
@@ -150,52 +112,6 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
 
 }
 
-
-
-extension IntroViewController: UIPageViewControllerDataSource {
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
-            return nil
-        }
-
-        let previousIndex = viewControllerIndex - 1
-
-        guard previousIndex >= 0 else {
-            return nil
-        }
-
-        guard orderedViewControllers.count > previousIndex else {
-            return nil
-        }
-
-        return orderedViewControllers[previousIndex]
-
-    }
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
-            return nil
-        }
-
-        let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = orderedViewControllers.count
-
-        guard orderedViewControllersCount != nextIndex else {
-            return nil
-        }
-
-        guard orderedViewControllersCount > nextIndex else {
-            return nil
-        }
-        
-        return orderedViewControllers[nextIndex]
-    }
-    
-    
-}
 
 extension IntroViewController : UIScrollViewDelegate {
     //MARK: UIScrollView Delegate

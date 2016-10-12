@@ -54,13 +54,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
 
     let questionsArray: [String] = [
-        "Please clearly say and spell your full name.",
+        "First, about you. Please clearly say and spell your full name.",
         "What is your date of birth?",
         "Where do you currently live? (city, state, country)",
         "Where is your hometown?",
         "How many years have you been homeless?",
         "What is the best way for us to reach you again? And just so you know, it is not our intention to share this information publicly, only among our volunteers.",
-        "Please clearly say and spell their full name.",
+        "Now, about your loved one(s). Please clearly say and spell their full name.",
         "What is their relationship to you?",
         "What is their date of birth or approximate age?",
         "What is their current or last known location?",
