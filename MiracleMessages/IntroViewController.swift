@@ -22,6 +22,13 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
 
         self.pageControl.backgroundColor = UIColor.clear
 
+        self.navigationController!.navigationBar.topItem!.title = ""
+
+
+        let rightBarButton = UIBarButtonItem(title: "Skip", style: UIBarButtonItemStyle.plain, target: self, action: #selector(IntroViewController.didSelectSkipBtn))
+
+        self.navigationItem.setRightBarButton(rightBarButton, animated: true)
+
         self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
         
         let scrollViewWidth:CGFloat = self.scrollView.frame.width
@@ -48,13 +55,17 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         imgFour.image = UIImage(named: "Slide 4")
         imgFour.contentMode = UIViewContentMode.scaleAspectFill
         imgFour.clipsToBounds = true
-
+        let imgFive = UIImageView(frame: CGRect(x:scrollViewWidth*4, y:0,width:scrollViewWidth, height:scrollViewHeight))
+        imgFive.image = UIImage(named: "Slide 5")
+        imgFive.contentMode = UIViewContentMode.scaleAspectFill
+        imgFive.clipsToBounds = true
         self.scrollView.addSubview(imgOne)
         self.scrollView.addSubview(imgTwo)
         self.scrollView.addSubview(imgThree)
         self.scrollView.addSubview(imgFour)
+        self.scrollView.addSubview(imgFive)
         //4
-        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * 4, height:self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * 5, height:self.scrollView.frame.height)
         self.scrollView.delegate = self
 
 
@@ -85,6 +96,11 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         return UIInterfaceOrientationMask.portrait
     }
 
+    func didSelectSkipBtn() -> Void {
+        self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentSize.width - self.scrollView.frame.width, y: 0), animated: true)
+        self.pageControl.currentPage = 5
+        updateSlideText(currentPage: 5)
+    }
     
     func displayPreInterviewSlides() -> Void {
         pageViewController = self.storyboard?.instantiateViewController(withIdentifier: "PageViewController") as! UIPageViewController
@@ -189,6 +205,10 @@ extension IntroViewController : UIScrollViewDelegate {
         let currentPage:CGFloat = floor((scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1
         // Change the indicator
         self.pageControl.currentPage = Int(currentPage);
+        updateSlideText(currentPage: currentPage)
+    }
+
+    func updateSlideText(currentPage: CGFloat) -> Void {
         // Change the text accordingly
         if Int(currentPage) == 0{
             titleLabel.text = "Step 1: Ask the Question"
@@ -203,10 +223,12 @@ extension IntroViewController : UIScrollViewDelegate {
             titleLabel.text = ""
 
             textView.text = "First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
-        }else{
+        }else if Int(currentPage) == 3{
             titleLabel.text = ""
             textView.text = "Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
-            // Show the "Let's Start" button in the last slide (with a fade in animation)
+        } else {
+            titleLabel.text = ""
+            textView.text = "And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results. \n\nSound good?"
             UIView.animate(withDuration: 1.0, animations: { () -> Void in
                 self.startButton.alpha = 1.0
             })

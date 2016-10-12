@@ -11,7 +11,7 @@ import UIKit
 class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate {
 
     @IBOutlet weak var helloLabel: UILabel!
-
+    @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var volunteerNameLabel: UILabel!
     @IBOutlet weak var volunteerEmailLabel: UILabel!
     @IBOutlet weak var volunteerPhoneLabel: UILabel!
@@ -39,9 +39,7 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
     @IBAction func didSelectSwitchUserBtn(_ sender: AnyObject) {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "name")
-
         dismiss(animated: true, completion: nil)
-
     }
 
     open override var shouldAutorotate: Bool {
@@ -57,7 +55,14 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
 
     func displayVolunteerInfo() -> Void {
         let defaults = UserDefaults.standard
-        volunteerNameLabel.text = defaults.string(forKey: "name")
+
+        let fullName = defaults.string(forKey: "name")
+
+        if let fullNameArr = fullName?.components(separatedBy: " ") {
+            welcomeText.text = "Hello \(fullNameArr[0])!"
+        }
+
+        volunteerNameLabel.text = fullName
         volunteerEmailLabel.text = defaults.string(forKey: "email")
         volunteerPhoneLabel.text = defaults.string(forKey: "phone")
         volunteerLocationLabel.text = defaults.string(forKey: "location")

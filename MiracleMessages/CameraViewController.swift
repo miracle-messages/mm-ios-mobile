@@ -101,7 +101,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let questionLbl1 = UILabel(frame: CGRect(x: questionWidth, y: 0, width: scrollViewWidth, height: scrollViewHeight - 8))
             questionLbl1.textAlignment = NSTextAlignment.center
             questionLbl1.numberOfLines = 0
-            questionLbl1.font = UIFont.init(name: "Futura", size: 15)
+            questionLbl1.font = UIFont.init(name: "System", size: 15)
             questionLbl1.textColor = UIColor.white
             questionLbl1.text = question
             questionLbl1.alpha = 1
@@ -328,7 +328,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.generateVideoFileName()
 
-        self.showProgressView()
+//        self.showProgressView()
 
 //        self.uploadtoS3(url: outputFileURL)
         self.bgUploadToS3(url: outputFileURL)
@@ -464,7 +464,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
         mailComposerVC.setSubject("[MM] Interview video")
-        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\(self.videoLink())\n\nPlease add any additional notes here:", isHTML: false)
+        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink())\n\nPlease add any additional notes here:", isHTML: false)
 
         return mailComposerVC
     }
@@ -561,7 +561,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
                         self.sendEmail()
-                        self.hideProgressView()
+//                        self.hideProgressView()
                         })
                 }
                 return nil
