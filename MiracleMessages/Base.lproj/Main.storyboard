@@ -20,12 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="miracle_messages_white_logo" translatesAutoresizingMaskIntoConstraints="NO" id="0zq-VT-m4r">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="8kW-Ka-QBZ"/>
-                                    <constraint firstAttribute="width" constant="240" id="sJS-my-thg"/>
-                                </constraints>
-                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rf7-JH-VpR" userLabel="LoginContainerView">
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uPZ-LU-mpd">
@@ -137,11 +131,17 @@
                                     <constraint firstAttribute="trailing" secondItem="uPZ-LU-mpd" secondAttribute="trailing" constant="30" id="zHm-Cs-tbs"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="miracle_messages_white_logo" translatesAutoresizingMaskIntoConstraints="NO" id="0zq-VT-m4r">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="8kW-Ka-QBZ"/>
+                                    <constraint firstAttribute="width" constant="277" id="sJS-my-thg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rf7-JH-VpR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9gC-o6-pN7"/>
-                            <constraint firstItem="0zq-VT-m4r" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="E9n-Ao-4Uv"/>
+                            <constraint firstItem="0zq-VT-m4r" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="77" id="E9n-Ao-4Uv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rf7-JH-VpR" secondAttribute="bottom" constant="160" id="Kgk-4X-Z4B"/>
                             <constraint firstItem="0zq-VT-m4r" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="je2-Pf-2bG"/>
                         </constraints>
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.826086956521742" y="36.684782608695656"/>
+            <point key="canvasLocation" x="47.200000000000003" y="36.431784107946029"/>
         </scene>
         <!--Login Summary View Controller-->
         <scene sceneID="E8a-nJ-ylx">
@@ -291,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KP7-mJ-S9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1837.5999999999999" y="136.28185907046478"/>
+            <point key="canvasLocation" x="1758" y="36"/>
         </scene>
         <!--Intro View Controller-->
         <scene sceneID="6DX-oy-vy0">
@@ -379,7 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FzM-fR-SuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2705" y="182"/>
+            <point key="canvasLocation" x="2625" y="36"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="Tgm-Rx-MeE">
@@ -534,7 +534,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3772" y="181"/>
+            <point key="canvasLocation" x="3566" y="36"/>
         </scene>
         <!--Portrait Navigation Controller Controller-->
         <scene sceneID="PM9-fo-Hse">
