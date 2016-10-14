@@ -20,6 +20,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let namePlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        self.nameTextField.attributedPlaceholder = namePlaceholder
+        self.emailTextField.attributedPlaceholder = emailPlaceholder
+        self.phoneTextField.attributedPlaceholder = phonePlaceholder
+        self.locationTextField.attributedPlaceholder = locationPlaceholder
+
         // Do any additional setup after loading the view, typically from a nib.
 
     }

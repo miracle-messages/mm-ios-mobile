@@ -100,15 +100,23 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         updateSlideText(currentPage: 5)
     }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier != "thankyouSegue" {
+            let cameraController = segue.destination as! CameraViewController
+            cameraController.delegate = self
+        }
     }
-    */
+
+    func didFinishRecording() -> Void {
+        performSegue(withIdentifier: "thankyouSegue", sender: self)
+    }
+
 
 }
 

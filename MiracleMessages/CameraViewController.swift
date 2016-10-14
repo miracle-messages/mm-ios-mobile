@@ -20,10 +20,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var timer = Timer()
     var videoFileName: String?
 
+    var delegate: IntroViewController!
+
     //Landscape constraints
     @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnRtConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var thankYouView: UIView!
     //Portrait constraints
     @IBOutlet weak var recordBtnBtmConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnCenterConstraint: NSLayoutConstraint!
@@ -70,7 +72,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         self.progressBarView.progress = 0
         self.hideProgressView()
@@ -331,6 +332,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 //        self.showProgressView()
 
 //        self.uploadtoS3(url: outputFileURL)
+        self.sendEmail()
+        
         self.bgUploadToS3(url: outputFileURL)
 
         print("File size before compression: \(Double(data.length / 1048576)) mb")
@@ -462,9 +465,22 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
 
+        var components = DateComponents()
+        components.setValue(1, for: .hour)
+        let date: Date = Date()
+
+
+        let videoAvailableDate = NSCalendar.current.date(byAdding: components, to: date)
+
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = .medium
+
+        let dateString = formatter.string(from: videoAvailableDate!)
+
         mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
         mailComposerVC.setSubject("[MM] Interview video")
-        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink())\n\nPlease add any additional notes here:", isHTML: false)
+        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink())\n\n*If video is not available please wait until \(dateString) before downloading.\n\nPlease add any additional notes here:", isHTML: false)
 
         return mailComposerVC
     }
@@ -560,7 +576,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 } else {
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
-                        self.sendEmail()
+                          print("Uploading file.")
+//                        self.sendEmail()
 //                        self.hideProgressView()
                         })
                 }
@@ -618,7 +635,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-         self.dismiss(animated: true, completion: nil)
+
+        self.dismiss(animated: true, completion: {[unowned self] in
+            switch result {
+            case MFMailComposeResult.sent:
+                self.view.bringSubview(toFront: self.thankYouView)
+                break
+            default:
+                break
+            }
+        })
+
     }
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {
@@ -631,6 +658,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func didPressDoneBtn(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CameraViewController : UIScrollViewDelegate {

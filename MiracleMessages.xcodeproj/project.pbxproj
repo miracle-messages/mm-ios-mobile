@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2321551A1D9CD2D0008F2B2E /* BeginRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232D86261DA8224C0078C68F /* IntroViewController.swift */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
+		2352C7A41DAF1C230020D3DE /* ThanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2352C7A31DAF1C230020D3DE /* ThanksViewController.swift */; };
 		23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E51D98E466007DFDDE /* AppDelegate.swift */; };
 		23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E71D98E466007DFDDE /* ViewController.swift */; };
 		23B0B7EB1D98E466007DFDDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7E91D98E466007DFDDE /* Main.storyboard */; };
@@ -23,10 +23,10 @@
 
 /* Begin PBXFileReference section */
 		1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiracleMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeginRecordingViewController.swift; sourceTree = "<group>"; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		232D86261DA8224C0078C68F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		2352C7A31DAF1C230020D3DE /* ThanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksViewController.swift; sourceTree = "<group>"; };
 		23B0B7E21D98E466007DFDDE /* MiracleMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiracleMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0B7E51D98E466007DFDDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23B0B7E71D98E466007DFDDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,9 +91,9 @@
 				23B0B7EC1D98E466007DFDDE /* Assets.xcassets */,
 				23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */,
 				23B0B7F11D98E466007DFDDE /* Info.plist */,
-				232155191D9CD2D0008F2B2E /* BeginRecordingViewController.swift */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
 				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
+				2352C7A31DAF1C230020D3DE /* ThanksViewController.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -246,11 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2321551A1D9CD2D0008F2B2E /* BeginRecordingViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
+				2352C7A41DAF1C230020D3DE /* ThanksViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 			);
