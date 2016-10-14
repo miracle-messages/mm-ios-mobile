@@ -99,7 +99,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="lZE-Rr-Vna"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="didSelectLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sQV-tF-4qj"/>
@@ -249,7 +249,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="REM-X4-X6y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <state key="normal" title="Begin Miracle Message"/>
                                 <connections>
                                     <segue destination="59a-U3-Awj" kind="show" id="txc-tk-1ct"/>
@@ -343,7 +343,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="5Qv-w3-UDJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="gOP-GA-scO" kind="presentation" id="T9q-bN-RqF"/>
@@ -380,7 +380,6 @@
                         <outlet property="startButton" destination="wr0-ck-ca2" id="whH-2w-6FN"/>
                         <outlet property="textView" destination="GGh-kU-hQL" id="AJv-kW-0uQ"/>
                         <outlet property="titleLabel" destination="6qw-cK-tHD" id="jST-Kv-wZb"/>
-                        <segue destination="ymk-GT-wSy" kind="presentation" identifier="thankyouSegue" animates="NO" id="YBO-rU-G6r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FzM-fR-SuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -417,7 +416,7 @@
                                             <constraint firstAttribute="height" constant="148" id="84p-fX-lhb"/>
                                         </constraints>
                                         <string key="text">How do you feel? We will be in touch with updates. If you have any questions, you can call or text Miracle Messages at 415.545.8406 or email hello@miraclemessages.org</string>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -427,7 +426,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="76" id="c0M-0g-HjJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="didPressDoneBtn:" destination="gOP-GA-scO" eventType="touchUpInside" id="RSN-Te-BK0"/>
@@ -592,43 +591,11 @@
                         <outlet property="recordBtnRtConstraint" destination="7La-TG-2aB" id="gMb-vS-Cux"/>
                         <outlet property="thankYouView" destination="MHf-sn-PRI" id="G6K-ZB-8Tz"/>
                         <outlet property="timerLabel" destination="Hpd-ah-h8i" id="VFz-Pz-MfG"/>
-                        <segue destination="ymk-GT-wSy" kind="presentation" identifier="thanksSegue" id="F1g-cF-3v4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3640.8000000000002" y="447.52623688155927"/>
-        </scene>
-        <!--Thanks View Controller-->
-        <scene sceneID="C3t-Tp-Zd7">
-            <objects>
-                <viewController id="ymk-GT-wSy" customClass="ThanksViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yh3-Kk-h72"/>
-                        <viewControllerLayoutGuide type="bottom" id="vwP-0t-kXg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9KM-3T-BeA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ang-5A-CZJ">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ang-5A-CZJ" firstAttribute="top" secondItem="yh3-Kk-h72" secondAttribute="bottom" constant="212" id="529-cA-e64"/>
-                            <constraint firstItem="ang-5A-CZJ" firstAttribute="leading" secondItem="9KM-3T-BeA" secondAttribute="leadingMargin" constant="118" id="A5P-qr-YnF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ang-5A-CZJ" secondAttribute="trailing" constant="120" id="E95-qc-YZC"/>
-                            <constraint firstItem="vwP-0t-kXg" firstAttribute="top" secondItem="ang-5A-CZJ" secondAttribute="bottom" constant="414" id="QV7-bb-nD0"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xJ1-bC-dux" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2625" y="756"/>
         </scene>
         <!--Portrait Navigation Controller Controller-->
         <scene sceneID="PM9-fo-Hse">
@@ -655,6 +622,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yfU-2c-qRr"/>
-        <segue reference="F1g-cF-3v4"/>
     </inferredMetricsTieBreakers>
 </document>

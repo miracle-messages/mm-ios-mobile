@@ -120,6 +120,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         pageControl.alpha = 1
     }
 
+    open override var shouldAutorotate: Bool {
+        get {
+            return !isRecording
+        }
+    }
+
     func configurePreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: cameraSession)
         previewView.layer.addSublayer(previewLayer!)
