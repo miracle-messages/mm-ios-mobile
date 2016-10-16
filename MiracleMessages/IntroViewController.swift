@@ -108,8 +108,19 @@ class IntroViewController: UIViewController, UIPageViewControllerDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier != "thankyouSegue" {
-            let cameraController = segue.destination as! CameraViewController
-            cameraController.delegate = self
+                let cameraController = segue.destination as! CameraViewController
+                cameraController.delegate = self
+        }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
+            let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        } else {
+            return true
         }
     }
 
