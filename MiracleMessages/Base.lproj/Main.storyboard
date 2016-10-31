@@ -94,7 +94,7 @@
                                             <constraint firstAttribute="height" constant="30" id="lZE-Rr-Vna"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                        <state key="normal" title="Login"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="didSelectLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sQV-tF-4qj"/>
                                         </connections>
@@ -312,74 +312,173 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyq-SH-K4W"/>
-                            <view userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIB-WH-iee" userLabel="GrayView">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide 3" translatesAutoresizingMaskIntoConstraints="NO" id="EiO-xJ-jRV"/>
+                            <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNr-iX-nba" userLabel="GrayView">
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="E4k-jR-CnK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyq-SH-K4W">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gg-qr-Q5x" userLabel="ContentView">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Ask the Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfV-Ex-dsl">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="zHy-g3-8TP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-aF-kN0">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="92" id="gjM-pi-baV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Offer to Record Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udj-OW-pKW">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="MrG-JB-XqC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOY-pt-iuu">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="94" id="KSH-K9-21a"/>
+                                                </constraints>
+                                                <string key="text">As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tF0-6v-yeW">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="Yev-HT-nH3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J88-Uu-QEY">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="oMx-Fh-fG9"/>
+                                                </constraints>
+                                                <string key="text">First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s).</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDh-tK-hCJ">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="ejK-FW-A3e"/>
+                                                </constraints>
+                                                <string key="text">Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuC-Jw-17W">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="189" id="dAk-MI-kq7"/>
+                                                </constraints>
+                                                <string key="text">And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound good?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6g-Mf-56V">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="Dnu-UY-bw1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Nw0-aF-kN0" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="2fq-qU-jRo"/>
+                                            <constraint firstAttribute="trailing" secondItem="gDh-tK-hCJ" secondAttribute="trailing" constant="8" id="2q7-cj-d1I"/>
+                                            <constraint firstItem="AfV-Ex-dsl" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="3WQ-CA-dFl"/>
+                                            <constraint firstAttribute="trailing" secondItem="eOY-pt-iuu" secondAttribute="trailing" constant="8" id="3ni-4L-FdF"/>
+                                            <constraint firstItem="J88-Uu-QEY" firstAttribute="top" secondItem="tF0-6v-yeW" secondAttribute="bottom" constant="8" id="7l1-HK-w4X"/>
+                                            <constraint firstAttribute="trailing" secondItem="tF0-6v-yeW" secondAttribute="trailing" constant="8" id="885-cN-P26"/>
+                                            <constraint firstItem="tF0-6v-yeW" firstAttribute="top" secondItem="eOY-pt-iuu" secondAttribute="bottom" constant="8" id="KHd-j3-HQf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nw0-aF-kN0" secondAttribute="trailing" constant="8" id="Kqm-de-Akd"/>
+                                            <constraint firstItem="BuC-Jw-17W" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="L3i-vt-Kr6"/>
+                                            <constraint firstItem="udj-OW-pKW" firstAttribute="top" secondItem="Nw0-aF-kN0" secondAttribute="bottom" constant="8" id="Lkm-1N-tKn"/>
+                                            <constraint firstItem="J88-Uu-QEY" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="P8n-AG-HY5"/>
+                                            <constraint firstItem="udj-OW-pKW" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="Skl-JR-7zA"/>
+                                            <constraint firstAttribute="trailing" secondItem="J88-Uu-QEY" secondAttribute="trailing" constant="8" id="VwN-xf-2JN"/>
+                                            <constraint firstItem="gDh-tK-hCJ" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="Ziy-3A-4nn"/>
+                                            <constraint firstItem="tF0-6v-yeW" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="akQ-08-EB0"/>
+                                            <constraint firstAttribute="trailing" secondItem="BuC-Jw-17W" secondAttribute="trailing" constant="8" id="bfI-1v-GDW"/>
+                                            <constraint firstItem="eOY-pt-iuu" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="e45-Ul-1c6"/>
+                                            <constraint firstAttribute="trailing" secondItem="d6g-Mf-56V" secondAttribute="trailing" constant="8" id="fm0-8T-Ggi"/>
+                                            <constraint firstItem="d6g-Mf-56V" firstAttribute="top" secondItem="BuC-Jw-17W" secondAttribute="bottom" constant="8" id="iIC-32-L7U"/>
+                                            <constraint firstItem="d6g-Mf-56V" firstAttribute="leading" secondItem="6gg-qr-Q5x" secondAttribute="leading" constant="8" id="khO-FE-wav"/>
+                                            <constraint firstItem="BuC-Jw-17W" firstAttribute="top" secondItem="gDh-tK-hCJ" secondAttribute="bottom" constant="8" id="lGK-WF-mNv"/>
+                                            <constraint firstItem="Nw0-aF-kN0" firstAttribute="top" secondItem="AfV-Ex-dsl" secondAttribute="bottom" constant="16" id="lYY-Fg-QnV"/>
+                                            <constraint firstAttribute="trailing" secondItem="AfV-Ex-dsl" secondAttribute="trailing" constant="8" id="mYC-dA-jOU"/>
+                                            <constraint firstAttribute="trailing" secondItem="udj-OW-pKW" secondAttribute="trailing" constant="8" id="nTb-nB-tgD"/>
+                                            <constraint firstAttribute="bottom" secondItem="d6g-Mf-56V" secondAttribute="bottom" constant="30" id="oTH-1R-5uf"/>
+                                            <constraint firstItem="eOY-pt-iuu" firstAttribute="top" secondItem="udj-OW-pKW" secondAttribute="bottom" constant="8" id="qbH-TS-4eb"/>
+                                            <constraint firstItem="gDh-tK-hCJ" firstAttribute="top" secondItem="J88-Uu-QEY" secondAttribute="bottom" constant="8" id="rAU-cF-GJZ"/>
+                                            <constraint firstItem="AfV-Ex-dsl" firstAttribute="top" secondItem="6gg-qr-Q5x" secondAttribute="top" constant="78" id="wMk-gN-IbN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="lR3-UQ-Sl5"/>
-                                    <constraint firstAttribute="height" constant="37" id="qk7-E2-AhA"/>
+                                    <constraint firstAttribute="trailing" secondItem="6gg-qr-Q5x" secondAttribute="trailing" id="9Ko-hz-xXC"/>
+                                    <constraint firstAttribute="bottom" secondItem="6gg-qr-Q5x" secondAttribute="bottom" priority="250" id="TBL-VY-nxh"/>
+                                    <constraint firstItem="6gg-qr-Q5x" firstAttribute="top" secondItem="tyq-SH-K4W" secondAttribute="top" id="ZPo-U2-h0o"/>
+                                    <constraint firstItem="6gg-qr-Q5x" firstAttribute="leading" secondItem="tyq-SH-K4W" secondAttribute="leading" id="djf-GT-dAf"/>
                                 </constraints>
-                            </pageControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Ask the Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qw-cK-tHD">
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEM-Nw-4RH">
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="BcL-ZF-LAR"/>
+                                    <constraint firstAttribute="height" constant="64" id="Bbf-8A-Acb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-kU-hQL">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="402" id="W3l-DN-brL"/>
-                                    <constraint firstAttribute="width" constant="277" id="yhf-9y-zVI"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wr0-ck-ca2">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="5Qv-w3-UDJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                <state key="normal" title="Start"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <state key="normal" title="Start a Miracle Message">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="gOP-GA-scO" kind="presentation" id="T9q-bN-RqF"/>
+                                    <segue destination="gOP-GA-scO" kind="presentation" id="uTi-Qk-fL8"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6qw-cK-tHD" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leadingMargin" id="0F6-Je-pDV"/>
-                            <constraint firstAttribute="trailing" secondItem="wIB-WH-iee" secondAttribute="trailing" id="4NN-Jf-QBI"/>
-                            <constraint firstItem="tyq-SH-K4W" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="7aN-pA-aQI"/>
-                            <constraint firstItem="GGh-kU-hQL" firstAttribute="centerY" secondItem="HFv-Qe-btS" secondAttribute="centerY" constant="-18.5" id="ERv-NH-EHm"/>
-                            <constraint firstItem="GGh-kU-hQL" firstAttribute="centerX" secondItem="HFv-Qe-btS" secondAttribute="centerX" id="HsS-Pl-Jcz"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="wIB-WH-iee" secondAttribute="bottom" id="QLj-lr-bmk"/>
-                            <constraint firstItem="wIB-WH-iee" firstAttribute="top" secondItem="HFv-Qe-btS" secondAttribute="top" constant="-64" id="S11-cl-oKA"/>
-                            <constraint firstItem="E4k-jR-CnK" firstAttribute="top" secondItem="wr0-ck-ca2" secondAttribute="bottom" id="V1h-6P-H8Z"/>
-                            <constraint firstItem="rL8-sk-wRe" firstAttribute="top" secondItem="E4k-jR-CnK" secondAttribute="bottom" id="YJL-9d-5z3"/>
-                            <constraint firstItem="6qw-cK-tHD" firstAttribute="trailing" secondItem="HFv-Qe-btS" secondAttribute="trailingMargin" id="cg0-bV-kMS"/>
-                            <constraint firstItem="6qw-cK-tHD" firstAttribute="top" secondItem="szd-Nb-10w" secondAttribute="bottom" id="hgu-g8-wAP"/>
-                            <constraint firstItem="wr0-ck-ca2" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leadingMargin" id="j5X-EB-MQ5"/>
-                            <constraint firstItem="rL8-sk-wRe" firstAttribute="top" secondItem="tyq-SH-K4W" secondAttribute="bottom" id="j9O-Du-jgT"/>
-                            <constraint firstItem="tyq-SH-K4W" firstAttribute="top" secondItem="HFv-Qe-btS" secondAttribute="top" constant="-64" id="kgH-6w-jJh"/>
-                            <constraint firstAttribute="trailing" secondItem="tyq-SH-K4W" secondAttribute="trailing" id="pBl-0P-5D7"/>
-                            <constraint firstItem="wIB-WH-iee" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="qhs-y7-d09"/>
-                            <constraint firstItem="E4k-jR-CnK" firstAttribute="centerX" secondItem="HFv-Qe-btS" secondAttribute="centerX" id="rEK-Kz-xYB"/>
-                            <constraint firstItem="wr0-ck-ca2" firstAttribute="trailing" secondItem="HFv-Qe-btS" secondAttribute="trailingMargin" id="soP-Vy-rDF"/>
+                            <constraint firstItem="rL8-sk-wRe" firstAttribute="top" secondItem="dEM-Nw-4RH" secondAttribute="bottom" id="4ES-6Z-qGO"/>
+                            <constraint firstAttribute="trailing" secondItem="dEM-Nw-4RH" secondAttribute="trailing" id="7Bv-Wz-qZG"/>
+                            <constraint firstItem="6gg-qr-Q5x" firstAttribute="height" secondItem="HFv-Qe-btS" secondAttribute="height" priority="249" id="Dmj-iR-dmi"/>
+                            <constraint firstItem="dEM-Nw-4RH" firstAttribute="top" secondItem="tyq-SH-K4W" secondAttribute="bottom" id="JHH-Ak-K6a"/>
+                            <constraint firstItem="dEM-Nw-4RH" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="KpI-rN-5bi"/>
+                            <constraint firstItem="tyq-SH-K4W" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="MhL-we-jZH"/>
+                            <constraint firstItem="tyq-SH-K4W" firstAttribute="top" secondItem="szd-Nb-10w" secondAttribute="bottom" constant="-64" id="RUT-4O-mhh"/>
+                            <constraint firstAttribute="trailing" secondItem="wNr-iX-nba" secondAttribute="trailing" id="TlL-k7-XYN"/>
+                            <constraint firstItem="wNr-iX-nba" firstAttribute="top" secondItem="szd-Nb-10w" secondAttribute="bottom" constant="-64" id="bBY-uv-8uU"/>
+                            <constraint firstItem="rL8-sk-wRe" firstAttribute="top" secondItem="EiO-xJ-jRV" secondAttribute="bottom" id="bDj-qi-D4O"/>
+                            <constraint firstItem="EiO-xJ-jRV" firstAttribute="top" secondItem="szd-Nb-10w" secondAttribute="bottom" constant="-64" id="egs-HX-ewh"/>
+                            <constraint firstAttribute="trailing" secondItem="tyq-SH-K4W" secondAttribute="trailing" id="f9g-K7-eO8"/>
+                            <constraint firstAttribute="trailing" secondItem="EiO-xJ-jRV" secondAttribute="trailing" id="kTv-kt-Gb3"/>
+                            <constraint firstItem="wNr-iX-nba" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="lss-1e-dBD"/>
+                            <constraint firstItem="rL8-sk-wRe" firstAttribute="top" secondItem="wNr-iX-nba" secondAttribute="bottom" id="pE9-wp-qVQ"/>
+                            <constraint firstItem="6gg-qr-Q5x" firstAttribute="width" secondItem="HFv-Qe-btS" secondAttribute="width" id="pqE-eq-EAZ"/>
+                            <constraint firstItem="EiO-xJ-jRV" firstAttribute="leading" secondItem="HFv-Qe-btS" secondAttribute="leading" id="wuU-7u-RC4"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
-                        <outlet property="pageControl" destination="E4k-jR-CnK" id="Y9Y-TB-68m"/>
                         <outlet property="scrollView" destination="tyq-SH-K4W" id="AuL-qI-RIj"/>
-                        <outlet property="startButton" destination="wr0-ck-ca2" id="whH-2w-6FN"/>
-                        <outlet property="textView" destination="GGh-kU-hQL" id="AJv-kW-0uQ"/>
-                        <outlet property="titleLabel" destination="6qw-cK-tHD" id="jST-Kv-wZb"/>
+                        <outlet property="startButton" destination="dEM-Nw-4RH" id="IRI-fH-yrn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FzM-fR-SuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3640.8000000000002" y="447.52623688155927"/>
+            <point key="canvasLocation" x="3498" y="68"/>
         </scene>
         <!--Portrait Navigation Controller Controller-->
         <scene sceneID="PM9-fo-Hse">
@@ -614,6 +713,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Slide 3" width="3596" height="2397"/>
         <image name="homeback" width="1280" height="1920"/>
         <image name="miracle_messages_clear_logo" width="3061" height="1322"/>
         <image name="mm_icon" width="461" height="620"/>

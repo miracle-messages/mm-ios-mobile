@@ -457,7 +457,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func displayVolunteerInfo() -> String {
         let defaults = UserDefaults.standard
         if let name = defaults.string(forKey: "name"), let email = defaults.string(forKey: "email"), let phone = defaults.string(forKey: "phone"), let location = defaults.string(forKey: "location") {
-            return "\(name)\n\(email)\n\(phone)\n\(location)"
+            return "Volunteer information:\n\n\(name)\n\(email)\n\(phone)\n\(location)"
         } else {
             return "There was an issue."
         }
@@ -486,7 +486,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
         mailComposerVC.setSubject("[MM] Interview video")
-        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink())\n\n*If video is not available please wait until \(dateString) before downloading.\n\nPlease add any additional notes here:", isHTML: false)
+        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink()).\n\nPlease add any additional notes here:", isHTML: false)
 
         return mailComposerVC
     }
