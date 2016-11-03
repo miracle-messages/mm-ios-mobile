@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var infoTxtView: UITextView!
 
     @IBOutlet weak var errorLabel: UILabel!
 
@@ -85,10 +86,23 @@ class ViewController: UIViewController {
 
     func keyboardWillShowNotification(notification: NSNotification) {
         updateBottomLayoutConstraintWithNotification(notification: notification)
+        self.toggleInfoView(visible: false)
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
         updateBottomLayoutConstraintWithNotification(notification: notification)
+        self.toggleInfoView(visible: true)
+    }
+
+    func toggleInfoView(visible: Bool) -> Void {
+
+        UIView.animate(withDuration: 0.5, animations: {
+            if (visible) {
+                self.infoTxtView.alpha = 1.0
+            } else {
+                self.infoTxtView.alpha = 0
+            }
+        })
     }
 
     func updateBottomLayoutConstraintWithNotification(notification: NSNotification) {
