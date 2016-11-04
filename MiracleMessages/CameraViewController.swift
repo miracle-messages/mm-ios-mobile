@@ -135,16 +135,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.previewView.bringSubview(toFront: self.recordBtn)
         self.previewView.bringSubview(toFront: self.timerLabel)
         self.previewView.bringSubview(toFront: self.closeBtn)
-
-//        let rootLayer: CALayer = self.playbackView.layer
-//        rootLayer.masksToBounds = true
-//
-//        avPlayerLayer = AVPlayerLayer(player: player)
-//        avPlayerLayer.bounds = self.playbackView.bounds
-//        avPlayerLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//        rootLayer.insertSublayer(avPlayerLayer, at: 0)
-//
-//        avPlayerLayer.backgroundColor = UIColor.blue.cgColor
     }
 
     func reconfigureQuestionScrollView() -> Void {
@@ -335,9 +325,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.generateVideoFileName()
 
-//        self.showProgressView()
-
-//        self.uploadtoS3(url: outputFileURL)
         self.sendEmail()
         
         self.bgUploadToS3(url: outputFileURL)
@@ -475,14 +462,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         components.setValue(1, for: .hour)
         let date: Date = Date()
 
-
-        let videoAvailableDate = NSCalendar.current.date(byAdding: components, to: date)
-
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
         formatter.timeStyle = .medium
-
-        let dateString = formatter.string(from: videoAvailableDate!)
 
         mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
         mailComposerVC.setSubject("[MM] Interview video")
@@ -545,17 +527,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         transferExpression.progressBlock = { (task, progress) in
             DispatchQueue.main.sync(execute: { () -> Void in
                 print("Progress \(progress.fractionCompleted)")
-//                let percentage: Float = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
-//                self.progressBarView.progress = percentage
-//
-//                let percentFormatter = NumberFormatter()
-//                percentFormatter.numberStyle = .percent
-//
-//                let percentageNumber = NSNumber(value: percentage)
-//
-//                self.percentageLbl.text = percentFormatter.string(from:  percentageNumber)
-//                print("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \(percentage * 100)")
-//                // you can have a loading stuff in here.
                 })
         }
 
@@ -583,8 +554,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
                           print("Uploading file.")
-//                        self.sendEmail()
-//                        self.hideProgressView()
                         })
                 }
                 return nil
@@ -619,7 +588,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
                     self.percentageLbl.text = percentFormatter.string(from:  percentageNumber)
                     print("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \(percentage * 100)")
-                    // you can have a loading stuff in here.
                 })
             }
 
