@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "favicon mm logo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "MM_Logo_Website_Large.png",
       "scale" : "2x"
     },
     {

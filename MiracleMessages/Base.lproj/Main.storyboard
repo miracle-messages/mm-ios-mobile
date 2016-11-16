@@ -144,7 +144,7 @@
                                     <constraint firstAttribute="trailing" secondItem="uPZ-LU-mpd" secondAttribute="trailing" constant="30" id="zHm-Cs-tbs"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="miracle_messages_clear_logo" translatesAutoresizingMaskIntoConstraints="NO" id="0zq-VT-m4r">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="0zq-VT-m4r">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="8kW-Ka-QBZ"/>
                                     <constraint firstAttribute="width" constant="256" id="sJS-my-thg"/>
@@ -195,9 +195,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IMY-rQ-XsG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon_black" translatesAutoresizingMaskIntoConstraints="NO" id="IMY-rQ-XsG">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="gj0-1R-5fp"/>
+                                    <constraint firstAttribute="width" constant="71" id="gj0-1R-5fp"/>
                                     <constraint firstAttribute="height" constant="63" id="hIt-Nx-r0r"/>
                                 </constraints>
                             </imageView>
@@ -277,7 +277,7 @@
                             <constraint firstAttribute="trailing" secondItem="FcU-yf-mqa" secondAttribute="trailing" id="ZR2-3c-rA7"/>
                             <constraint firstAttribute="trailing" secondItem="RTH-fu-Ckj" secondAttribute="trailing" id="ab3-Rw-VRC"/>
                             <constraint firstItem="aVw-dm-1cT" firstAttribute="top" secondItem="FcU-yf-mqa" secondAttribute="bottom" constant="50" id="bKd-Ja-Ujc"/>
-                            <constraint firstItem="IMY-rQ-XsG" firstAttribute="top" secondItem="Pgy-ev-kDf" secondAttribute="bottom" id="c4C-be-D4d"/>
+                            <constraint firstItem="IMY-rQ-XsG" firstAttribute="top" secondItem="Pgy-ev-kDf" secondAttribute="bottom" constant="7" id="c4C-be-D4d"/>
                             <constraint firstItem="RTH-fu-Ckj" firstAttribute="top" secondItem="aVw-dm-1cT" secondAttribute="bottom" constant="8" id="cRz-nN-tgl"/>
                             <constraint firstItem="6BN-SY-ecl" firstAttribute="leading" secondItem="Sjf-VV-Euu" secondAttribute="leading" id="ksq-Gs-8bb"/>
                             <constraint firstAttribute="trailing" secondItem="gT3-b4-OYj" secondAttribute="trailing" id="lZx-Hc-y4o"/>
@@ -498,7 +498,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-Zk-aNI" userLabel="ContentView">
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is your full name?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-f3-FL4">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is your full name?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-f3-FL4">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="GBA-jT-H0a"/>
                                                 </constraints>
@@ -506,7 +506,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is your date of birth?" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sny-V4-wZg">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is your date of birth?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sny-V4-wZg">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="QAY-2B-vVD"/>
                                                 </constraints>
@@ -514,7 +514,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where do you currently live?" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMA-YF-YUj">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where do you currently live?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sMA-YF-YUj">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="xF1-hb-GvZ"/>
                                                 </constraints>
@@ -522,7 +522,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where is your hometown?" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VkS-nA-8Zg">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where is your hometown?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VkS-nA-8Zg">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="VxY-iN-GTz"/>
                                                 </constraints>
@@ -530,7 +530,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How many years have you been homeless?" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WFu-jG-X60">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How many years have you been homeless?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WFu-jG-X60">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="Y9d-47-rAQ"/>
                                                 </constraints>
@@ -552,7 +552,7 @@
                                                     <constraint firstAttribute="height" constant="225" id="1kW-OL-POL"/>
                                                 </constraints>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -609,7 +609,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dobTextField" destination="sny-V4-wZg" id="HpB-oI-fyK"/>
+                        <outlet property="scrollView" destination="UPe-e1-2ti" id="bdw-9J-fqY"/>
+                        <outlet property="textView" destination="4Mv-To-PtK" id="pCM-WT-3SD"/>
+                        <outlet property="textViewLabel" destination="spV-Ne-bi5" id="WKM-Mh-OaP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPa-6I-GVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -685,7 +687,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="225" id="Euf-J6-eu4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -737,10 +739,15 @@
                     <navigationItem key="navigationItem" title="About your loved one" id="xa0-iJ-FWY">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="EXb-vh-ONx">
                             <connections>
-                                <segue destination="gOP-GA-scO" kind="show" id="ges-Ex-LnP"/>
+                                <segue destination="gOP-GA-scO" kind="presentation" id="ges-Ex-LnP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="scrollView" destination="Jar-3e-lDV" id="f1j-Rb-tSW"/>
+                        <outlet property="textView" destination="fXe-dr-hZB" id="btR-cp-hhs"/>
+                        <outlet property="textViewLabel" destination="fjJ-fQ-ntV" id="xa2-eh-3qK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8j-YA-lDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -908,7 +915,7 @@
                                     <constraint firstAttribute="height" constant="125" id="whD-gb-mhX"/>
                                 </constraints>
                             </scrollView>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="12" translatesAutoresizingMaskIntoConstraints="NO" id="SJI-Zr-8E9">
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="SJI-Zr-8E9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="BSH-Eu-Izq"/>
                                 </constraints>
@@ -976,8 +983,8 @@
     <resources>
         <image name="Slide 3" width="3596" height="2397"/>
         <image name="homeback" width="640" height="960"/>
-        <image name="miracle_messages_clear_logo" width="1530" height="661"/>
-        <image name="mm_icon" width="461" height="620"/>
+        <image name="mm_icon_black" width="488" height="439"/>
+        <image name="mm_logo_white" width="544" height="159"/>
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>

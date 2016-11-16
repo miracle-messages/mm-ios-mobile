@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MiracleMessages/BackgroundInfoView2Controller.swift"
+            timestampString = "500688115.624355"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "keyboardWillHideNotification(notification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MiracleMessages/BackgroundInfoView2Controller.swift"
+            timestampString = "500688117.042114"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "keyboardWillShowNotification(notification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MiracleMsg.BackgroundInfoView2Controller.keyboardWillShowNotification (notification : __ObjC.NSNotification) -&gt; ()"
+                  moduleName = "MiracleMsg"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/BackgroundInfoView2Controller.swift"
+                  timestampString = "500688139.631731"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MiracleMsg.BackgroundInfoView2Controller.keyboardWillShowNotification (notification : __ObjC.NSNotification) -&gt; ()"
+                  moduleName = "MiracleMsg"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/BackgroundInfoView2Controller.swift"
+                  timestampString = "500688139.633073"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "724">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

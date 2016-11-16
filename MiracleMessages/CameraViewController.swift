@@ -20,7 +20,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var timer = Timer()
     var videoFileName: String?
 
-    var delegate: IntroViewController!
+    weak var delegate:CameraViewControllerDelegate?
 
     //Landscape constraints
     @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
@@ -56,18 +56,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
 
     let questionsArray: [String] = [
-        "First, about you. Please clearly say and spell your full name.",
-        "What is your date of birth?",
-        "Where do you currently live? (city, state, country)",
-        "Where is your hometown?",
-        "How many years have you been homeless?",
-        "What is the best way for us to reach you again? And just so you know, it is not our intention to share this information publicly, only among our volunteers.",
-        "Now, about your loved one(s). Please clearly say and spell their full name.",
-        "What is their relationship to you?",
-        "What is their date of birth or approximate age?",
-        "What is their current or last known location?",
-        "How many years has it been since you last saw them?",
-        "Any other information you think might be helpful? (names of other relatives, previous addresses, reason for being disconnected...)"
+        "Please leave your loved one a short message."
     ]
 
     override func viewDidLoad() {
@@ -309,7 +298,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.generateVideoFileName()
 
-        self.sendEmail()
+        //self.sendEmail()
         
         self.bgUploadToS3(url: outputFileURL)
 
@@ -444,7 +433,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         var components = DateComponents()
         components.setValue(1, for: .hour)
-        let date: Date = Date()
 
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
@@ -582,7 +570,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 } else {
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
-                        self.sendEmail()
+                        //self.sendEmail()
                         self.hideProgressView()
                     })
                 }
@@ -617,6 +605,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     @IBAction func didPressDoneBtn(_ sender: AnyObject) {
+        self.delegate?.didFinishRecording(sender: self)
         self.dismiss(animated: true, completion: nil)
     }
 }
