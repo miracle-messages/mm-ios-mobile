@@ -12,13 +12,14 @@ import MediaPlayer
 import AWSS3
 import MessageUI
 import Photos
-
+import FirebaseDatabase
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate {
 
     var startTime = TimeInterval()
     var timer = Timer()
     var videoFileName: String?
+    var ref: FIRDatabaseReference!
 
     weak var delegate:CameraViewControllerDelegate?
 
@@ -41,6 +42,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var previewView: UIView!
 
+    var backgroundInfo: BackgroundInfo?
     var cameraSession: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
 
@@ -56,7 +58,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
 
     let questionsArray: [String] = [
-        "Please leave your loved one a short message."
+        "Please leave your loved one a short message. Note to volunteer: hold your phone horizontally when recording!"
     ]
 
     override func viewDidLoad() {
@@ -64,6 +66,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.progressBarView.progress = 0
         self.hideProgressView()
+        self.ref = FIRDatabase.database().reference()
 
         //Set up capture session
         cameraSession = AVCaptureSession()
@@ -298,58 +301,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.generateVideoFileName()
 
-        //self.sendEmail()
+        self.sendInfo()
         
         self.bgUploadToS3(url: outputFileURL)
 
-        print("File size before compression: \(Double(data.length / 1048576)) mb")
-        
-//        let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".mov")
-//        compressVideo(inputURL: outputFileURL as URL, outputURL: compressedURL) { (exportSession) in
-//            guard let session = exportSession else {
-//                return
-//            }
-//
-//            switch session.status {
-//            case .unknown:
-//                break
-//            case .waiting:
-//                break
-//            case .exporting:
-//                break
-//            case .completed:
-//                guard let compressedData = NSData(contentsOf: compressedURL) else {
-//                    return
-//                }
-//                self.uploadtoS3(url: compressedURL)
-//
-//                PHPhotoLibrary.shared().performChanges({
-//                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: compressedURL)
-//                }) { saved, error in
-//                    if saved {
-//                        print("Saved successfully.")
-//                    }
-//                }
-//
-//                print("File size after compression: \(Double(compressedData.length / 1048576)) mb")
-//                break
-//            case .failed:
-//                break
-//            case .cancelled:
-//                break
-//            }
-//        }
+        self.showThankYou()
+    }
 
-
-//        let item = AVPlayerItem(url: outputFileURL)
-//        player.replaceCurrentItem(with: item)
-//        if (player.currentItem != nil) {
-//            print("Starting playback!")
-//            player.play()
-//        } else {
-//            print("Will not start playback")
-//        }
-//        return
+    func showThankYou() -> Void {
+        self.view.bringSubview(toFront: self.thankYouView)
     }
 
     @IBAction func didPressTakePhoto(_ sender: AnyObject) {
@@ -392,6 +352,41 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func stopTimer() {
         timer.invalidate()
         timerLabel.text = "00:00:00"
+    }
+
+    func sendInfo() -> Void {
+        //Create new user ID
+        let defaults = UserDefaults.standard
+        
+        if let backgroundInfo = self.backgroundInfo {
+            let key = ref.child("clients").childByAutoId().key
+            //Create new client info payload
+            let payload = [
+                "volunteer_name" : defaults.string(forKey: "name")!,
+                "volunteer_email" : defaults.string(forKey: "email")!,
+                "volunteer_phone" : defaults.string(forKey: "phone")!,
+                "volunteer_location" : defaults.string(forKey: "location")!,
+                "client_name" : backgroundInfo.client_name,
+                "client_dob" : backgroundInfo.client_dob!,
+                "client_current_city" : backgroundInfo.client_current_city!,
+                "client_hometown" : backgroundInfo.client_hometown!,
+                "client_contact_info" : backgroundInfo.client_contact_info!,
+                "client_years_homeless" : backgroundInfo.client_years_homeless!,
+                "recipient_name" : backgroundInfo.recipient_name!,
+                "recipient_dob" : backgroundInfo.recipient_dob!,
+                "recipient_relationship" : backgroundInfo.recipient_relationship!,
+                "recipient_last_location" : backgroundInfo.recipient_last_location!,
+                "recipient_last_seen" : backgroundInfo.recipient_years_since_last_seen!,
+                "recipient_other_info" : backgroundInfo.recipient_other_info!,
+                "uploaded_url" : self.videoLink(),
+                "created_at" : floor(NSDate().timeIntervalSince1970)
+            ] as [String : Any]
+
+            //Send payload to server
+            let childUpdates = ["/clients/\(key)": payload]
+            ref.updateChildValues(childUpdates)
+        }
+
     }
 
     func sendEmail() {
@@ -523,10 +518,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 if task.error != nil {
                     print("Error: \(task.error)")
                 } else {
-                    print("Upload successful")
-                    DispatchQueue.main.async(execute: {[unowned self] in
-                          print("Uploading file.")
-                        })
+                    print("Uploading file.")
+                    DispatchQueue.main.async(execute: {
+                        print("Upload successful.")
+                    })
                 }
                 return nil
             })
@@ -570,7 +565,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 } else {
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
-                        //self.sendEmail()
+                        self.sendInfo()
                         self.hideProgressView()
                     })
                 }
@@ -578,6 +573,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             })
         }
 
+    }
+
+    func dimissCamera() -> Void {
+        self.delegate?.didFinishRecording(sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -605,8 +605,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     @IBAction func didPressDoneBtn(_ sender: AnyObject) {
-        self.delegate?.didFinishRecording(sender: self)
-        self.dismiss(animated: true, completion: nil)
+        self.dimissCamera()
     }
 }
 

@@ -11,8 +11,9 @@
 		232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232D86261DA8224C0078C68F /* IntroViewController.swift */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
 		23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1051C1DD018F200276DDD /* GoogleService-Info.plist */; };
-		23A1051F1DD074F700276DDD /* BackgroundInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1051E1DD074F700276DDD /* BackgroundInfoViewController.swift */; };
-		23A105211DD42EE600276DDD /* BackgroundInfoView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105201DD42EE600276DDD /* BackgroundInfoView2Controller.swift */; };
+		23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */; };
+		23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */; };
+		23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */; };
 		23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E51D98E466007DFDDE /* AppDelegate.swift */; };
 		23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B0B7E71D98E466007DFDDE /* ViewController.swift */; };
 		23B0B7EB1D98E466007DFDDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7E91D98E466007DFDDE /* Main.storyboard */; };
@@ -29,8 +30,9 @@
 		232D86261DA8224C0078C68F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		23A1051C1DD018F200276DDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		23A1051E1DD074F700276DDD /* BackgroundInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoViewController.swift; sourceTree = "<group>"; };
-		23A105201DD42EE600276DDD /* BackgroundInfoView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoView2Controller.swift; sourceTree = "<group>"; };
+		23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo1ViewController.swift; sourceTree = "<group>"; };
+		23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo2ViewController.swift; sourceTree = "<group>"; };
+		23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoViewController.swift; sourceTree = "<group>"; };
 		23B0B7E21D98E466007DFDDE /* MiracleMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiracleMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B0B7E51D98E466007DFDDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23B0B7E71D98E466007DFDDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,8 +100,9 @@
 				23B0B7F11D98E466007DFDDE /* Info.plist */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
 				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
-				23A1051E1DD074F700276DDD /* BackgroundInfoViewController.swift */,
-				23A105201DD42EE600276DDD /* BackgroundInfoView2Controller.swift */,
+				23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */,
+				23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */,
+				23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -254,12 +257,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
+				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				232D86271DA8224C0078C68F /* IntroViewController.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
-				23A105211DD42EE600276DDD /* BackgroundInfoView2Controller.swift in Sources */,
+				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
-				23A1051F1DD074F700276DDD /* BackgroundInfoViewController.swift in Sources */,
+				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

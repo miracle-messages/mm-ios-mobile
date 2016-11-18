@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class ViewController: UIViewController {
 
@@ -20,12 +19,9 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var errorLabel: UILabel!
 
-    var ref: FIRDatabaseReference!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ref = FIRDatabase.database().reference()
         let namePlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.white])
         let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.white])
         let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.white])
@@ -34,14 +30,6 @@ class ViewController: UIViewController {
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         self.phoneTextField.attributedPlaceholder = phonePlaceholder
         self.locationTextField.attributedPlaceholder = locationPlaceholder
-
-        //self.ref.child("test_clients").child("100").setValue(["city": "San Francisco", "state" : "CA" ])
-
-        //let post = ["date": "12/1/2016",
-        //           "title": "a new title"]
-        //let childUpdates = ["/test_clients/100/state": "CA"]
-        //ref.updateChildValues(childUpdates)
-
     }
 
     override func didReceiveMemoryWarning() {

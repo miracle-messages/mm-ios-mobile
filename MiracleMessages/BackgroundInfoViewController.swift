@@ -2,34 +2,66 @@
 //  BackgroundInfoViewController.swift
 //  MiracleMessages
 //
-//  Created by Win Raguini on 11/7/16.
+//  Created by Win Raguini on 11/16/16.
 //  Copyright © 2016 Win Inc. All rights reserved.
 //
 
 import UIKit
 
-class BackgroundInfoViewController: UIViewController {
+struct BackgroundInfo {
+    var client_name: String
+    var client_dob: String?
+    var client_current_city: String?
+    var client_hometown: String?
+    var client_years_homeless: String?
+    var client_contact_info: String?
+    var recipient_name: String?
+    var recipient_relationship: String?
+    var recipient_dob: String?
+    var recipient_last_location: String?
+    var recipient_years_since_last_seen: String?
+    var recipient_other_info: String?
+
+    init(client_name: String) {
+        self.client_name = client_name
+    }
+}
+
+
+protocol Updatable {
+    func updateBackgroundInfo() -> BackgroundInfo?
+}
+
+extension Updatable {
+    func updateBackgroundInfo() -> BackgroundInfo? {
+        return nil
+    }
+}
+
+class BackgroundInfoViewController: UIViewController, Updatable {
 
     @IBOutlet weak var scrollView: UIScrollView!
-
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewLabel: UILabel!
 
-    @IBOutlet weak var textView: UITextView!
+    var backgroundInfo: BackgroundInfo?
     
     var keyboardIsVisible = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textView.delegate = self
-        self.navigationController!.navigationBar.topItem?.backBarButtonItem?.title = ""
+
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        self.scrollView.contentInset = contentInsets
 
         // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,6 +101,7 @@ class BackgroundInfoViewController: UIViewController {
         keyboardIsVisible = false
     }
     
+    
 
     /*
     // MARK: - Navigation
@@ -79,7 +112,6 @@ class BackgroundInfoViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 
 }
 
