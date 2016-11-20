@@ -36,6 +36,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         self.backgroundInfo?.client_current_city = self.textFieldClientCurrentLocation.text
         self.backgroundInfo?.client_hometown = self.textFieldClientHometown.text
         self.backgroundInfo?.client_contact_info = self.textViewContactInfo.text
+        self.backgroundInfo?.client_years_homeless = self.textFieldClientYearsHomeless.text
         return self.backgroundInfo
     }
 
