@@ -312,6 +312,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             return
         }
 
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+        }) { saved, error in
+            if saved {
+                print("Saved successfully.")
+            }
+        }
+
         cameraSession?.stopRunning()
 
         let appearance = SCLAlertView.SCLAppearance(
@@ -321,21 +329,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         alertView.addButton("Yes, submit video") {[unowned self] in
             self.submit(outputFileURL: outputFileURL)
         }
-        alertView.addButton("No, delete it") {[unowned self] in
+        alertView.addButton("No, retake video") {[unowned self] in
             self.cameraSession?.startRunning()
             print("Cancelled")
         }
-        alertView.showSuccess("Recording complete.", subTitle: "Would you like to submit this recording?")
+        alertView.showSuccess("Confirm", subTitle: "Would you like to submit this recording?")
     }
 
     func submit(outputFileURL: URL!) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-        }) { saved, error in
-            if saved {
-                print("Saved successfully.")
-            }
-        }
 
         self.generateVideoFileName()
 
