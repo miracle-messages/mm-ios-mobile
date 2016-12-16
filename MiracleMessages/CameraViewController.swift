@@ -13,6 +13,8 @@ import AWSS3
 import MessageUI
 import Photos
 import FirebaseDatabase
+import SCLAlertView
+import Alamofire
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate {
 
@@ -20,6 +22,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var timer = Timer()
     var videoFileName: String?
     var ref: FIRDatabaseReference!
+
+    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
 
     weak var delegate:CameraViewControllerDelegate?
 
@@ -37,7 +41,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var questionScrollView: UIScrollView!
-//    @IBOutlet weak var playbackView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var previewView: UIView!
@@ -46,20 +49,25 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var cameraSession: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
 
-    var player: AVPlayer = AVPlayer()
-    var avPlayerLayer: AVPlayerLayer!
-
     var isRecording = false
-
     let dataOutput = AVCaptureMovieFileOutput()
 
+
     let bucketName: String = "mm-interview-vids"
-
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
-
     let questionsArray: [String] = [
         "Please leave your loved one a short message. Note to volunteer: hold your phone horizontally when recording!"
     ]
+
+    //Player
+    var player: AVPlayer = AVPlayer()
+    var avPlayerLayer: AVPlayerLayer!
+
+    //Thank you
+    @IBOutlet weak var thnkYouMsgLabel: UILabel!
+    @IBOutlet weak var infoMsgLabel: UILabel!
+    @IBOutlet weak var doneBtn: UIButton!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +78,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         //Set up capture session
         cameraSession = AVCaptureSession()
-        cameraSession!.sessionPreset = AVCaptureSessionPresetMedium
+        cameraSession!.sessionPreset = AVCaptureSessionPreset1280x720
 
         //Add inputs
         configureCamera()
@@ -185,6 +193,19 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
     }
 
+    @IBAction func didPushNextBtn(_ sender: UIButton) {
+        thnkYouMsgLabel.text = "What's next"
+        infoMsgLabel.text = "Get in touch with your local chapter to begin searching for loved ones."
+        //UIApplication.shared.openURL(NSURL(string: "http://www.google.com")! as URL)
+        doneBtn.setTitle("Home", for: .normal)
+        doneBtn.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
+        doneBtn.addTarget(self, action: #selector(CameraViewController.homeBtnSelected), for: .touchUpInside)
+    }
+
+    func homeBtnSelected()  {
+        dimissCamera()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 
     }
@@ -287,10 +308,27 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
 
-        guard let data = NSData(contentsOf: outputFileURL as URL) else {
+        guard let _ = NSData(contentsOf: outputFileURL as URL) else {
             return
         }
 
+        cameraSession?.stopRunning()
+
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alertView = SCLAlertView(appearance: appearance)
+        alertView.addButton("Yes, submit video") {[unowned self] in
+            self.submit(outputFileURL: outputFileURL)
+        }
+        alertView.addButton("No, delete it") {[unowned self] in
+            self.cameraSession?.startRunning()
+            print("Cancelled")
+        }
+        alertView.showSuccess("Recording complete.", subTitle: "Would you like to submit this recording?")
+    }
+
+    func submit(outputFileURL: URL!) {
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
         }) { saved, error in
@@ -302,10 +340,29 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.generateVideoFileName()
 
         self.sendInfo()
-        
+
         self.bgUploadToS3(url: outputFileURL)
 
+        let parameters = self.videoParameters()
+
+        Alamofire.request(zapierUrl, parameters: parameters).responseData { response in
+            switch response.result {
+            case .success:
+                print("Submitted")
+            case .failure(let error):
+                print(error)
+            }
+        }
+
         self.showThankYou()
+    }
+
+    func videoParameters() -> Parameters {
+        let defaults = UserDefaults.standard
+
+        return [ "email" :  defaults.string(forKey: "email")!,
+                 "name" : defaults.string(forKey: "name")!,
+                 "video" : self.videoLink()]
     }
 
     func showThankYou() -> Void {
@@ -324,14 +381,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             changeRecordBtn(recording: true)
 
             let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
-
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let filePath = documentsURL.appendingPathComponent("temp.mov")
 
             dataOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
         }
-        
-        
     }
 
     func changeRecordBtn(recording: Bool) -> Void {
@@ -378,7 +432,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 "recipient_last_location" : backgroundInfo.recipient_last_location!,
                 "recipient_last_seen" : backgroundInfo.recipient_years_since_last_seen!,
                 "recipient_other_info" : backgroundInfo.recipient_other_info!,
-                "uploaded_url" : self.videoLink(),
+                "volunteer_uploaded_url" : self.videoLink(),
                 "created_at" : floor(NSDate().timeIntervalSince1970)
             ] as [String : Any]
 
@@ -474,21 +528,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func bgUploadToS3(url: URL) -> Void {
         let transferUtility = AWSS3TransferUtility.default()
-
-
-//        AWSS3TransferUtilityUploadExpression *expression = [AWSS3TransferUtilityUploadExpression new];
-//        expression.progressBlock = ^(AWSS3TransferUtilityTask *task, NSProgress *progress) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // Do something e.g. Update a progress bar.
-//                });
-//        };
-//
-//        AWSS3TransferUtilityUploadCompletionHandlerBlock completionHandler = ^(AWSS3TransferUtilityUploadTask *task, NSError *error) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // Do something e.g. Alert a user for transfer completion.
-//                // On failed uploads, `error` contains the error object.
-//                });
-//        };
         let transferExpression = AWSS3TransferUtilityUploadExpression()
 
         transferExpression.progressBlock = { (task, progress) in
@@ -604,9 +643,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func didPressDoneBtn(_ sender: AnyObject) {
-        self.dimissCamera()
-    }
 }
 
 extension CameraViewController : UIScrollViewDelegate {

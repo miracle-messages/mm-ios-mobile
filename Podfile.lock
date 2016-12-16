@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.2.0)
   - AWSCore (2.4.9)
   - AWSS3 (2.4.9):
     - AWSCore (= 2.4.9)
@@ -28,15 +29,19 @@ PODS:
   - HockeySDK (4.1.2):
     - HockeySDK/DefaultLib (= 4.1.2)
   - HockeySDK/DefaultLib (4.1.2)
+  - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - AWSS3
   - DatePickerDialog
   - Firebase/Core
   - Firebase/Database
   - HockeySDK (~> 4.1.2)
+  - SCLAlertView
 
 SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AWSCore: 175208358b95492e0ebe0337df2ab415300bddac
   AWSS3: e4959b48db48d5f3dcd5cdf9e24a07f60a313611
   DatePickerDialog: bd5e7e92e4da2c6a8966b28d5f5d8f335d6c2c63
@@ -49,7 +54,8 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   HockeySDK: c7523379550a4305cefc1cdfa7b5f9a5a3538180
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: 84eb9f205dee39c4701a4c702957baa00580c837
+PODFILE CHECKSUM: d53cf2344ebb818a6358347a7cf81c8c17a59672
 
 COCOAPODS: 1.1.1

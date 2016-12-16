@@ -76,12 +76,12 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
 
 extension BackgroundInfo2ViewController: CameraViewControllerDelegate {
     func didFinishRecording(sender: CameraViewController) -> Void {
-
-        for aviewcontroller : UIViewController in navigationController!.viewControllers
+        guard let navController = self.navigationController else {return}
+        for aviewcontroller in navController.viewControllers
         {
             if aviewcontroller is LoginSummaryViewController
             {
-                self.navigationController?.popToViewController(aviewcontroller, animated: true)
+                navController.popToViewController(aviewcontroller, animated: true)
             }
         }
     }

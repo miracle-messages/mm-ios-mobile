@@ -9,6 +9,8 @@ target 'MiracleMessages' do
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'DatePickerDialog'
+    pod 'SCLAlertView'
+    pod 'Alamofire', '~> 4.0'
 end
 
 post_install do |installer|
