@@ -21,11 +21,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let namePlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.white])
-        let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.white])
+
+        self.navigationController?.navigationBar.transparentNavigationBar()
+
+        let profileBtn = UIButton(type: UIButtonType.custom)
+        profileBtn.setImage(UIImage.init(named: "homeBtn"), for: UIControlState.normal)
+        profileBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        profileBtn.addTarget(self, action: #selector(didPressProfileBtn), for: UIControlEvents.touchUpInside)
+
+
+        let profileBarBtnItem = UIBarButtonItem(customView: profileBtn)
+        self.navigationItem.rightBarButtonItem = profileBarBtnItem
+
+
+        let namePlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         self.nameTextField.attributedPlaceholder = namePlaceholder
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         self.phoneTextField.attributedPlaceholder = phonePlaceholder
@@ -91,15 +103,19 @@ class ViewController: UIViewController {
         self.toggleInfoView(visible: true)
     }
 
+    func didPressProfileBtn() -> Void {
+        print("Profile")
+    }
+
     func toggleInfoView(visible: Bool) -> Void {
 
-        UIView.animate(withDuration: 0.5, animations: {
-            if (visible) {
-                self.infoTxtView.alpha = 1.0
-            } else {
-                self.infoTxtView.alpha = 0
-            }
-        })
+//        UIView.animate(withDuration: 0.5, animations: {
+//            if (visible) {
+//                self.infoTxtView.alpha = 1.0
+//            } else {
+//                self.infoTxtView.alpha = 0
+//            }
+//        })
     }
 
     func updateBottomLayoutConstraintWithNotification(notification: NSNotification) {
@@ -137,5 +153,15 @@ class ViewController: UIViewController {
 
     
 
+}
+
+
+extension UINavigationBar {
+
+    func transparentNavigationBar() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = true
+    }
 }
 
