@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: ProfileNavigationViewController {
 
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,19 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.transparentNavigationBar()
-
-        let profileBtn = UIButton(type: UIButtonType.custom)
-        profileBtn.setImage(UIImage.init(named: "homeBtn"), for: UIControlState.normal)
-        profileBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        profileBtn.addTarget(self, action: #selector(didPressProfileBtn), for: UIControlEvents.touchUpInside)
-
-
-        let profileBarBtnItem = UIBarButtonItem(customView: profileBtn)
-        self.navigationItem.rightBarButtonItem = profileBarBtnItem
-
-
-        let namePlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
+        let namePlaceholder = NSAttributedString(string: "Full Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
@@ -54,9 +42,12 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
         let defaults = UserDefaults.standard
-                if defaults.string(forKey: "name") != nil {
-                    performSegue(withIdentifier: "loginSummarySegue", sender: self)
-                }
+        if defaults.string(forKey: "name") != nil {
+            let startController = storyboard!.instantiateViewController(withIdentifier: "startViewController")
+            let nav = UINavigationController(rootViewController: startController)
+            nav.modalPresentationStyle = .overCurrentContext
+            present(nav, animated: false, completion: nil)
+        }
     }
 
     @IBAction func didSelectLoginBtn(_ sender: AnyObject) {
@@ -95,45 +86,28 @@ class ViewController: UIViewController {
 
     func keyboardWillShowNotification(notification: NSNotification) {
         updateBottomLayoutConstraintWithNotification(notification: notification)
-        self.toggleInfoView(visible: false)
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
         updateBottomLayoutConstraintWithNotification(notification: notification)
-        self.toggleInfoView(visible: true)
-    }
-
-    func didPressProfileBtn() -> Void {
-        print("Profile")
-    }
-
-    func toggleInfoView(visible: Bool) -> Void {
-
-//        UIView.animate(withDuration: 0.5, animations: {
-//            if (visible) {
-//                self.infoTxtView.alpha = 1.0
-//            } else {
-//                self.infoTxtView.alpha = 0
-//            }
-//        })
     }
 
     func updateBottomLayoutConstraintWithNotification(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-
-        let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-        let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
-        let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uint32Value << 16
-//        let animationCurve = UIViewAnimationOptions.fromRaw(UInt(rawAnimationCurve))!
-
-        let animationCurve = UIViewAnimationOptions.init(rawValue: UInt(rawAnimationCurve))
-
-        bottomLayoutConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
-
-        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
-            self.view.layoutIfNeeded()
-            }, completion: nil)
+//        let userInfo = notification.userInfo!
+//
+//        let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+//        let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+//        let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
+//        let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uint32Value << 16
+////        let animationCurve = UIViewAnimationOptions.fromRaw(UInt(rawAnimationCurve))!
+//
+//        let animationCurve = UIViewAnimationOptions.init(rawValue: UInt(rawAnimationCurve))
+//
+//        bottomLayoutConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
+//
+//        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
+//            self.view.layoutIfNeeded()
+//            }, completion: nil)
     }
 
     func saveCredentials() -> Void {
@@ -151,7 +125,6 @@ class ViewController: UIViewController {
         locationTextField.text = nil
     }
 
-    
 
 }
 

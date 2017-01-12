@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        let backIcon = UIImage(named: "backBtn")
+        UINavigationBar.appearance().backIndicatorImage = backIcon
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backIcon
+        UINavigationBar.appearance().tintColor = UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
+
         // Override point for customization after application launch.
         FIRApp.configure()
 
@@ -30,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = UIColor.black
-        pageControl.backgroundColor = UIColor.red
 
         BITHockeyManager.shared().configure(withIdentifier: "f181897382a64cafaba5f2d86a98cf4a")
         BITHockeyManager.shared().start()
