@@ -44,7 +44,9 @@ class ProfileNavigationViewController: UIViewController {
     }
 
     func didPressProfileBtn() -> Void {
-        print("Profile")
+        let menuController = storyboard!.instantiateViewController(withIdentifier: "MenuViewController")
+        navigationController?.pushViewController(menuController, animated: true)
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,5 +77,9 @@ class ProfileNavigationViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension UINavigationController {
 
 }

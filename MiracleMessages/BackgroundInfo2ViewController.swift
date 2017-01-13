@@ -13,26 +13,31 @@ protocol CameraViewControllerDelegate: class {
 }
 
 class BackgroundInfo2ViewController: BackgroundInfoViewController {
+    
     @IBOutlet weak var textFieldRecipientName: UITextField!
-
     @IBOutlet weak var textFieldRecipientRelationship: UITextField!
-
     @IBOutlet weak var textFieldRecipientDob: UITextField!
     @IBOutlet weak var textFieldRecipientLastLocation: UITextField!
-
     @IBOutlet weak var textFieldRecipientLastSeen: UITextField!
-
-    @IBOutlet weak var textViewRecipientOtherInfo: UITextView!
+    @IBOutlet weak var textViewRecipientOtherInfo: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let recipientDobPlaceholder = NSAttributedString(string: self.textFieldRecipientDob.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 16)])
-        self.textFieldRecipientDob.attributedPlaceholder = recipientDobPlaceholder
-        let recipientLastLocationPlaceholder = NSAttributedString(string: self.textFieldRecipientLastLocation.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18)])
-        self.textFieldRecipientLastLocation.attributedPlaceholder = recipientLastLocationPlaceholder
-        let recipientLastSeenPlaceholder = NSAttributedString(string: self.textFieldRecipientLastSeen.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 14)])
-        self.textFieldRecipientLastSeen.attributedPlaceholder = recipientLastSeenPlaceholder
+        self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
+
+        textFieldRecipientName.delegate = self
+        textFieldRecipientRelationship.delegate = self
+        textFieldRecipientDob.delegate = self
+        textFieldRecipientLastLocation.delegate = self
+        textFieldRecipientLastSeen.delegate = self
+        textViewRecipientOtherInfo.delegate = self
+//        let recipientDobPlaceholder = NSAttributedString(string: self.textFieldRecipientDob.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 16)])
+//        self.textFieldRecipientDob.attributedPlaceholder = recipientDobPlaceholder
+//        let recipientLastLocationPlaceholder = NSAttributedString(string: self.textFieldRecipientLastLocation.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18)])
+//        self.textFieldRecipientLastLocation.attributedPlaceholder = recipientLastLocationPlaceholder
+//        let recipientLastSeenPlaceholder = NSAttributedString(string: self.textFieldRecipientLastSeen.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 14)])
+//        self.textFieldRecipientLastSeen.attributedPlaceholder = recipientLastSeenPlaceholder
     }
 
     override func didReceiveMemoryWarning() {

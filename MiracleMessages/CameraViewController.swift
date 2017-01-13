@@ -56,7 +56,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     let bucketName: String = "mm-interview-vids"
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
     let questionsArray: [String] = [
-        "Please leave your loved one a short message. Note to volunteer: hold your phone horizontally when recording!"
+        "Hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'Yes', invited them to look at the camera, and speak to their loved one as if they were there."
     ]
 
     //Player
@@ -71,6 +71,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
 
         self.progressBarView.progress = 0
         self.hideProgressView()
@@ -118,12 +121,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.pageControl.currentPage = 0
 
         pageControl.alpha = 1
-    }
-
-    open override var shouldAutorotate: Bool {
-        get {
-            return !isRecording
-        }
     }
 
     func configurePreview() {
@@ -206,6 +203,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         dimissCamera()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if (self.isMovingFromParentViewController) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 
     }
@@ -232,7 +237,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -300,6 +306,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func showProgressView() {
         self.view.bringSubview(toFront: self.progressView)
     }
+
+    func canRotate() -> Void {}
 
     func hideProgressView() {
         self.percentageLbl.text = "0%"
@@ -617,7 +625,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func dimissCamera() -> Void {
         self.delegate?.didFinishRecording(sender: self)
-        self.dismiss(animated: true, completion: nil)
+        let _ = navigationController?.popViewController(animated: true)
     }
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -641,7 +649,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             dataOutput.stopRecording()
             isRecording = false
         }
-        self.dismiss(animated: true, completion: nil)
+        let _ = navigationController?.popViewController(animated: true)
     }
 
 }

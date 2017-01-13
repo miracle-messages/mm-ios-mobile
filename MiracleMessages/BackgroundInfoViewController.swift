@@ -38,11 +38,9 @@ extension Updatable {
     }
 }
 
-class BackgroundInfoViewController: UIViewController, Updatable {
+class BackgroundInfoViewController: ProfileNavigationViewController, UITextFieldDelegate, Updatable {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var textViewLabel: UILabel!
 
     var backgroundInfo: BackgroundInfo?
     
@@ -50,13 +48,13 @@ class BackgroundInfoViewController: UIViewController, Updatable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textView.delegate = self
-
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
 
         // Do any additional setup after loading the view.
     }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,6 +63,9 @@ class BackgroundInfoViewController: UIViewController, Updatable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+         self.title = ""
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -95,13 +96,17 @@ class BackgroundInfoViewController: UIViewController, Updatable {
         guard self.keyboardIsVisible else {
             return
         }
-        let contentInsets = UIEdgeInsets.zero
+        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
         keyboardIsVisible = false
     }
     
-    
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
     /*
     // MARK: - Navigation
@@ -118,17 +123,17 @@ class BackgroundInfoViewController: UIViewController, Updatable {
 extension BackgroundInfoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if !textView.text.isEmpty {
-            self.textViewLabel.isHidden = true
+//            self.textViewLabel.isHidden = true
         } else {
-            self.textViewLabel.isHidden = false
+//            self.textViewLabel.isHidden = false
         }
     }
 
     func textViewDidChange(_ textView: UITextView) {
         if !textView.text.isEmpty {
-            self.textViewLabel.isHidden = true
+//            self.textViewLabel.isHidden = true
         } else {
-            self.textViewLabel.isHidden = false
+//            self.textViewLabel.isHidden = false
         }
     }
 

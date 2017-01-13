@@ -15,13 +15,20 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     @IBOutlet weak var textFieldClientCurrentLocation: UITextField!
     @IBOutlet weak var textFieldClientHometown: UITextField!
     @IBOutlet weak var textFieldClientYearsHomeless: UITextField!
-    @IBOutlet weak var textViewContactInfo: UITextView!
+    @IBOutlet weak var textViewContactInfo: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let yearsHomelessPlaceholder = NSAttributedString(string: self.textFieldClientYearsHomeless.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)])
-        self.textFieldClientYearsHomeless.attributedPlaceholder = yearsHomelessPlaceholder
+        textFieldClientName.delegate = self
+        textFieldClientDob.delegate = self
+        textFieldClientCurrentLocation.delegate = self
+        textFieldClientHometown.delegate = self
+        textFieldClientYearsHomeless.delegate = self
+        textViewContactInfo.delegate = self
+
+//        let yearsHomelessPlaceholder = NSAttributedString(string: self.textFieldClientYearsHomeless.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)])
+//        self.textFieldClientYearsHomeless.attributedPlaceholder = yearsHomelessPlaceholder
     }
 
 

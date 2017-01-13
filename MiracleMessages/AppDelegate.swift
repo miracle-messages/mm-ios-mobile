@@ -21,10 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+
+        UIApplication.shared.statusBarView?.backgroundColor = .white
+
         let backIcon = UIImage(named: "backBtn")
         UINavigationBar.appearance().backIndicatorImage = backIcon
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backIcon
         UINavigationBar.appearance().tintColor = UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().backgroundColor = UIColor.white
 
         // Override point for customization after application launch.
         FIRApp.configure()
@@ -70,6 +74,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AWSS3TransferUtility.interceptApplication(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
+            if (rootViewController.responds(to: Selector(("canRotate")))) {
+                // Unlock landscape right
+                return [.landscapeRight, .landscapeLeft] ;
+            }
+        }
 
+        // Only allow portrait (standard behaviour)
+        return .portrait;
+    }
+
+    private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {
+        if (rootViewController == nil) { return nil }
+        if (rootViewController.isKind(of: UITabBarController.self)) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController)
+        } else if (rootViewController.isKind(of: UINavigationController.self)) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController)
+        } else if (rootViewController.presentedViewController != nil) {
+            return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
+        }
+        return rootViewController
+    }
+
+
+}
+
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
 }
 
