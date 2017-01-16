@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
+		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
+		239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */; };
+		239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */; };
+		239C0C0B1E2C6E3500E0DE36 /* MessageSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */; };
+		239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */; };
 		23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1051C1DD018F200276DDD /* GoogleService-Info.plist */; };
 		23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */; };
 		23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */; };
@@ -31,6 +36,11 @@
 		1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiracleMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
+		239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentViewController.swift; sourceTree = "<group>"; };
+		239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		23A1051C1DD018F200276DDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo1ViewController.swift; sourceTree = "<group>"; };
 		23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo2ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +122,11 @@
 				23E709761E25BF2900E20582 /* ProfileNavigationViewController.swift */,
 				23E709781E26DA1400E20582 /* GuideViewController.swift */,
 				23E709801E2956EF00E20582 /* MenuViewController.swift */,
+				239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */,
+				239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */,
+				239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */,
+				239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */,
+				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -265,11 +280,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
+				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
+				239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */,
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
+				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,
+				239C0C0B1E2C6E3500E0DE36 /* MessageSentViewController.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
