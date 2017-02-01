@@ -9,7 +9,7 @@
 import UIKit
 
 struct BackgroundInfo {
-    var client_name: String
+    var client_name: String?
     var client_dob: String?
     var client_current_city: String?
     var client_hometown: String?
@@ -25,6 +25,63 @@ struct BackgroundInfo {
     init(client_name: String) {
         self.client_name = client_name
     }
+
+    init(defaults: UserDefaults) {
+        if let client_name = defaults.string(forKey: "client_name") {
+            self.client_name = client_name
+        } else {
+            self.client_name = ""
+        }
+        if let client_dob = defaults.string(forKey: "client_dob") {
+            self.client_dob = client_dob
+        }
+        if let client_current_city = defaults.string(forKey: "client_current_city") {
+            self.client_current_city = client_current_city
+        }
+        if let client_hometown = defaults.string(forKey: "client_hometown") {
+            self.client_hometown = client_hometown
+        }
+        if let client_years_homeless = defaults.string(forKey: "client_years_homeless") {
+            self.client_years_homeless = client_years_homeless
+        }
+        if let client_contact_info = defaults.string(forKey: "client_contact_info") {
+            self.client_contact_info = client_contact_info
+        }
+        if let recipient_name = defaults.string(forKey: "recipient_name")  {
+            self.recipient_name = recipient_name
+        }
+        if let recipient_relationship = defaults.string(forKey: "recipient_relationship") {
+            self.recipient_relationship = recipient_relationship
+        }
+        if let recipient_dob = defaults.string(forKey: "recipient_dob") {
+            self.recipient_dob = recipient_dob
+        }
+        if let recipient_last_location = defaults.string(forKey: "recipient_last_location") {
+            self.recipient_last_location = recipient_last_location
+        }
+        if let recipient_years_since_last_seen = defaults.string(forKey: "recipient_years_since_last_seen") {
+            self.recipient_years_since_last_seen = recipient_years_since_last_seen
+        }
+        if let recipient_other_info = defaults.string(forKey: "recipient_other_info") {
+            self.recipient_other_info = recipient_other_info
+        }
+    }
+
+    func save() -> Void {
+        let defaults = UserDefaults.standard
+        defaults.set(client_name, forKey: "client_name")
+        defaults.set(client_dob, forKey: "client_dob")
+        defaults.set(client_current_city, forKey: "client_current_city")
+        defaults.set(client_hometown, forKey: "client_hometown")
+        defaults.set(client_years_homeless, forKey: "client_years_homeless")
+        defaults.set(client_contact_info, forKey: "client_contact_info")
+        defaults.set(recipient_name, forKey: "recipient_name")
+        defaults.set(recipient_relationship, forKey: "recipient_relationship")
+        defaults.set(recipient_dob, forKey: "recipient_dob")
+        defaults.set(recipient_last_location, forKey: "recipient_last_location")
+        defaults.set(recipient_years_since_last_seen, forKey: "recipient_years_since_last_seen")
+        defaults.set(recipient_other_info, forKey: "recipient_other_info")
+    }
 }
 
 
@@ -38,6 +95,11 @@ extension Updatable {
     }
 }
 
+enum BackgroundInfoMode {
+    case update
+    case view
+}
+
 class BackgroundInfoViewController: ProfileNavigationViewController, UITextFieldDelegate, Updatable {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -45,6 +107,8 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
     var backgroundInfo: BackgroundInfo?
     
     var keyboardIsVisible = false
+
+    var mode: BackgroundInfoMode = .view
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,24 +181,5 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-extension BackgroundInfoViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if !textView.text.isEmpty {
-//            self.textViewLabel.isHidden = true
-        } else {
-//            self.textViewLabel.isHidden = false
-        }
-    }
-
-    func textViewDidChange(_ textView: UITextView) {
-        if !textView.text.isEmpty {
-//            self.textViewLabel.isHidden = true
-        } else {
-//            self.textViewLabel.isHidden = false
-        }
-    }
 
 }

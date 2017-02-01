@@ -14,6 +14,7 @@
 		239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */; };
 		239C0C0B1E2C6E3500E0DE36 /* MessageSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */; };
 		239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */; };
+		239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */; };
 		23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1051C1DD018F200276DDD /* GoogleService-Info.plist */; };
 		23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */; };
 		23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */; };
@@ -41,6 +42,7 @@
 		239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentViewController.swift; sourceTree = "<group>"; };
 		239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerProfile.swift; sourceTree = "<group>"; };
 		23A1051C1DD018F200276DDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo1ViewController.swift; sourceTree = "<group>"; };
 		23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo2ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */,
 				239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */,
 				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
+				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
+				239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */,
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,

@@ -15,7 +15,6 @@ class ViewController: ProfileNavigationViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var infoTxtView: UITextView!
 
     @IBOutlet weak var errorLabel: UILabel!
 
