@@ -24,51 +24,57 @@ class ReviewViewController: UIViewController {
 
     @IBOutlet weak var recipientOtherInfoLabel: UILabel!
 
-    var clientInfo: BackgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+    var clientInfo: BackgroundInfo?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayInfo()
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clientInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+        displayInfo()
+    }
+
     func displayInfo() -> Void {
-        if let clientName = clientInfo.client_name {
+        guard let backgroundInfo = self.clientInfo else { return }
+        if let clientName = backgroundInfo.client_name {
             clientNameLabel.text = "From: \(clientName)"
         }
-        if let clientDob = clientInfo.client_dob {
+        if let clientDob = backgroundInfo.client_dob {
             clientDobLabel.text = "Date of birth: \(clientDob)"
         }
-        if let clientCurrentCity = clientInfo.client_current_city {
+        if let clientCurrentCity = backgroundInfo.client_current_city {
             clientLocationLabel.text = "Location: \(clientCurrentCity)"
         }
-        if let clientHometown = clientInfo.client_hometown {
+        if let clientHometown = backgroundInfo.client_hometown {
             clientHometownLabel.text = "Hometown: \(clientHometown)"
         }
-        if let clientYearsAway = clientInfo.client_years_homeless {
+        if let clientYearsAway = backgroundInfo.client_years_homeless {
             yearsAwayLabel.text = "Years away from home: \(clientYearsAway)"
         }
-        if let clientContact = clientInfo.client_contact_info {
+        if let clientContact = backgroundInfo.client_contact_info {
             clientContactLabel.text = clientContact
         }
 
 
-        if let recipientName = clientInfo.recipient_name {
+        if let recipientName = backgroundInfo.recipient_name {
             recipientNameLabel.text = "To: \(recipientName)"
         }
-        if let recipientRelationship = clientInfo.recipient_relationship {
+        if let recipientRelationship = backgroundInfo.recipient_relationship {
             recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
         }
-        if let recipientAge = clientInfo.recipient_dob {
+        if let recipientAge = backgroundInfo.recipient_dob {
             recipientAgeLabel.text = "Age: \(recipientAge)"
         }
-        if let recipientLocation = clientInfo.recipient_last_location {
+        if let recipientLocation = backgroundInfo.recipient_last_location {
             recipientLocationLabel.text = "Location: \(recipientLocation)"
         }
-        if let recipientYearsDisconnected = clientInfo.recipient_years_since_last_seen {
+        if let recipientYearsDisconnected = backgroundInfo.recipient_years_since_last_seen {
             recipientYearsDisconnectedLabel.text = "Years disconnected: \(recipientYearsDisconnected)"
         }
-        if let recipientOtherInfo = clientInfo.recipient_other_info {
+        if let recipientOtherInfo = backgroundInfo.recipient_other_info {
             recipientOtherInfoLabel.text = recipientOtherInfo
         }
 
@@ -103,6 +109,8 @@ class ReviewViewController: UIViewController {
         } else {
             let backgroundController = segue.destination as? BackgroundInfoViewController
             backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+            backgroundController?.mode = .update
+            backgroundController?.delegate = self
         }
     }
 
@@ -121,7 +129,13 @@ class ReviewViewController: UIViewController {
             return true
         }
     }
+}
 
+extension ReviewViewController: BackgroundInfoDelegate {
+    func didFinishUpdating() {
+        self.clientInfo?.save()
+        displayInfo()
+    }
 }
 
 extension ReviewViewController: CameraViewControllerDelegate {

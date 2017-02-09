@@ -23,21 +23,29 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
-
+        displayInfo()
         textFieldRecipientName.delegate = self
         textFieldRecipientRelationship.delegate = self
         textFieldRecipientDob.delegate = self
         textFieldRecipientLastLocation.delegate = self
         textFieldRecipientLastSeen.delegate = self
         textViewRecipientOtherInfo.delegate = self
-//        let recipientDobPlaceholder = NSAttributedString(string: self.textFieldRecipientDob.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 16)])
-//        self.textFieldRecipientDob.attributedPlaceholder = recipientDobPlaceholder
-//        let recipientLastLocationPlaceholder = NSAttributedString(string: self.textFieldRecipientLastLocation.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18)])
-//        self.textFieldRecipientLastLocation.attributedPlaceholder = recipientLastLocationPlaceholder
-//        let recipientLastSeenPlaceholder = NSAttributedString(string: self.textFieldRecipientLastSeen.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 14)])
-//        self.textFieldRecipientLastSeen.attributedPlaceholder = recipientLastSeenPlaceholder
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayInfo()
+    }
+
+    func displayInfo() -> Void {
+        guard let clientInfo = self.backgroundInfo else {return}
+        textFieldRecipientName.text = clientInfo.recipient_name
+        textFieldRecipientRelationship.text = clientInfo.recipient_relationship
+        textFieldRecipientDob.text = clientInfo.recipient_dob
+        textFieldRecipientLastLocation.text = clientInfo.recipient_last_location
+        textFieldRecipientLastSeen.text = clientInfo.recipient_years_since_last_seen
+        textViewRecipientOtherInfo.text = clientInfo.recipient_other_info
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,16 +60,29 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         self.backgroundInfo?.recipient_last_location = self.textFieldRecipientLastLocation.text
         self.backgroundInfo?.recipient_years_since_last_seen = self.textFieldRecipientLastSeen.text
         self.backgroundInfo?.recipient_other_info = self.textViewRecipientOtherInfo.text
-        self.backgroundInfo?.save()
+        self.backgroundInfo?.save()        
         return self.backgroundInfo
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
-        let nextController = segue.destination as! ReviewViewController
-        nextController.clientInfo = self.updateBackgroundInfo()!
-
+        let _ = self.updateBackgroundInfo()
         // Pass the selected object to the new view controller.
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch mode {
+        case .view:
+            return true
+        default:
+            if let clientInfo = self.updateBackgroundInfo() {
+                self.delegate?.clientInfo = clientInfo
+            }
+            self.dismiss(animated: true, completion: {
+                self.delegate?.didFinishUpdating()
+            })
+            return false
+        }
     }
 
 }

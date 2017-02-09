@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MiracleMessages/BackgroundInfo1ViewController.swift"
-            timestampString = "506301171.962917"
+            filePath = "MiracleMessages/BackgroundInfoViewController.swift"
+            timestampString = "508287302.635081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "shouldPerformSegue(withIdentifier:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MiracleMessages/BackgroundInfo1ViewController.swift"
-            timestampString = "506301203.902142"
+            filePath = "MiracleMessages/BackgroundInfoViewController.swift"
+            timestampString = "508285823.56752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "displayInfo()"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "updateBackgroundInfo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol BackgroundInfoDelegate: class {
+    var clientInfo: BackgroundInfo? { get set }
+    func didFinishUpdating() -> Void
+}
+
 struct BackgroundInfo {
     var client_name: String?
     var client_dob: String?
@@ -21,6 +27,8 @@ struct BackgroundInfo {
     var recipient_last_location: String?
     var recipient_years_since_last_seen: String?
     var recipient_other_info: String?
+
+    let userDefaults = UserDefaults.standard
 
     init(client_name: String) {
         self.client_name = client_name
@@ -68,19 +76,33 @@ struct BackgroundInfo {
     }
 
     func save() -> Void {
-        let defaults = UserDefaults.standard
-        defaults.set(client_name, forKey: "client_name")
-        defaults.set(client_dob, forKey: "client_dob")
-        defaults.set(client_current_city, forKey: "client_current_city")
-        defaults.set(client_hometown, forKey: "client_hometown")
-        defaults.set(client_years_homeless, forKey: "client_years_homeless")
-        defaults.set(client_contact_info, forKey: "client_contact_info")
-        defaults.set(recipient_name, forKey: "recipient_name")
-        defaults.set(recipient_relationship, forKey: "recipient_relationship")
-        defaults.set(recipient_dob, forKey: "recipient_dob")
-        defaults.set(recipient_last_location, forKey: "recipient_last_location")
-        defaults.set(recipient_years_since_last_seen, forKey: "recipient_years_since_last_seen")
-        defaults.set(recipient_other_info, forKey: "recipient_other_info")
+        userDefaults.set(client_name, forKey: "client_name")
+        userDefaults.set(client_dob, forKey: "client_dob")
+        userDefaults.set(client_current_city, forKey: "client_current_city")
+        userDefaults.set(client_hometown, forKey: "client_hometown")
+        userDefaults.set(client_years_homeless, forKey: "client_years_homeless")
+        userDefaults.set(client_contact_info, forKey: "client_contact_info")
+        userDefaults.set(recipient_name, forKey: "recipient_name")
+        userDefaults.set(recipient_relationship, forKey: "recipient_relationship")
+        userDefaults.set(recipient_dob, forKey: "recipient_dob")
+        userDefaults.set(recipient_last_location, forKey: "recipient_last_location")
+        userDefaults.set(recipient_years_since_last_seen, forKey: "recipient_years_since_last_seen")
+        userDefaults.set(recipient_other_info, forKey: "recipient_other_info")
+    }
+
+    func reset() -> Void {
+        userDefaults.removeObject(forKey: "client_name")
+        userDefaults.removeObject(forKey: "client_dob")
+        userDefaults.removeObject(forKey: "client_current_city")
+        userDefaults.removeObject(forKey: "client_hometown")
+        userDefaults.removeObject(forKey: "client_years_homeless")
+        userDefaults.removeObject(forKey: "client_contact_info")
+        userDefaults.removeObject(forKey: "recipient_name")
+        userDefaults.removeObject(forKey: "recipient_relationship")
+        userDefaults.removeObject(forKey: "recipient_dob")
+        userDefaults.removeObject(forKey: "recipient_last_location")
+        userDefaults.removeObject(forKey: "recipient_years_since_last_seen")
+        userDefaults.removeObject(forKey: "recipient_other_info")
     }
 }
 
@@ -103,6 +125,9 @@ enum BackgroundInfoMode {
 class BackgroundInfoViewController: ProfileNavigationViewController, UITextFieldDelegate, Updatable {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var nextBtn: UIButton!
+
+    weak var delegate: BackgroundInfoDelegate?
 
     var backgroundInfo: BackgroundInfo?
     
@@ -115,6 +140,14 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
 
+        switch mode {
+        case .update:
+            nextBtn.setTitle("Done", for: .normal)
+            break
+        default:
+            nextBtn.setTitle("Next", for: .normal)
+            break
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -129,7 +162,7 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         super.viewWillAppear(animated)
 
          self.title = ""
-        
+        backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -172,14 +205,17 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         return false
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch mode {
+        case .view:
+            return true
+        default:
+            if let clientInfo = self.updateBackgroundInfo() {
+                self.delegate?.clientInfo = clientInfo
+            }
+            self.dismiss(animated: true, completion: nil)
+            return false
+        }
     }
-    */
 
 }

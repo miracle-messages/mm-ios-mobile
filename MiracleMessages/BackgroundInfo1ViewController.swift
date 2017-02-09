@@ -19,13 +19,12 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayInfo()
         textFieldClientName.delegate = self
         textFieldClientDob.delegate = self
         textFieldClientCurrentLocation.delegate = self
         textFieldClientHometown.delegate = self
         textFieldClientYearsHomeless.delegate = self
-        textViewContactInfo.delegate = self
+        textViewContactInfo.delegate = self        
 
 //        let yearsHomelessPlaceholder = NSAttributedString(string: self.textFieldClientYearsHomeless.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)])
 //        self.textFieldClientYearsHomeless.attributedPlaceholder = yearsHomelessPlaceholder
@@ -34,6 +33,11 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayInfo()
     }
 
     func displayInfo() -> Void {
@@ -55,18 +59,13 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         self.backgroundInfo?.client_hometown = self.textFieldClientHometown.text
         self.backgroundInfo?.client_contact_info = self.textViewContactInfo.text
         self.backgroundInfo?.client_years_homeless = self.textFieldClientYearsHomeless.text
-        self.backgroundInfo?.save()
+        self.backgroundInfo?.save()        
         return self.backgroundInfo
     }
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
-        let nextController = segue.destination as! BackgroundInfo2ViewController
-        nextController.backgroundInfo = self.updateBackgroundInfo()
-
+        let _ = self.updateBackgroundInfo()
         // Pass the selected object to the new view controller.
     }
 
@@ -77,7 +76,18 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
             self.present(alert, animated: true, completion: nil)
             return false
         }
-        return true
+        switch mode {
+        case .view:
+            return true
+        default:
+            if let clientInfo = self.updateBackgroundInfo() {
+                self.delegate?.clientInfo = clientInfo
+            }
+            self.dismiss(animated: true, completion: {
+                self.delegate?.didFinishUpdating()
+            })
+            return false
+        }
     }
 
 }

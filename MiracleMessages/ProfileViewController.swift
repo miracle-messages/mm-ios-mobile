@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController {
             errorLabel.isHidden = true
             let updatedProfile = VolunteerProfile(name: fullNameTxtfield.text!, email: emailTxtfield.text!, phone: phoneTxtfield.text!, location: locationTxtfield.text!)
             updatedProfile.save()
+            let _ = self.navigationController?.popViewController(animated: true)
         } else {
             errorLabel.isHidden = false
         }

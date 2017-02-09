@@ -428,7 +428,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         //Create new user ID
         let defaults = UserDefaults.standard
         
-        if let backgroundInfo = self.backgroundInfo {
+        if let clientInfo = self.backgroundInfo {
             let key = ref.child("clients").childByAutoId().key
             //Create new client info payload
             let payload = [
@@ -436,18 +436,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 "volunteer_email" : defaults.string(forKey: "email")!,
                 "volunteer_phone" : defaults.string(forKey: "phone")!,
                 "volunteer_location" : defaults.string(forKey: "location")!,
-                "client_name" : backgroundInfo.client_name,
-                "client_dob" : backgroundInfo.client_dob!,
-                "client_current_city" : backgroundInfo.client_current_city!,
-                "client_hometown" : backgroundInfo.client_hometown!,
-                "client_contact_info" : backgroundInfo.client_contact_info!,
-                "client_years_homeless" : backgroundInfo.client_years_homeless!,
-                "recipient_name" : backgroundInfo.recipient_name!,
-                "recipient_dob" : backgroundInfo.recipient_dob!,
-                "recipient_relationship" : backgroundInfo.recipient_relationship!,
-                "recipient_last_location" : backgroundInfo.recipient_last_location!,
-                "recipient_last_seen" : backgroundInfo.recipient_years_since_last_seen!,
-                "recipient_other_info" : backgroundInfo.recipient_other_info!,
+                "client_name" : clientInfo.client_name,
+                "client_dob" : clientInfo.client_dob!,
+                "client_current_city" : clientInfo.client_current_city!,
+                "client_hometown" : clientInfo.client_hometown!,
+                "client_contact_info" : clientInfo.client_contact_info!,
+                "client_years_homeless" : clientInfo.client_years_homeless!,
+                "recipient_name" : clientInfo.recipient_name!,
+                "recipient_dob" : clientInfo.recipient_dob!,
+                "recipient_relationship" : clientInfo.recipient_relationship!,
+                "recipient_last_location" : clientInfo.recipient_last_location!,
+                "recipient_last_seen" : clientInfo.recipient_years_since_last_seen!,
+                "recipient_other_info" : clientInfo.recipient_other_info!,
                 "volunteer_uploaded_url" : self.videoLink(),
                 "created_at" : floor(NSDate().timeIntervalSince1970)
             ] as [String : Any]
