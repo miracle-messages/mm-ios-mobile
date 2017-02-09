@@ -337,18 +337,20 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         cameraSession?.stopRunning()
 
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
-        let alertView = SCLAlertView(appearance: appearance)
-        alertView.addButton("Yes, submit video") {[unowned self] in
-            self.submit(outputFileURL: outputFileURL)
-        }
-        alertView.addButton("No, retake video") {[unowned self] in
-            self.cameraSession?.startRunning()
-            print("Cancelled")
-        }
-        alertView.showSuccess("Confirm", subTitle: "Would you like to submit this recording?")
+        self.presentConfirmation()
+
+//        let appearance = SCLAlertView.SCLAppearance(
+//            showCloseButton: false
+//        )
+//        let alertView = SCLAlertView(appearance: appearance)
+//        alertView.addButton("Yes, submit video") {[unowned self] in
+//            self.submit(outputFileURL: outputFileURL)
+//        }
+//        alertView.addButton("No, retake video") {[unowned self] in
+//            self.cameraSession?.startRunning()
+//            print("Cancelled")
+//        }
+//        alertView.showSuccess("Confirm", subTitle: "Would you like to submit this recording?")
     }
 
     func submit(outputFileURL: URL!) {
@@ -640,13 +642,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.dismiss(animated: true, completion: {[unowned self] in
             switch result {
             case MFMailComposeResult.sent:
-                self.view.bringSubview(toFront: self.thankYouView)
+                self.presentConfirmation()
                 break
             default:
                 break
             }
         })
 
+    }
+
+    func presentConfirmation() -> Void {
+        let menuController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController")
+        navigationController?.pushViewController(menuController, animated: true)
     }
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {

@@ -25,6 +25,7 @@
 		23B0B7ED1D98E466007DFDDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7EC1D98E466007DFDDE /* Assets.xcassets */; };
 		23B0B7F01D98E466007DFDDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */; };
 		23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D040151E4BE3260000D4A2 /* WebViewController.swift */; };
+		23D040181E4C03CC0000D4A2 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D040171E4C03CC0000D4A2 /* NextViewController.swift */; };
 		23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709741E25BA0E00E20582 /* StartViewController.swift */; };
 		23E709771E25BF2900E20582 /* ProfileNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709761E25BF2900E20582 /* ProfileNavigationViewController.swift */; };
 		23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709781E26DA1400E20582 /* GuideViewController.swift */; };
@@ -56,6 +57,7 @@
 		23B0B7EF1D98E466007DFDDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23B0B7F11D98E466007DFDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23D040151E4BE3260000D4A2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		23D040171E4C03CC0000D4A2 /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		23E709741E25BA0E00E20582 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		23E709761E25BF2900E20582 /* ProfileNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNavigationViewController.swift; sourceTree = "<group>"; };
 		23E709781E26DA1400E20582 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
 				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
 				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
+				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
 			);
 			path = MiracleMessages;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
+				23D040181E4C03CC0000D4A2 /* NextViewController.swift in Sources */,
 				239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */,
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */,

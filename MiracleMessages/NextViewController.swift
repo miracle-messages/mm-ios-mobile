@@ -1,20 +1,17 @@
 //
-//  ConfirmViewController.swift
+//  NextViewController.swift
 //  MiracleMessages
 //
-//  Created by Win Raguini on 1/15/17.
+//  Created by Win Raguini on 2/8/17.
 //  Copyright © 2017 Win Inc. All rights reserved.
 //
 
 import UIKit
 
-class ConfirmViewController: UIViewController {
+class NextViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let value = UIInterfaceOrientation.portrait.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
 
         // Do any additional setup after loading the view.
     }
@@ -24,6 +21,9 @@ class ConfirmViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func didTapNextBtn(_ sender: Any) {
+        let _ = self.navigationController?.popToRootViewController(animated: true)
+    }
 
     /*
     // MARK: - Navigation
