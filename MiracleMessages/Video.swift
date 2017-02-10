@@ -21,7 +21,7 @@ struct Video {
 
     var uniqId: String {
         get {
-            randomString(length: 10)
+            return randomString(length: 10)
         }
     }
 
