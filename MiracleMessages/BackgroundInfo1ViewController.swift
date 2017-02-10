@@ -37,6 +37,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
         displayInfo()
     }
 
@@ -51,9 +52,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     }
 
     func updateBackgroundInfo() -> BackgroundInfo? {
-        if self.backgroundInfo == nil {
-            self.backgroundInfo = BackgroundInfo(client_name: self.textFieldClientName.text!)
-        }
+        self.backgroundInfo?.client_name = self.textFieldClientName.text
         self.backgroundInfo?.client_dob = self.textFieldClientDob.text
         self.backgroundInfo?.client_current_city = self.textFieldClientCurrentLocation.text
         self.backgroundInfo?.client_hometown = self.textFieldClientHometown.text

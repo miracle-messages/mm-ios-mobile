@@ -27,7 +27,6 @@ struct BackgroundInfo {
     var recipient_last_location: String?
     var recipient_years_since_last_seen: String?
     var recipient_other_info: String?
-
     let userDefaults = UserDefaults.standard
 
     init(client_name: String) {
@@ -90,7 +89,8 @@ struct BackgroundInfo {
         userDefaults.set(recipient_other_info, forKey: "recipient_other_info")
     }
 
-    func reset() -> Void {
+    static func reset() -> Void {
+        let userDefaults = UserDefaults.standard
         userDefaults.removeObject(forKey: "client_name")
         userDefaults.removeObject(forKey: "client_dob")
         userDefaults.removeObject(forKey: "client_current_city")

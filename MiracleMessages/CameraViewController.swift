@@ -12,7 +12,6 @@ import MediaPlayer
 import AWSS3
 import MessageUI
 import Photos
-import FirebaseDatabase
 import SCLAlertView
 import Alamofire
 
@@ -21,9 +20,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var startTime = TimeInterval()
     var timer = Timer()
     var videoFileName: String?
-    var ref: FIRDatabaseReference!
-
-    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
+    var video: Video?
 
     weak var delegate:CameraViewControllerDelegate?
 
@@ -44,8 +41,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var previewView: UIView!
-
-    var backgroundInfo: BackgroundInfo?
+    
     var cameraSession: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
 
@@ -77,7 +73,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.progressBarView.progress = 0
         self.hideProgressView()
-        self.ref = FIRDatabase.database().reference()
 
         //Set up capture session
         cameraSession = AVCaptureSession()
@@ -337,7 +332,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         cameraSession?.stopRunning()
 
-        self.presentConfirmation()
+        self.presentConfirmation(outputFileURL: outputFileURL)
 
 //        let appearance = SCLAlertView.SCLAppearance(
 //            showCloseButton: false
@@ -355,32 +350,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func submit(outputFileURL: URL!) {
 
-        self.generateVideoFileName()
+        //let _ = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+        //self.bgUploadToS3(url: outputFileURL)
 
-        self.sendInfo()
+        //self.sendInfo()
 
-        self.bgUploadToS3(url: outputFileURL)
-
-        let parameters = self.videoParameters()
-
-        Alamofire.request(zapierUrl, parameters: parameters).responseData { response in
-            switch response.result {
-            case .success:
-                print("Submitted")
-            case .failure(let error):
-                print(error)
-            }
-        }
-
-        self.showThankYou()
-    }
-
-    func videoParameters() -> Parameters {
-        let defaults = UserDefaults.standard
-
-        return [ "email" :  defaults.string(forKey: "email")!,
-                 "name" : defaults.string(forKey: "name")!,
-                 "video" : self.videoLink()]
+        //self.showThankYou()
     }
 
     func showThankYou() -> Void {
@@ -424,41 +399,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func stopTimer() {
         timer.invalidate()
         timerLabel.text = "00:00:00"
-    }
-
-    func sendInfo() -> Void {
-        //Create new user ID
-        let defaults = UserDefaults.standard
-        
-        if let clientInfo = self.backgroundInfo {
-            let key = ref.child("clients").childByAutoId().key
-            //Create new client info payload
-            let payload = [
-                "volunteer_name" : defaults.string(forKey: "name")!,
-                "volunteer_email" : defaults.string(forKey: "email")!,
-                "volunteer_phone" : defaults.string(forKey: "phone")!,
-                "volunteer_location" : defaults.string(forKey: "location")!,
-                "client_name" : clientInfo.client_name,
-                "client_dob" : clientInfo.client_dob!,
-                "client_current_city" : clientInfo.client_current_city!,
-                "client_hometown" : clientInfo.client_hometown!,
-                "client_contact_info" : clientInfo.client_contact_info!,
-                "client_years_homeless" : clientInfo.client_years_homeless!,
-                "recipient_name" : clientInfo.recipient_name!,
-                "recipient_dob" : clientInfo.recipient_dob!,
-                "recipient_relationship" : clientInfo.recipient_relationship!,
-                "recipient_last_location" : clientInfo.recipient_last_location!,
-                "recipient_last_seen" : clientInfo.recipient_years_since_last_seen!,
-                "recipient_other_info" : clientInfo.recipient_other_info!,
-                "volunteer_uploaded_url" : self.videoLink(),
-                "created_at" : floor(NSDate().timeIntervalSince1970)
-            ] as [String : Any]
-
-            //Send payload to server
-            let childUpdates = ["/clients/\(key)": payload]
-            ref.updateChildValues(childUpdates)
-        }
-
     }
 
     func sendEmail() {
@@ -533,7 +473,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
     }
 
-    func generateVideoFileName() {
+    func generateVideoFileName() -> String {
         let defaults = UserDefaults.standard
         let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased()
         let date = Date()
@@ -541,51 +481,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MM-dd-yyyy-HHmmss"
         let stringDate = dayTimePeriodFormatter.string(from: date)
-        self.videoFileName = "\(name!)-\(stringDate).mov"
-    }
-
-    func bgUploadToS3(url: URL) -> Void {
-        let transferUtility = AWSS3TransferUtility.default()
-        let transferExpression = AWSS3TransferUtilityUploadExpression()
-
-        transferExpression.progressBlock = { (task, progress) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                print("Progress \(progress.fractionCompleted)")
-                })
-        }
-
-        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-
-        uploadCompletionHandlerBlock = { (task, error) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                if error != nil {
-                    print("Upload successful")
-                } else {
-                    print("Error here: \(error.debugDescription)")
-                }
-            })
-        }
-
-        let uploadExpression = AWSS3TransferUtilityUploadExpression()
-
-        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
-
-        if let newVideoFileName = self.videoFileName {
-            transferUtility.uploadFile(url, bucket: self.bucketName, key: newVideoFileName, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
-                if task.error != nil {
-                    print("Error: \(task.error)")
-                } else {
-                    print("Uploading file.")
-                    DispatchQueue.main.async(execute: {
-                        print("Upload successful.")
-                    })
-                }
-                return nil
-            })
-
-        }
-
-
+        return "\(name!)-\(stringDate).mov"
     }
 
     func uploadtoS3(url: URL) -> Void {
@@ -622,7 +518,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 } else {
                     print("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
-                        self.sendInfo()
+                        //self.sendInfo()
                         self.hideProgressView()
                     })
                 }
@@ -637,6 +533,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let _ = navigationController?.popViewController(animated: true)
     }
 
+    /*
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 
         self.dismiss(animated: true, completion: {[unowned self] in
@@ -650,10 +547,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         })
 
     }
+ */
 
-    func presentConfirmation() -> Void {
-        let menuController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController")
-        navigationController?.pushViewController(menuController, animated: true)
+    func presentConfirmation(outputFileURL: URL!) -> Void {
+        let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        confirmationController.video = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+        navigationController?.pushViewController(confirmationController, animated: true)
     }
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {

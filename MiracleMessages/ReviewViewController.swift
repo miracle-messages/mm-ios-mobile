@@ -105,7 +105,7 @@ class ReviewViewController: UIViewController {
         if segue.identifier == "cameraViewController" {
             let cameraController = segue.destination as? CameraViewController
             cameraController?.delegate = self
-            cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+            //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
         } else {
             let backgroundController = segue.destination as? BackgroundInfoViewController
             backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
