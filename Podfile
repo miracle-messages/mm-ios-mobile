@@ -7,6 +7,8 @@ target 'MiracleMessages' do
     pod 'HockeySDK', '~> 4.1.2'
 #    pod 'CameraEngine', :git => 'https://github.com/remirobert/CameraEngine.git', :branch => 'master'
     pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
     pod 'Firebase/Database'
     pod 'DatePickerDialog'
     pod 'SCLAlertView'

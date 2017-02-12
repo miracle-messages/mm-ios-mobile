@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 
 class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate {
@@ -29,6 +31,7 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        
 
 
     }
