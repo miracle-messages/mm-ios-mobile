@@ -52,7 +52,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     let bucketName: String = "mm-interview-vids"
     let awsHost: String = "https://s3-us-west-2.amazonaws.com"
     let questionsArray: [String] = [
-        "Hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'Yes', invited them to look at the camera, and speak to their loved one as if they were there."
+        "Hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'Yes', invite them to look at the camera, and speak to their loved one as if they were there."
     ]
 
     //Player
