@@ -218,7 +218,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdq-n3-5m5" userLabel="LoginContainerView">
-                                <rect key="frame" x="18" y="121" width="339" height="525"/>
+                                <rect key="frame" x="18" y="121" width="339" height="468"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SFq-T1-cmF">
                                         <rect key="frame" x="0.0" y="31" width="339" height="45"/>
@@ -260,7 +260,7 @@
                                         </constraints>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9C5-FD-HEN" userLabel="Phone number underline">
                                         <rect key="frame" x="0.0" y="207" width="339" height="1"/>
@@ -361,7 +361,7 @@
                             <constraint firstItem="7QS-8V-a9f" firstAttribute="top" secondItem="VZf-Rh-gsx" secondAttribute="bottom" constant="13" id="TlN-dZ-vFf"/>
                             <constraint firstAttribute="trailing" secondItem="dSa-xT-2VV" secondAttribute="trailing" constant="18" id="ToL-JG-IAW"/>
                             <constraint firstItem="dSa-xT-2VV" firstAttribute="top" secondItem="CKl-r6-OxH" secondAttribute="bottom" constant="35" id="VzO-Rn-Jiq"/>
-                            <constraint firstItem="Mdq-n3-5m5" firstAttribute="bottom" secondItem="7QS-8V-a9f" secondAttribute="bottom" id="cSE-kO-j5C"/>
+                            <constraint firstItem="Mdq-n3-5m5" firstAttribute="bottom" secondItem="7QS-8V-a9f" secondAttribute="top" id="cSE-kO-j5C"/>
                             <constraint firstItem="Mdq-n3-5m5" firstAttribute="trailing" secondItem="dSa-xT-2VV" secondAttribute="trailing" id="p3y-nF-HF8"/>
                             <constraint firstItem="UcW-mA-iay" firstAttribute="top" secondItem="7QS-8V-a9f" secondAttribute="bottom" constant="21" id="qow-qD-bnW"/>
                         </constraints>
@@ -2082,8 +2082,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After reviewing your video click the 'Submit' button below to upload to our database." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-V3-7h1" customClass="VerticalAlignLabel" customModule="MiracleMsg" customModuleProvider="target">
-                                <rect key="frame" x="18" y="181" width="339" height="74"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the 'Submit' button below to upload to our database." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-V3-7h1" customClass="VerticalAlignLabel" customModule="MiracleMsg" customModuleProvider="target">
+                                <rect key="frame" x="18" y="181" width="339" height="49.5"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2104,18 +2104,42 @@
                                     <segue destination="FF4-u5-7hr" kind="show" id="mLc-f3-thN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-d9-UYN">
+                                <rect key="frame" x="16" y="255.5" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="3a5-y9-UZ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click back to retake the video." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cag-V1-dMo">
+                                <rect key="frame" x="16" y="315.5" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fdE-Xx-Qcq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tJl-d9-UYN" firstAttribute="top" secondItem="LjX-V3-7h1" secondAttribute="bottom" constant="25" id="2Bn-x1-fr8"/>
                             <constraint firstItem="LjX-V3-7h1" firstAttribute="leading" secondItem="7Sm-UV-6GI" secondAttribute="leading" id="99g-l3-z6B"/>
+                            <constraint firstItem="cag-V1-dMo" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="16" id="GBP-Wa-PZG"/>
                             <constraint firstItem="7Sm-UV-6GI" firstAttribute="leading" secondItem="a0M-VO-Tuz" secondAttribute="leading" id="HSU-1S-d56"/>
                             <constraint firstItem="a0M-VO-Tuz" firstAttribute="top" secondItem="dNA-xb-G8N" secondAttribute="bottom" constant="23" id="KBT-aK-ddH"/>
+                            <constraint firstItem="tJl-d9-UYN" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="16" id="LaE-hj-1jn"/>
                             <constraint firstAttribute="trailing" secondItem="a0M-VO-Tuz" secondAttribute="trailing" constant="18" id="LdZ-VX-uoD"/>
                             <constraint firstItem="7Sm-UV-6GI" firstAttribute="top" secondItem="a0M-VO-Tuz" secondAttribute="bottom" id="MlQ-ln-TKC"/>
+                            <constraint firstItem="cag-V1-dMo" firstAttribute="top" secondItem="tJl-d9-UYN" secondAttribute="bottom" constant="25" id="Xwr-JK-hjO"/>
                             <constraint firstItem="7Sm-UV-6GI" firstAttribute="trailing" secondItem="a0M-VO-Tuz" secondAttribute="trailing" id="akp-B5-Snb"/>
                             <constraint firstItem="Tsm-hI-BbH" firstAttribute="centerX" secondItem="qu7-VL-gc2" secondAttribute="centerX" id="cCO-rE-72H"/>
                             <constraint firstItem="LjX-V3-7h1" firstAttribute="top" secondItem="7Sm-UV-6GI" secondAttribute="bottom" constant="28" id="fPs-y5-NLv"/>
+                            <constraint firstAttribute="trailing" secondItem="tJl-d9-UYN" secondAttribute="trailing" constant="16" id="hBK-4L-rhN"/>
                             <constraint firstItem="LBf-qf-nKb" firstAttribute="top" secondItem="Tsm-hI-BbH" secondAttribute="bottom" constant="18" id="oBX-S9-CqS"/>
+                            <constraint firstAttribute="trailing" secondItem="cag-V1-dMo" secondAttribute="trailing" constant="16" id="saX-44-vbs"/>
                             <constraint firstItem="LjX-V3-7h1" firstAttribute="trailing" secondItem="7Sm-UV-6GI" secondAttribute="trailing" id="wox-t7-eSI"/>
                             <constraint firstItem="a0M-VO-Tuz" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="18" id="yQK-B6-pEA"/>
                         </constraints>

@@ -68,9 +68,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let value = UIInterfaceOrientation.landscapeRight.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
-
         self.progressBarView.progress = 0
         self.hideProgressView()
 
@@ -82,8 +79,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         configureCamera()
 
         configurePreview()
-
-        cameraSession?.startRunning()
 
         self.questionScrollView.frame = CGRect(x: 0, y: self.previewView.frame.size.height, width: self.view.frame.size.width, height: 125)
         let scrollViewHeight: CGFloat = self.questionScrollView.frame.height
@@ -198,6 +193,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         dimissCamera()
     }
 
+
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
@@ -245,6 +242,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        cameraSession?.startRunning()
     }
 
     override func didReceiveMemoryWarning() {
@@ -333,33 +333,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         cameraSession?.stopRunning()
 
         self.presentConfirmation(outputFileURL: outputFileURL)
-
-//        let appearance = SCLAlertView.SCLAppearance(
-//            showCloseButton: false
-//        )
-//        let alertView = SCLAlertView(appearance: appearance)
-//        alertView.addButton("Yes, submit video") {[unowned self] in
-//            self.submit(outputFileURL: outputFileURL)
-//        }
-//        alertView.addButton("No, retake video") {[unowned self] in
-//            self.cameraSession?.startRunning()
-//            print("Cancelled")
-//        }
-//        alertView.showSuccess("Confirm", subTitle: "Would you like to submit this recording?")
-    }
-
-    func submit(outputFileURL: URL!) {
-
-        //let _ = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
-        //self.bgUploadToS3(url: outputFileURL)
-
-        //self.sendInfo()
-
-        //self.showThankYou()
-    }
-
-    func showThankYou() -> Void {
-        self.view.bringSubview(toFront: self.thankYouView)
     }
 
     @IBAction func didPressTakePhoto(_ sender: AnyObject) {
@@ -370,13 +343,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             isRecording = false
         } else {
             startTimer()
-
             changeRecordBtn(recording: true)
-
             let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let filePath = documentsURL.appendingPathComponent("temp.mov")
-
             dataOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
         }
     }
@@ -552,6 +522,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func presentConfirmation(outputFileURL: URL!) -> Void {
         let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
         confirmationController.video = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+
+        let backItem = UIBarButtonItem()
+        backItem.title = "Retake Video?"
+        navigationItem.backBarButtonItem = backItem
+        confirmationController.navigationItem.backBarButtonItem = backItem
         navigationController?.pushViewController(confirmationController, animated: true)
     }
 

@@ -27,6 +27,8 @@ class ConfirmViewController: UIViewController {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 
+        self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
+
         // Do any additional setup after loading the view.
     }
 
