@@ -103,6 +103,7 @@ struct BackgroundInfo {
         userDefaults.removeObject(forKey: "recipient_last_location")
         userDefaults.removeObject(forKey: "recipient_years_since_last_seen")
         userDefaults.removeObject(forKey: "recipient_other_info")
+        userDefaults.synchronize()
     }
 }
 

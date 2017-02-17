@@ -29,6 +29,12 @@ class ViewController: ProfileNavigationViewController {
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         self.phoneTextField.attributedPlaceholder = phonePlaceholder
         self.locationTextField.attributedPlaceholder = locationPlaceholder
+
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.phoneTextField.delegate = self
+        self.locationTextField.delegate = self
+        self.addDoneButtonOnKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,29 +90,34 @@ class ViewController: ProfileNavigationViewController {
     }
 
     func keyboardWillShowNotification(notification: NSNotification) {
-        updateBottomLayoutConstraintWithNotification(notification: notification)
+        updateBottomLayoutConstraintWithNotification(notification: notification, hidden: false)
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
-        updateBottomLayoutConstraintWithNotification(notification: notification)
+        updateBottomLayoutConstraintWithNotification(notification: notification, hidden: true)
     }
 
-    func updateBottomLayoutConstraintWithNotification(notification: NSNotification) {
-//        let userInfo = notification.userInfo!
-//
-//        let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-//        let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-//        let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
-//        let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uint32Value << 16
-////        let animationCurve = UIViewAnimationOptions.fromRaw(UInt(rawAnimationCurve))!
-//
-//        let animationCurve = UIViewAnimationOptions.init(rawValue: UInt(rawAnimationCurve))
-//
-//        bottomLayoutConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
-//
-//        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
-//            self.view.layoutIfNeeded()
-//            }, completion: nil)
+    func updateBottomLayoutConstraintWithNotification(notification: NSNotification, hidden: Bool) {
+        let userInfo = notification.userInfo!
+
+        let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
+        let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uint32Value << 16
+//        let animationCurve = UIViewAnimationOptions.fromRaw(UInt(rawAnimationCurve))!
+
+        let animationCurve = UIViewAnimationOptions.init(rawValue: UInt(rawAnimationCurve))
+
+        if (hidden) {
+            bottomLayoutConstraint.constant = 163.0
+        } else {
+            bottomLayoutConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
+        }
+
+
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
     }
 
     func saveCredentials() -> Void {
@@ -115,6 +126,7 @@ class ViewController: ProfileNavigationViewController {
         defaults.set(emailTextField.text, forKey: "email")
         defaults.set(phoneTextField.text, forKey: "phone")
         defaults.set(locationTextField.text, forKey: "location")
+        defaults.synchronize()
     }
 
     func clearUserInfo() -> Void {
@@ -124,7 +136,41 @@ class ViewController: ProfileNavigationViewController {
         locationTextField.text = nil
     }
 
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
 
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ProfileViewController.doneButtonAction))
+
+        let items = NSMutableArray()
+        items.add(flexSpace)
+        items.add(done)
+
+        doneToolbar.items = items as NSArray as? [UIBarButtonItem]
+        doneToolbar.sizeToFit()
+
+        self.nameTextField.inputAccessoryView = doneToolbar
+        self.emailTextField.inputAccessoryView = doneToolbar
+        self.phoneTextField.inputAccessoryView = doneToolbar
+        self.locationTextField.inputAccessoryView = doneToolbar
+    }
+
+    func doneButtonAction()
+    {
+        self.nameTextField.resignFirstResponder()
+        self.emailTextField.resignFirstResponder()
+        self.phoneTextField.resignFirstResponder()
+        self.locationTextField.resignFirstResponder()
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 
 

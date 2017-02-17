@@ -42,5 +42,6 @@ struct VolunteerProfile {
         defaults.set(email, forKey: "email")
         defaults.set(phone, forKey: "phone")
         defaults.set(location, forKey: "location")
+        defaults.synchronize()
     }
 }

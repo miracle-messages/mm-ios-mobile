@@ -13,7 +13,6 @@
 		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
 		239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */; };
 		239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */; };
-		239C0C0B1E2C6E3500E0DE36 /* MessageSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */; };
 		239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */; };
 		239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */; };
 		23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1051C1DD018F200276DDD /* GoogleService-Info.plist */; };
@@ -44,7 +43,6 @@
 		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
-		239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentViewController.swift; sourceTree = "<group>"; };
 		239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerProfile.swift; sourceTree = "<group>"; };
 		23A1051C1DD018F200276DDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				23E709801E2956EF00E20582 /* MenuViewController.swift */,
 				239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */,
 				239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */,
-				239C0C0A1E2C6E3500E0DE36 /* MessageSentViewController.swift */,
 				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
 				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
 				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
@@ -336,7 +333,6 @@
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
 				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,
-				239C0C0B1E2C6E3500E0DE36 /* MessageSentViewController.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
@@ -411,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -455,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -467,7 +463,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -475,7 +471,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "5b444e46-60b2-422c-a581-192b51ace637";
+				PROVISIONING_PROFILE = "6ee0fbff-2375-47ec-afd2-d08515d4607a";
 				PROVISIONING_PROFILE_SPECIFIER = MiracleMessagesDev;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -486,7 +482,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
 				INFOPLIST_FILE = MiracleMessages/Info.plist;

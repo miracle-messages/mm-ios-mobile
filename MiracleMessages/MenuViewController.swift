@@ -30,7 +30,10 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
+        if segue.identifier == "GuideViewController" {
+            let vc = segue.destination as! GuideViewController
+            vc.mode = .disconnected
+        }
     }
 
 
@@ -77,6 +80,12 @@ class MenuViewController: UIViewController {
     @IBAction func didTapFaqBtn(_ sender: Any) {
         let viewController = self.createWebViewController(withUrl: "https://miraclemessages.org/faq/")
         self.present(viewController, animated: true, completion: nil)
+    }
+
+    @IBAction func didTapLogoutBtn(_ sender: Any) {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+        self.dismiss(animated: true, completion: nil)
     }
 
     func createWebViewController(withUrl: String) -> WebViewController {
