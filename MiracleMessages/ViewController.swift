@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import FirebaseAuth
 
-class ViewController: ProfileNavigationViewController {
+class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameTextField: UITextField!
@@ -29,6 +32,10 @@ class ViewController: ProfileNavigationViewController {
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         self.phoneTextField.attributedPlaceholder = phonePlaceholder
         self.locationTextField.attributedPlaceholder = locationPlaceholder
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
     }
 
     override func didReceiveMemoryWarning() {

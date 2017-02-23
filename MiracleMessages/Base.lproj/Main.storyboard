@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before logging in be sure to join your local chapter here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icc-6h-t2E">
-                                <rect key="frame" x="66.5" y="542" width="242" height="37"/>
+                                <rect key="frame" x="67" y="542" width="242" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="fTQ-Hh-xPU"/>
                                     <constraint firstAttribute="width" constant="242" id="jcz-dX-1e2"/>
@@ -57,8 +57,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rf7-JH-VpR" userLabel="LoginContainerView">
-                                <rect key="frame" x="16" y="168" width="343" height="336"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rf7-JH-VpR" userLabel="LoginContainerView">
+                                <rect key="frame" x="16" y="92" width="343" height="336"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uPZ-LU-mpd">
                                         <rect key="frame" x="0.0" y="31" width="343" height="45"/>
@@ -166,6 +166,11 @@
                                     <constraint firstAttribute="width" constant="343" id="vfR-6H-IVA"/>
                                     <constraint firstItem="6zi-Fb-8wq" firstAttribute="leading" secondItem="rf7-JH-VpR" secondAttribute="leading" id="wGT-uK-u3w"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u91-Kq-qR4" customClass="GIDSignInButton">
+                                <rect key="frame" x="69" y="391" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -326,7 +331,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-Rh-gsx">
-                                <rect key="frame" x="66.5" y="539" width="242" height="37"/>
+                                <rect key="frame" x="67" y="539" width="242" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="242" id="8Lr-a4-QMy"/>
                                     <constraint firstAttribute="height" constant="37" id="VtH-8R-EJ6"/>
@@ -1896,14 +1901,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="t6q-cu-GM1">
-                                        <rect key="frame" x="65.5" y="332.5" width="244" height="2"/>
+                                        <rect key="frame" x="66" y="333" width="244" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="WFP-2a-hhm"/>
                                             <constraint firstAttribute="width" secondItem="t6q-cu-GM1" secondAttribute="height" multiplier="122:1" id="rmz-Ov-2Cl"/>
                                         </constraints>
                                     </progressView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload in progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-Lp-3Id">
-                                        <rect key="frame" x="8" y="278.5" width="359" height="42"/>
+                                        <rect key="frame" x="8" y="279" width="359" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="9wx-e3-7fI"/>
                                         </constraints>
@@ -1912,7 +1917,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfv-mF-hud">
-                                        <rect key="frame" x="8" y="351.5" width="359" height="37"/>
+                                        <rect key="frame" x="8" y="352" width="359" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="D9H-Jr-eMy"/>
                                         </constraints>
@@ -1940,7 +1945,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rH-RB-l24">
-                                        <rect key="frame" x="147.5" y="466" width="80" height="70"/>
+                                        <rect key="frame" x="148" y="466" width="80" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="ARv-gu-hbs"/>
                                             <constraint firstAttribute="width" constant="80" id="v6t-em-rZR"/>
@@ -1999,7 +2004,7 @@
                                 </constraints>
                             </scrollView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="SJI-Zr-8E9">
-                                <rect key="frame" x="187.5" y="631" width="0.0" height="37"/>
+                                <rect key="frame" x="188" y="631" width="0.0" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="BSH-Eu-Izq"/>
                                 </constraints>

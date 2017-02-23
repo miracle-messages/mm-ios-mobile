@@ -12,6 +12,7 @@ import AWSS3
 import HockeySDK
 import Firebase
 import GoogleSignIn
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -32,11 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.white
 
         // Override point for customization after application launch.
+        
         FIRApp.configure()
 
+        /*
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.usWest2, identityPoolId: cognitoIdentityPoolId)
         let configuration = AWSServiceConfiguration(region: AWSRegionType.usWest2, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
+ 
+        */
+ 
 
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.lightGray
@@ -47,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         BITHockeyManager.shared().authenticator.authenticateInstallation()
         
         // Use Firebase library to configure APIs
-        FIRApp.configure()
+        //FIRApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
@@ -112,14 +118,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // ...
         if let error = error {
             // ...
+            print("Sign in error")
             return
         }
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
-        // ...
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            // ...
+            print("Firebase auth ok")
+            if let error = error {
+                // ...
+                print("Firebase auth error")
+                return
+            }
+        }
     }
+    
+    
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
                 withError error: NSError!) {

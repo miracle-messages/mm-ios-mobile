@@ -9,9 +9,10 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FirebaseAuth
 
 
-class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate {
+class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate, GIDSignInUIDelegate {
 
     @IBOutlet weak var helloLabel: UILabel!
     @IBOutlet weak var welcomeText: UILabel!
@@ -32,7 +33,8 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         
-
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
 
     }
 
