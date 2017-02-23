@@ -28,10 +28,10 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
-        self.nameTextField.attributedPlaceholder = namePlaceholder
-        self.emailTextField.attributedPlaceholder = emailPlaceholder
-        self.phoneTextField.attributedPlaceholder = phonePlaceholder
-        self.locationTextField.attributedPlaceholder = locationPlaceholder
+        //self.nameTextField.attributedPlaceholder = namePlaceholder
+        //self.emailTextField.attributedPlaceholder = emailPlaceholder
+        //self.phoneTextField.attributedPlaceholder = phonePlaceholder
+        //self.locationTextField.attributedPlaceholder = locationPlaceholder
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
@@ -57,14 +57,8 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     }
 
     @IBAction func didSelectLoginBtn(_ sender: AnyObject) {
-        if (nameTextField.text! == "" || emailTextField.text! == "" ||  phoneTextField.text! == "" || locationTextField.text! == "" ) {
-            errorLabel.isHidden = false
-        } else {
-            errorLabel.isHidden = true
-            saveCredentials()
             performSegue(withIdentifier: "loginSummarySegue", sender: self)
-            clearUserInfo()
-        }
+        
     }
 
 
