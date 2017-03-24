@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232154571E5B76AE004EE344 /* MiracleMsgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232154561E5B76AE004EE344 /* MiracleMsgUITests.swift */; };
+		2321545F1E5B86F3004EE344 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
 		239007A01E4D662F00A4C1DB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2390079F1E4D662F00A4C1DB /* Video.swift */; };
@@ -35,8 +37,22 @@
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		232154591E5B76AE004EE344 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23B0B7DA1D98E466007DFDDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23B0B7E11D98E466007DFDDE;
+			remoteInfo = MiracleMessages;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiracleMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		232154541E5B76AE004EE344 /* MiracleMsgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiracleMsgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		232154561E5B76AE004EE344 /* MiracleMsgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiracleMsgUITests.swift; sourceTree = "<group>"; };
+		232154581E5B76AE004EE344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2390079F1E4D662F00A4C1DB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -69,6 +85,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		232154511E5B76AE004EE344 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23B0B7DF1D98E466007DFDDE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,6 +104,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		232154551E5B76AE004EE344 /* MiracleMsgUITests */ = {
+			isa = PBXGroup;
+			children = (
+				232154561E5B76AE004EE344 /* MiracleMsgUITests.swift */,
+				2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */,
+				232154581E5B76AE004EE344 /* Info.plist */,
+			);
+			path = MiracleMsgUITests;
+			sourceTree = "<group>";
+		};
 		2321551B1D9CD5F5008F2B2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				23B0B7E41D98E466007DFDDE /* MiracleMessages */,
+				232154551E5B76AE004EE344 /* MiracleMsgUITests */,
 				23B0B7E31D98E466007DFDDE /* Products */,
 				2321551B1D9CD5F5008F2B2E /* Frameworks */,
 				82D2D7334CC37C822EE2A385 /* Pods */,
@@ -156,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				23B0B7E21D98E466007DFDDE /* MiracleMsg.app */,
+				232154541E5B76AE004EE344 /* MiracleMsgUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +219,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		232154531E5B76AE004EE344 /* MiracleMsgUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2321545D1E5B76AE004EE344 /* Build configuration list for PBXNativeTarget "MiracleMsgUITests" */;
+			buildPhases = (
+				232154501E5B76AE004EE344 /* Sources */,
+				232154511E5B76AE004EE344 /* Frameworks */,
+				232154521E5B76AE004EE344 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2321545A1E5B76AE004EE344 /* PBXTargetDependency */,
+			);
+			name = MiracleMsgUITests;
+			productName = MiracleMsgUITests;
+			productReference = 232154541E5B76AE004EE344 /* MiracleMsgUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		23B0B7E11D98E466007DFDDE /* MiracleMessages */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23B0B7F41D98E466007DFDDE /* Build configuration list for PBXNativeTarget "MiracleMessages" */;
@@ -211,10 +264,16 @@
 		23B0B7DA1D98E466007DFDDE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Win Inc.";
 				TargetAttributes = {
+					232154531E5B76AE004EE344 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7DEUTGD6YA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 23B0B7E11D98E466007DFDDE;
+					};
 					23B0B7E11D98E466007DFDDE = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7DEUTGD6YA;
@@ -237,11 +296,19 @@
 			projectRoot = "";
 			targets = (
 				23B0B7E11D98E466007DFDDE /* MiracleMessages */,
+				232154531E5B76AE004EE344 /* MiracleMsgUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		232154521E5B76AE004EE344 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23B0B7E01D98E466007DFDDE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,6 +384,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		232154501E5B76AE004EE344 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				232154571E5B76AE004EE344 /* MiracleMsgUITests.swift in Sources */,
+				2321545F1E5B86F3004EE344 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23B0B7DE1D98E466007DFDDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,6 +422,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2321545A1E5B76AE004EE344 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23B0B7E11D98E466007DFDDE /* MiracleMessages */;
+			targetProxy = 232154591E5B76AE004EE344 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		23B0B7E91D98E466007DFDDE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -366,6 +450,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2321545B1E5B76AE004EE344 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7DEUTGD6YA;
+				INFOPLIST_FILE = MiracleMsgUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miraclemessages.MiracleMsgUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c74e9fb7-6652-460b-a97a-60f4c38e4047";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = MiracleMessages;
+			};
+			name = Debug;
+		};
+		2321545C1E5B76AE004EE344 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7DEUTGD6YA;
+				INFOPLIST_FILE = MiracleMsgUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miraclemessages.MiracleMsgUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c74e9fb7-6652-460b-a97a-60f4c38e4047";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = MiracleMessages;
+			};
+			name = Release;
+		};
 		23B0B7F21D98E466007DFDDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,6 +615,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2321545D1E5B76AE004EE344 /* Build configuration list for PBXNativeTarget "MiracleMsgUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2321545B1E5B76AE004EE344 /* Debug */,
+				2321545C1E5B76AE004EE344 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		23B0B7DD1D98E466007DFDDE /* Build configuration list for PBXProject "MiracleMessages" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

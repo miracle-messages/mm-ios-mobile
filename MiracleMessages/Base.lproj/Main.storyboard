@@ -25,6 +25,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxr-g0-asb">
                                 <rect key="frame" x="16" y="102" width="343" height="41"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="MgH-bI-cwb"/>
                                     <constraint firstAttribute="width" constant="343" id="YFA-Em-WwY"/>
@@ -49,6 +52,9 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before logging in be sure to join your local chapter here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icc-6h-t2E">
                                 <rect key="frame" x="66.5" y="542" width="242" height="37"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="fTQ-Hh-xPU"/>
                                     <constraint firstAttribute="width" constant="242" id="jcz-dX-1e2"/>
@@ -127,6 +133,9 @@
                                     </view>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter all fields." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utb-3N-7MX">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="spW-x2-331"/>
                                         </constraints>
@@ -1126,6 +1135,9 @@
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="Rly-Hk-UN0" firstAttribute="top" secondItem="8CQ-L8-p9t" secondAttribute="bottom" constant="8" id="00D-aC-7gm"/>
                                                     <constraint firstAttribute="trailing" secondItem="YZf-0W-2yT" secondAttribute="trailing" constant="18" id="07x-L4-uRK"/>
@@ -1185,6 +1197,9 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstItem="Ah7-lT-pPi" firstAttribute="top" secondItem="sPz-qE-SCO" secondAttribute="top" constant="30" id="6o7-fJ-hhp"/>
                                             <constraint firstItem="SUy-YF-htb" firstAttribute="leading" secondItem="sPz-qE-SCO" secondAttribute="leading" constant="18" id="B7o-nw-xEp"/>

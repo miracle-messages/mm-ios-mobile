@@ -51,8 +51,19 @@ class ConfirmViewController: UIViewController {
 
         uploadCompletionHandlerBlock = { (task, error) in
             DispatchQueue.main.sync(execute: { () -> Void in
-                if error != nil {
-                    print("Upload successful")
+                if error == nil {
+                    let key = self.sendInfo()
+
+                    let parameters = self.videoParameters(uniqId: key)
+
+                    Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
+                        switch response.result {
+                        case .success:
+                            print("Submitted")
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 } else {
                     print("Error here: \(error.debugDescription)")
                 }
@@ -67,9 +78,8 @@ class ConfirmViewController: UIViewController {
             if task.error != nil {
                 print("Error: \(task.error)")
             } else {
-                print("Uploading file.")
                 DispatchQueue.main.async(execute: {
-                    print("Upload successful.")
+                    print("something to do immediately afterwards. Not necessarily done")
                 })
             }
             return nil
@@ -79,40 +89,28 @@ class ConfirmViewController: UIViewController {
     func submit() {
         if let video = self.video {
             self.bgUploadToS3(video: video)
-
-            self.sendInfo()
-
-            let parameters = self.videoParameters()
-
-            Alamofire.request(zapierUrl, parameters: parameters).responseData { response in
-                switch response.result {
-                case .success:
-                    print("Submitted")
-                case .failure(let error):
-                    print(error)
-                }
-            }
         }
     }
 
-    func videoParameters() -> Parameters {
+    func videoParameters(uniqId: String) -> Parameters {
         let defaults = UserDefaults.standard
 
         if let v = self.video {
             return [ "email" :  defaults.string(forKey: "email")!,
                      "name" : defaults.string(forKey: "name")!,
                      "video" : v.videoLink,
-                     "ID": v.uniqId]
+                     "ID": uniqId]
         } else {
             return [:]
         }
     }
 
-    func sendInfo() -> Void {
+    func sendInfo() -> String {
         //Create new user ID
         let defaults = UserDefaults.standard
 
         let key = ref.child("clients").childByAutoId().key
+        
         //Create new client info payload
         let payload = [
             "volunteer_name" : defaults.string(forKey: "name")!,
@@ -138,7 +136,7 @@ class ConfirmViewController: UIViewController {
         //Send payload to server
         let childUpdates = ["/clients/\(key)": payload]
         ref.updateChildValues(childUpdates)
-        
+        return key
     }
 
 
