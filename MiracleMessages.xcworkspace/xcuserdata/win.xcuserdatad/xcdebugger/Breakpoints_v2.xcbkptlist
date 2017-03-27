@@ -106,12 +106,12 @@
                   moduleName = "MiracleMsg"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/ConfirmViewController.swift"
-                  timestampString = "509674345.083915"
+                  timestampString = "512058108.109884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "33">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "MiracleMsg"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/ConfirmViewController.swift"
-                  timestampString = "509674345.086784"
+                  timestampString = "512058108.111494"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "244">
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "328">
                </Location>
             </Locations>
          </BreakpointContent>

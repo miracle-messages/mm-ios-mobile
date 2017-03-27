@@ -11,6 +11,8 @@ target 'MiracleMessages' do
     pod 'DatePickerDialog'
     pod 'SCLAlertView'
     pod 'Alamofire', '~> 4.0'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
 end
 
 post_install do |installer|

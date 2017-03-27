@@ -11,13 +11,14 @@
 		2321545F1E5B86F3004EE344 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
+		235407AC1E85496900FB091E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235407AB1E85496900FB091E /* GoogleService-Info.plist */; };
+		235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235407AE1E855F6200FB091E /* NotificationExtension.swift */; };
 		239007A01E4D662F00A4C1DB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2390079F1E4D662F00A4C1DB /* Video.swift */; };
 		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
 		239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */; };
 		239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */; };
 		239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */; };
 		239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */; };
-		23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1051C1DD018F200276DDD /* GoogleService-Info.plist */; };
 		23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */; };
 		23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */; };
 		23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */; };
@@ -55,13 +56,14 @@
 		2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		235407AB1E85496900FB091E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		235407AE1E855F6200FB091E /* NotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		2390079F1E4D662F00A4C1DB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteerProfile.swift; sourceTree = "<group>"; };
-		23A1051C1DD018F200276DDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo1ViewController.swift; sourceTree = "<group>"; };
 		23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo2ViewController.swift; sourceTree = "<group>"; };
 		23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		235407AD1E855F4D00FB091E /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				235407AE1E855F6200FB091E /* NotificationExtension.swift */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		2390079B1E4D64FC00A4C1DB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,7 +176,8 @@
 		2390079E1E4D658A00A4C1DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				23A1051C1DD018F200276DDD /* GoogleService-Info.plist */,
+				235407AD1E855F4D00FB091E /* lib */,
+				235407AB1E85496900FB091E /* GoogleService-Info.plist */,
 				23B0B7E91D98E466007DFDDE /* Main.storyboard */,
 				23B0B7EC1D98E466007DFDDE /* Assets.xcassets */,
 				23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */,
@@ -314,8 +325,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				23B0B7F01D98E466007DFDDE /* LaunchScreen.storyboard in Resources */,
-				23A1051D1DD018F200276DDD /* GoogleService-Info.plist in Resources */,
 				23B0B7ED1D98E466007DFDDE /* Assets.xcassets in Resources */,
+				235407AC1E85496900FB091E /* GoogleService-Info.plist in Resources */,
 				23B0B7EB1D98E466007DFDDE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +420,7 @@
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
 				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,
+				235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
@@ -578,7 +590,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -597,7 +609,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
 				INFOPLIST_FILE = MiracleMessages/Info.plist;

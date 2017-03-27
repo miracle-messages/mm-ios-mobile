@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class ViewController: ProfileNavigationViewController {
+
+    var handle: FIRAuthStateDidChangeListenerHandle!
 
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameTextField: UITextField!
@@ -17,9 +21,14 @@ class ViewController: ProfileNavigationViewController {
     @IBOutlet weak var locationTextField: UITextField!
 
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var signInButton: GIDSignInButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if FIRAuth.auth()?.currentUser != nil {
+            performSegue(withIdentifier: "loginSummarySegue", sender: self)
+        }
 
         let namePlaceholder = NSAttributedString(string: "Full Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
         let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
@@ -35,6 +44,31 @@ class ViewController: ProfileNavigationViewController {
         self.phoneTextField.delegate = self
         self.locationTextField.delegate = self
         self.addDoneButtonOnKeyboard()
+
+        GIDSignIn.sharedInstance().uiDelegate = self
+
+//        let nc = NotificationCenter.default
+//        nc.addObserver(forName: Notification.MiracleMessages.UserDidLogIn, object: nil, queue: nil) {
+//            [unowned self] notification in
+//            guard let userInfo = notification.userInfo else {
+//                print("No userInfo")
+//                return
+//            }
+//            guard (userInfo["user"] as? FIRUser) != nil else {
+//                print("No FIRUser object")
+//                return
+//            }
+//            self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
+//        }
+
+        handle = FIRAuth.auth()?.addStateDidChangeListener() {[unowned self] (auth, user) in
+            print("auth \(auth)")
+            print("user \(user)")
+            if auth.currentUser != nil {
+                self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +109,7 @@ class ViewController: ProfileNavigationViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        FIRAuth.auth()?.removeStateDidChangeListener(handle)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -121,6 +156,9 @@ class ViewController: ProfileNavigationViewController {
     }
 
     func saveCredentials() -> Void {
+
+
+
         let defaults = UserDefaults.standard
         defaults.set(nameTextField.text, forKey: "name")
         defaults.set(emailTextField.text, forKey: "email")
@@ -165,6 +203,7 @@ class ViewController: ProfileNavigationViewController {
         self.locationTextField.resignFirstResponder()
     }
 }
+
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
