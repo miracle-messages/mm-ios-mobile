@@ -21,6 +21,8 @@ struct BackgroundInfo {
     var client_hometown: String?
     var client_years_homeless: String?
     var client_contact_info: String?
+    var client_other_info: String?
+    var client_partner_org: String?
     var recipient_name: String?
     var recipient_relationship: String?
     var recipient_dob: String?
@@ -54,6 +56,12 @@ struct BackgroundInfo {
         if let client_contact_info = defaults.string(forKey: "client_contact_info") {
             self.client_contact_info = client_contact_info
         }
+        if let client_other_info = defaults.string(forKey: "client_other_info") {
+            self.client_other_info = client_other_info
+        }
+        if let client_partner_org = defaults.string(forKey: "client_partner_org") {
+            self.client_partner_org = client_partner_org
+        }
         if let recipient_name = defaults.string(forKey: "recipient_name")  {
             self.recipient_name = recipient_name
         }
@@ -81,6 +89,8 @@ struct BackgroundInfo {
         userDefaults.set(client_hometown, forKey: "client_hometown")
         userDefaults.set(client_years_homeless, forKey: "client_years_homeless")
         userDefaults.set(client_contact_info, forKey: "client_contact_info")
+        userDefaults.set(client_other_info, forKey: "client_other_info")
+        userDefaults.set(client_partner_org, forKey: "client_partner_org")
         userDefaults.set(recipient_name, forKey: "recipient_name")
         userDefaults.set(recipient_relationship, forKey: "recipient_relationship")
         userDefaults.set(recipient_dob, forKey: "recipient_dob")
@@ -97,6 +107,8 @@ struct BackgroundInfo {
         userDefaults.removeObject(forKey: "client_hometown")
         userDefaults.removeObject(forKey: "client_years_homeless")
         userDefaults.removeObject(forKey: "client_contact_info")
+        userDefaults.removeObject(forKey: "client_other_info")
+        userDefaults.removeObject(forKey: "client_partner_org")
         userDefaults.removeObject(forKey: "recipient_name")
         userDefaults.removeObject(forKey: "recipient_relationship")
         userDefaults.removeObject(forKey: "recipient_dob")

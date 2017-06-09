@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MiracleMessages/BackgroundInfoViewController.swift"
-            timestampString = "509016707.853856"
+            timestampString = "515531707.864291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "shouldPerformSegue(withIdentifier:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MiracleMessages/BackgroundInfoViewController.swift"
-            timestampString = "509016707.853856"
+            timestampString = "515531707.864291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "updateBackgroundInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +106,12 @@
                   moduleName = "MiracleMsg"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/ConfirmViewController.swift"
-                  timestampString = "512058108.109884"
+                  timestampString = "515531709.406237"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "33">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "MiracleMsg"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/win/Development/iOS/MiracleMessages/MiracleMessages/ConfirmViewController.swift"
-                  timestampString = "512058108.111494"
+                  timestampString = "515531709.407485"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "328">
+                  offsetFromSymbolStart = "244">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -144,6 +144,22 @@
             startingLineNumber = "54"
             endingLineNumber = "54"
             landmarkName = "bgUploadToS3(video:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MiracleMessages/ViewController.swift"
+            timestampString = "515484789.728649"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

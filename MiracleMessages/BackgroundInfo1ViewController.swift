@@ -16,7 +16,9 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     @IBOutlet weak var textFieldClientHometown: UITextField!
     @IBOutlet weak var textFieldClientYearsHomeless: UITextField!
     @IBOutlet weak var textViewContactInfo: UITextField!
-
+    @IBOutlet weak var textViewOtherInfo: UITextField!
+    @IBOutlet weak var textViewPartnerOrg: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textFieldClientName.delegate = self
@@ -49,6 +51,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         textFieldClientHometown.text = clientInfo.client_hometown
         textFieldClientYearsHomeless.text = clientInfo.client_years_homeless
         textViewContactInfo.text = clientInfo.client_contact_info
+        textViewOtherInfo.text = clientInfo.client_other_info
     }
 
     func updateBackgroundInfo() -> BackgroundInfo? {
@@ -58,6 +61,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         self.backgroundInfo?.client_hometown = self.textFieldClientHometown.text
         self.backgroundInfo?.client_contact_info = self.textViewContactInfo.text
         self.backgroundInfo?.client_years_homeless = self.textFieldClientYearsHomeless.text
+        self.backgroundInfo?.client_other_info = self.textViewOtherInfo.text
         self.backgroundInfo?.save()        
         return self.backgroundInfo
     }

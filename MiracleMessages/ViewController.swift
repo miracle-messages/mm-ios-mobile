@@ -10,9 +10,9 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class ViewController: ProfileNavigationViewController {
+class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
-    var handle: FIRAuthStateDidChangeListenerHandle!
+    var handle: FIRAuthStateDidChangeListenerHandle?
 
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameTextField: UITextField!
@@ -61,13 +61,6 @@ class ViewController: ProfileNavigationViewController {
 //            self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
 //        }
 
-        handle = FIRAuth.auth()?.addStateDidChangeListener() {[unowned self] (auth, user) in
-            print("auth \(auth)")
-            print("user \(user)")
-            if auth.currentUser != nil {
-                self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
-            }
-        }
 
     }
 
@@ -86,6 +79,14 @@ class ViewController: ProfileNavigationViewController {
             let nav = UINavigationController(rootViewController: startController)
             nav.modalPresentationStyle = .overCurrentContext
             present(nav, animated: false, completion: nil)
+        }
+
+        handle = FIRAuth.auth()?.addStateDidChangeListener() {[unowned self] (auth, user) in
+            print("auth \(auth)")
+            print("user \(user)")
+            if auth.currentUser != nil {
+                self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
+            }
         }
     }
 
@@ -109,7 +110,9 @@ class ViewController: ProfileNavigationViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FIRAuth.auth()?.removeStateDidChangeListener(handle)
+        if let handle = handle {
+            FIRAuth.auth()?.removeStateDidChangeListener(handle)
+        }
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }

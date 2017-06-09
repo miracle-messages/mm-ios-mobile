@@ -15,6 +15,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var clientHometownLabel: UILabel!
     @IBOutlet weak var yearsAwayLabel: UILabel!
     @IBOutlet weak var clientContactLabel: UILabel!
+    @IBOutlet weak var clientOtherInfoLabel: UILabel!
+    @IBOutlet weak var clientPartnerOrgLabel: UILabel!
 
     @IBOutlet weak var recipientNameLabel: UILabel!
     @IBOutlet weak var recipientRelationshipLabel: UILabel!
@@ -57,8 +59,12 @@ class ReviewViewController: UIViewController {
         if let clientContact = backgroundInfo.client_contact_info {
             clientContactLabel.text = clientContact
         }
-
-
+        if let clientOtherInfo = backgroundInfo.client_other_info {
+            clientOtherInfoLabel.text = "Other info: \(clientOtherInfo)"
+        }
+        if let clientPartnerOrg = backgroundInfo.client_partner_org {
+            clientPartnerOrgLabel.text = "Partner org: \(clientPartnerOrg)"
+        }
         if let recipientName = backgroundInfo.recipient_name {
             recipientNameLabel.text = "To: \(recipientName)"
         }
@@ -66,7 +72,7 @@ class ReviewViewController: UIViewController {
             recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
         }
         if let recipientAge = backgroundInfo.recipient_dob {
-            recipientAgeLabel.text = "Age: \(recipientAge)"
+            recipientAgeLabel.text = "DOB: \(recipientAge)"
         }
         if let recipientLocation = backgroundInfo.recipient_last_location {
             recipientLocationLabel.text = "Location: \(recipientLocation)"

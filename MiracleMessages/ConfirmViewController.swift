@@ -122,6 +122,8 @@ class ConfirmViewController: UIViewController {
             "client_current_city" : self.backgroundInfo.client_current_city!,
             "client_hometown" : self.backgroundInfo.client_hometown!,
             "client_contact_info" : self.backgroundInfo.client_contact_info!,
+            "client_other_info" : self.backgroundInfo.client_other_info!,
+            "client_partner_org" : self.backgroundInfo.client_partner_org!,
             "client_years_homeless" : self.backgroundInfo.client_years_homeless!,
             "recipient_name" : self.backgroundInfo.recipient_name!,
             "recipient_dob" : self.backgroundInfo.recipient_dob!,

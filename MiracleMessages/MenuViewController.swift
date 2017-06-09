@@ -8,6 +8,8 @@
 
 import UIKit
 import MessageUI
+import GoogleSignIn
+import FirebaseAuth
 
 class MenuViewController: UIViewController {
 
@@ -83,6 +85,12 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func didTapLogoutBtn(_ sender: Any) {
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
         self.dismiss(animated: true, completion: nil)

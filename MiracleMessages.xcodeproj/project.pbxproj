@@ -598,8 +598,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "6ee0fbff-2375-47ec-afd2-d08515d4607a";
-				PROVISIONING_PROFILE_SPECIFIER = MiracleMessagesDev;
+				PROVISIONING_PROFILE = "fb1f8120-b484-4bf0-a57f-c938fd76a59c";
+				PROVISIONING_PROFILE_SPECIFIER = "Miracle Messages Dev";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -611,14 +611,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "c74e9fb7-6652-460b-a97a-60f4c38e4047";
-				PROVISIONING_PROFILE_SPECIFIER = "MiracleMessages - App Store";
+				PROVISIONING_PROFILE = "cd128ee7-4768-4acd-a4c4-2f4c786f5d7d";
+				PROVISIONING_PROFILE_SPECIFIER = "Miracle Messages App Store";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
