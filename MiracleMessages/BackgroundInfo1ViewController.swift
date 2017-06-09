@@ -27,9 +27,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         textFieldClientHometown.delegate = self
         textFieldClientYearsHomeless.delegate = self
         textViewContactInfo.delegate = self        
-
-//        let yearsHomelessPlaceholder = NSAttributedString(string: self.textFieldClientYearsHomeless.placeholder!, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)])
-//        self.textFieldClientYearsHomeless.attributedPlaceholder = yearsHomelessPlaceholder
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,9 +64,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
         let _ = self.updateBackgroundInfo()
-        // Pass the selected object to the new view controller.
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

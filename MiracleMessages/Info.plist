@@ -21,9 +21,21 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.20558941937-9arav8qj2nd1a3lku4q3mjtn3vq1jpj4</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.miraclemessages.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>miraclemessages</string>
 			</array>
 		</dict>
 	</array>

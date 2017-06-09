@@ -32,11 +32,6 @@ class ConfirmViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func bgUploadToS3(video: Video) -> Void {
         let transferUtility = AWSS3TransferUtility.default()
         let transferExpression = AWSS3TransferUtilityUploadExpression()
@@ -76,7 +71,7 @@ class ConfirmViewController: UIViewController {
 
         transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
             if task.error != nil {
-                print("Error: \(task.error)")
+                print("Error: \(String(describing: task.error))")
             } else {
                 DispatchQueue.main.async(execute: {
                     print("something to do immediately afterwards. Not necessarily done")
@@ -144,10 +139,7 @@ class ConfirmViewController: UIViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         self.submit()
     }
 

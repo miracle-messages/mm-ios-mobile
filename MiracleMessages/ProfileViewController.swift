@@ -32,11 +32,6 @@ class ProfileViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -47,7 +42,7 @@ class ProfileViewController: UIViewController {
     func keyboardWillShowNotification(notification: NSNotification) {
 
         // get the size of the keyboard
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
 //            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
 //            self.scrollView.contentInset = contentInsets
 //            self.scrollView.scrollIndicatorInsets = contentInsets
@@ -99,16 +94,6 @@ class ProfileViewController: UIViewController {
         self.locationTxtfield.resignFirstResponder()
         self.phoneTxtfield.resignFirstResponder()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     func displayVolunteerInfo() -> Void {
         fullNameTxtfield.text = profile.name

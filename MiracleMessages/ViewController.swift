@@ -60,8 +60,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 //            }
 //            self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
 //        }
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,8 +80,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         }
 
         handle = FIRAuth.auth()?.addStateDidChangeListener() {[unowned self] (auth, user) in
-            print("auth \(auth)")
-            print("user \(user)")
             if auth.currentUser != nil {
                 self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
             }
@@ -100,8 +96,22 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             clearUserInfo()
         }
     }
-
-
+    
+    func open(scheme: String) {
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(scheme): \(success)")
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -142,8 +152,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
         let rawAnimationCurve = (notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uint32Value << 16
-//        let animationCurve = UIViewAnimationOptions.fromRaw(UInt(rawAnimationCurve))!
-
         let animationCurve = UIViewAnimationOptions.init(rawValue: UInt(rawAnimationCurve))
 
         if (hidden) {
@@ -152,16 +160,12 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             bottomLayoutConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
         }
 
-
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
 
     func saveCredentials() -> Void {
-
-
-
         let defaults = UserDefaults.standard
         defaults.set(nameTextField.text, forKey: "name")
         defaults.set(emailTextField.text, forKey: "email")
@@ -204,6 +208,14 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         self.emailTextField.resignFirstResponder()
         self.phoneTextField.resignFirstResponder()
         self.locationTextField.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loginSummarySegue" {
+            let nav = segue.destination as! UINavigationController
+            let webVC = nav.viewControllers[0] as! WebViewController
+            webVC.urlString = "https://1c05b95b.ngrok.io/terms"
+        }
     }
 }
 
