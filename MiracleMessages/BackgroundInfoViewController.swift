@@ -87,6 +87,7 @@ struct BackgroundInfo {
         userDefaults.set(recipient_last_location, forKey: "recipient_last_location")
         userDefaults.set(recipient_years_since_last_seen, forKey: "recipient_years_since_last_seen")
         userDefaults.set(recipient_other_info, forKey: "recipient_other_info")
+        userDefaults.synchronize()
     }
 
     static func reset() -> Void {
