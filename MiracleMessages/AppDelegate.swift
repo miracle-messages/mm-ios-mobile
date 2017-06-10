@@ -12,6 +12,8 @@ import AWSS3
 import HockeySDK
 import Firebase
 import GoogleSignIn
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -21,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        Fabric.with([Crashlytics.self])
+        
         UserDefaults.standard.register(defaults: ["UserAgent": "com.miraclemessages.app"])
         UIApplication.shared.statusBarView?.backgroundColor = .white
 
@@ -118,7 +121,6 @@ extension AppDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
         if let error = error {
-            // ...
             return
         }
 

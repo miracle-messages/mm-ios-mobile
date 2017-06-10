@@ -15,10 +15,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     var handle: FIRAuthStateDidChangeListenerHandle?
 
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextField!
 
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signInButton: GIDSignInButton!
@@ -30,36 +26,10 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             performSegue(withIdentifier: "loginSummarySegue", sender: self)
         }
 
-        let namePlaceholder = NSAttributedString(string: "Full Name", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
-        let emailPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
-        let phonePlaceholder = NSAttributedString(string: "Phone number", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
-        let locationPlaceholder = NSAttributedString(string: "Location", attributes: [NSForegroundColorAttributeName : UIColor.lightGray])
-        self.nameTextField.attributedPlaceholder = namePlaceholder
-        self.emailTextField.attributedPlaceholder = emailPlaceholder
-        self.phoneTextField.attributedPlaceholder = phonePlaceholder
-        self.locationTextField.attributedPlaceholder = locationPlaceholder
-
-        self.nameTextField.delegate = self
-        self.emailTextField.delegate = self
-        self.phoneTextField.delegate = self
-        self.locationTextField.delegate = self
         self.addDoneButtonOnKeyboard()
 
         GIDSignIn.sharedInstance().uiDelegate = self
 
-//        let nc = NotificationCenter.default
-//        nc.addObserver(forName: Notification.MiracleMessages.UserDidLogIn, object: nil, queue: nil) {
-//            [unowned self] notification in
-//            guard let userInfo = notification.userInfo else {
-//                print("No userInfo")
-//                return
-//            }
-//            guard (userInfo["user"] as? FIRUser) != nil else {
-//                print("No FIRUser object")
-//                return
-//            }
-//            self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,17 +53,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             if auth.currentUser != nil {
                 self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
             }
-        }
-    }
-
-    @IBAction func didSelectLoginBtn(_ sender: AnyObject) {
-        if (nameTextField.text! == "" || emailTextField.text! == "" ||  phoneTextField.text! == "" || locationTextField.text! == "" ) {
-            errorLabel.isHidden = false
-        } else {
-            errorLabel.isHidden = true
-            saveCredentials()
-            performSegue(withIdentifier: "loginSummarySegue", sender: self)
-            clearUserInfo()
         }
     }
     
@@ -166,19 +125,9 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     }
 
     func saveCredentials() -> Void {
-        let defaults = UserDefaults.standard
-        defaults.set(nameTextField.text, forKey: "name")
-        defaults.set(emailTextField.text, forKey: "email")
-        defaults.set(phoneTextField.text, forKey: "phone")
-        defaults.set(locationTextField.text, forKey: "location")
-        defaults.synchronize()
     }
 
     func clearUserInfo() -> Void {
-        nameTextField.text = nil
-        emailTextField.text = nil
-        phoneTextField.text = nil
-        locationTextField.text = nil
     }
 
     func addDoneButtonOnKeyboard()
@@ -195,26 +144,18 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
         doneToolbar.items = items as NSArray as? [UIBarButtonItem]
         doneToolbar.sizeToFit()
-
-        self.nameTextField.inputAccessoryView = doneToolbar
-        self.emailTextField.inputAccessoryView = doneToolbar
-        self.phoneTextField.inputAccessoryView = doneToolbar
-        self.locationTextField.inputAccessoryView = doneToolbar
     }
 
     func doneButtonAction()
     {
-        self.nameTextField.resignFirstResponder()
-        self.emailTextField.resignFirstResponder()
-        self.phoneTextField.resignFirstResponder()
-        self.locationTextField.resignFirstResponder()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSummarySegue" {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
-            webVC.urlString = "https://1c05b95b.ngrok.io/terms"
+            webVC.urlString = "https://my.miraclemessages.org"
         }
     }
 }

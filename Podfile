@@ -13,6 +13,8 @@ target 'MiracleMessages' do
     pod 'Alamofire', '~> 4.0'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 post_install do |installer|

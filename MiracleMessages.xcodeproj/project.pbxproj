@@ -258,7 +258,8 @@
 				23B0B7E01D98E466007DFDDE /* Resources */,
 				D6F1B67F9744C89F7A3E83AA /* [CP] Embed Pods Frameworks */,
 				6584F3F853BEDC2917563D6F /* [CP] Copy Pods Resources */,
-				233E9AC11DAB6DFA0049A3FF /* ShellScript */,
+				233E9AC11DAB6DFA0049A3FF /* HockeySDK Run Script */,
+				EE2E06C61EEBD01200D486DF /* Fabric Run Script */,
 			);
 			buildRules = (
 			);
@@ -334,13 +335,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		233E9AC11DAB6DFA0049A3FF /* ShellScript */ = {
+		233E9AC11DAB6DFA0049A3FF /* HockeySDK Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "HockeySDK Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D6F1B67F9744C89F7A3E83AA /* [CP] Embed Pods Frameworks */ = {
@@ -391,6 +393,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EE2E06C61EEBD01200D486DF /* Fabric Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5996860f8fad0500ce09514aed7b3d7b37753169 28da35b99e00856e51f90bf0587f57e55ee6d3ab4cd9b195676403a3d022d228";
 		};
 /* End PBXShellScriptBuildPhase section */
 
