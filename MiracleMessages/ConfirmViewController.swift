@@ -23,7 +23,7 @@ class ConfirmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 

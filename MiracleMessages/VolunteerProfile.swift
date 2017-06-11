@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Firebase
 
 struct VolunteerProfile {
+    static var ref: FIRDatabaseReference!
     var name: String?
     var email: String?
     var phone: String?
@@ -34,6 +36,18 @@ struct VolunteerProfile {
         self.email = email
         self.phone = phone
         self.location = location
+    }
+    
+    static func googleProfileCreated(with block: @escaping (Bool) -> Swift.Void) {
+        guard let user = FIRAuth.auth()?.currentUser else {return}
+        ref = FIRDatabase.database().reference()
+        ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            print("user dictionary \(String(describing: value))")
+            block(value != nil)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
     func save() -> Void {
