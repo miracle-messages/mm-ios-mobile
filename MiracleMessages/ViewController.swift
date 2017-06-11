@@ -22,21 +22,12 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if FIRAuth.auth()?.currentUser != nil {
+        if FIRAuth.auth()?.currentUser != nil && profileCreated() {
             performSegue(withIdentifier: "loginSummarySegue", sender: self)
         }
 
-        self.addDoneButtonOnKeyboard()
-
         GIDSignIn.sharedInstance().uiDelegate = self
-
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -122,33 +113,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.beginFromCurrentState , animationCurve], animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
-    }
-
-    func saveCredentials() -> Void {
-    }
-
-    func clearUserInfo() -> Void {
-    }
-
-    func addDoneButtonOnKeyboard()
-    {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
-        doneToolbar.barStyle = UIBarStyle.blackTranslucent
-
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ProfileViewController.doneButtonAction))
-
-        let items = NSMutableArray()
-        items.add(flexSpace)
-        items.add(done)
-
-        doneToolbar.items = items as NSArray as? [UIBarButtonItem]
-        doneToolbar.sizeToFit()
-    }
-
-    func doneButtonAction()
-    {
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
