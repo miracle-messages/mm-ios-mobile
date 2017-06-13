@@ -35,7 +35,10 @@
 		23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709801E2956EF00E20582 /* MenuViewController.swift */; };
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
-		A034956B1EEC39B300FBD6C5 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A034956A1EEC39B300FBD6C5 /* Case.swift */; };
+		A034956B1EEC39B300FBD6C5 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		A09A46631EF05CA0008114F2 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46621EF05CA0008114F2 /* Case.swift */; };
+		A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46651EF06DFE008114F2 /* LovedOne.swift */; };
+		A09A46681EF09AA7008114F2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46671EF09AA7008114F2 /* Source.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +88,9 @@
 		23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitNavigationControllerController.swift; sourceTree = "<group>"; };
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
+		A09A46621EF05CA0008114F2 /* Case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
+		A09A46651EF06DFE008114F2 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
+		A09A46671EF09AA7008114F2 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,9 +167,10 @@
 		2390079C1E4D653200A4C1DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A09A46641EF06DE2008114F2 /* CaseInfo */,
 				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
 				2390079F1E4D662F00A4C1DB /* Video.swift */,
-				A034956A1EEC39B300FBD6C5 /* Case.swift */,
+				A09A46671EF09AA7008114F2 /* Source.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -229,6 +236,15 @@
 				931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A09A46641EF06DE2008114F2 /* CaseInfo */ = {
+			isa = PBXGroup;
+			children = (
+				A09A46621EF05CA0008114F2 /* Case.swift */,
+				A09A46651EF06DFE008114F2 /* LovedOne.swift */,
+			);
+			name = CaseInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,8 +450,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
-				A034956B1EEC39B300FBD6C5 /* Case.swift in Sources */,
+				A034956B1EEC39B300FBD6C5 /* (null) in Sources */,
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
+				A09A46681EF09AA7008114F2 /* Source.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
@@ -452,7 +469,9 @@
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
 				23E709771E25BF2900E20582 /* ProfileNavigationViewController.swift in Sources */,
+				A09A46631EF05CA0008114F2 /* Case.swift in Sources */,
 				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,
+				A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */,
 				239007A01E4D662F00A4C1DB /* Video.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 			);

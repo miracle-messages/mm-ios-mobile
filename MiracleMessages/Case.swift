@@ -9,25 +9,54 @@
 import Foundation
 
 class Case {
-    //  Submission Info
+    //  Submission Basics
     var submissionDate: Date?
     var creator: VolunteerProfile?
-    var isCaseOpen = true
-    var isMessageDelivered = false
-    var nextStep: String?
+    
+    var hasDetectives: Bool = false
+    
+    //  Case Statuses
+    var caseStatus: CaseStatus?
+    var messageStatus: MessageStatus?
+    var nextStep: NextStep?
+    
+    //  URLs
     var publicVideoURL: URL?
     var youTubeCoverURL: URL?
     var privateVideoURL: URL?
     var photoURL: URL?
-    var source = (platform: "iOS", version: Bundle.main.value(forKey: "CFBundleShortVersionString"))
     
-    //  Sender Info
+    //  Source Info
+    var source: Source?
+    
+    //  Sender Demographics
     var firstName: String?
     var middleName = ""
     var lastName: String?
     
-    //  Enums
+    var age: Int?
+    var isAgeApproximate: Bool = false
+    var timeHomeless: (type: TimeType, value: Int)?
     
+    var homeCity: String?
+    var homeState: String?
+    var homeCountry: String?    //  Country code
+    
+    //  Sender location
+    var currentCity: String?
+    var currentState: String?
+    var currentCountry: String? //  Country code
+    
+    //  Static objects
+    static let dateFormatter = defaultDateFormatter()
+    
+    private static func defaultDateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/YY"
+        return formatter
+    }
+    
+    //  Enums
     /**
      Status of this Case
      
@@ -52,7 +81,7 @@ class Case {
     enum MessageStatus: String {
         case Undelivered
         case Delivered
-        case DidNotPost
+        case DidNotPost = "Did not post"
         case Reunited
         case Located = "Located / No thanks"
         case Other = "Other / see notes"
@@ -76,4 +105,13 @@ class Case {
         case Reunite = "Facilitate Reunion"
         case Completed = "Done/Completed"
     }
+    
+    /**
+     Timescales
+     
+     - weeks
+     - months
+     - years
+     */
+    enum TimeType: String { case weeks, months, years }
 }
