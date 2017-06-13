@@ -12,6 +12,8 @@ import AWSS3
 import HockeySDK
 import Firebase
 import GoogleSignIn
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -21,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        Fabric.with([Crashlytics.self])
+        
         UserDefaults.standard.register(defaults: ["UserAgent": "com.miraclemessages.app"])
         UIApplication.shared.statusBarView?.backgroundColor = .white
 
@@ -109,16 +112,77 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         return rootViewController
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+        
+        if (components.path == "get_started") {
+            self.presentDetailViewController()
+            return true
+        }
 
-
+        let webpageUrl = URL(string: "https://miraclemessages.org")!
+        application.openURL(webpageUrl)
+        
+        return false
+    }
 }
 
 extension AppDelegate {
     
+    func presentDetailViewController() {
+        let currentVC = getCurrentViewController()
+        currentVC?.dismiss(animated: false, completion: {[unowned self] in
+            let vc = self.getCurrentViewController()!
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let startController = storyBoard.instantiateViewController(withIdentifier: "startViewController")
+            let nav = UINavigationController(rootViewController: startController)
+            nav.modalPresentationStyle = .overCurrentContext
+            vc.present(nav, animated: false, completion: nil)
+        })
+    }
+    
+    // Returns the most recently presented UIViewController (visible)
+    func getCurrentViewController() -> UIViewController? {
+        
+        // If the root view is a navigation controller, we can just return the visible ViewController
+        if let navigationController = getNavigationController() {
+            
+            return navigationController.visibleViewController
+        }
+        
+        // Otherwise, we must get the root UIViewController and iterate through presented views
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            
+            var currentController: UIViewController! = rootController
+            
+            // Each ViewController keeps track of the view it has presented, so we
+            // can move from the head to the tail, which will always be the current view
+            while( currentController.presentedViewController != nil ) {
+                
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        return nil
+    }
+    
+    // Returns the navigation controller if it exists
+    func getNavigationController() -> UINavigationController? {
+        if let navigationController = UIApplication.shared.keyWindow?.rootViewController  {
+            return navigationController as? UINavigationController
+        }
+        return nil
+    }
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
         if let error = error {
-            // ...
             return
         }
 
