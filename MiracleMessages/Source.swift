@@ -12,5 +12,9 @@ struct Source {
     let platform: String
     let version: String
     
-    var current: Source { return Source(platform: "iOS", version: Bundle.main.value(forKey: "CFBundleShortVersionString")) }
+    static var current: Source { return Source(platform: "iOS", version: Bundle.main.value(forKey: "CFBundleShortVersionString")) }
+    
+    var dictionary: [String: String] {
+        return ["platform": platform, "version": version]
+    }
 }

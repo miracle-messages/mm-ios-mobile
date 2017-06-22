@@ -2374,7 +2374,6 @@
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1GO-dG-DW3"/>
         <segue reference="Kix-v6-Aep"/>
         <segue reference="bD1-zE-b4k"/>
         <segue reference="1GO-dG-DW3"/>
