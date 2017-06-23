@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
 
 class Case {
     //  Submission Basics
@@ -49,6 +49,9 @@ class Case {
     var currentState: String?
     var currentCountry: String? //  Country code
     var locationGPS: String = ""
+    
+    //  Loved ones
+    var lovedOnes = [LovedOne]()
     
     //  chapter?
     var chapterID: String?
@@ -99,7 +102,7 @@ class Case {
         
         var publicPayload: [String: Any] = [
             "submitted": submissionSinceEpoch,
-            //  TODO: figure out how to get the "createdBy" object here
+            "createdBy": ["uid": FIRAuth.auth()?.currentUser?.uid],
             "caseStatus": caseStatus.rawValue,
             "messageStatus": messageStatus.rawValue,
             "nextStep": nextStep.rawValue,
@@ -124,16 +127,59 @@ class Case {
         ]
         
         var privatePayload: [String: Any] = [
-            "dob": Case.dateFormatter.string(from: dob),
+            "dob": DateFormatter.default.string(from: dob),
             "dobApproximate": isDOBApproximate
         ]
         
-        //  TODO: Complete transaction code
-        //firebase.runTransactionBlock(<#T##block: (FIRMutableData) -> FIRTransactionResult##(FIRMutableData) -> FIRTransactionResult#>)
+        //  Write case data
+        caseReference.setValue(publicPayload) { error, _ in
+            //  If unsuccessful, print and return
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            //  If successful, write private case data
+            privateCaseReference.setValue(privatePayload) { error, _ in
+                //  If private write unsuccessful, remove case data and return
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    caseReference.removeValue()
+                    return
+                }
+                
+                print("Case successfully written")
+                
+                //  If successful, write loved ones
+                for lovedOne in self.lovedOnes {
+                    //  Get reference to loved one
+                    var lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
+                    lovedOne.id = lovedOneRef.key
+                    
+                    //  Try to write
+                    lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
+                        //  If unsuccessful return
+                        guard error == nil else {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        
+                        //  If successful, write private info
+                        privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
+                            //  If unsuccessful, remove public loved one info
+                            guard error == nil else {
+                                print(error!)
+                                lovedOneRef.removeValue()
+                                return
+                            }
+                            
+                            print("Loved one successfully written")
+                        }
+                    }
+                }
+            }
+        }
     }
-    
-    //  Static objects
-    static let dateFormatter = DateFormatter(forFormat: "MM/dd/yy")
     
     //  Enums
     /**

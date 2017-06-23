@@ -13,4 +13,6 @@ extension DateFormatter {
         self.init()
         self.format = format
     }
+    
+    static var `default`: DateFormatter { return DateFormatter("MM/dd/yy") }
 }
