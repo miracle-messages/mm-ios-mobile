@@ -6,6 +6,7 @@
 	<array>
 		<string>applinks:*.miraclemessages.org</string>
 		<string>applinks:miraclemessages.org</string>
+		<string>applinks:my.miraclemessages.org</string>
 	</array>
 </dict>
 </plist>
