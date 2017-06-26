@@ -521,7 +521,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func presentConfirmation(outputFileURL: URL!) -> Void {
         let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
-        confirmationController.video = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+        
+        confirmationController.video = Video(contentType: "application/octet-stream", completionBlock: nil, awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
 
         let backItem = UIBarButtonItem()
         backItem.title = "Retake Video?"

@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import AWSS3
 
-struct Video {
+struct Video: Uploadable {
+
+    var contentType: String
+
+    var completionBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
     let awsHost: String
     let bucketName: String
     let name: String
@@ -17,8 +22,5 @@ struct Video {
         get {
             return "\(self.awsHost)/\(self.bucketName)/\(self.name)"
         }
-    }
-
-    func save() -> Void {
     }
 }

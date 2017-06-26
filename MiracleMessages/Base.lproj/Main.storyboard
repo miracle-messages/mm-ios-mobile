@@ -457,7 +457,7 @@
                                 <rect key="frame" x="0.0" y="268" width="375" height="399"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="788"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-3N-oCA">
                                                 <rect key="frame" x="16" y="16" width="343" height="183"/>
@@ -487,55 +487,33 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTa-fS-ocM">
-                                                <rect key="frame" x="16" y="471" width="105" height="26"/>
-                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O43-MX-NZD">
-                                                <rect key="frame" x="313" y="467.5" width="46" height="33"/>
-                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="18"/>
-                                                <state key="normal" title="Clear"/>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J07-hc-Y9a" userLabel="Signature view">
-                                                <rect key="frame" x="16" y="517" width="343" height="200"/>
-                                                <color key="backgroundColor" red="1" green="0.35197887570000003" blue="0.30005365239999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="jxl-J4-6hG"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7e-mN-z3P">
-                                                <rect key="frame" x="16" y="737" width="343" height="31"/>
-                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
-                                                <state key="normal" title="I UNDERSTAND AND CONSENT"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-cy-m5s">
+                                                <rect key="frame" x="16" y="471" width="343" height="36"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
+                                                <state key="normal" title="I have read the above consent."/>
+                                                <connections>
+                                                    <segue destination="V3p-aX-g7j" kind="show" id="oij-uW-SGV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="TB5-eU-klR" secondAttribute="trailing" constant="16" id="0st-zJ-3Sv"/>
+                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="1kD-SP-GLa"/>
                                             <constraint firstItem="Pio-G3-WuB" firstAttribute="top" secondItem="NCz-6U-Ra9" secondAttribute="bottom" constant="20" id="6VI-Vd-Psd"/>
                                             <constraint firstItem="NCz-6U-Ra9" firstAttribute="top" secondItem="TB5-eU-klR" secondAttribute="bottom" constant="20" id="7QU-OD-lC4"/>
                                             <constraint firstAttribute="trailing" secondItem="NCz-6U-Ra9" secondAttribute="trailing" constant="16" id="C79-4Y-30X"/>
-                                            <constraint firstItem="F7e-mN-z3P" firstAttribute="top" secondItem="J07-hc-Y9a" secondAttribute="bottom" constant="20" id="CM4-Vw-gkQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="F7e-mN-z3P" secondAttribute="trailing" constant="16" id="Dni-YH-8oN"/>
                                             <constraint firstItem="TB5-eU-klR" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="K2L-7a-yIQ"/>
                                             <constraint firstItem="Pio-G3-WuB" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="NQY-Bq-ldc"/>
-                                            <constraint firstItem="jTa-fS-ocM" firstAttribute="top" secondItem="Pio-G3-WuB" secondAttribute="bottom" constant="20" id="Nco-Nm-hd8"/>
-                                            <constraint firstAttribute="trailing" secondItem="O43-MX-NZD" secondAttribute="trailing" constant="16" id="PFI-GY-Fmg"/>
                                             <constraint firstItem="NCz-6U-Ra9" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="Q5b-8I-DEn"/>
-                                            <constraint firstItem="J07-hc-Y9a" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="Qhv-WE-Qom"/>
-                                            <constraint firstAttribute="trailing" secondItem="J07-hc-Y9a" secondAttribute="trailing" constant="16" id="Rcg-af-N5E"/>
-                                            <constraint firstItem="J07-hc-Y9a" firstAttribute="top" secondItem="jTa-fS-ocM" secondAttribute="bottom" constant="20" id="Vov-tW-mcJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Pio-G3-WuB" secondAttribute="trailing" constant="16" id="W2j-xs-ALH"/>
-                                            <constraint firstItem="F7e-mN-z3P" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="X29-f3-YeO"/>
-                                            <constraint firstItem="O43-MX-NZD" firstAttribute="centerY" secondItem="jTa-fS-ocM" secondAttribute="centerY" id="Z4V-wO-3gT"/>
+                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="top" secondItem="Pio-G3-WuB" secondAttribute="bottom" constant="20" id="W7Z-fx-IvS"/>
                                             <constraint firstAttribute="trailing" secondItem="Nje-3N-oCA" secondAttribute="trailing" constant="16" id="c56-V5-33v"/>
                                             <constraint firstItem="TB5-eU-klR" firstAttribute="top" secondItem="Nje-3N-oCA" secondAttribute="bottom" constant="20" id="d6v-v3-SwJ"/>
                                             <constraint firstItem="Nje-3N-oCA" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" constant="16" id="nf5-Js-WVu"/>
-                                            <constraint firstItem="jTa-fS-ocM" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="qvW-RA-zMV"/>
+                                            <constraint firstAttribute="bottom" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="20" id="pO1-Xo-DdJ"/>
                                             <constraint firstItem="Nje-3N-oCA" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="wKi-Ve-MP4"/>
-                                            <constraint firstAttribute="bottom" secondItem="F7e-mN-z3P" secondAttribute="bottom" constant="20" id="y3N-kh-RbY"/>
+                                            <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="16" id="zfB-8E-cea"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -568,10 +546,102 @@
             </objects>
             <point key="canvasLocation" x="5400.8000000000002" y="44.527736131934034"/>
         </scene>
+        <!--Consent View Controller-->
+        <scene sceneID="BqB-r4-RMC">
+            <objects>
+                <viewController id="V3p-aX-g7j" customClass="ConsentViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OOT-Oj-ogc"/>
+                        <viewControllerLayoutGuide type="bottom" id="zfa-R0-6xE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j1n-qc-xsa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-yh-dyO">
+                                <rect key="frame" x="16" y="93" width="343" height="131"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-LS-gC8">
+                                <rect key="frame" x="16" y="232" width="343" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="BH1-Qq-JJO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ir-qq-vHG" customClass="YPDrawSignatureView" customModule="MiracleMsg" customModuleProvider="target">
+                                <rect key="frame" x="16" y="310" width="343" height="288"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-E4-YxG">
+                                <rect key="frame" x="287" y="264" width="56" height="37"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="didTapClearBtn:" destination="V3p-aX-g7j" eventType="touchUpInside" id="ZLO-Pq-NFF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfc-tt-GOr">
+                                <rect key="frame" x="16" y="270" width="121.5" height="26"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xQ-Z6-deB">
+                                <rect key="frame" x="16" y="618" width="343" height="33"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <state key="normal" title="I UNDERSTAND AND CONSENT"/>
+                                <connections>
+                                    <action selector="didTapConsentBtn:" destination="V3p-aX-g7j" eventType="touchUpInside" id="AZX-mr-X9w"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0xQ-Z6-deB" secondAttribute="trailing" constant="16" id="7cu-ri-cZR"/>
+                            <constraint firstItem="1ir-qq-vHG" firstAttribute="top" secondItem="Yfc-tt-GOr" secondAttribute="bottom" constant="14" id="ATI-kP-pNV"/>
+                            <constraint firstAttribute="trailing" secondItem="CLo-LS-gC8" secondAttribute="trailing" constant="16" id="CUD-gL-cAI"/>
+                            <constraint firstItem="Yfc-tt-GOr" firstAttribute="top" secondItem="CLo-LS-gC8" secondAttribute="bottom" constant="18" id="EwX-w2-uk8"/>
+                            <constraint firstItem="0xQ-Z6-deB" firstAttribute="top" secondItem="1ir-qq-vHG" secondAttribute="bottom" constant="20" id="HuP-gl-aMv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bKu-E4-YxG" secondAttribute="trailing" constant="16" id="OOw-sm-yXW"/>
+                            <constraint firstItem="bKu-E4-YxG" firstAttribute="centerY" secondItem="Yfc-tt-GOr" secondAttribute="centerY" id="Snl-wX-5EW"/>
+                            <constraint firstItem="Yfc-tt-GOr" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="WNn-LS-EPd"/>
+                            <constraint firstItem="zfa-R0-6xE" firstAttribute="top" secondItem="0xQ-Z6-deB" secondAttribute="bottom" constant="16" id="et3-n4-63B"/>
+                            <constraint firstItem="0xQ-Z6-deB" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="fIZ-cJ-ge3"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="top" secondItem="zUi-yh-dyO" secondAttribute="bottom" constant="8" id="lR6-PF-eSa"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="top" secondItem="zUi-yh-dyO" secondAttribute="bottom" constant="8" id="mOs-Gk-yuC"/>
+                            <constraint firstAttribute="trailing" secondItem="zUi-yh-dyO" secondAttribute="trailing" constant="16" id="o0D-1j-Vma"/>
+                            <constraint firstItem="zUi-yh-dyO" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="r2Y-iw-MOW"/>
+                            <constraint firstAttribute="trailing" secondItem="1ir-qq-vHG" secondAttribute="trailing" constant="16" id="rFr-In-NxR"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="s7T-JC-XCn"/>
+                            <constraint firstItem="1ir-qq-vHG" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="sPP-XN-xn1"/>
+                            <constraint firstItem="zUi-yh-dyO" firstAttribute="top" secondItem="OOT-Oj-ogc" secondAttribute="bottom" constant="29" id="xmF-EX-XWa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signatureView" destination="1ir-qq-vHG" id="Zxn-C7-QLp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zoH-Cj-SWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6284" y="45.42728635682159"/>
+        </scene>
         <!--Background Info1 View Controller-->
         <scene sceneID="Izc-1W-ZlB">
             <objects>
-                <viewController id="AZw-3m-puP" customClass="BackgroundInfo1ViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BackgroundInfo1ViewController" id="AZw-3m-puP" customClass="BackgroundInfo1ViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqW-xP-lpn"/>
                         <viewControllerLayoutGuide type="bottom" id="4ru-iM-cMU"/>
@@ -957,7 +1027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODi-rX-5df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5444" y="800.14992503748135"/>
+            <point key="canvasLocation" x="6284" y="815"/>
         </scene>
         <!--Background Info2 View Controller-->
         <scene sceneID="yuN-6N-Hta">
@@ -1275,7 +1345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn8-1r-lTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6440.8000000000002" y="799.2503748125938"/>
+            <point key="canvasLocation" x="7388" y="943"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="W4E-71-KcJ">
