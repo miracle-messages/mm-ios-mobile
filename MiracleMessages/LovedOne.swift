@@ -14,9 +14,10 @@ class LovedOne {
     //  Public
     var firstName: String?
     var middleName: String?
+    var lastName: String?
     var relationship: String?
-    var lastKnownLocation: String
-    var lastContact: String
+    var lastKnownLocation: String?
+    var lastContact: String?
     
     var publicInfo: [String: Any] {
         var info = [String: Any]()
@@ -37,8 +38,9 @@ class LovedOne {
     var notes: String?
     
     var privateInfo: [String: Any] {
-        var info = [String: Any]
-        if let dob = DateFormatter.default.string(from: dateOfBirth) { info["dob"] = dob }
-        info["dobApproximate"] = isDOBAppoximate
+        var info = [String: Any]()
+        if let dateOfBirth = dateOfBirth { info["dob"] = DateFormatter.default.string(from: dateOfBirth) }
+        info["dobApproximate"] = isDOBApproximate
+        return info
     }
 }

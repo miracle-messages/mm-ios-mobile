@@ -41,6 +41,8 @@
 		A09A46631EF05CA0008114F2 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46621EF05CA0008114F2 /* Case.swift */; };
 		A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46651EF06DFE008114F2 /* LovedOne.swift */; };
 		A09A46681EF09AA7008114F2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46671EF09AA7008114F2 /* Source.swift */; };
+		A0C5F59D1F00B4D100FE12AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C5F59B1F00B4D100FE12AC /* Country.swift */; };
+		A0C5F59E1F00B4D100FE12AC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C5F59C1F00B4D100FE12AC /* State.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,8 @@
 		A09A46621EF05CA0008114F2 /* Case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
 		A09A46651EF06DFE008114F2 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
 		A09A46671EF09AA7008114F2 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		A0C5F59B1F00B4D100FE12AC /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		A0C5F59C1F00B4D100FE12AC /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,10 +251,20 @@
 		A09A46641EF06DE2008114F2 /* CaseInfo */ = {
 			isa = PBXGroup;
 			children = (
+				A0C5F59A1F00B4BC00FE12AC /* Location */,
 				A09A46621EF05CA0008114F2 /* Case.swift */,
 				A09A46651EF06DFE008114F2 /* LovedOne.swift */,
 			);
 			name = CaseInfo;
+			sourceTree = "<group>";
+		};
+		A0C5F59A1F00B4BC00FE12AC /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				A0C5F59B1F00B4D100FE12AC /* Country.swift */,
+				A0C5F59C1F00B4D100FE12AC /* State.swift */,
+			);
+			name = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C5F59D1F00B4D100FE12AC /* Country.swift in Sources */,
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
 				A044DD981EFB521A0094CB99 /* BackgroundInfo.swift in Sources */,
 				A044DD9A1EFB5C7F0094CB99 /* DateFormatterExtension.swift in Sources */,
@@ -482,6 +497,7 @@
 				A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */,
 				239007A01E4D662F00A4C1DB /* Video.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
+				A0C5F59E1F00B4D100FE12AC /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
