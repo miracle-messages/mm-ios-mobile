@@ -363,7 +363,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to begin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GS4-Ok-gU7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GS4-Ok-gU7">
                                 <rect key="frame" x="18" y="101" width="339" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="mAY-lW-l7x"/>
@@ -381,6 +381,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
+                                <rect key="frame" x="16" y="186" width="343" height="335.5"/>
+                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message withus, you acknowledge that: a.) your video may be made public and shared widely; b.) we don't know how your loved one(s) will respond, if at all; and c.) we don't know if we'll be able to find your loved one(s). The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try to deliver it. If you agree, please read and sign this form!</string>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-5d-4ze">
                                 <rect key="frame" x="13" y="594" width="349" height="57"/>
                                 <constraints>
@@ -392,152 +399,249 @@
                                     <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="AZw-3m-puP" kind="show" id="nsP-g5-7Hh"/>
+                                    <segue destination="s3l-P6-vyx" kind="show" id="Bkd-ed-pGD"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="Cxj-cA-oir">
-                                <rect key="frame" x="168" y="557" width="39" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="NJq-p9-ZfP"/>
-                                    <constraint firstAttribute="width" constant="39" id="d5d-a1-E2A"/>
-                                </constraints>
-                            </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd5-fF-abJ">
-                                <rect key="frame" x="0.0" y="174" width="375" height="383"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxp-La-ByB" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="750" height="383"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2JQ-zk-jb4" userLabel="View 1">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="383"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Ask" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18j-u7-KUb">
-                                                        <rect key="frame" x="18" y="25" width="339" height="21"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="vue-qs-8AH"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Do you have any family or friends that you would like to reunite with, even if you don't know how to reach them?&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
-                                                        <rect key="frame" x="18" y="46" width="339" height="116"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="116" id="W6T-vX-8Lv"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="s70-JI-P1t" firstAttribute="trailing" secondItem="18j-u7-KUb" secondAttribute="trailing" id="3ky-No-myK"/>
-                                                    <constraint firstItem="18j-u7-KUb" firstAttribute="leading" secondItem="2JQ-zk-jb4" secondAttribute="leading" constant="18" id="EbF-11-LpY"/>
-                                                    <constraint firstAttribute="trailing" secondItem="18j-u7-KUb" secondAttribute="trailing" constant="18" id="Q7i-a5-4Te"/>
-                                                    <constraint firstItem="18j-u7-KUb" firstAttribute="top" secondItem="2JQ-zk-jb4" secondAttribute="top" constant="25" id="ZnA-gP-ZqA"/>
-                                                    <constraint firstItem="s70-JI-P1t" firstAttribute="top" secondItem="18j-u7-KUb" secondAttribute="bottom" id="fNJ-gU-bzj"/>
-                                                    <constraint firstItem="s70-JI-P1t" firstAttribute="leading" secondItem="18j-u7-KUb" secondAttribute="leading" id="hSU-C9-N7D"/>
-                                                </constraints>
-                                            </view>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOT-Ld-NAg" userLabel="Scroll View 2">
-                                                <rect key="frame" x="375" y="0.0" width="375" height="383"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOV-Kf-avD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Inform" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-ZH-n2g">
-                                                                <rect key="frame" x="18" y="25" width="339" height="21"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="21" id="Xvm-Kh-Y20"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i70-nr-luX">
-                                                                <rect key="frame" x="18" y="46" width="339" height="670"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="670" id="Fea-eQ-xpd"/>
-                                                                </constraints>
-                                                                <string key="text">"As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved one if you'd like. Before I do, I just want to make sure we are on the same page with expectations. First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s). Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond. And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart, and that we will try our best to deliver it. Sound good?"</string>
-                                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="UJf-ZH-n2g" secondAttribute="trailing" constant="18" id="1Su-sq-TE7"/>
-                                                            <constraint firstItem="UJf-ZH-n2g" firstAttribute="top" secondItem="NOV-Kf-avD" secondAttribute="top" constant="25" id="CPB-43-SDj"/>
-                                                            <constraint firstAttribute="height" constant="700" id="PDa-lJ-gX8"/>
-                                                            <constraint firstItem="i70-nr-luX" firstAttribute="top" secondItem="UJf-ZH-n2g" secondAttribute="bottom" id="hoW-O8-4Nj"/>
-                                                            <constraint firstItem="i70-nr-luX" firstAttribute="leading" secondItem="UJf-ZH-n2g" secondAttribute="leading" id="ksW-EC-pmo"/>
-                                                            <constraint firstItem="UJf-ZH-n2g" firstAttribute="leading" secondItem="NOV-Kf-avD" secondAttribute="leading" constant="18" id="uwI-xW-NLe"/>
-                                                            <constraint firstItem="i70-nr-luX" firstAttribute="trailing" secondItem="UJf-ZH-n2g" secondAttribute="trailing" id="vB2-s0-cSd"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="NOV-Kf-avD" firstAttribute="leading" secondItem="qOT-Ld-NAg" secondAttribute="leading" id="AHJ-Ct-yL9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="NOV-Kf-avD" secondAttribute="bottom" id="QTH-lh-ZRm"/>
-                                                    <constraint firstAttribute="trailing" secondItem="NOV-Kf-avD" secondAttribute="trailing" id="Ts4-dE-Ht1"/>
-                                                    <constraint firstItem="NOV-Kf-avD" firstAttribute="top" secondItem="qOT-Ld-NAg" secondAttribute="top" id="ljJ-Cr-fxo"/>
-                                                    <constraint firstItem="NOV-Kf-avD" firstAttribute="centerX" secondItem="qOT-Ld-NAg" secondAttribute="centerX" id="yPA-4R-K5e"/>
-                                                </constraints>
-                                            </scrollView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="qOT-Ld-NAg" firstAttribute="leading" secondItem="2JQ-zk-jb4" secondAttribute="trailing" id="CDs-8L-3Jp"/>
-                                            <constraint firstAttribute="bottom" secondItem="qOT-Ld-NAg" secondAttribute="bottom" id="K9Q-22-5Ej"/>
-                                            <constraint firstItem="2JQ-zk-jb4" firstAttribute="top" secondItem="Oxp-La-ByB" secondAttribute="top" id="PfQ-GB-Cfh"/>
-                                            <constraint firstItem="2JQ-zk-jb4" firstAttribute="leading" secondItem="Oxp-La-ByB" secondAttribute="leading" id="UXW-Qk-TPw"/>
-                                            <constraint firstItem="qOT-Ld-NAg" firstAttribute="top" secondItem="Oxp-La-ByB" secondAttribute="top" id="ZOO-o1-I5l"/>
-                                            <constraint firstAttribute="bottom" secondItem="2JQ-zk-jb4" secondAttribute="bottom" id="v3m-Pj-17Z"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Oxp-La-ByB" secondAttribute="bottom" id="KjV-ie-6Kr"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oxp-La-ByB" secondAttribute="trailing" id="PUx-28-dVL"/>
-                                    <constraint firstItem="Oxp-La-ByB" firstAttribute="top" secondItem="Jd5-fF-abJ" secondAttribute="top" id="a8C-PX-nfu"/>
-                                    <constraint firstItem="Oxp-La-ByB" firstAttribute="leading" secondItem="Jd5-fF-abJ" secondAttribute="leading" id="gLL-RN-nH1"/>
-                                    <constraint firstItem="Oxp-La-ByB" firstAttribute="centerY" secondItem="Jd5-fF-abJ" secondAttribute="centerY" id="p3l-ll-dlZ"/>
-                                </constraints>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fkh-z5-N80" firstAttribute="top" secondItem="GUQ-5d-4ze" secondAttribute="bottom" constant="16" id="2WM-Yr-NdX"/>
-                            <constraint firstItem="Cxj-cA-oir" firstAttribute="top" secondItem="Jd5-fF-abJ" secondAttribute="bottom" id="AY4-cN-O8I"/>
+                            <constraint firstAttribute="trailing" secondItem="s70-JI-P1t" secondAttribute="trailing" constant="16" id="7ud-1i-Vjt"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="FDZ-dT-bTc"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="leading" secondItem="GS4-Ok-gU7" secondAttribute="leading" id="GLU-rt-8p3"/>
-                            <constraint firstItem="qOT-Ld-NAg" firstAttribute="width" secondItem="Kqr-b4-8fb" secondAttribute="width" id="PoU-Kw-Oj1"/>
-                            <constraint firstItem="2JQ-zk-jb4" firstAttribute="width" secondItem="Kqr-b4-8fb" secondAttribute="width" id="SbU-vO-dxI"/>
-                            <constraint firstItem="Cxj-cA-oir" firstAttribute="centerX" secondItem="Kqr-b4-8fb" secondAttribute="centerX" id="Y8N-yC-DbD"/>
-                            <constraint firstAttribute="trailing" secondItem="Jd5-fF-abJ" secondAttribute="trailing" id="aHh-Wr-GI3"/>
+                            <constraint firstItem="s70-JI-P1t" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="16" id="b9l-Ym-dO0"/>
                             <constraint firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" constant="18" id="fNg-72-N0a"/>
+                            <constraint firstItem="s70-JI-P1t" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="20" id="hKx-kR-gUV"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="top" secondItem="GS4-Ok-gU7" secondAttribute="bottom" id="hMp-p2-0hg"/>
-                            <constraint firstItem="Jd5-fF-abJ" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" id="ihX-sX-ZOE"/>
-                            <constraint firstItem="Jd5-fF-abJ" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="8" id="j2X-5T-0Gb"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" id="jym-0c-Yrx"/>
-                            <constraint firstItem="GUQ-5d-4ze" firstAttribute="top" secondItem="Cxj-cA-oir" secondAttribute="bottom" id="pOq-2Y-ZLr"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="top" secondItem="GZk-7A-xuk" secondAttribute="bottom" constant="37" id="ppQ-Yi-wxR"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="centerX" secondItem="Kqr-b4-8fb" secondAttribute="centerX" id="tKD-eK-00Y"/>
-                            <constraint firstItem="Oxp-La-ByB" firstAttribute="width" secondItem="Kqr-b4-8fb" secondAttribute="width" multiplier="2" id="tl5-xF-HaP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="nextBtn" destination="GUQ-5d-4ze" id="XdF-RE-zTN"/>
-                        <outlet property="pageCtrl" destination="Cxj-cA-oir" id="b4f-Hd-oPX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB7-el-n0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4596" y="46.326836581709152"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Re1-ek-avE">
+            <objects>
+                <viewController id="s3l-P6-vyx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mxd-UR-a7Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="u7f-m9-vaa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v7l-lT-L7d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-a2-18h">
+                                <rect key="frame" x="16" y="101" width="343" height="131"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
+                                <rect key="frame" x="16" y="240" width="343" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ygz-NU-mUQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-Fe-56t">
+                                <rect key="frame" x="0.0" y="268" width="375" height="399"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-3N-oCA">
+                                                <rect key="frame" x="16" y="16" width="343" height="183"/>
+                                                <string key="text">Without expectation of compensation or other remuneration, now or in the future, I hereby give my consent to Miracle Messages, its affiliates, agents, voluenteers, partners, and sponsors, to use my image and likeness and/or any interview statements and audio/video recordings from me in publications, advertising, and other media activities, online and/or offline.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <mutableString key="userLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem neque, pulvinar nec facilisis ac, consectetur non eros. Maecenas accumsan sit amet magna ac elementum. Etiam at laoreet metus. Donec placerat, turpis non rhoncus lobortis, felis mauris convallis ligula, quis ornare leo arcu quis arcu. Nulla lacus risus, volutpat quis luctus sit amet, convallis sit amet mi. Proin turpis elit, dapibus vel condimentum et, mattis in elit. In non convallis arcu. Praesent tincidunt iaculis dolor, suscipit blandit ligula cursus at. Morbi quis mauris tincidunt, venenatis sapien sit amet, tempus tortor.  Morbi quis consequat ipsum. Nam sit amet ullamcorper leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus posuere nibh, sit amet cursus eros pharetra non. Quisque bibendum leo pellentesque lobortis vestibulum. Maecenas porta posuere ligula, ac suscipit ipsum sodales id. Integer consequat nisl tristique, auctor mauris eget, consequat enim. Integer laoreet tortor nec efficitur ornare. Mauris sit amet ipsum iaculis, rutrum quam a, dapibus nisl. Aenean vitae sollicitudin diam, condimentum sollicitudin sapien.  Vestibulum turpis leo, porta ut mollis quis, elementum ut odio. Mauris commodo risus a lectus posuere, non porttitor orci consectetur. Nunc ultrices, orci id rutrum tincidunt, velit justo aliquet risus, ac blandit velit lacus ac justo. Nulla varius tempor varius. Nulla accumsan orci nec quam ornare, in euismod magna fermentum. Cras vel consequat arcu. Etiam lobortis justo scelerisque ornare tincidunt. In condimentum, turpis nec rhoncus eleifend, enim orci placerat sapien, eu dapibus felis justo et ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum iaculis sem sed congue varius. Vivamus in congue neque, eu tempor ex.  Morbi rhoncus nulla eu finibus posuere. Ut efficitur tempor libero sit amet eleifend. Donec at tortor arcu. Donec gravida tortor eu sem fermentum facilisis. Vivamus sodales fringilla velit. Maecenas cursus tortor sit amet massa fringilla molestie. Ut posuere magna justo, eget pulvinar mi facilisis at.  Donec semper sapien ac cursus feugiat. Donec vulputate viverra odio, vel malesuada tortor placerat a. Vestibulum vel enim lobortis, vulputate elit id, bibendum nibh. Integer hendrerit, dolor vitae vehicula finibus, lectus ligula pretium lectus, non tincidunt orci tellus vel libero. Aliquam gravida ac justo quis bibendum. Quisque nisi felis, pellentesque id justo quis, porttitor suscipit turpis. Quisque eu lacinia nibh. Aenean quis quam luctus, cursus enim sed, accumsan sem. In molestie mattis ligula ac luctus. Phasellus cursus ultrices sodales.</mutableString>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This consent includes, but is not limited to:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-eU-klR">
+                                                <rect key="frame" x="16" y="219" width="343" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCz-6U-Ra9">
+                                                <rect key="frame" x="16" y="260" width="343" height="57"/>
+                                                <string key="text">Permission to interview, film, photograph, tape, or otherwise make a video reproduction of me and/or related to Miracle Messages.</string>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pio-G3-WuB">
+                                                <rect key="frame" x="16" y="337" width="343" height="114"/>
+                                                <string key="text">This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</string>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-cy-m5s">
+                                                <rect key="frame" x="16" y="471" width="343" height="36"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
+                                                <state key="normal" title="I have read the above consent."/>
+                                                <connections>
+                                                    <segue destination="V3p-aX-g7j" kind="show" id="oij-uW-SGV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="TB5-eU-klR" secondAttribute="trailing" constant="16" id="0st-zJ-3Sv"/>
+                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="1kD-SP-GLa"/>
+                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="top" secondItem="NCz-6U-Ra9" secondAttribute="bottom" constant="20" id="6VI-Vd-Psd"/>
+                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="top" secondItem="TB5-eU-klR" secondAttribute="bottom" constant="20" id="7QU-OD-lC4"/>
+                                            <constraint firstAttribute="trailing" secondItem="NCz-6U-Ra9" secondAttribute="trailing" constant="16" id="C79-4Y-30X"/>
+                                            <constraint firstItem="TB5-eU-klR" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="K2L-7a-yIQ"/>
+                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="NQY-Bq-ldc"/>
+                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="Q5b-8I-DEn"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pio-G3-WuB" secondAttribute="trailing" constant="16" id="W2j-xs-ALH"/>
+                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="top" secondItem="Pio-G3-WuB" secondAttribute="bottom" constant="20" id="W7Z-fx-IvS"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nje-3N-oCA" secondAttribute="trailing" constant="16" id="c56-V5-33v"/>
+                                            <constraint firstItem="TB5-eU-klR" firstAttribute="top" secondItem="Nje-3N-oCA" secondAttribute="bottom" constant="20" id="d6v-v3-SwJ"/>
+                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" constant="16" id="nf5-Js-WVu"/>
+                                            <constraint firstAttribute="bottom" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="20" id="pO1-Xo-DdJ"/>
+                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="wKi-Ve-MP4"/>
+                                            <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="16" id="zfB-8E-cea"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="top" id="DAs-j8-dIV"/>
+                                    <constraint firstAttribute="trailing" secondItem="6jR-qY-Ejq" secondAttribute="trailing" id="GLh-K1-D56"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="leading" secondItem="55o-Fe-56t" secondAttribute="leading" id="QBS-I6-7C6"/>
+                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" id="lsR-eh-rfb"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerX" secondItem="55o-Fe-56t" secondAttribute="centerX" id="t0K-vt-mlv"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="1UR-kP-Bzu"/>
+                            <constraint firstAttribute="trailing" secondItem="MZT-Vt-3I2" secondAttribute="trailing" constant="16" id="2TK-WW-AHE"/>
+                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="top" secondItem="vsg-a2-18h" secondAttribute="bottom" constant="8" id="FiB-iE-ONp"/>
+                            <constraint firstAttribute="bottom" secondItem="55o-Fe-56t" secondAttribute="bottom" id="IUt-gQ-egQ"/>
+                            <constraint firstItem="vsg-a2-18h" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="37" id="SJg-qN-fZ1"/>
+                            <constraint firstItem="6jR-qY-Ejq" firstAttribute="width" secondItem="v7l-lT-L7d" secondAttribute="width" id="Sa9-Tc-PPu"/>
+                            <constraint firstItem="vsg-a2-18h" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="THn-6X-ops"/>
+                            <constraint firstItem="55o-Fe-56t" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" id="dZK-sh-bn1"/>
+                            <constraint firstAttribute="trailing" secondItem="vsg-a2-18h" secondAttribute="trailing" constant="16" id="eBi-R4-UnG"/>
+                            <constraint firstAttribute="trailing" secondItem="55o-Fe-56t" secondAttribute="trailing" id="fSB-uW-lqi"/>
+                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="jF8-a7-ypA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxt-yo-TO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5400.8000000000002" y="44.527736131934034"/>
+        </scene>
+        <!--Consent View Controller-->
+        <scene sceneID="BqB-r4-RMC">
+            <objects>
+                <viewController id="V3p-aX-g7j" customClass="ConsentViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OOT-Oj-ogc"/>
+                        <viewControllerLayoutGuide type="bottom" id="zfa-R0-6xE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j1n-qc-xsa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-yh-dyO">
+                                <rect key="frame" x="16" y="93" width="343" height="131"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-LS-gC8">
+                                <rect key="frame" x="16" y="232" width="343" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="BH1-Qq-JJO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ir-qq-vHG" customClass="YPDrawSignatureView" customModule="MiracleMsg" customModuleProvider="target">
+                                <rect key="frame" x="16" y="310" width="343" height="288"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-E4-YxG">
+                                <rect key="frame" x="287" y="264" width="56" height="37"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="didTapClearBtn:" destination="V3p-aX-g7j" eventType="touchUpInside" id="ZLO-Pq-NFF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfc-tt-GOr">
+                                <rect key="frame" x="16" y="270" width="121.5" height="26"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xQ-Z6-deB">
+                                <rect key="frame" x="16" y="618" width="343" height="33"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <state key="normal" title="I UNDERSTAND AND CONSENT"/>
+                                <connections>
+                                    <action selector="didTapConsentBtn:" destination="V3p-aX-g7j" eventType="touchUpInside" id="AZX-mr-X9w"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0xQ-Z6-deB" secondAttribute="trailing" constant="16" id="7cu-ri-cZR"/>
+                            <constraint firstItem="1ir-qq-vHG" firstAttribute="top" secondItem="Yfc-tt-GOr" secondAttribute="bottom" constant="14" id="ATI-kP-pNV"/>
+                            <constraint firstAttribute="trailing" secondItem="CLo-LS-gC8" secondAttribute="trailing" constant="16" id="CUD-gL-cAI"/>
+                            <constraint firstItem="Yfc-tt-GOr" firstAttribute="top" secondItem="CLo-LS-gC8" secondAttribute="bottom" constant="18" id="EwX-w2-uk8"/>
+                            <constraint firstItem="0xQ-Z6-deB" firstAttribute="top" secondItem="1ir-qq-vHG" secondAttribute="bottom" constant="20" id="HuP-gl-aMv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bKu-E4-YxG" secondAttribute="trailing" constant="16" id="OOw-sm-yXW"/>
+                            <constraint firstItem="bKu-E4-YxG" firstAttribute="centerY" secondItem="Yfc-tt-GOr" secondAttribute="centerY" id="Snl-wX-5EW"/>
+                            <constraint firstItem="Yfc-tt-GOr" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="WNn-LS-EPd"/>
+                            <constraint firstItem="zfa-R0-6xE" firstAttribute="top" secondItem="0xQ-Z6-deB" secondAttribute="bottom" constant="16" id="et3-n4-63B"/>
+                            <constraint firstItem="0xQ-Z6-deB" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="fIZ-cJ-ge3"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="top" secondItem="zUi-yh-dyO" secondAttribute="bottom" constant="8" id="lR6-PF-eSa"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="top" secondItem="zUi-yh-dyO" secondAttribute="bottom" constant="8" id="mOs-Gk-yuC"/>
+                            <constraint firstAttribute="trailing" secondItem="zUi-yh-dyO" secondAttribute="trailing" constant="16" id="o0D-1j-Vma"/>
+                            <constraint firstItem="zUi-yh-dyO" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="r2Y-iw-MOW"/>
+                            <constraint firstAttribute="trailing" secondItem="1ir-qq-vHG" secondAttribute="trailing" constant="16" id="rFr-In-NxR"/>
+                            <constraint firstItem="CLo-LS-gC8" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="s7T-JC-XCn"/>
+                            <constraint firstItem="1ir-qq-vHG" firstAttribute="leading" secondItem="j1n-qc-xsa" secondAttribute="leading" constant="16" id="sPP-XN-xn1"/>
+                            <constraint firstItem="zUi-yh-dyO" firstAttribute="top" secondItem="OOT-Oj-ogc" secondAttribute="bottom" constant="29" id="xmF-EX-XWa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signatureView" destination="1ir-qq-vHG" id="Zxn-C7-QLp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zoH-Cj-SWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6284" y="45.42728635682159"/>
+        </scene>
         <!--Background Info1 View Controller-->
         <scene sceneID="Izc-1W-ZlB">
             <objects>
-                <viewController id="AZw-3m-puP" customClass="BackgroundInfo1ViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BackgroundInfo1ViewController" id="AZw-3m-puP" customClass="BackgroundInfo1ViewController" customModule="MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqW-xP-lpn"/>
                         <viewControllerLayoutGuide type="bottom" id="4ru-iM-cMU"/>
@@ -923,7 +1027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODi-rX-5df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5444" y="800.14992503748135"/>
+            <point key="canvasLocation" x="6284" y="815"/>
         </scene>
         <!--Background Info2 View Controller-->
         <scene sceneID="yuN-6N-Hta">
@@ -1241,7 +1345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn8-1r-lTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6440.8000000000002" y="799.2503748125938"/>
+            <point key="canvasLocation" x="7388" y="943"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="W4E-71-KcJ">
@@ -2376,6 +2480,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="1GO-dG-DW3"/>
         <segue reference="Kix-v6-Aep"/>
-        <segue reference="bD1-zE-b4k"/>
     </inferredMetricsTieBreakers>
 </document>
