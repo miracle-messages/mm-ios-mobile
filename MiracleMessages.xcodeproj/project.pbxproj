@@ -36,6 +36,8 @@
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
+		EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC351F08678D00F3E1EA /* Logger.swift */; };
+		EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC381F09B46B00F3E1EA /* CustomError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
+		EECBEC351F08678D00F3E1EA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		EECBEC381F09B46B00F3E1EA /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				235407AE1E855F6200FB091E /* NotificationExtension.swift */,
+				EECBEC371F09B43800F3E1EA /* log */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -227,6 +232,15 @@
 				931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EECBEC371F09B43800F3E1EA /* log */ = {
+			isa = PBXGroup;
+			children = (
+				EECBEC351F08678D00F3E1EA /* Logger.swift */,
+				EECBEC381F09B46B00F3E1EA /* CustomError.swift */,
+			);
+			name = log;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5996860f8fad0500ce09514aed7b3d7b37753169 28da35b99e00856e51f90bf0587f57e55ee6d3ab4cd9b195676403a3d022d228";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f39ece77cd425095c57b4120435e0cff611a3acb 6851a7f08f4d7a444544a641d160e5e48c9453060dfe4306c703829d26034b39";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -431,7 +445,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */,
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
+				EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */,
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,

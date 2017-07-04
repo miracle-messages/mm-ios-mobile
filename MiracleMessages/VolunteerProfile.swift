@@ -43,10 +43,13 @@ struct VolunteerProfile {
         ref = FIRDatabase.database().reference()
         ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            print("user dictionary \(String(describing: value))")
+            Logger.log("User dictionary \(String(describing: value))")
+
+            // Initialize the user for crashlytics
+            Logger.initCrashlyticsUser(user.uid, user.email, user.displayName)
             block(value != nil)
         }) { (error) in
-            print(error.localizedDescription)
+            Logger.forceLog(CustomError.loginError(error.localizedDescription))
         }
     }
 
