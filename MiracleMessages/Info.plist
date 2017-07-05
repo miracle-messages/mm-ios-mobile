@@ -5,7 +5,7 @@
     <key>Fabric</key>
     <dict>
         <key>APIKey</key>
-        <string>5996860f8fad0500ce09514aed7b3d7b37753169</string>
+        <string>f39ece77cd425095c57b4120435e0cff611a3acb</string>
         <key>Kits</key>
         <array>
             <dict>
@@ -16,7 +16,7 @@
             </dict>
         </array>
     </dict>
-	<key>CFBundleDevelopmentRegion</key>
+    <key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

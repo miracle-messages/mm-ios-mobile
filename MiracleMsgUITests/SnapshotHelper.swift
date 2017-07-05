@@ -45,7 +45,7 @@ open class Snapshot: NSObject {
             deviceLanguage = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue).trimmingCharacters(in: trimCharacterSet) as String
             app.launchArguments += ["-AppleLanguages", "(\(deviceLanguage))"]
         } catch {
-            print("Couldn't detect/set language...")
+            Logger.log(level: Level.error, "Couldn't detect/set language...")
         }
     }
 
@@ -60,7 +60,7 @@ open class Snapshot: NSObject {
             let trimCharacterSet = CharacterSet.whitespacesAndNewlines
             locale = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue).trimmingCharacters(in: trimCharacterSet) as String
         } catch {
-            print("Couldn't detect/set locale...")
+            Logger.log(level: Level.error, "Couldn't detect/set locale...")
         }
         if locale.isEmpty {
             locale = Locale(identifier: deviceLanguage).identifier
@@ -85,7 +85,7 @@ open class Snapshot: NSObject {
             }
             app.launchArguments += results
         } catch {
-            print("Couldn't detect/set launch_arguments...")
+            Logger.log(level: Level.error, "Couldn't detect/set launch_arguments...")
         }
     }
 
@@ -94,7 +94,7 @@ open class Snapshot: NSObject {
             waitForLoadingIndicatorToDisappear()
         }
 
-        print("snapshot: \(name)") // more information about this, check out https://github.com/fastlane/fastlane/tree/master/snapshot#how-does-it-work
+        Logger.log("snapshot: \(name)") // more information about this, check out https://github.com/fastlane/fastlane/tree/master/snapshot#how-does-it-work
 
         sleep(1) // Waiting for the animation to be finished (kind of)
 
@@ -114,7 +114,7 @@ open class Snapshot: NSObject {
 
         while (0..<query.count).map({ query.element(boundBy: $0) }).contains(where: { $0.isLoadingIndicator }) {
             sleep(1)
-            print("Waiting for loading indicator to disappear...")
+            Logger.log("Waiting for loading indicator to disappear...")
         }
     }
 
@@ -122,7 +122,7 @@ open class Snapshot: NSObject {
         if let path = ProcessInfo().environment["SIMULATOR_HOST_HOME"] as NSString? {
             return path.appendingPathComponent("Library/Caches/tools.fastlane") as NSString?
         }
-        print("Couldn't find Snapshot configuration files at ~/Library/Caches/tools.fastlane")
+        Logger.log(level: Level.error, "Couldn't find Snapshot configuration files at ~/Library/Caches/tools.fastlane")
         return nil
     }
 }
