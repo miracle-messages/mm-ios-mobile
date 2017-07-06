@@ -60,7 +60,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         if segue.identifier == "loginSummarySegue" {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
-            webVC.urlString = "https://my.miraclemessages.org"
+            webVC.urlString = "https://dev.miraclemessages.org"
         }
     }
 }

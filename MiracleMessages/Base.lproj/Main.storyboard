@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -465,7 +465,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
-                                                <mutableString key="userLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem neque, pulvinar nec facilisis ac, consectetur non eros. Maecenas accumsan sit amet magna ac elementum. Etiam at laoreet metus. Donec placerat, turpis non rhoncus lobortis, felis mauris convallis ligula, quis ornare leo arcu quis arcu. Nulla lacus risus, volutpat quis luctus sit amet, convallis sit amet mi. Proin turpis elit, dapibus vel condimentum et, mattis in elit. In non convallis arcu. Praesent tincidunt iaculis dolor, suscipit blandit ligula cursus at. Morbi quis mauris tincidunt, venenatis sapien sit amet, tempus tortor.  Morbi quis consequat ipsum. Nam sit amet ullamcorper leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus posuere nibh, sit amet cursus eros pharetra non. Quisque bibendum leo pellentesque lobortis vestibulum. Maecenas porta posuere ligula, ac suscipit ipsum sodales id. Integer consequat nisl tristique, auctor mauris eget, consequat enim. Integer laoreet tortor nec efficitur ornare. Mauris sit amet ipsum iaculis, rutrum quam a, dapibus nisl. Aenean vitae sollicitudin diam, condimentum sollicitudin sapien.  Vestibulum turpis leo, porta ut mollis quis, elementum ut odio. Mauris commodo risus a lectus posuere, non porttitor orci consectetur. Nunc ultrices, orci id rutrum tincidunt, velit justo aliquet risus, ac blandit velit lacus ac justo. Nulla varius tempor varius. Nulla accumsan orci nec quam ornare, in euismod magna fermentum. Cras vel consequat arcu. Etiam lobortis justo scelerisque ornare tincidunt. In condimentum, turpis nec rhoncus eleifend, enim orci placerat sapien, eu dapibus felis justo et ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum iaculis sem sed congue varius. Vivamus in congue neque, eu tempor ex.  Morbi rhoncus nulla eu finibus posuere. Ut efficitur tempor libero sit amet eleifend. Donec at tortor arcu. Donec gravida tortor eu sem fermentum facilisis. Vivamus sodales fringilla velit. Maecenas cursus tortor sit amet massa fringilla molestie. Ut posuere magna justo, eget pulvinar mi facilisis at.  Donec semper sapien ac cursus feugiat. Donec vulputate viverra odio, vel malesuada tortor placerat a. Vestibulum vel enim lobortis, vulputate elit id, bibendum nibh. Integer hendrerit, dolor vitae vehicula finibus, lectus ligula pretium lectus, non tincidunt orci tellus vel libero. Aliquam gravida ac justo quis bibendum. Quisque nisi felis, pellentesque id justo quis, porttitor suscipit turpis. Quisque eu lacinia nibh. Aenean quis quam luctus, cursus enim sed, accumsan sem. In molestie mattis ligula ac luctus. Phasellus cursus ultrices sodales.</mutableString>
+                                                <string key="userLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem neque, pulvinar nec facilisis ac, consectetur non eros. Maecenas accumsan sit amet magna ac elementum. Etiam at laoreet metus. Donec placerat, turpis non rhoncus lobortis, felis mauris convallis ligula, quis ornare leo arcu quis arcu. Nulla lacus risus, volutpat quis luctus sit amet, convallis sit amet mi. Proin turpis elit, dapibus vel condimentum et, mattis in elit. In non convallis arcu. Praesent tincidunt iaculis dolor, suscipit blandit ligula cursus at. Morbi quis mauris tincidunt, venenatis sapien sit amet, tempus tortor.  Morbi quis consequat ipsum. Nam sit amet ullamcorper leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus posuere nibh, sit amet cursus eros pharetra non. Quisque bibendum leo pellentesque lobortis vestibulum. Maecenas porta posuere ligula, ac suscipit ipsum sodales id. Integer consequat nisl tristique, auctor mauris eget, consequat enim. Integer laoreet tortor nec efficitur ornare. Mauris sit amet ipsum iaculis, rutrum quam a, dapibus nisl. Aenean vitae sollicitudin diam, condimentum sollicitudin sapien.  Vestibulum turpis leo, porta ut mollis quis, elementum ut odio. Mauris commodo risus a lectus posuere, non porttitor orci consectetur. Nunc ultrices, orci id rutrum tincidunt, velit justo aliquet risus, ac blandit velit lacus ac justo. Nulla varius tempor varius. Nulla accumsan orci nec quam ornare, in euismod magna fermentum. Cras vel consequat arcu. Etiam lobortis justo scelerisque ornare tincidunt. In condimentum, turpis nec rhoncus eleifend, enim orci placerat sapien, eu dapibus felis justo et ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum iaculis sem sed congue varius. Vivamus in congue neque, eu tempor ex.  Morbi rhoncus nulla eu finibus posuere. Ut efficitur tempor libero sit amet eleifend. Donec at tortor arcu. Donec gravida tortor eu sem fermentum facilisis. Vivamus sodales fringilla velit. Maecenas cursus tortor sit amet massa fringilla molestie. Ut posuere magna justo, eget pulvinar mi facilisis at.  Donec semper sapien ac cursus feugiat. Donec vulputate viverra odio, vel malesuada tortor placerat a. Vestibulum vel enim lobortis, vulputate elit id, bibendum nibh. Integer hendrerit, dolor vitae vehicula finibus, lectus ligula pretium lectus, non tincidunt orci tellus vel libero. Aliquam gravida ac justo quis bibendum. Quisque nisi felis, pellentesque id justo quis, porttitor suscipit turpis. Quisque eu lacinia nibh. Aenean quis quam luctus, cursus enim sed, accumsan sem. In molestie mattis ligula ac luctus. Phasellus cursus ultrices sodales.</string>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This consent includes, but is not limited to:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-eU-klR">
                                                 <rect key="frame" x="16" y="219" width="343" height="21"/>
@@ -1925,7 +1925,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riz-fX-xVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7388" y="44.527736131934034"/>
+            <point key="canvasLocation" x="8135" y="36"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="S6t-m9-L1E">
+            <objects>
+                <viewController id="Alm-py-emY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xh5-r6-uhk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jfr-4u-WJY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DH3-9l-K30">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="omr-vt-498" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8895" y="-594"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="Tgm-Rx-MeE">
@@ -2168,7 +2186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8312.7999999999993" y="45.42728635682159"/>
+            <point key="canvasLocation" x="9818" y="36"/>
         </scene>
         <!--Confirm View Controller-->
         <scene sceneID="pG5-3i-3XY">
@@ -2401,7 +2419,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWw-pP-c7m" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IWY-n4-2Ql">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWY-n4-2Ql">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2419,7 +2437,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogM-Iq-pBO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YFz-NS-V3N">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFz-NS-V3N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2437,7 +2455,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwM-YW-5It" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LsH-oK-gA2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LsH-oK-gA2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2455,7 +2473,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKY-Sm-hXB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iGE-YI-cuE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGE-YI-cuE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2478,7 +2496,7 @@
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tft-Dw-p7a"/>
         <segue reference="1GO-dG-DW3"/>
-        <segue reference="Kix-v6-Aep"/>
     </inferredMetricsTieBreakers>
 </document>
