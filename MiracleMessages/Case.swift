@@ -33,7 +33,7 @@ class Case {
     
     //  Sender Demographics
     var firstName: String?
-    var middleName = ""
+    var middleName: String?
     var lastName: String?
     
     var dateOfBirth: Date?
@@ -55,7 +55,7 @@ class Case {
     
     //  chapter?
     var chapterID: String?
-    var detectives: [String]
+    var detectives: [String] = []
     
     //  Writing to the database
     /**
@@ -66,7 +66,7 @@ class Case {
      - Parameter handler: Completion handler where the input to the closure is
      a boolean whose value is whether or not the submission was successful.
      */
-    func submitCase(to firebase: FIRDatabaseReference, handler: @escaping ((Bool) -> Void)? = nil) {
+    func submitCase(to firebase: FIRDatabaseReference, handler: @escaping(Bool) -> Void = { _ in }) {
         if submissionDate == nil { submissionDate = Date() }
         
         guard let submissionSinceEpoch = submissionDate?.timeIntervalSince1970
@@ -79,13 +79,13 @@ class Case {
             else { return }
         guard let photoAddress = photoURL?.absoluteString
             else { return }
-        guard let givenName = firstName, let surname = lastName
+        guard let givenName = firstName, let midName = middleName, let surname = lastName
             else { return }
         guard let thisCity = currentCity, let thisState = currentState, let thisCountry = currentCountry
             else { return }
         guard let oldCity = homeCity, let oldState = homeState, let oldCountry = homeCountry
             else { return }
-        guard let dob = dateOfBirth, let age = Calendar.current.dateComponents([.year], from: dob, to: submissionDate).year
+        guard let dob = dateOfBirth, let age = Calendar.current.dateComponents([.year], from: dob, to: submissionDate!).year
             else { return }
         guard let timeWithoutHome = timeHomeless else { return }
         
@@ -95,12 +95,12 @@ class Case {
             caseReference = firebase.child("/cases/").childByAutoId()
             key = caseReference.key
         } else {
-            caseReference = firebase.child("/cases/\(key)")
+            caseReference = firebase.child("/cases/\(key!)")
         }
         
-        let privateCaseReference = firebase.child("/casesPrivate/\(key)")
+        let privateCaseReference = firebase.child("/casesPrivate/\(key!)")
         
-        var publicPayload: [String: Any] = [
+        let publicPayload: [String: Any] = [
             "submitted": submissionSinceEpoch,
             "createdBy": ["uid": FIRAuth.auth()?.currentUser?.uid],
             "caseStatus": caseStatus.rawValue,
@@ -112,8 +112,8 @@ class Case {
             "source": source.dictionary,
             "photo": photoAddress,
             "firstName": givenName,
-            "middleName": middleName,
-            "lastName": lastName,
+            "middleName": midName,
+            "lastName": surname,
             "currentCity": thisCity,
             "currentState": thisState,
             "currentCountry": thisCountry,
@@ -126,7 +126,7 @@ class Case {
             "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any]
         ]
         
-        var privatePayload: [String: Any] = [
+        let privatePayload: [String: Any] = [
             "dob": DateFormatter.default.string(from: dob),
             "dobApproximate": isDOBApproximate
         ]
@@ -153,7 +153,7 @@ class Case {
                 //  If successful, write loved ones
                 for lovedOne in self.lovedOnes {
                     //  Get reference to loved one
-                    var lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
+                    let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
                     lovedOne.id = lovedOneRef.key
                     
                     //  Try to write

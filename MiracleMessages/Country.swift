@@ -6,7 +6,7 @@
 //  Copyright © 2017 Win Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum Country: String {
     case Afghanistan
@@ -478,19 +478,19 @@ enum Country: String {
     }
     
     static var all: [Country] =
-        [.Afghanistan, .ÅlandIslands, .Albania, .Algeria, .Andorra, .Angola,
-         .Anguilla, .AntiguaandBarbuda, .Argentina, .Armenia, .Aruba, .Australia,
-         .Austria, .Azerbaijan, .Bahamas, .Bahrain, .Bangladesh, .Barbados,
-         .Belarus, .Belgium, .Belize, .Benin, .Bermuda, .Bhutan, .Bolivia,
-         .BosniaandHerzegovina, .Botswana, .Brazil, .BritishIndianOceanTerritory,
-         .Brunei, .Bulgaria, .BurkinaFaso, .Burundi, .Cambodia, .Cameroon,
-         .Canada, .CapeVerde, .CaymanIslands, .CentralAfricanRepublic, .Chad,
-         .Chile, .China, .ChristmasIsland, Colombia, .Comoros, .Congo,
-         .CookIslands, .CostaRica, .CoteDIvoire, .Croatia, .Cuba, .Cyprus,
-         .CzechRepublic, .DemocraticRepublicoftheCongo, .Denmark, .Djibouti,
-         .Dominica, .DominicanRepublic, .EastTimor, .Ecuador, .Egypt,
-         .ElSalvador, .EquatorialGuinea, .Eritrea, .Estonia, .Ethiopia,
-         .FalklandIslands, .FaroeIslands, .Fiji, .Finland, .France,
+        [.UnitedStates, .Afghanistan, .ÅlandIslands, .Albania, .Algeria,
+         .Andorra, .Angola, .Anguilla, .AntiguaandBarbuda, .Argentina, .Armenia,
+         .Aruba, .Australia, .Austria, .Azerbaijan, .Bahamas, .Bahrain,
+         .Bangladesh, .Barbados, .Belarus, .Belgium, .Belize, .Benin, .Bermuda,
+         .Bhutan, .Bolivia, .BosniaandHerzegovina, .Botswana, .Brazil,
+         .BritishIndianOceanTerritory, .Brunei, .Bulgaria, .BurkinaFaso,
+         .Burundi, .Cambodia, .Cameroon, .Canada, .CapeVerde, .CaymanIslands,
+         .CentralAfricanRepublic, .Chad, .Chile, .China, .ChristmasIsland,
+         .Colombia, .Comoros, .Congo, .CookIslands, .CostaRica, .CoteDIvoire,
+         .Croatia, .Cuba, .Cyprus, .CzechRepublic, .DemocraticRepublicoftheCongo,
+         .Denmark, .Djibouti, .Dominica, .DominicanRepublic, .EastTimor,
+         .Ecuador, .Egypt, .ElSalvador, .EquatorialGuinea, .Eritrea, .Estonia,
+         .Ethiopia, .FalklandIslands, .FaroeIslands, .Fiji, .Finland, .France,
          .FrenchGuiana, .FrenchPolynesia, .FrenchSouthernTerritories, .Gabon,
          .Gambia, .Georgia, .Germany, .Ghana, .Gibraltar, .Greece, .Greenland,
          .Grenada, .Guadeloupe, .Guatemala, .Guernsey, .Guinea, .GuineaBissau,
@@ -516,7 +516,7 @@ enum Country: String {
          .Tajikistan, .Tanzania, .Thailand, .Togo, .Tokelau, .Tonga,
          .TrinidadandTobago, .Tunisia, .Turkey, .Turkmenistan,
          .TurksandCaicosIslands, .Tuvalu, .Uganda, .Ukraine, .UnitedArabEmirates,
-         .UnitedKingdom, .UnitedStates, .Uruguay, .Uzbekistan, .VaticanCity,
-         .Vanuatu, .Venezuela, .Vietnam, .VirginIslandsBritish,
-         .WallisandFutuna, .WesternSahara, .Yemen, .Zambia, .Zimbabwe]
+         .UnitedKingdom, .Uruguay, .Uzbekistan, .VaticanCity, .Vanuatu,
+         .Venezuela, .Vietnam, .VirginIslandsBritish, .WallisandFutuna,
+         .WesternSahara, .Yemen, .Zambia, .Zimbabwe]
 }

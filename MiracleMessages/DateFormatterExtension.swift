@@ -11,8 +11,8 @@ import Foundation
 extension DateFormatter {
     convenience init(forFormat format: String) {
         self.init()
-        self.format = format
+        dateFormat = format
     }
     
-    static var `default`: DateFormatter { return DateFormatter("MM/dd/yy") }
+    static var `default`: DateFormatter { return DateFormatter(forFormat: "MM/dd/yy") }
 }

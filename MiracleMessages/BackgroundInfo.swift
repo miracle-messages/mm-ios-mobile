@@ -9,7 +9,7 @@
 import Foundation
 
 struct BackgroundInfo {
-    let client_name: String? //
+    var client_name: String? //
     var client_dob: String? //
     var client_current_city: String?
     var client_hometown: String?
