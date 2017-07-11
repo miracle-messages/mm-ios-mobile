@@ -17,11 +17,27 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     
     //  Name
     @IBOutlet weak var textFieldClientFirstName: UITextField!
+    @IBOutlet weak var textFieldClientMiddleName: UITextField!
+    @IBOutlet weak var textFieldClientLastName: UITextField!
     
-    //  Date of Birth
+    //  Current Location
+    @IBOutlet weak var textFieldCurrentCountry: UITextField!
+    @IBOutlet weak var textFieldCurrentState: UITextField!
+    @IBOutlet weak var textFieldCurrentCity: UITextField!
+    
+    //  Home Location
+    @IBOutlet weak var textFieldHomeCountry: UITextField!
+    @IBOutlet weak var textFieldHomeState: UITextField!
+    @IBOutlet weak var textFieldHomeCity: UITextField!
+    
+    //  Date of Birth & Age
+    @IBOutlet weak var textFieldClientAge: UITextField!
+    @IBOutlet weak var switchAgeApproximate: UISwitch!
+    
     @IBOutlet weak var textFieldClientDob: UITextField!
     @IBOutlet weak var dobApproximate: UISwitch!
-    /*@IBOutlet weak*/ var datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
+    
+    let datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
         var this = UIDatePicker()
         this.datePickerMode = .date
         this.date = Date(timeIntervalSinceReferenceDate: 0)
@@ -29,18 +45,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         return this
     }()
     let dateFormatter = DateFormatter.default
-    
-    //  Location
-    //@IBOutlet weak var textFieldClientCurrentLocation: UITextField!
-    //@IBOutlet weak var textFieldClientHometown: UITextField!
-    
-    //  Time homeless
-    //@IBOutlet weak var textFieldClientYearsHomeless: UITextField!
-    
-    //  Othe
-//    @IBOutlet weak var textViewContactInfo: UITextField!
-//    @IBOutlet weak var textViewOtherInfo: UITextField!
-//    @IBOutlet weak var textViewPartnerOrg: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +56,11 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         //  Date of Birth
         textFieldClientDob.delegate = self
         textFieldClientDob.inputView = datePickerClientDob
-        dobApproximate.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        
+        let transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        
+        switchAgeApproximate.transform = transform
+        dobApproximate.transform = transform
         
         //datePickerClientDob.frame.size.height = 0
         
@@ -65,10 +73,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
