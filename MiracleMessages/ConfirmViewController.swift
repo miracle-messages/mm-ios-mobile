@@ -12,58 +12,88 @@ import FirebaseDatabase
 import Alamofire
 
 class ConfirmViewController: UIViewController {
-
+    
     var video: Video?
     var ref: FIRDatabaseReference!
     let backgroundInfo: BackgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
     let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/hshdv5/"
-
+    
     //"https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
     //https://hooks.zapier.com/hooks/catch/1838547/hshdv5/
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-
+        
         self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
         
         // Do any additional setup after loading the view.
     }
-
-    func submit() {
-        if var video = self.video {
-            var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-            
-            uploadCompletionHandlerBlock = { (task, error) in
-                DispatchQueue.main.sync(execute: { () -> Void in
-                    if error == nil {
-                        let key = self.sendInfo()
-                        
-                        let parameters = self.videoParameters(uniqId: key)
-                        
-                        Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
-                            switch response.result {
-                            case .success:
-                                print("Submitted")
-                            case .failure(let error):
-                                print(error)
-                            }
+    
+    func bgUploadToS3(video: Video) -> Void {
+        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
+        let transferUtility = AWSS3TransferUtility.default()
+        let transferExpression = AWSS3TransferUtilityUploadExpression()
+        
+        transferExpression.progressBlock = { (task, progress) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                Logger.log("Progress \(progress.fractionCompleted)")
+            })
+        }
+        
+        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+        
+        uploadCompletionHandlerBlock = { (task, error) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                if error == nil {
+                    Logger.log("uploadCompletionHandler: Upload Success!")
+                    let key = self.sendInfo()
+                    
+                    let parameters = self.videoParameters(uniqId: key)
+                    
+                    Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
+                        switch response.result {
+                        case .success:
+                            Logger.log("Successfully Submitted to Zapier!")
+                        case .failure(let error):
+                            Logger.log(level: Level.error, "Failure submitting to Zapier!")
+                            Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
                         }
-                    } else {
-                        print("Error here: \(error.debugDescription)")
                     }
+                } else {
+                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
+                }
+            })
+        }
+        
+        let uploadExpression = AWSS3TransferUtilityUploadExpression()
+        
+        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
+        
+        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
+            if let error = task.error {
+                Logger.log(level: Level.error, "Failure uploading video!")
+                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
+            } else {
+                DispatchQueue.main.async(execute: {
+                    Logger.log("Something to do immediately afterwards. Not necessarily done")
                 })
             }
-            video.completionBlock = uploadCompletionHandlerBlock
-            video.upload()
+            return nil
+        })
+    }
+    
+    func submit() {
+        if let video = self.video {
+            self.bgUploadToS3(video: video)
         }
     }
-
+    
     func videoParameters(uniqId: String) -> Parameters {
         let defaults = UserDefaults.standard
-
+        
         if let v = self.video {
             return [ "email" :  defaults.string(forKey: "email")!,
                      "name" : defaults.string(forKey: "name")!,
@@ -73,11 +103,11 @@ class ConfirmViewController: UIViewController {
             return [:]
         }
     }
-
+    
     func sendInfo() -> String {
         //Create new user ID
         let defaults = UserDefaults.standard
-
+        
         let key = ref.child("clients").childByAutoId().key
         
         //Create new client info payload
@@ -103,19 +133,25 @@ class ConfirmViewController: UIViewController {
             "volunteer_uploaded_url" : self.video?.videoLink ?? "none",
             "created_at" : floor(NSDate().timeIntervalSince1970)
             ] as [String : Any]
-
+        
         //Send payload to server
         let childUpdates = ["/clients/\(key)": payload]
-        ref.updateChildValues(childUpdates)
+        
+        ref.updateChildValues(childUpdates, withCompletionBlock: { (error, ref) -> Void in
+            // Log in crashlytics if the firebase update fails.
+            if let error = error {
+                Logger.forceLog(CustomError.firebaseSaveError(error.localizedDescription))
+            }
+        })
         return key
     }
-
-
+    
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.submit()
     }
-
-
+    
+    
 }

@@ -29,6 +29,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        URLCache.shared.removeAllCachedResponses()
+    }
+    
+    
     func didTapBackBtn() {
         self.dismiss(animated: true, completion: nil)
     }

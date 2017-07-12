@@ -106,7 +106,7 @@ class ReviewViewController: UIViewController {
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "cameraViewController" {
+        if identifier == "cameraViewController" || identifier == "photoReferenceViewController"  {
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
                 let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
@@ -116,7 +116,6 @@ class ReviewViewController: UIViewController {
                 return true
             }
         } else {
-
             return true
         }
     }

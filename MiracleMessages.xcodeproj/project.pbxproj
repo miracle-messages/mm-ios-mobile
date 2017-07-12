@@ -11,7 +11,7 @@
 		2321545F1E5B86F3004EE344 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
-		235407AC1E85496900FB091E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235407AB1E85496900FB091E /* GoogleService-Info.plist */; };
+		235407AC1E85496900FB091E /* GoogleService-Info_prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235407AB1E85496900FB091E /* GoogleService-Info_prod.plist */; };
 		235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235407AE1E855F6200FB091E /* NotificationExtension.swift */; };
 		239007A01E4D662F00A4C1DB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2390079F1E4D662F00A4C1DB /* Video.swift */; };
 		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
@@ -40,6 +40,10 @@
 		EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */; };
 		EE0FA48C1F0082F500B3A0D8 /* Uploadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */; };
 		EE4890901F0A36AA00E7D84E /* PhotoReferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48908F1F0A36AA00E7D84E /* PhotoReferenceViewController.swift */; };
+		EE4890971F0DB6B400E7D84E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4890961F0DB6B400E7D84E /* GoogleService-Info.plist */; };
+		EE48909C1F135BA300E7D84E /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48909B1F135BA300E7D84E /* OvalView.swift */; };
+		EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC351F08678D00F3E1EA /* Logger.swift */; };
+		EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC381F09B46B00F3E1EA /* CustomError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +64,7 @@
 		2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		235407AB1E85496900FB091E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		235407AB1E85496900FB091E /* GoogleService-Info_prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_prod.plist"; sourceTree = "<group>"; };
 		235407AE1E855F6200FB091E /* NotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		2390079F1E4D662F00A4C1DB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,10 @@
 		EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploadable.swift; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
 		EE48908F1F0A36AA00E7D84E /* PhotoReferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReferenceViewController.swift; sourceTree = "<group>"; };
+		EE4890961F0DB6B400E7D84E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE48909B1F135BA300E7D84E /* OvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
+		EECBEC351F08678D00F3E1EA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		EECBEC381F09B46B00F3E1EA /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				235407AE1E855F6200FB091E /* NotificationExtension.swift */,
+				EECBEC371F09B43800F3E1EA /* log */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -182,6 +191,7 @@
 			children = (
 				239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */,
 				EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */,
+				EE48909B1F135BA300E7D84E /* OvalView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -190,7 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				235407AD1E855F4D00FB091E /* lib */,
-				235407AB1E85496900FB091E /* GoogleService-Info.plist */,
+				235407AB1E85496900FB091E /* GoogleService-Info_prod.plist */,
+				EE4890961F0DB6B400E7D84E /* GoogleService-Info.plist */,
 				23B0B7E91D98E466007DFDDE /* Main.storyboard */,
 				23B0B7EC1D98E466007DFDDE /* Assets.xcassets */,
 				23B0B7EE1D98E466007DFDDE /* LaunchScreen.storyboard */,
@@ -239,6 +250,15 @@
 				931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EECBEC371F09B43800F3E1EA /* log */ = {
+			isa = PBXGroup;
+			children = (
+				EECBEC351F08678D00F3E1EA /* Logger.swift */,
+				EECBEC381F09B46B00F3E1EA /* CustomError.swift */,
+			);
+			name = log;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,8 +366,9 @@
 			files = (
 				23B0B7F01D98E466007DFDDE /* LaunchScreen.storyboard in Resources */,
 				23B0B7ED1D98E466007DFDDE /* Assets.xcassets in Resources */,
-				235407AC1E85496900FB091E /* GoogleService-Info.plist in Resources */,
+				235407AC1E85496900FB091E /* GoogleService-Info_prod.plist in Resources */,
 				23B0B7EB1D98E466007DFDDE /* Main.storyboard in Resources */,
+				EE4890971F0DB6B400E7D84E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +446,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5996860f8fad0500ce09514aed7b3d7b37753169 28da35b99e00856e51f90bf0587f57e55ee6d3ab4cd9b195676403a3d022d228";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f39ece77cd425095c57b4120435e0cff611a3acb 6851a7f08f4d7a444544a641d160e5e48c9453060dfe4306c703829d26034b39";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -444,7 +465,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */,
+				EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */,
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
+				EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */,
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				EE4890901F0A36AA00E7D84E /* PhotoReferenceViewController.swift in Sources */,
@@ -455,6 +478,7 @@
 				23B0B7E81D98E466007DFDDE /* ViewController.swift in Sources */,
 				239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */,
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
+				EE48909C1F135BA300E7D84E /* OvalView.swift in Sources */,
 				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
 				EE0FA48C1F0082F500B3A0D8 /* Uploadable.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,

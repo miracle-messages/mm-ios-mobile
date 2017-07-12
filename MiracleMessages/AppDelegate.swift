@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     let cognitoIdentityPoolId = "us-west-2:22d14ee0-7c0a-4ddc-b74d-24b09e62a5d6"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
         
         UserDefaults.standard.register(defaults: ["UserAgent": "com.miraclemessages.app"])
         UIApplication.shared.statusBarView?.backgroundColor = .white
@@ -51,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
 
+        // Init Crashlytics. This should be the last line after other loggers have initialized.
+        Fabric.with([Crashlytics.self])
         return true
     }
 
@@ -182,6 +183,7 @@ extension AppDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
         if let error = error {
+            Logger.forceLog(CustomError.loginError(error.localizedDescription))
             return
         }
 
@@ -192,6 +194,7 @@ extension AppDelegate {
             // ...
             if let error = error {
                 // ...
+                Logger.forceLog(CustomError.loginError(error.localizedDescription))
                 return
             }
             guard let user = user else {return}
@@ -200,15 +203,23 @@ extension AppDelegate {
             defaults.set(user.providerData[0].displayName, forKey: "name")
             defaults.set(user.providerData[0].email, forKey: "email")
             defaults.synchronize()
+            
+            // After successful login, initialize user for crashlytics to better identify the user in crashes.
+            Logger.initCrashlyticsUser(user.uid, user.email, user.displayName)
         }
     }
-
-
+    
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
                 withError error: NSError!) {
         // Perform any operations when the user disconnects from app here.
-        // ...
-        print("User disconnected!")
+        // Since there is a limit of 8 force logged NSError per user session, we should use them wisely.
+        // If user manually cancels the signin, we need not report it to crashlyitcs.
+        // https://docs.fabric.io/apple/crashlytics/logged-errors.html
+        if (error.code != GIDSignInErrorCode.canceled.rawValue) {
+            Logger.forceLog(error)
+        } else {
+            Logger.log(level: Level.error, "User cancelled the sign in request. Code: \(error.code), error: \(error.description)")
+        }
     }
 
 }
