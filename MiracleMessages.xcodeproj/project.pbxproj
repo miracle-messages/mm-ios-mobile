@@ -38,6 +38,7 @@
 		A034956B1EEC39B300FBD6C5 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A044DD981EFB521A0094CB99 /* BackgroundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044DD971EFB521A0094CB99 /* BackgroundInfo.swift */; };
 		A044DD9A1EFB5C7F0094CB99 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044DD991EFB5C7F0094CB99 /* DateFormatterExtension.swift */; };
+		A092E4911F1B102200468476 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092E4901F1B102200468476 /* UIViewControllerExtension.swift */; };
 		A09A46631EF05CA0008114F2 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46621EF05CA0008114F2 /* Case.swift */; };
 		A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46651EF06DFE008114F2 /* LovedOne.swift */; };
 		A09A46681EF09AA7008114F2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46671EF09AA7008114F2 /* Source.swift */; };
@@ -94,6 +95,7 @@
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
 		A044DD971EFB521A0094CB99 /* BackgroundInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo.swift; sourceTree = "<group>"; };
 		A044DD991EFB5C7F0094CB99 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		A092E4901F1B102200468476 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A09A46621EF05CA0008114F2 /* Case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
 		A09A46651EF06DFE008114F2 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
 		A09A46671EF09AA7008114F2 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				235407AE1E855F6200FB091E /* NotificationExtension.swift */,
 				A044DD991EFB5C7F0094CB99 /* DateFormatterExtension.swift */,
+				A092E4901F1B102200468476 /* UIViewControllerExtension.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 			files = (
 				A0C5F59D1F00B4D100FE12AC /* Country.swift in Sources */,
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
+				A092E4911F1B102200468476 /* UIViewControllerExtension.swift in Sources */,
 				A044DD981EFB521A0094CB99 /* BackgroundInfo.swift in Sources */,
 				A044DD9A1EFB5C7F0094CB99 /* DateFormatterExtension.swift in Sources */,
 				A034956B1EEC39B300FBD6C5 /* (null) in Sources */,

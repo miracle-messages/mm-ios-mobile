@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BackgroundInfo1ViewController: BackgroundInfoViewController {
+class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     //  Case
     var currentCase: Case!
     
@@ -25,10 +25,18 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     @IBOutlet weak var textFieldCurrentState: UITextField!
     @IBOutlet weak var textFieldCurrentCity: UITextField!
     
+    let pickerCurrentCountry = UIPickerView()
+    let pickerCurrentState = UIPickerView()
+    var keyboardCurrentState: UIView?
+    
     //  Home Location
     @IBOutlet weak var textFieldHomeCountry: UITextField!
     @IBOutlet weak var textFieldHomeState: UITextField!
     @IBOutlet weak var textFieldHomeCity: UITextField!
+    
+    let pickerHomeCountry = UIPickerView()
+    let pickerHomeState = UIPickerView()
+    var keyboardHomeState: UIView?
     
     //  Date of Birth & Age
     @IBOutlet weak var textFieldClientAge: UITextField!
@@ -36,6 +44,14 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     
     @IBOutlet weak var textFieldClientDob: UITextField!
     @IBOutlet weak var dobApproximate: UISwitch!
+    
+    @IBOutlet weak var textFieldPartner: UITextField!
+    
+    @IBOutlet weak var textFieldTimeHomeless: UITextField!
+    @IBOutlet weak var textFieldTimeScale: UITextField!
+    let pickerTimeScale = UIPickerView()
+    
+    @IBOutlet weak var textViewNotes: UITextView!
     
     let datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
         var this = UIDatePicker()
@@ -49,9 +65,25 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentCase = Case()
+        self.hideKeyboardWithTap()
         
-        //  Name
-//        textFieldClientFirstName.delegate = self
+        //  Current location
+        pickerCurrentCountry.dataSource = self
+        pickerCurrentCountry.delegate = self
+        textFieldCurrentCountry.inputView = pickerCurrentCountry
+        
+        pickerCurrentState.dataSource = self
+        pickerCurrentState.delegate = self
+        keyboardCurrentState = textFieldCurrentState.inputView
+        
+        //  Home location
+        pickerHomeCountry.dataSource = self
+        pickerHomeCountry.delegate = self
+        textFieldHomeCountry.inputView = pickerHomeCountry
+        
+        pickerHomeState.dataSource = self
+        pickerHomeState.delegate = self
+        keyboardHomeState = textFieldHomeState.inputView
         
         //  Date of Birth
         textFieldClientDob.delegate = self
@@ -62,12 +94,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
         switchAgeApproximate.transform = transform
         dobApproximate.transform = transform
         
-        //datePickerClientDob.frame.size.height = 0
-        
-//        textFieldClientCurrentLocation.delegate = self
-//        textFieldClientHometown.delegate = self
-//        textFieldClientYearsHomeless.delegate = self
-//        textViewContactInfo.delegate = self        
+        //  Time Scale
+        pickerTimeScale.dataSource = self
+        pickerTimeScale.delegate = self
+        textFieldTimeScale.inputView = pickerTimeScale
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,6 +162,62 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController {
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
+    }
+    
+    //  Picker view!
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView {
+        case pickerCurrentCountry, pickerHomeCountry:
+            return Country.all.count + 1
+        case pickerCurrentState, pickerHomeState:
+            return State.all.count + 1
+        case pickerTimeScale:
+            return Case.TimeType.all.count + 1
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case pickerCurrentCountry, pickerHomeCountry:
+            guard row != 0 else { return "--" }
+            return Country.all[row - 1].rawValue
+        case pickerCurrentState, pickerHomeState:
+            guard row != 0 else { return "--" }
+            return State.all[row - 1].rawValue
+        case pickerTimeScale:
+            guard row != 0 else { return "--" }
+            return Case.TimeType.all[row - 1].rawValue
+        default:
+            return ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Update the background info and text fields
+        //  TODO: Update the case info!
+        switch pickerView {
+        case pickerCurrentCountry:
+            let text = row == 0 ? "" : Country.all[row - 1].rawValue
+            textFieldCurrentCountry.text = text
+            textFieldCurrentState.inputView = text == Country.UnitedStates.rawValue ? pickerCurrentState : keyboardCurrentState
+        case pickerHomeCountry:
+            let text = row == 0 ? "" : Country.all[row - 1].rawValue
+            textFieldHomeCountry.text = text
+            textFieldHomeState.inputView = text == Country.UnitedStates.rawValue ? pickerHomeState : keyboardHomeState
+        case pickerCurrentState, pickerHomeState:
+            let text = row == 0 ? "" : State.all[row - 1].rawValue
+            (pickerView == pickerCurrentState ? textFieldCurrentState : textFieldHomeState).text = text
+        case pickerTimeScale:
+            textFieldTimeScale.text = row == 0 ? "" : Case.TimeType.all[row - 1].rawValue
+        default:
+            return
+        }
     }
 
 }

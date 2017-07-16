@@ -238,5 +238,9 @@ class Case {
      - months
      - years
      */
-    enum TimeType: String { case weeks, months, years }
+    enum TimeType: String {
+        case weeks, months, years
+        
+        static let all: [TimeType] = [.weeks, .months, .years]
+    }
 }
