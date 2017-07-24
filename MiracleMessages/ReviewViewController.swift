@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, CaseDelegate {
     @IBOutlet weak var clientNameLabel: UILabel!
     @IBOutlet weak var clientDobLabel: UILabel!
     @IBOutlet weak var clientLocationLabel: UILabel!
@@ -26,7 +26,7 @@ class ReviewViewController: UIViewController {
 
     @IBOutlet weak var recipientOtherInfoLabel: UILabel!
 
-    var clientInfo: BackgroundInfo?
+    var currentCase: Case?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,52 +34,83 @@ class ReviewViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clientInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+        currentCase = Case.current
         displayInfo()
     }
 
     func displayInfo() -> Void {
-        guard let backgroundInfo = self.clientInfo else { return }
-        if let clientName = backgroundInfo.client_name {
-            clientNameLabel.text = "From: \(clientName)"
+        guard let aCase = self.currentCase else { return }
+        
+        //  Name
+        var first = "", middle = "", last = ""
+        if let name = aCase.firstName { first = name + " " }
+        if let name = aCase.middleName { middle = name + " " }
+        if let name = aCase.lastName { last = name }
+        clientNameLabel.text = first + middle + last
+        
+        //  Date of Birth
+        if let clientDob = aCase.dateOfBirth {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            clientDobLabel.text = "Date of birth: \(clientDob)\(aCase.isDOBApproximate ? " approx" : "")"
         }
-        if let clientDob = backgroundInfo.client_dob {
-            clientDobLabel.text = "Date of birth: \(clientDob)"
+        
+        //  Location
+        var locations: [String] = []
+        if let location = aCase.currentCity { locations.append(location) }
+        if let location = aCase.currentState { locations.append(location) }
+        if let currentCountry = aCase.currentCountry { locations.append(currentCountry.name) }
+        if !locations.isEmpty {
+            var location = ""
+            for (i, place) in locations.enumerated() { location += place + (i != locations.count - 1 ? ", " : "") }
+            clientLocationLabel.text = "Location: \(location)"
         }
-        if let clientCurrentCity = backgroundInfo.client_current_city {
-            clientLocationLabel.text = "Location: \(clientCurrentCity)"
+        
+        //  Hometown
+        locations = []
+        if let location = aCase.homeCity { locations.append(location) }
+        if let location = aCase.homeState { locations.append(location) }
+        if let homeCountry = aCase.homeCountry { locations.append(homeCountry.name) }
+        if !locations.isEmpty {
+            var location = ""
+            for (i, place) in locations.enumerated() { location += place + (i != locations.count - 1 ? ", " : "") }
+            clientHometownLabel.text = "Location: \(location)"
         }
-        if let clientHometown = backgroundInfo.client_hometown {
-            clientHometownLabel.text = "Hometown: \(clientHometown)"
+        
+        //  Time homeless
+        if let timeHomeless = aCase.timeHomeless {
+            yearsAwayLabel.text = "Time away from home: \(timeHomeless.value) \(timeHomeless.type.rawValue)"
         }
-        if let clientYearsAway = backgroundInfo.client_years_homeless {
-            yearsAwayLabel.text = "Years away from home: \(clientYearsAway)"
-        }
-        if let clientContact = backgroundInfo.client_contact_info {
-            clientContactLabel.text = clientContact
-        }
-        if let clientOtherInfo = backgroundInfo.client_other_info {
-            clientOtherInfoLabel.text = "Other info: \(clientOtherInfo)"
-        }
-        if let clientPartnerOrg = backgroundInfo.client_partner_org {
+        
+        //
+//        if let clientOtherInfo = aCase.notes {
+//            clientOtherInfoLabel.text = "Other info: \(clientOtherInfo)"
+//        }
+        
+        if let clientPartnerOrg = aCase.chapterID {
             clientPartnerOrgLabel.text = "Partner org: \(clientPartnerOrg)"
         }
-        if let recipientName = backgroundInfo.recipient_name {
+        
+        guard aCase.lovedOnes.count >= 1 else { return }
+        let lovedOne = aCase.lovedOnes[0]
+        
+        if let recipientName = lovedOne.firstName {
             recipientNameLabel.text = "To: \(recipientName)"
         }
-        if let recipientRelationship = backgroundInfo.recipient_relationship {
+        if let recipientRelationship = lovedOne.relationship {
             recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
         }
-        if let recipientAge = backgroundInfo.recipient_dob {
+        if let recipientAge = lovedOne.dateOfBirth {
             recipientAgeLabel.text = "DOB: \(recipientAge)"
         }
-        if let recipientLocation = backgroundInfo.recipient_last_location {
+        if let recipientLocation = lovedOne.lastKnownLocation {
             recipientLocationLabel.text = "Location: \(recipientLocation)"
         }
-        if let recipientYearsDisconnected = backgroundInfo.recipient_years_since_last_seen {
+        if let recipientYearsDisconnected = lovedOne.lastContact {
             recipientYearsDisconnectedLabel.text = "Years disconnected: \(recipientYearsDisconnected)"
         }
-        if let recipientOtherInfo = backgroundInfo.recipient_other_info {
+        if let recipientOtherInfo = lovedOne.notes {
             recipientOtherInfoLabel.text = recipientOtherInfo
         }
 
@@ -99,7 +130,7 @@ class ReviewViewController: UIViewController {
             //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
         } else {
             let backgroundController = segue.destination as? BackgroundInfoViewController
-            backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+            backgroundController?.backgroundInfo = Case.current
             backgroundController?.mode = .update
             backgroundController?.delegate = self
         }
@@ -120,11 +151,9 @@ class ReviewViewController: UIViewController {
             return true
         }
     }
-}
-
-extension ReviewViewController: BackgroundInfoDelegate {
+    
     func didFinishUpdating() {
-        self.clientInfo?.save()
+        //self.theCase?.save()
         displayInfo()
     }
 }

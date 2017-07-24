@@ -40,12 +40,14 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
 
     func displayInfo() -> Void {
         guard let clientInfo = self.backgroundInfo else {return}
-        textFieldRecipientName.text = clientInfo.recipient_name
-        textFieldRecipientRelationship.text = clientInfo.recipient_relationship
-        textFieldRecipientDob.text = clientInfo.recipient_dob
-        textFieldRecipientLastLocation.text = clientInfo.recipient_last_location
-        textFieldRecipientLastSeen.text = clientInfo.recipient_years_since_last_seen
-        textViewRecipientOtherInfo.text = clientInfo.recipient_other_info
+        guard clientInfo.lovedOnes.count > 0 else { return }
+        let lovedOne = clientInfo.lovedOnes[0]
+        textFieldRecipientName.text = lovedOne.firstName
+        textFieldRecipientRelationship.text = lovedOne.relationship
+        textFieldRecipientDob.text = lovedOne.dateOfBirth?.description
+        textFieldRecipientLastLocation.text = lovedOne.lastKnownLocation
+        textFieldRecipientLastSeen.text = lovedOne.lastContact
+        textViewRecipientOtherInfo.text = lovedOne.notes
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,14 +55,16 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func updateBackgroundInfo() -> BackgroundInfo? {
-        self.backgroundInfo?.recipient_name = self.textFieldRecipientName.text
-        self.backgroundInfo?.recipient_dob = self.textFieldRecipientDob.text
-        self.backgroundInfo?.recipient_relationship = self.textFieldRecipientRelationship.text
-        self.backgroundInfo?.recipient_last_location = self.textFieldRecipientLastLocation.text
-        self.backgroundInfo?.recipient_years_since_last_seen = self.textFieldRecipientLastSeen.text
-        self.backgroundInfo?.recipient_other_info = self.textViewRecipientOtherInfo.text
-        self.backgroundInfo?.save()        
+    func updateBackgroundInfo() -> Case? {
+        //  TODO: THIS
+        
+//        self.backgroundInfo?.recipient_name = self.textFieldRecipientName.text
+//        self.backgroundInfo?.recipient_dob = self.textFieldRecipientDob.text
+//        self.backgroundInfo?.recipient_relationship = self.textFieldRecipientRelationship.text
+//        self.backgroundInfo?.recipient_last_location = self.textFieldRecipientLastLocation.text
+//        self.backgroundInfo?.recipient_years_since_last_seen = self.textFieldRecipientLastSeen.text
+//        self.backgroundInfo?.recipient_other_info = self.textViewRecipientOtherInfo.text
+//        self.backgroundInfo?.save()        
         return self.backgroundInfo
     }
 
@@ -76,7 +80,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
             return true
         default:
             if let clientInfo = self.updateBackgroundInfo() {
-                self.delegate?.clientInfo = clientInfo
+                //self.delegate?.clientInfo = clientInfo
             }
             self.dismiss(animated: true, completion: {
                 self.delegate?.didFinishUpdating()

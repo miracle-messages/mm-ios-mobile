@@ -9,17 +9,17 @@
 import UIKit
 
 
-protocol BackgroundInfoDelegate: class {
-    var clientInfo: BackgroundInfo? { get set }
+protocol CaseDelegate: class {
+    var currentCase: Case? { get set }
     func didFinishUpdating() -> Void
 }
 
 protocol Updatable {
-    func updateBackgroundInfo() -> BackgroundInfo?
+    func updateBackgroundInfo() -> Case?
 }
 
 extension Updatable {
-    func updateBackgroundInfo() -> BackgroundInfo? {
+    func updateBackgroundInfo() -> Case? {
         return nil
     }
 }
@@ -34,9 +34,9 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nextBtn: UIButton!
 
-    weak var delegate: BackgroundInfoDelegate?
+    weak var delegate: CaseDelegate?
 
-    var backgroundInfo: BackgroundInfo?
+    var backgroundInfo: Case?
     
     var keyboardIsVisible = false
 
@@ -63,7 +63,7 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         super.viewWillAppear(animated)
 
          self.title = ""
-        backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+        backgroundInfo = Case.current
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -112,7 +112,7 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
             return true
         default:
             if let clientInfo = self.updateBackgroundInfo() {
-                self.delegate?.clientInfo = clientInfo
+                self.delegate?.currentCase = clientInfo
             }
             self.dismiss(animated: true, completion: nil)
             return false

@@ -10,6 +10,9 @@ import Foundation
 import Firebase
 
 class Case {
+    //  Current case
+    static var current = Case()
+    
     //  Submission Basics
     var submissionDate: Date?
     var volunteer: VolunteerProfile?
@@ -36,18 +39,20 @@ class Case {
     var middleName: String?
     var lastName: String?
     
+    var age: Int = 9
+    var isAgeApproximate = false
     var dateOfBirth: Date?
-    var isDOBApproximate: Bool = false
+    var isDOBApproximate = false
     var timeHomeless: (type: TimeType, value: Int)?
     
     var homeCity: String?
     var homeState: String?
-    var homeCountry: String?    //  Country code
+    var homeCountry: Country?
     
     //  Sender location
     var currentCity: String?
     var currentState: String?
-    var currentCountry: String? //  Country code
+    var currentCountry: Country?
     var locationGPS: String = ""
     
     //  Loved ones
@@ -56,6 +61,9 @@ class Case {
     //  chapter?
     var chapterID: String?
     var detectives: [String] = []
+    
+    //  Notes
+    var notes: String = ""
     
     //  Writing to the database
     /**
@@ -116,10 +124,10 @@ class Case {
             "lastName": surname,
             "currentCity": thisCity,
             "currentState": thisState,
-            "currentCountry": thisCountry,
+            "currentCountry": thisCountry.code,
             "homeCity": oldCity,
             "homeState": oldState,
-            "homeCountry": oldCountry,
+            "homeCountry": oldCountry.code,
             "age": age,
             "ageApproximate": isDOBApproximate,
             "detectives": detectives.count > 0,
@@ -128,7 +136,8 @@ class Case {
         
         let privatePayload: [String: Any] = [
             "dob": DateFormatter.default.string(from: dob),
-            "dobApproximate": isDOBApproximate
+            "dobApproximate": isDOBApproximate,
+            "notes": notes
         ]
         
         //  Write case data

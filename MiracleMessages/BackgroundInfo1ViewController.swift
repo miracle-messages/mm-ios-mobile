@@ -107,22 +107,38 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
+        self.backgroundInfo = Case.current
         displayInfo()
     }
 
     func displayInfo() -> Void {
-        guard let clientInfo = self.backgroundInfo else {return}
-//        textFieldClientFirstName.text = clientInfo.client_name
-//        textFieldClientDob.text = clientInfo.client_dob
-//        textFieldClientCurrentLocation.text = clientInfo.client_current_city
-//        textFieldClientHometown.text = clientInfo.client_hometown
-//        textFieldClientYearsHomeless.text = clientInfo.client_years_homeless
-//        textViewContactInfo.text = clientInfo.client_contact_info
-//        textViewOtherInfo.text = clientInfo.client_other_info
+        //guard let clientInfo = currentCase else {return}
+        textFieldClientFirstName.text = currentCase.firstName
+        textFieldClientMiddleName.text = currentCase.middleName
+        textFieldClientLastName.text = currentCase.lastName
+        
+        textFieldCurrentCountry.text = currentCase.currentCountry?.name
+        textFieldCurrentState.text = currentCase.currentState
+        textFieldCurrentCity.text = currentCase.currentCity
+        
+        textFieldHomeCountry.text = currentCase.homeCountry?.name
+        textFieldHomeState.text = currentCase.homeState
+        textFieldHomeCity.text = currentCase.homeCity
+        
+        textFieldClientAge.text = String(currentCase.age)
+        switchAgeApproximate.isOn = currentCase.isAgeApproximate
+        if let birthdate = currentCase.dateOfBirth {
+            textFieldClientDob.text = dateFormatter.string(from: birthdate)
+        }
+        dobApproximate.isOn = currentCase.isDOBApproximate
+        textFieldPartner.text = currentCase.chapterID
+        if let timeHomelessPair = currentCase.timeHomeless {
+            textFieldTimeHomeless.text = String(timeHomelessPair.value)
+            textFieldTimeScale.text = timeHomelessPair.type.rawValue
+        }
     }
 
-    func updateBackgroundInfo() -> BackgroundInfo? {
+    func updateBackgroundInfo() -> Case? {
 //        self.backgroundInfo?.client_name = self.textFieldClientFirstName.text
 //        self.backgroundInfo?.client_dob = self.textFieldClientDob.text
 //        self.backgroundInfo?.client_current_city = self.textFieldClientCurrentLocation.text
@@ -139,18 +155,69 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard !(self.textFieldClientDob.text?.isEmpty)! else {
-            let alert = UIAlertController(title: "Cannot continue.", message: "You will need to enter the client's name", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        let needToEnter: (String) -> Void = {
+            self.alertIncompleteField(message: "You will need to enter " + $0)
+        }
+        
+        //  Client names
+        guard textFieldClientFirstName.hasText else {
+            needToEnter("the client's first name.")
             return false
         }
+        guard textFieldClientLastName.hasText else {
+            needToEnter("the client's last name.")
+            return false
+        }
+        
+        //  Current location
+        guard let currentCountry = textFieldCurrentCountry.text else {
+            needToEnter("the client's current country.")
+            return false
+        }
+        if Country(rawValue: currentCountry) == .UnitedStates {
+            guard textFieldCurrentState.hasText else {
+                needToEnter("the client's current state.")
+                return false
+            }
+        }
+        guard textFieldCurrentCity.hasText else {
+            needToEnter("the client's current city.")
+            return false
+        }
+        
+        //  Home location
+        guard let homeCountry = textFieldHomeCountry.text else {
+            needToEnter("the client's home country.")
+            return false
+        }
+        if Country(rawValue: homeCountry) == .UnitedStates {
+            guard textFieldCurrentState.hasText else {
+                needToEnter("the client's home state.")
+                return false
+            }
+        }
+        guard textFieldHomeCity.hasText else {
+            needToEnter("the client's home city.")
+            return false
+        }
+        
+        //  Age
+        guard textFieldClientAge.hasText else {
+            needToEnter("the client's age.")
+            return false
+        }
+//        guard textFieldClientDob.hasText else {
+//            needToEnter("the client's date of birth.")
+//            return false
+//        }
+        
         switch mode {
         case .view:
             return true
         default:
-            if let clientInfo = self.updateBackgroundInfo() {
-                self.delegate?.clientInfo = clientInfo
+            if self.updateBackgroundInfo() != nil {
+                //TODO: Clean up
+                //self.delegate?.clientInfo = clientInfo
             }
             self.dismiss(animated: true, completion: {
                 self.delegate?.didFinishUpdating()
@@ -159,9 +226,44 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         }
     }
     
+    //  Alert for incomplete fields
+    func alertIncompleteField(message: String) {
+        let alert = UIAlertController(title: "Cannot continue.", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Click", style: .default))
+        present(alert, animated: true)
+    }
+    
+    //  Perform segue
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+        currentCase.firstName = textFieldClientFirstName.text
+        currentCase.middleName = textFieldClientMiddleName.text
+        currentCase.lastName = textFieldClientLastName.text
+        
+        //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
+        currentCase.currentCountry = Country(rawValue: textFieldCurrentCountry.text!)
+        currentCase.currentState = textFieldCurrentState.text
+        currentCase.currentCity = textFieldCurrentCity.text
+        
+        currentCase.homeCountry = Country(rawValue: textFieldHomeCountry.text!)
+        currentCase.homeState = textFieldHomeState.text
+        currentCase.homeCity = textFieldHomeCity.text
+        
+        if let age = Int(textFieldClientAge.text!) {
+            currentCase.age = age
+            currentCase.isAgeApproximate = switchAgeApproximate.isOn
+        }
+        
+        if let birthdate = textFieldClientDob.text {
+            currentCase.dateOfBirth = dateFormatter.date(from: birthdate)
+            currentCase.isDOBApproximate = dobApproximate.isOn
+        }
+    }
+    
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
+        let years = Calendar.current.dateComponents([.year], from: sender.date).year ?? 0
+        textFieldClientAge.text = String(years)
     }
     
     //  Picker view!
