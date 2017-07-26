@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FirebaseStorage
+import Firebase
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var clientNameLabel: UILabel!
     @IBOutlet weak var clientDobLabel: UILabel!
     @IBOutlet weak var clientLocationLabel: UILabel!
@@ -27,6 +29,11 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var recipientOtherInfoLabel: UILabel!
 
     var clientInfo: BackgroundInfo?
+    
+    let picker = UIImagePickerController()
+    let storage = FIRStorage.storage()
+    var ref: FIRDatabaseReference!
+    var caseID: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,11 +100,7 @@ class ReviewViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "cameraViewController" {
-            let cameraController = segue.destination as? CameraViewController
-            cameraController?.delegate = self
-            //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-        } else {
+        if segue.identifier != "photoReferenceViewController" {
             let backgroundController = segue.destination as? BackgroundInfoViewController
             backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
             backgroundController?.mode = .update
@@ -119,6 +122,49 @@ class ReviewViewController: UIViewController {
             return true
         }
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    @IBAction func didTapRecordBtn(_ sender: Any) {
+        ref = FIRDatabase.database().reference()
+        caseID = ref.child("clients").childByAutoId().key
+        UserDefaults.standard.set(caseID, forKey: Keys.caseID)
+        picker.delegate = self
+        picker.allowsEditing = false
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        picker.cameraCaptureMode = .photo
+        picker.modalPresentationStyle = .fullScreen
+        present(picker,animated: false,completion: nil)
+    }
+}
+
+extension ReviewViewController {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //Send image to firebase
+        let storageRef = storage.reference()
+        let photoPathRef = storageRef.child("casePictures/\(caseID!)/photoReference.jpg")
+        let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
+            let _ = photoPathRef.put(data, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+                    return
+                }
+            }
+        }
+        picker.dismiss(animated: false, completion: nil)
+        performSegue(withIdentifier: "cameraViewController", sender: self)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ReviewViewController: BackgroundInfoDelegate {
@@ -127,6 +173,8 @@ extension ReviewViewController: BackgroundInfoDelegate {
         displayInfo()
     }
 }
+
+
 
 extension ReviewViewController: CameraViewControllerDelegate {
     func didFinishRecording(sender: CameraViewController) -> Void {

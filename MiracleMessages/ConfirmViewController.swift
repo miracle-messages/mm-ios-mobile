@@ -11,6 +11,10 @@ import AWSS3
 import FirebaseDatabase
 import Alamofire
 
+struct Keys {
+    static let caseID = "caseID"
+}
+
 class ConfirmViewController: UIViewController {
     
     var video: Video?
@@ -132,7 +136,7 @@ class ConfirmViewController: UIViewController {
             "recipient_other_info" : self.backgroundInfo.recipient_other_info!,
             "volunteer_uploaded_url" : self.video?.videoLink ?? "none",
             "created_at" : floor(NSDate().timeIntervalSince1970)
-            ] as [String : Any]
+        ] as [String : Any]
         
         //Send payload to server
         let childUpdates = ["/clients/\(key)": payload]

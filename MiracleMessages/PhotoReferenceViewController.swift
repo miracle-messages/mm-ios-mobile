@@ -8,16 +8,20 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class PhotoReferenceViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let picker = UIImagePickerController()
-    let storage = Storage.storage()
-    // Create a storage reference from our storage service
-    let storageRef = storage.reference()
+    let storage = FIRStorage.storage()
+    var ref: FIRDatabaseReference!
+    var caseID: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
+        caseID = ref.child("clients").childByAutoId().key
+        UserDefaults.standard.set(caseID, forKey: Keys.caseID)
         picker.delegate = self
         picker.allowsEditing = false
         picker.sourceType = UIImagePickerControllerSourceType.camera
@@ -26,26 +30,32 @@ class PhotoReferenceViewController: UIViewController, UIImagePickerControllerDel
         present(picker,animated: false,completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
-    */
 }
 
 extension PhotoReferenceViewController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //Send image to firebase
+        let storageRef = storage.reference()
+        let photoPathRef = storageRef.child("casePictures/\(caseID!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        dismiss(animated:true, completion: nil) //5
+        if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
+            let _ = photoPathRef.put(data, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+                    return
+                }
+            }
+        }
+        performSegue(withIdentifier: "cameraViewController", sender: self)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
 }

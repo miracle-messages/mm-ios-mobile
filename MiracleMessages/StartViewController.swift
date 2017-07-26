@@ -14,7 +14,12 @@ class StartViewController: ProfileNavigationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        resetCaseID()
         displayVolunteerInfo()
+    }
+    
+    func resetCaseID() {
+        UserDefaults.standard.removeObject(forKey: Keys.caseID)
     }
 
     func displayVolunteerInfo() -> Void {
