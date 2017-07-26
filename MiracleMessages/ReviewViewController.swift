@@ -92,8 +92,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
             clientPartnerOrgLabel.text = "Partner org: \(clientPartnerOrg)"
         }
         
-        guard aCase.lovedOnes.count >= 1 else { return }
-        let lovedOne = aCase.lovedOnes[0]
+        guard let lovedOne = aCase.lovedOnes.first else { return }
         
         if let recipientName = lovedOne.firstName {
             recipientNameLabel.text = "To: \(recipientName)"
@@ -130,7 +129,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
             //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
         } else {
             let backgroundController = segue.destination as? BackgroundInfoViewController
-            backgroundController?.backgroundInfo = Case.current
+            backgroundController?.currentCase = Case.current
             backgroundController?.mode = .update
             backgroundController?.delegate = self
         }
@@ -138,6 +137,8 @@ class ReviewViewController: UIViewController, CaseDelegate {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "cameraViewController" {
+            
+            
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
                 let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))

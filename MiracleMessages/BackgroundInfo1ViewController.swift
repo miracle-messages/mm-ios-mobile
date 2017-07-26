@@ -9,8 +9,6 @@
 import UIKit
 
 class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    //  Case
-    var currentCase: Case!
     
     //  Container
     @IBOutlet weak var container: UIView!
@@ -107,7 +105,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.backgroundInfo = Case.current
+        currentCase = Case.current
         displayInfo()
     }
 
@@ -125,7 +123,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         textFieldHomeState.text = currentCase.homeState
         textFieldHomeCity.text = currentCase.homeCity
         
-        textFieldClientAge.text = String(currentCase.age)
+        if let age = currentCase.age { textFieldClientAge.text = String(age) }
         switchAgeApproximate.isOn = currentCase.isAgeApproximate
         if let birthdate = currentCase.dateOfBirth {
             textFieldClientDob.text = dateFormatter.string(from: birthdate)
@@ -147,7 +145,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
 //        self.backgroundInfo?.client_years_homeless = self.textFieldClientYearsHomeless.text
 //        self.backgroundInfo?.client_other_info = self.textViewOtherInfo.text
 //        self.backgroundInfo?.save()        
-        return self.backgroundInfo
+        return self.currentCase
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -155,61 +153,55 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        let needToEnter: (String) -> Void = {
-            self.alertIncompleteField(message: "You will need to enter " + $0)
-        }
+        let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
         //  Client names
         guard textFieldClientFirstName.hasText else {
-            needToEnter("the client's first name.")
+            alertIncomplete(field: textFieldClientFirstName, saying: needToEnter("the client's first name."))
             return false
         }
         guard textFieldClientLastName.hasText else {
-            needToEnter("the client's last name.")
+            alertIncomplete(field: textFieldClientLastName, saying: needToEnter("the client's last name."))
             return false
         }
         
         //  Current location
         guard let currentCountry = textFieldCurrentCountry.text else {
-            needToEnter("the client's current country.")
+            alertIncomplete(field: textFieldCurrentCountry, saying: needToEnter("the client's current country."))
             return false
         }
         if Country(rawValue: currentCountry) == .UnitedStates {
             guard textFieldCurrentState.hasText else {
-                needToEnter("the client's current state.")
+                alertIncomplete(field: textFieldCurrentState, saying: needToEnter("the client's current state."))
                 return false
             }
         }
         guard textFieldCurrentCity.hasText else {
-            needToEnter("the client's current city.")
+            alertIncomplete(field: textFieldCurrentCity, saying: needToEnter("the client's current city."))
             return false
         }
         
         //  Home location
         guard let homeCountry = textFieldHomeCountry.text else {
-            needToEnter("the client's home country.")
+            alertIncomplete(field: textFieldHomeCountry, saying: needToEnter("the client's home country."))
             return false
         }
         if Country(rawValue: homeCountry) == .UnitedStates {
-            guard textFieldCurrentState.hasText else {
-                needToEnter("the client's home state.")
+            guard textFieldHomeState.hasText else {
+                alertIncomplete(field: textFieldHomeState, saying: needToEnter("the client's home state."))
                 return false
             }
         }
         guard textFieldHomeCity.hasText else {
-            needToEnter("the client's home city.")
+            alertIncomplete(field: textFieldHomeCity, saying: needToEnter("the client's home city."))
             return false
         }
         
         //  Age
         guard textFieldClientAge.hasText else {
-            needToEnter("the client's age.")
+            alertIncomplete(field: textFieldClientAge, saying: needToEnter("the client's age."))
             return false
         }
-//        guard textFieldClientDob.hasText else {
-//            needToEnter("the client's date of birth.")
-//            return false
-//        }
         
         switch mode {
         case .view:
@@ -224,13 +216,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             })
             return false
         }
-    }
-    
-    //  Alert for incomplete fields
-    func alertIncompleteField(message: String) {
-        let alert = UIAlertController(title: "Cannot continue.", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Click", style: .default))
-        present(alert, animated: true)
     }
     
     //  Perform segue
@@ -262,8 +247,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
-        let years = Calendar.current.dateComponents([.year], from: sender.date).year ?? 0
-        textFieldClientAge.text = String(years)
+        if let years = Calendar.current.dateComponents([.year], from: sender.date, to: Date()).year { textFieldClientAge.text = String(years) }
     }
     
     //  Picker view!

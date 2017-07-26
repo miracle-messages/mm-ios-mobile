@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LovedOne {
+class LovedOne: Hashable {
     var id: String?
     
     //  Public
@@ -18,6 +18,10 @@ class LovedOne {
     var relationship: String?
     var lastKnownLocation: String?
     var lastContact: String?
+    var age: Int?
+    var isAgeApproximate: Bool = false
+    
+    var hashValue: Int = Int(arc4random())
     
     var publicInfo: [String: Any] {
         var info = [String: Any]()
@@ -27,8 +31,8 @@ class LovedOne {
         if let relationship = relationship { info["relationship"] = relationship }
         if let lastKnownLocation = lastKnownLocation { info["lastKnownLocation"] = lastKnownLocation }
         if let lastContact = lastContact { info["lastContact"] = lastContact }
-        if let dob = dateOfBirth, let age = Calendar.current.dateComponents([.year], from: dob, to: Date()).year { info["age"] = age }
-        info["ageAppoximate"] = isDOBApproximate
+        if let age = age { info["age"] = age }
+        info["ageAppoximate"] = isAgeApproximate
         return info
     }
     
@@ -43,4 +47,6 @@ class LovedOne {
         info["dobApproximate"] = isDOBApproximate
         return info
     }
+    
+    static func ==(a: LovedOne, another: LovedOne) -> Bool { return a.hashValue == another.hashValue }
 }

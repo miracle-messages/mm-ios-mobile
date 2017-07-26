@@ -39,7 +39,7 @@ class Case {
     var middleName: String?
     var lastName: String?
     
-    var age: Int = 9
+    var age: Int?
     var isAgeApproximate = false
     var dateOfBirth: Date?
     var isDOBApproximate = false
@@ -56,7 +56,7 @@ class Case {
     var locationGPS: String = ""
     
     //  Loved ones
-    var lovedOnes = [LovedOne]()
+    var lovedOnes: Set<LovedOne> = []
     
     //  chapter?
     var chapterID: String?
