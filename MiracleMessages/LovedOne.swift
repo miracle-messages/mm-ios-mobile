@@ -9,6 +9,13 @@
 import Foundation
 
 class LovedOne: Hashable {
+    static var count = 0
+    static func getNextHash() -> Int {
+        let hash = count
+        count += 1
+        return hash
+    }
+    
     var id: String?
     
     //  Public
@@ -21,7 +28,7 @@ class LovedOne: Hashable {
     var age: Int?
     var isAgeApproximate: Bool = false
     
-    var hashValue: Int = Int(arc4random())
+    var hashValue: Int = LovedOne.getNextHash()
     
     var publicInfo: [String: Any] {
         var info = [String: Any]()
