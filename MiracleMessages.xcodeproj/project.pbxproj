@@ -42,6 +42,7 @@
 		A09A46631EF05CA0008114F2 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46621EF05CA0008114F2 /* Case.swift */; };
 		A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46651EF06DFE008114F2 /* LovedOne.swift */; };
 		A09A46681EF09AA7008114F2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46671EF09AA7008114F2 /* Source.swift */; };
+		A0BE78D61F297BA00029F8BD /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BE78D51F297BA00029F8BD /* ReviewTableViewCell.swift */; };
 		A0C5F59D1F00B4D100FE12AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C5F59B1F00B4D100FE12AC /* Country.swift */; };
 		A0C5F59E1F00B4D100FE12AC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C5F59C1F00B4D100FE12AC /* State.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
@@ -99,6 +100,7 @@
 		A09A46621EF05CA0008114F2 /* Case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
 		A09A46651EF06DFE008114F2 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
 		A09A46671EF09AA7008114F2 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		A0BE78D51F297BA00029F8BD /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		A0C5F59B1F00B4D100FE12AC /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		A0C5F59C1F00B4D100FE12AC /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */,
+				A0BE78D51F297BA00029F8BD /* ReviewTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				A09A46631EF05CA0008114F2 /* Case.swift in Sources */,
 				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,
 				A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */,
+				A0BE78D61F297BA00029F8BD /* ReviewTableViewCell.swift in Sources */,
 				239007A01E4D662F00A4C1DB /* Video.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 				A0C5F59E1F00B4D100FE12AC /* State.swift in Sources */,

@@ -28,7 +28,7 @@ class LovedOne: Hashable {
     var age: Int?
     var isAgeApproximate: Bool = false
     
-    var hashValue: Int = LovedOne.getNextHash()
+    lazy var hashValue: Int = self.id?.hashValue ?? LovedOne.getNextHash()
     
     var publicInfo: [String: Any] {
         var info = [String: Any]()
@@ -55,5 +55,7 @@ class LovedOne: Hashable {
         return info
     }
     
-    static func ==(a: LovedOne, another: LovedOne) -> Bool { return a.hashValue == another.hashValue }
+    static func ==(a: LovedOne, another: LovedOne) -> Bool {
+        return a.hashValue == another.hashValue
+    }
 }

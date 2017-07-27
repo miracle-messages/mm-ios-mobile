@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol CaseDelegate: class {
-    var currentCase: Case? { get set }
+    var currentCase: Case { get set }
     func didFinishUpdating() -> Void
 }
 

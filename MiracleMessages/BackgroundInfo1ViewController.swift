@@ -137,19 +137,34 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
 
     func updateBackgroundInfo() -> Case? {
-//        self.backgroundInfo?.client_name = self.textFieldClientFirstName.text
-//        self.backgroundInfo?.client_dob = self.textFieldClientDob.text
-//        self.backgroundInfo?.client_current_city = self.textFieldClientCurrentLocation.text
-//        self.backgroundInfo?.client_hometown = self.textFieldClientHometown.text
-//        self.backgroundInfo?.client_contact_info = self.textViewContactInfo.text
-//        self.backgroundInfo?.client_years_homeless = self.textFieldClientYearsHomeless.text
-//        self.backgroundInfo?.client_other_info = self.textViewOtherInfo.text
-//        self.backgroundInfo?.save()        
-        return self.currentCase
+        currentCase.firstName = textFieldClientFirstName.text
+        currentCase.middleName = textFieldClientMiddleName.text
+        currentCase.lastName = textFieldClientLastName.text
+        
+        //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
+        currentCase.currentCountry = Country(rawValue: textFieldCurrentCountry.text!)
+        currentCase.currentState = textFieldCurrentState.text
+        currentCase.currentCity = textFieldCurrentCity.text
+        
+        currentCase.homeCountry = Country(rawValue: textFieldHomeCountry.text!)
+        currentCase.homeState = textFieldHomeState.text
+        currentCase.homeCity = textFieldHomeCity.text
+        
+        if let age = Int(textFieldClientAge.text!) {
+            currentCase.age = age
+            currentCase.isAgeApproximate = switchAgeApproximate.isOn
+        }
+        
+        if let birthdate = textFieldClientDob.text {
+            currentCase.dateOfBirth = dateFormatter.date(from: birthdate)
+            currentCase.isDOBApproximate = dobApproximate.isOn
+        }
+        
+        return currentCase
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let _ = self.updateBackgroundInfo()
+        updateBackgroundInfo()
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -219,30 +234,9 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
     
     //  Perform segue
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        currentCase.firstName = textFieldClientFirstName.text
-        currentCase.middleName = textFieldClientMiddleName.text
-        currentCase.lastName = textFieldClientLastName.text
-        
-        //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
-        currentCase.currentCountry = Country(rawValue: textFieldCurrentCountry.text!)
-        currentCase.currentState = textFieldCurrentState.text
-        currentCase.currentCity = textFieldCurrentCity.text
-        
-        currentCase.homeCountry = Country(rawValue: textFieldHomeCountry.text!)
-        currentCase.homeState = textFieldHomeState.text
-        currentCase.homeCity = textFieldHomeCity.text
-        
-        if let age = Int(textFieldClientAge.text!) {
-            currentCase.age = age
-            currentCase.isAgeApproximate = switchAgeApproximate.isOn
-        }
-        
-        if let birthdate = textFieldClientDob.text {
-            currentCase.dateOfBirth = dateFormatter.date(from: birthdate)
-            currentCase.isDOBApproximate = dobApproximate.isOn
-        }
-    }
+//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+//        
+//    }
     
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {

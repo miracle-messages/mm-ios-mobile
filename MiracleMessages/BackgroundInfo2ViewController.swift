@@ -33,6 +33,9 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
     
     @IBOutlet var textFields: [UITextField]!
     
+    @IBOutlet weak var buttonAddAnotherRecipient: UIButton!
+    @IBOutlet weak var buttonClearViews: UIButton!
+    
     let datePickerRecipientDob: UIDatePicker = { _ -> UIDatePicker in
         var this = UIDatePicker()
         this.datePickerMode = .date
@@ -63,6 +66,10 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         super.viewWillAppear(animated)
         if currentLovedOne == nil { currentLovedOne = LovedOne() }
         displayInfo()
+        
+        let isToBeHidden = mode == .update
+        buttonClearViews.isHidden = isToBeHidden
+        buttonAddAnotherRecipient.isHidden = isToBeHidden
     }
 
     func displayInfo() -> Void {
@@ -117,6 +124,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
     @IBAction func clear(sender: UIButton) {
         for field in textFields { field.text = "" }
         textViewRecipientOtherInfo.text = ""
+        textFieldRecipientAge.text = ""
     }
     
     func fieldsAreClear() -> Bool {
@@ -191,12 +199,14 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        //  TODO: this
+        //  TODO: Figure out what's happening here
         switch mode {
         case .view:
-            return true
+            if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
+                return true
+            } else { return appendToLovedOnes() }
         default:
-            if fieldsAreClear(), currentCase.lovedOnes.count > 0 {
+            if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
                 return true
             } else { return appendToLovedOnes() }
         }

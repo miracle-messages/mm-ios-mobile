@@ -9,24 +9,15 @@
 import UIKit
 
 class ReviewViewController: UIViewController, CaseDelegate {
-    @IBOutlet weak var clientNameLabel: UILabel!
-    @IBOutlet weak var clientDobLabel: UILabel!
-    @IBOutlet weak var clientLocationLabel: UILabel!
-    @IBOutlet weak var clientHometownLabel: UILabel!
-    @IBOutlet weak var yearsAwayLabel: UILabel!
-    @IBOutlet weak var clientContactLabel: UILabel!
-    @IBOutlet weak var clientOtherInfoLabel: UILabel!
-    @IBOutlet weak var clientPartnerOrgLabel: UILabel!
-
-    @IBOutlet weak var recipientNameLabel: UILabel!
-    @IBOutlet weak var recipientRelationshipLabel: UILabel!
-    @IBOutlet weak var recipientAgeLabel: UILabel!
-    @IBOutlet weak var recipientLocationLabel: UILabel!
-    @IBOutlet weak var recipientYearsDisconnectedLabel: UILabel!
-
-    @IBOutlet weak var recipientOtherInfoLabel: UILabel!
-
-    var currentCase: Case?
+    var currentCase: Case = Case.current
+    var lovedOnes: [LovedOne] = []
+    
+    let dateFormatter: DateFormatter = {
+        let this = DateFormatter()
+        this.dateStyle = .long
+        this.timeStyle = .none
+        return this
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,86 +26,9 @@ class ReviewViewController: UIViewController, CaseDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         currentCase = Case.current
-        displayInfo()
+        lovedOnes = Array(currentCase.lovedOnes)
     }
-
-    func displayInfo() -> Void {
-        guard let aCase = self.currentCase else { return }
-        
-        //  Name
-        var first = "", middle = "", last = ""
-        if let name = aCase.firstName { first = name + " " }
-        if let name = aCase.middleName { middle = name + " " }
-        if let name = aCase.lastName { last = name }
-        clientNameLabel.text = first + middle + last
-        
-        //  Date of Birth
-        if let clientDob = aCase.dateOfBirth {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .long
-            formatter.timeStyle = .none
-            clientDobLabel.text = "Date of birth: \(clientDob)\(aCase.isDOBApproximate ? " approx" : "")"
-        }
-        
-        //  Location
-        var locations: [String] = []
-        if let location = aCase.currentCity { locations.append(location) }
-        if let location = aCase.currentState { locations.append(location) }
-        if let currentCountry = aCase.currentCountry { locations.append(currentCountry.name) }
-        if !locations.isEmpty {
-            var location = ""
-            for (i, place) in locations.enumerated() { location += place + (i != locations.count - 1 ? ", " : "") }
-            clientLocationLabel.text = "Location: \(location)"
-        }
-        
-        //  Hometown
-        locations = []
-        if let location = aCase.homeCity { locations.append(location) }
-        if let location = aCase.homeState { locations.append(location) }
-        if let homeCountry = aCase.homeCountry { locations.append(homeCountry.name) }
-        if !locations.isEmpty {
-            var location = ""
-            for (i, place) in locations.enumerated() { location += place + (i != locations.count - 1 ? ", " : "") }
-            clientHometownLabel.text = "Location: \(location)"
-        }
-        
-        //  Time homeless
-        if let timeHomeless = aCase.timeHomeless {
-            yearsAwayLabel.text = "Time away from home: \(timeHomeless.value) \(timeHomeless.type.rawValue)"
-        }
-        
-        //
-//        if let clientOtherInfo = aCase.notes {
-//            clientOtherInfoLabel.text = "Other info: \(clientOtherInfo)"
-//        }
-        
-        if let clientPartnerOrg = aCase.chapterID {
-            clientPartnerOrgLabel.text = "Partner org: \(clientPartnerOrg)"
-        }
-        
-        guard let lovedOne = aCase.lovedOnes.first else { return }
-        
-        if let recipientName = lovedOne.firstName {
-            recipientNameLabel.text = "To: \(recipientName)"
-        }
-        if let recipientRelationship = lovedOne.relationship {
-            recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
-        }
-        if let recipientAge = lovedOne.dateOfBirth {
-            recipientAgeLabel.text = "DOB: \(recipientAge)"
-        }
-        if let recipientLocation = lovedOne.lastKnownLocation {
-            recipientLocationLabel.text = "Location: \(recipientLocation)"
-        }
-        if let recipientYearsDisconnected = lovedOne.lastContact {
-            recipientYearsDisconnectedLabel.text = "Years disconnected: \(recipientYearsDisconnected)"
-        }
-        if let recipientOtherInfo = lovedOne.notes {
-            recipientOtherInfoLabel.text = recipientOtherInfo
-        }
-
-    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -137,8 +51,6 @@ class ReviewViewController: UIViewController, CaseDelegate {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "cameraViewController" {
-            
-            
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
                 let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
@@ -154,8 +66,10 @@ class ReviewViewController: UIViewController, CaseDelegate {
     }
     
     func didFinishUpdating() {
+        //  TODO: Check if these are really needed
+        
         //self.theCase?.save()
-        displayInfo()
+        //displayInfo()
     }
 }
 
@@ -169,5 +83,103 @@ extension ReviewViewController: CameraViewControllerDelegate {
                 navController.popToViewController(aviewcontroller, animated: true)
             }
         }
+    }
+}
+
+extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2    //  One for Sender, one for Recipients
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return currentCase.lovedOnes.isEmpty ? 1 : currentCase.lovedOnes.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
+            
+            var name = ""
+            if let bit = currentCase.firstName { name += bit + " " }
+            if let bit = currentCase.middleName { name += bit + " " }
+            if let bit = currentCase.lastName { name += bit }
+            
+            cell.labelName.text = "From: \(name)"
+            cell.labelName.updateConstraints()
+            
+            var data = ""
+            
+            if let birthdate = currentCase.dateOfBirth { data += "Date of birth: \(dateFormatter.string(from: birthdate))\n" }
+            if let age = currentCase.age { data += "Age: \(age)\n" }
+            
+            var location = ""
+            if let city = currentCase.currentCity { location += city }
+            if let state = currentCase.currentState { location += (location.isEmpty ? "" : ", ") +  state }
+            if let country = currentCase.currentCountry { location += (location.isEmpty ? "" : ", ") + country.name }
+            if !location.isEmpty { data += "Location: \(location)\n" }
+            
+            var homeland = ""
+            if let city = currentCase.homeCity { homeland += city }
+            if let state = currentCase.homeState { homeland += (location.isEmpty ? "" : ", ") +  state }
+            if let country = currentCase.homeCountry { homeland += (location.isEmpty ? "" : ", ") + country.name }
+            if !homeland.isEmpty { data += "Hometown: \(homeland)\n" }
+            
+            if let timeAway = currentCase.timeHomeless {
+                data += "Time away from home: \(timeAway.value) \(timeAway.type)"
+            }
+            
+            cell.labelInfo.text = data
+            cell.labelInfo.updateConstraints()
+            
+            return cell
+        case 1:
+            guard currentCase.lovedOnes.count > 0 else {
+                return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
+            }
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
+            
+            let lovedOne = lovedOnes[indexPath.row]
+            
+            //  Name
+            var name = ""
+            
+            if let bit = lovedOne.firstName { name += bit + " " }
+            if let bit = lovedOne.middleName { name += bit + " " }
+            if let bit = lovedOne.lastName { name += bit }
+            
+            cell.labelName.text = "To: \(name)"
+            cell.labelName.updateConstraints()
+            
+            //  Information
+            var data = ""
+            
+            if let relationship = lovedOne.relationship { data += "Relationship: \(relationship)" }
+            
+            if let birthdate = lovedOne.dateOfBirth { data += "Date of birth: \(dateFormatter.string(from: birthdate))\n" }
+            if let age = currentCase.age { data += "Age: \(age)\n" }
+            
+            if let location = lovedOne.lastKnownLocation { data += "Location: \(location)\n" }
+            
+            if let timeApart = lovedOne.lastContact { data += "Last contact: \(timeApart)\n" }
+            
+            if let notes = lovedOne.notes { data += "Other info: \(notes)" }
+            
+            cell.labelInfo.text = data
+            cell.labelInfo.updateConstraints()
+            
+            return cell
+        default: break
+        }
+        
+        return UITableViewCell()
     }
 }
