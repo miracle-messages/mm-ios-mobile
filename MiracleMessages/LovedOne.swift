@@ -58,7 +58,7 @@ class LovedOne: Hashable {
         
         if let timeApart = lastContact { this += "Last contact: \(timeApart)\n" }
         
-        if let notes = notes { this += "Other info: \(notes)" }
+        if let notes = notes, !notes.isEmpty { this += "Other info: \(notes)" }
         
         return this
     }

@@ -118,11 +118,12 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         guard appendToLovedOnes() else { return }
         
         currentLovedOne = LovedOne()
-        displayInfo()
+        clear(sender: sender)
     }
     
     @IBAction func clear(sender: UIButton) {
-        for field in textFields { field.text = "" }
+        for field in textFields {
+            field.text = "" }
         textViewRecipientOtherInfo.text = ""
         textFieldRecipientAge.text = ""
     }
