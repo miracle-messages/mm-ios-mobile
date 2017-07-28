@@ -107,37 +107,8 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
             
-            var name = ""
-            if let bit = currentCase.firstName { name += bit + " " }
-            if let bit = currentCase.middleName { name += bit + " " }
-            if let bit = currentCase.lastName { name += bit }
-            
-            cell.labelName.text = "From: \(name)"
-            cell.labelName.updateConstraints()
-            
-            var data = ""
-            
-            if let birthdate = currentCase.dateOfBirth { data += "Date of birth: \(dateFormatter.string(from: birthdate))\n" }
-            if let age = currentCase.age { data += "Age: \(age)\n" }
-            
-            var location = ""
-            if let city = currentCase.currentCity { location += city }
-            if let state = currentCase.currentState { location += (location.isEmpty ? "" : ", ") +  state }
-            if let country = currentCase.currentCountry { location += (location.isEmpty ? "" : ", ") + country.name }
-            if !location.isEmpty { data += "Location: \(location)\n" }
-            
-            var homeland = ""
-            if let city = currentCase.homeCity { homeland += city }
-            if let state = currentCase.homeState { homeland += (location.isEmpty ? "" : ", ") +  state }
-            if let country = currentCase.homeCountry { homeland += (location.isEmpty ? "" : ", ") + country.name }
-            if !homeland.isEmpty { data += "Hometown: \(homeland)\n" }
-            
-            if let timeAway = currentCase.timeHomeless {
-                data += "Time away from home: \(timeAway.value) \(timeAway.type)"
-            }
-            
-            cell.labelInfo.text = data
-            cell.labelInfo.updateConstraints()
+            cell.labelName.text = "From: \(currentCase.fullName)"
+            cell.labelInfo.text = currentCase.reviewDescription
             
             return cell
         case 1:
@@ -150,36 +121,23 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             let lovedOne = lovedOnes[indexPath.row]
             
             //  Name
-            var name = ""
-            
-            if let bit = lovedOne.firstName { name += bit + " " }
-            if let bit = lovedOne.middleName { name += bit + " " }
-            if let bit = lovedOne.lastName { name += bit }
-            
-            cell.labelName.text = "To: \(name)"
-            cell.labelName.updateConstraints()
+            cell.labelName.text = "To: \(lovedOne.fullName)"
             
             //  Information
-            var data = ""
-            
-            if let relationship = lovedOne.relationship { data += "Relationship: \(relationship)" }
-            
-            if let birthdate = lovedOne.dateOfBirth { data += "Date of birth: \(dateFormatter.string(from: birthdate))\n" }
-            if let age = currentCase.age { data += "Age: \(age)\n" }
-            
-            if let location = lovedOne.lastKnownLocation { data += "Location: \(location)\n" }
-            
-            if let timeApart = lovedOne.lastContact { data += "Last contact: \(timeApart)\n" }
-            
-            if let notes = lovedOne.notes { data += "Other info: \(notes)" }
-            
-            cell.labelInfo.text = data
-            cell.labelInfo.updateConstraints()
+            cell.labelInfo.text = lovedOne.reviewDescription
             
             return cell
         default: break
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }

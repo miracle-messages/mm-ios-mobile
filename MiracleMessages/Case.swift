@@ -65,6 +65,54 @@ class Case {
     //  Notes
     var notes: String = ""
     
+    //  Data for review cell
+    /**
+     Assembles the parts of the name into a single string
+     */
+    var fullName: String {
+        var this = ""
+        if let bit = firstName, bit != "" { this += bit + " " }
+        if let bit = middleName, bit != "" { this += bit + " " }
+        if let bit = lastName { this += bit }
+        return this
+    }
+    
+    /**
+     Provides the string for the review cell
+     */
+    var reviewDescription: String {
+        var this = ""
+
+        if let birthdate = dateOfBirth {
+            let dateFormatter: DateFormatter = {
+                let this = DateFormatter()
+                this.dateStyle = .long
+                this.timeStyle = .none
+                return this
+            }()
+            this += "Date of birth: \(dateFormatter.string(from: birthdate))\n" }
+        
+        if let age = age { this += "Age: \(age)\n" }
+        
+        var location = ""
+        if let city = currentCity { location += city }
+        if let state = currentState, state != "" { location += (location.isEmpty ? "" : ", ") +  state }
+        if let country = currentCountry { location += (location.isEmpty ? "" : ", ") + country.name }
+        if !location.isEmpty { this += "Location: \(location)\n" }
+        
+        var homeland = ""
+        if let city = homeCity { homeland += city }
+        if let state = homeState, state != "" { homeland += (location.isEmpty ? "" : ", ") +  state }
+        if let country = homeCountry { homeland += (location.isEmpty ? "" : ", ") + country.name }
+        if !homeland.isEmpty { this += "Hometown: \(homeland)\n" }
+        
+        if let timeAway = timeHomeless {
+            this += "Time away from home: \(timeAway.value) \(timeAway.type)"
+        }
+        
+        return this
+    }
+    
     //  Writing to the database
     /**
      Writes the case to FireBase in three steps, first to get case ID,

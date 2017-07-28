@@ -160,6 +160,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             currentCase.isDOBApproximate = dobApproximate.isOn
         }
         
+        if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
+            currentCase.timeHomeless = (type, value)
+        }
+        
         return currentCase
     }
 
