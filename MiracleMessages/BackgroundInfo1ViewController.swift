@@ -225,7 +225,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         switch mode {
         case .view:
             return true
-        default:
+        case .update:
             if self.updateBackgroundInfo() != nil {
                 //TODO: Clean up
                 //self.delegate?.clientInfo = clientInfo

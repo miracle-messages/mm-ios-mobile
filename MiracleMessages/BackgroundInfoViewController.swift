@@ -111,7 +111,7 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         switch mode {
         case .view:
             return true
-        default:
+        case .update:
             if let clientInfo = self.updateBackgroundInfo() {
                 self.delegate?.currentCase = clientInfo
             }
