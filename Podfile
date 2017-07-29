@@ -11,7 +11,7 @@ target 'MiracleMessages' do
     pod 'DatePickerDialog'
     pod 'SCLAlertView'
     pod 'Alamofire', '~> 4.0'
-    pod 'Firebase/Auth'    
+    pod 'Firebase/Auth'
     pod 'Firebase/Storage'
     pod 'GoogleSignIn'
     pod 'Fabric', :inhibit_warnings => true

@@ -18,7 +18,7 @@ struct Keys {
 class ConfirmViewController: UIViewController {
 
     var video: Video?
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
     let currentCase: Case = Case.current
     let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/hshdv5/"
 
@@ -27,7 +27,7 @@ class ConfirmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
 
@@ -76,7 +76,7 @@ class ConfirmViewController: UIViewController {
 
         uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
 
-        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
+        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
             if let error = task.error {
                 Logger.log(level: Level.error, "Failure uploading video!")
                 Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))

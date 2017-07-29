@@ -168,7 +168,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        updateBackgroundInfo()
+        let _ = updateBackgroundInfo()
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

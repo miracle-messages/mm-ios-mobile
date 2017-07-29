@@ -26,7 +26,7 @@ class GuideViewController: ProfileNavigationViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? BackgroundInfo1ViewController {
+        if segue.destination is BackgroundInfo1ViewController {
             //  TODO: Is there a cleaner way of doing this?
             Case.current = Case()   //  BackgroundInfoViewController will pull the current case
         }

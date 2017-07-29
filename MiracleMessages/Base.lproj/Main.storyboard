@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1394,11 +1392,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cxr-39-KAg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H7h-mE-sVf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1125"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-3L-IYu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1052"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="594"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPz-qE-SCO" userLabel="Container View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -1843,7 +1841,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWG-05-XRf">
-                                <rect key="frame" x="13" y="1052" width="349" height="57"/>
+                                <rect key="frame" x="13" y="594" width="349" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="8qA-rc-S1F"/>
                                     <constraint firstAttribute="width" constant="349" id="Prn-Ja-ToW"/>
@@ -2192,7 +2190,7 @@
                         <viewControllerLayoutGuide type="bottom" id="e6x-xH-gRW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qwd-Vq-fSZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1125"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sh-bH-aTc" userLabel="Review">
@@ -2214,7 +2212,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc6-6e-6QN">
-                                <rect key="frame" x="13" y="1050" width="349" height="57"/>
+                                <rect key="frame" x="13" y="592" width="349" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="349" id="50Y-9T-pJw"/>
                                     <constraint firstAttribute="height" constant="57" id="TNu-Mv-S4C"/>
@@ -2228,7 +2226,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PM3-gJ-sp4">
-                                <rect key="frame" x="0.0" y="131" width="375" height="911"/>
+                                <rect key="frame" x="0.0" y="131" width="375" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toCell" rowHeight="215" id="neJ-IB-4Mh" customClass="ReviewTableViewCell" customModule="MiracleMsg" customModuleProvider="target">
@@ -2953,5 +2951,7 @@
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="OP6-Qy-NBK"/>
+        <segue reference="ft1-JS-zIx"/>
     </inferredMetricsTieBreakers>
 </document>

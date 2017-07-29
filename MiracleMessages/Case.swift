@@ -79,7 +79,7 @@ class Case {
      - Parameter handler: Completion handler where the input to the closure is
      a boolean whose value is whether or not the submission was successful.
      */
-    func submitCase(to firebase: FIRDatabaseReference, handler: @escaping(Bool) -> Void = { _ in }) {
+    func submitCase(to firebase: DatabaseReference, handler: @escaping(Bool) -> Void = { _ in }) {
         if submissionDate == nil { submissionDate = Date() }
         
         guard let submissionSinceEpoch = submissionDate?.timeIntervalSince1970
@@ -102,7 +102,7 @@ class Case {
             else { return }
         guard let timeWithoutHome = timeHomeless else { return }
         
-        let caseReference: FIRDatabaseReference
+        let caseReference: DatabaseReference
         
         if key == nil {
             caseReference = firebase.child("/cases/").childByAutoId()
@@ -113,9 +113,8 @@ class Case {
         
         let privateCaseReference = firebase.child("/casesPrivate/\(key!)")
         
-        let publicPayload: [String: Any] = [
+        var publicPayload: [String: Any] = [
             "submitted": submissionSinceEpoch,
-            "createdBy": ["uid": FIRAuth.auth()?.currentUser?.uid],
             "caseStatus": caseStatus.rawValue,
             "messageStatus": messageStatus.rawValue,
             "nextStep": nextStep.rawValue,
@@ -138,6 +137,10 @@ class Case {
             "detectives": detectives.count > 0,
             "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any]
         ]
+        
+        if let currentUser = Auth.auth().currentUser {
+            publicPayload["createdBy"] = ["uid": currentUser.uid]
+        }
         
         let privatePayload: [String: Any] = [
             "dob": DateFormatter.default.string(from: dob),

@@ -13,6 +13,11 @@ import Firebase
 class ReviewViewController: UIViewController, CaseDelegate {
     var currentCase: Case = Case.current
     var lovedOnes: [LovedOne] = []
+    
+    let picker = UIImagePickerController()
+    let storage = Storage.storage()
+    var ref: DatabaseReference!
+    var caseID: String!
 
     let dateFormatter: DateFormatter = {
         let this = DateFormatter()
@@ -40,7 +45,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cameraController = segue.destination as? CameraViewController {
-            cameraController?.delegate = self
+            cameraController.delegate = self
         } else if let destination = segue.destination as? BackgroundInfo1ViewController {
             destination.mode = .update
         } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
@@ -71,10 +76,10 @@ class ReviewViewController: UIViewController, CaseDelegate {
     }
 
     @IBAction func didTapRecordBtn(_ sender: Any) {
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         caseID = ref.child("clients").childByAutoId().key
         UserDefaults.standard.set(caseID, forKey: Keys.caseID)
-        picker.delegate = self
+        picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         picker.allowsEditing = false
         picker.sourceType = UIImagePickerControllerSourceType.camera
         picker.cameraCaptureMode = .photo
@@ -91,7 +96,7 @@ extension ReviewViewController {
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
-            let _ = photoPathRef.put(data, metadata: nil) { (metadata, error) in
+            let _ = photoPathRef.putData(data, metadata: nil) { (metadata, error) in
                 if let error = error {
                     Logger.log("Error saving photo reference \(error.localizedDescription)")
                     return
@@ -106,9 +111,7 @@ extension ReviewViewController {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-}
-
-extension ReviewViewController: BackgroundInfoDelegate {
+    
     func didFinishUpdating() {
         //  TODO: Check if these are really needed
 

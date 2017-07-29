@@ -490,8 +490,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 })
             }
 
-            let task = transferManager?.upload(uploadRequest1)
-            task?.continue( { (task) -> AnyObject! in
+            let task = transferManager.upload(uploadRequest1)
+            task.continueWith(block: { (task) -> AnyObject! in
                 if let error = task.error {
                     Logger.log(level: Level.error, "Failure uploadtoS3!")
                     Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
