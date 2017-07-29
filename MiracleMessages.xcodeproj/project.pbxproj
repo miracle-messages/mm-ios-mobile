@@ -39,7 +39,6 @@
 		EE0FA4881F006D3300B3A0D8 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */; };
 		EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */; };
 		EE0FA48C1F0082F500B3A0D8 /* Uploadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */; };
-		EE4890901F0A36AA00E7D84E /* PhotoReferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48908F1F0A36AA00E7D84E /* PhotoReferenceViewController.swift */; };
 		EE4890971F0DB6B400E7D84E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4890961F0DB6B400E7D84E /* GoogleService-Info.plist */; };
 		EE48909C1F135BA300E7D84E /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48909B1F135BA300E7D84E /* OvalView.swift */; };
 		EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC351F08678D00F3E1EA /* Logger.swift */; };
@@ -96,7 +95,6 @@
 		EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
 		EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploadable.swift; sourceTree = "<group>"; };
 		EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiracleMsg.entitlements; sourceTree = "<group>"; };
-		EE48908F1F0A36AA00E7D84E /* PhotoReferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReferenceViewController.swift; sourceTree = "<group>"; };
 		EE4890961F0DB6B400E7D84E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE48909B1F135BA300E7D84E /* OvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
 		EECBEC351F08678D00F3E1EA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
 				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
 				EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */,
-				EE48908F1F0A36AA00E7D84E /* PhotoReferenceViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 				EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */,
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
-				EE4890901F0A36AA00E7D84E /* PhotoReferenceViewController.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
 				23D040181E4C03CC0000D4A2 /* NextViewController.swift in Sources */,

@@ -91,11 +91,6 @@ class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - Navigation
 
@@ -109,7 +104,7 @@ class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "cameraViewController" || identifier == "photoReferenceViewController"  {
+        if identifier == "camerController"  {
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
                 let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
@@ -157,9 +152,9 @@ extension ReviewViewController {
                 }
             }
         }
-        picker.dismiss(animated: false, completion: nil)
-        performSegue(withIdentifier: "cameraViewController", sender: self)
-        
+        picker.dismiss(animated: true, completion: {
+            self.performSegue(withIdentifier: "cameraController", sender: self)
+        })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
