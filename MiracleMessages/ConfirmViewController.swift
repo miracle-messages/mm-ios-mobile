@@ -104,10 +104,8 @@ class ConfirmViewController: UIViewController {
         currentCase.submitCase(to: ref)
         return currentCase.key ?? "No key returned"
     }
-
-
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.submit()
     }
