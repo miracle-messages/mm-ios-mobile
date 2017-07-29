@@ -9,6 +9,13 @@
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
+    var reviewable: Reviewable? {
+        didSet {
+            guard let this = reviewable else { return }
+            labelName.text = this.fullName
+            labelInfo.text = this.reviewDescription
+        }
+    }
     
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelInfo: UILabel!

@@ -38,6 +38,7 @@
 		A034956B1EEC39B300FBD6C5 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A044DD981EFB521A0094CB99 /* BackgroundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044DD971EFB521A0094CB99 /* BackgroundInfo.swift */; };
 		A044DD9A1EFB5C7F0094CB99 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044DD991EFB5C7F0094CB99 /* DateFormatterExtension.swift */; };
+		A07803B61F2C09DE00BE0132 /* Reviewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07803B51F2C09DE00BE0132 /* Reviewable.swift */; };
 		A092E4911F1B102200468476 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092E4901F1B102200468476 /* UIViewControllerExtension.swift */; };
 		A09A46631EF05CA0008114F2 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46621EF05CA0008114F2 /* Case.swift */; };
 		A09A46661EF06DFE008114F2 /* LovedOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A46651EF06DFE008114F2 /* LovedOne.swift */; };
@@ -96,6 +97,7 @@
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
 		A044DD971EFB521A0094CB99 /* BackgroundInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfo.swift; sourceTree = "<group>"; };
 		A044DD991EFB5C7F0094CB99 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		A07803B51F2C09DE00BE0132 /* Reviewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reviewable.swift; sourceTree = "<group>"; };
 		A092E4901F1B102200468476 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A09A46621EF05CA0008114F2 /* Case.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
 		A09A46651EF06DFE008114F2 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				A0C5F59A1F00B4BC00FE12AC /* Location */,
 				A09A46621EF05CA0008114F2 /* Case.swift */,
 				A09A46651EF06DFE008114F2 /* LovedOne.swift */,
+				A07803B51F2C09DE00BE0132 /* Reviewable.swift */,
 			);
 			name = CaseInfo;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */,
 				23A105211DD42EE600276DDD /* BackgroundInfo2ViewController.swift in Sources */,
 				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
+				A07803B61F2C09DE00BE0132 /* Reviewable.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,
 				235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,

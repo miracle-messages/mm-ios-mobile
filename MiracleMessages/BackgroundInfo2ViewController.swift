@@ -70,6 +70,11 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         let isToBeHidden = mode == .update
         buttonClearViews.isHidden = isToBeHidden
         buttonAddAnotherRecipient.isHidden = isToBeHidden
+        
+        if mode == .update {
+            buttonClearViews.isHidden = true
+            buttonAddAnotherRecipient.isHidden = true
+        }
     }
 
     func displayInfo() -> Void {
@@ -126,6 +131,8 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
             field.text = "" }
         textViewRecipientOtherInfo.text = ""
         textFieldRecipientAge.text = ""
+        switchRecipientAgeIsApproximate.isOn = false
+        switchRecipientDobIsApproximate.isOn = false
     }
     
     func fieldsAreClear() -> Bool {
@@ -176,6 +183,8 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         currentLovedOne.firstName = textFieldRecipientFirstName.text
         currentLovedOne.middleName = textFieldRecipientMiddleName.text ?? ""
         currentLovedOne.lastName = textFieldRecipientLastName.text
+        
+        currentLovedOne.relationship = textFieldRecipientRelationship.text
         
         currentLovedOne.age = age
         currentLovedOne.isAgeApproximate = switchRecipientAgeIsApproximate.isOn

@@ -2042,7 +2042,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sh-bH-aTc" userLabel="Review">
-                                <rect key="frame" x="18" y="102" width="339" height="45"/>
+                                <rect key="frame" x="18" y="58" width="339" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="w79-6o-OZN"/>
                                 </constraints>
@@ -2051,7 +2051,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EtV-5W-DN8">
-                                <rect key="frame" x="18" y="147" width="339" height="20"/>
+                                <rect key="frame" x="18" y="103" width="339" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="nzo-TF-Ua6"/>
                                 </constraints>
@@ -2074,7 +2074,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PM3-gJ-sp4">
-                                <rect key="frame" x="0.0" y="175" width="375" height="867"/>
+                                <rect key="frame" x="0.0" y="131" width="375" height="911"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toCell" rowHeight="215" id="neJ-IB-4Mh" customClass="ReviewTableViewCell" customModule="MiracleMsg" customModuleProvider="target">
@@ -2129,6 +2129,7 @@
                                         <connections>
                                             <outlet property="labelInfo" destination="4fx-fN-uVN" id="0Lb-af-t0s"/>
                                             <outlet property="labelName" destination="wHx-d2-I6B" id="P64-CV-kIN"/>
+                                            <segue destination="q1g-V8-CMc" kind="presentation" id="ft1-JS-zIx"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fromCell" rowHeight="198" id="kIw-bl-hFS" customClass="ReviewTableViewCell" customModule="MiracleMsg" customModuleProvider="target">
@@ -2183,6 +2184,7 @@
                                         <connections>
                                             <outlet property="labelInfo" destination="327-ph-LUa" id="zsS-qR-wuP"/>
                                             <outlet property="labelName" destination="26U-eV-zhQ" id="8pu-LR-oTM"/>
+                                            <segue destination="AZw-3m-puP" kind="presentation" id="4ZH-yy-4PL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noneCell" rowHeight="62" id="nid-DA-zfB">
@@ -2720,7 +2722,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWw-pP-c7m" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWY-n4-2Ql">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IWY-n4-2Ql">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2738,7 +2740,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogM-Iq-pBO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFz-NS-V3N">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YFz-NS-V3N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2756,7 +2758,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwM-YW-5It" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LsH-oK-gA2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LsH-oK-gA2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2774,7 +2776,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKY-Sm-hXB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGE-YI-cuE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iGE-YI-cuE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2798,5 +2800,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1GO-dG-DW3"/>
+        <segue reference="ft1-JS-zIx"/>
+        <segue reference="4ZH-yy-4PL"/>
     </inferredMetricsTieBreakers>
 </document>

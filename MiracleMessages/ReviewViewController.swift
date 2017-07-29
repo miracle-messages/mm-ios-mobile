@@ -41,11 +41,11 @@ class ReviewViewController: UIViewController, CaseDelegate {
             let cameraController = segue.destination as? CameraViewController
             cameraController?.delegate = self
             //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-        } else {
-            let backgroundController = segue.destination as? BackgroundInfoViewController
-            backgroundController?.currentCase = Case.current
-            backgroundController?.mode = .update
-            backgroundController?.delegate = self
+        } else if let destination = segue.destination as? BackgroundInfo1ViewController {
+            destination.mode = .update
+        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
+            destination.mode = .update
+            destination.currentLovedOne = lovedOne
         }
     }
 
@@ -60,7 +60,6 @@ class ReviewViewController: UIViewController, CaseDelegate {
                 return true
             }
         } else {
-
             return true
         }
     }
@@ -107,8 +106,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
             
-            cell.labelName.text = "From: \(currentCase.fullName)"
-            cell.labelInfo.text = currentCase.reviewDescription
+            cell.reviewable = currentCase
             
             return cell
         case 1:
@@ -118,13 +116,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
             
-            let lovedOne = lovedOnes[indexPath.row]
-            
-            //  Name
-            cell.labelName.text = "To: \(lovedOne.fullName)"
-            
-            //  Information
-            cell.labelInfo.text = lovedOne.reviewDescription
+            cell.reviewable = lovedOnes[indexPath.row]
             
             return cell
         default: break
