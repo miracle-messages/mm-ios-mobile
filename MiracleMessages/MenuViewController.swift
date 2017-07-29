@@ -10,6 +10,7 @@ import UIKit
 import MessageUI
 import GoogleSignIn
 import FirebaseAuth
+import Crashlytics
 
 class MenuViewController: UIViewController {
 
@@ -74,7 +75,7 @@ class MenuViewController: UIViewController {
         do {
             try firebaseAuth?.signOut()
         } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            Logger.forceLog(signOutError)
         }
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
@@ -90,6 +91,9 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let error = error {
+            Logger.log(level: Level.error, error.localizedDescription)
+        }
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -1,33 +1,22 @@
 /*
- * Firebase iOS Client Library
+ * Copyright 2017 Google
  *
- * Copyright © 2013 Firebase - All Rights Reserved
- * https://www.firebase.com
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * 1. Redistributions of source code must retain the above copyright notice, this
- * list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binaryform must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY FIREBASE AS IS AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
- * EVENT SHALL FIREBASE BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 #import <Foundation/Foundation.h>
 #import "FIRDatabaseReference.h"
+#import "FIRDatabaseSwiftNameSupport.h"
 
 @class FIRApp;
 
@@ -38,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * [FIRDatabase database]. To access a location in the database and read or write data,
  * use [FIRDatabase reference].
  */
+FIR_SWIFT_NAME(Database)
 @interface FIRDatabase : NSObject
 
 /**
@@ -45,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return A FIRDatabase instance.
  */
-+ (FIRDatabase *) database NS_SWIFT_NAME(database());
++ (FIRDatabase *) database FIR_SWIFT_NAME(database());
 
 /**
  * Gets an instance of FIRDatabase for a specific FIRApp.
@@ -53,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param app The FIRApp to get a FIRDatabase for.
  * @return A FIRDatabase instance.
  */
-+ (FIRDatabase *) databaseForApp:(FIRApp*)app NS_SWIFT_NAME(database(app:));
++ (FIRDatabase *) databaseForApp:(FIRApp*)app FIR_SWIFT_NAME(database(app:));
 
 /** The FIRApp instance to which this FIRDatabase belongs. */
 @property (weak, readonly, nonatomic) FIRApp *app;
@@ -76,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  * within this Firebase Database.  To create a FIRDatabaseReference to a different database,
  * create a FIRApp} with a FIROptions object configured with the appropriate database URL.
  *
- * @param url A URL to a path within your database.
+ * @param databaseUrl A URL to a path within your database.
  * @return A FIRDatabaseReference for the provided URL.
 */
 - (FIRDatabaseReference *) referenceFromURL:(NSString *)databaseUrl;
@@ -115,7 +105,18 @@ NS_ASSUME_NONNULL_BEGIN
  * application.
  *
  */
-@property (nonatomic) BOOL persistenceEnabled;
+@property (nonatomic) BOOL persistenceEnabled FIR_SWIFT_NAME(isPersistenceEnabled);
+
+/**
+ * By default the Firebase Database client will use up to 10MB of disk space to cache data. If the cache grows beyond
+ * this size, the client will start removing data that hasn't been recently used. If you find that your application
+ * caches too little or too much data, call this method to change the cache size. This property must be set before
+ * creating your first FIRDatabaseReference and only needs to be called once per application.
+ *
+ * Note that the specified cache size is only an approximation and the size on disk may temporarily exceed it
+ * at times. Cache sizes smaller than 1 MB or greater than 100 MB are not supported.
+ */
+@property (nonatomic) NSUInteger persistenceCacheSizeBytes;
 
 /**
  * Sets the dispatch queue on which all events are raised. The default queue is the main queue.
@@ -126,6 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Enables verbose diagnostic logging.
+ *
  * @param enabled YES to enable logging, NO to disable.
  */
 + (void) setLoggingEnabled:(BOOL)enabled;

@@ -12,7 +12,6 @@ import GoogleSignIn
 
 class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
-    var ref: FIRDatabaseReference!
 //  var handle: FIRAuthStateDidChangeListenerHandle?
 
     @IBOutlet weak var signInButton: GIDSignInButton!
@@ -20,7 +19,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-        definesPresentationContext = true
+        //definesPresentationContext = true
 
     }
 
@@ -60,7 +59,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         if segue.identifier == "loginSummarySegue" {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
-            webVC.urlString = "https://my.miraclemessages.org"
+            webVC.urlString = "https://dev.miraclemessages.org"
         }
     }
 }

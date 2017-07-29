@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -12,11 +12,10 @@
 // express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
-
 #import "AWSInfo.h"
 #import "AWSCategory.h"
 #import "AWSCredentialsProvider.h"
-#import "AWSLogging.h"
+#import "AWSCocoaLumberjack.h"
 #import "AWSService.h"
 
 NSString *const AWSInfoDefault = @"Default";
@@ -111,7 +110,7 @@ static NSString *const AWSInfoIdentityManager = @"IdentityManager";
 
         if (!_cognitoCredentialsProvider) {
             if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
-                AWSLogDebug(@"Couldn't read credentials provider configurations from `Info.plist`. Please check your `Info.plist` if you are providing the SDK configuration values through `Info.plist`.");
+                AWSDDLogDebug(@"Couldn't read credentials provider configurations from `Info.plist`. Please check your `Info.plist` if you are providing the SDK configuration values through `Info.plist`.");
             }
             return nil;
         }
@@ -119,7 +118,7 @@ static NSString *const AWSInfoIdentityManager = @"IdentityManager";
         if (checkRegion
             && _region == AWSRegionUnknown) {
             if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
-                AWSLogDebug(@"Couldn't read the region configuration from Info.plist for the client. Please check your `Info.plist` if you are providing the SDK configuration values through `Info.plist`.");
+                AWSDDLogDebug(@"Couldn't read the region configuration from Info.plist for the client. Please check your `Info.plist` if you are providing the SDK configuration values through `Info.plist`.");
             }
             return nil;
         }

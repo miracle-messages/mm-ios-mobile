@@ -11,6 +11,10 @@ import AWSS3
 import FirebaseDatabase
 import Alamofire
 
+struct Keys {
+    static let caseID = "caseID"
+}
+
 class ConfirmViewController: UIViewController {
 
     var video: Video?
@@ -33,12 +37,13 @@ class ConfirmViewController: UIViewController {
     }
 
     func bgUploadToS3(video: Video) -> Void {
+        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
         let transferUtility = AWSS3TransferUtility.default()
         let transferExpression = AWSS3TransferUtilityUploadExpression()
 
         transferExpression.progressBlock = { (task, progress) in
             DispatchQueue.main.sync(execute: { () -> Void in
-                print("Progress \(progress.fractionCompleted)")
+                Logger.log("Progress \(progress.fractionCompleted)")
             })
         }
 
@@ -47,6 +52,7 @@ class ConfirmViewController: UIViewController {
         uploadCompletionHandlerBlock = { (task, error) in
             DispatchQueue.main.sync(execute: { () -> Void in
                 if error == nil {
+                    Logger.log("uploadCompletionHandler: Upload Success!")
                     let key = self.sendInfo()
 
                     let parameters = self.videoParameters(uniqId: key)
@@ -54,13 +60,14 @@ class ConfirmViewController: UIViewController {
                     Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
                         switch response.result {
                         case .success:
-                            print("Submitted")
+                            Logger.log("Successfully Submitted to Zapier!")
                         case .failure(let error):
-                            print(error)
+                            Logger.log(level: Level.error, "Failure submitting to Zapier!")
+                            Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
                         }
                     }
                 } else {
-                    print("Error here: \(error.debugDescription)")
+                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
                 }
             })
         }
@@ -70,11 +77,12 @@ class ConfirmViewController: UIViewController {
         uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
 
         transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
-            if task.error != nil {
-                print("Error: \(String(describing: task.error))")
+            if let error = task.error {
+                Logger.log(level: Level.error, "Failure uploading video!")
+                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
             } else {
                 DispatchQueue.main.async(execute: {
-                    print("something to do immediately afterwards. Not necessarily done")
+                    Logger.log("Something to do immediately afterwards. Not necessarily done")
                 })
             }
             return nil
@@ -104,7 +112,7 @@ class ConfirmViewController: UIViewController {
         currentCase.submitCase(to: ref)
         return currentCase.key ?? "No key returned"
     }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.submit()
