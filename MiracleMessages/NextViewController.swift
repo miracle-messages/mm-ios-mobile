@@ -15,7 +15,7 @@ class NextViewController: UIViewController {
     }
 
     @IBAction func didTapNextBtn(_ sender: Any) {
-        BackgroundInfo.reset()
+        Case.reset()
         let _ = self.navigationController?.popToRootViewController(animated: true)
     }
 

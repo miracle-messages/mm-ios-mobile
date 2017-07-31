@@ -71,9 +71,9 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func didTapLogoutBtn(_ sender: Any) {
-        let firebaseAuth = FIRAuth.auth()
+        let firebaseAuth = Auth.auth()
         do {
-            try firebaseAuth?.signOut()
+            try firebaseAuth.signOut()
         } catch let signOutError as NSError {
             Logger.forceLog(signOutError)
         }

@@ -10,30 +10,21 @@ import UIKit
 import FirebaseStorage
 import Firebase
 
-class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var clientNameLabel: UILabel!
-    @IBOutlet weak var clientDobLabel: UILabel!
-    @IBOutlet weak var clientLocationLabel: UILabel!
-    @IBOutlet weak var clientHometownLabel: UILabel!
-    @IBOutlet weak var yearsAwayLabel: UILabel!
-    @IBOutlet weak var clientContactLabel: UILabel!
-    @IBOutlet weak var clientOtherInfoLabel: UILabel!
-    @IBOutlet weak var clientPartnerOrgLabel: UILabel!
-
-    @IBOutlet weak var recipientNameLabel: UILabel!
-    @IBOutlet weak var recipientRelationshipLabel: UILabel!
-    @IBOutlet weak var recipientAgeLabel: UILabel!
-    @IBOutlet weak var recipientLocationLabel: UILabel!
-    @IBOutlet weak var recipientYearsDisconnectedLabel: UILabel!
-
-    @IBOutlet weak var recipientOtherInfoLabel: UILabel!
-
-    var clientInfo: BackgroundInfo?
+class ReviewViewController: UIViewController, CaseDelegate {
+    var currentCase: Case = Case.current
+    var lovedOnes: [LovedOne] = []
     
     let picker = UIImagePickerController()
-    let storage = FIRStorage.storage()
-    var ref: FIRDatabaseReference!
+    let storage = Storage.storage()
+    var ref: DatabaseReference!
     var caseID: String!
+
+    let dateFormatter: DateFormatter = {
+        let this = DateFormatter()
+        this.dateStyle = .long
+        this.timeStyle = .none
+        return this
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,65 +32,25 @@ class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clientInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-        displayInfo()
+        currentCase = Case.current
+        lovedOnes = Array(currentCase.lovedOnes)
     }
 
-    func displayInfo() -> Void {
-        guard let backgroundInfo = self.clientInfo else { return }
-        if let clientName = backgroundInfo.client_name {
-            clientNameLabel.text = "From: \(clientName)"
-        }
-        if let clientDob = backgroundInfo.client_dob {
-            clientDobLabel.text = "Date of birth: \(clientDob)"
-        }
-        if let clientCurrentCity = backgroundInfo.client_current_city {
-            clientLocationLabel.text = "Location: \(clientCurrentCity)"
-        }
-        if let clientHometown = backgroundInfo.client_hometown {
-            clientHometownLabel.text = "Hometown: \(clientHometown)"
-        }
-        if let clientYearsAway = backgroundInfo.client_years_homeless {
-            yearsAwayLabel.text = "Years away from home: \(clientYearsAway)"
-        }
-        if let clientContact = backgroundInfo.client_contact_info {
-            clientContactLabel.text = clientContact
-        }
-        if let clientOtherInfo = backgroundInfo.client_other_info {
-            clientOtherInfoLabel.text = "Other info: \(clientOtherInfo)"
-        }
-        if let clientPartnerOrg = backgroundInfo.client_partner_org {
-            clientPartnerOrgLabel.text = "Partner org: \(clientPartnerOrg)"
-        }
-        if let recipientName = backgroundInfo.recipient_name {
-            recipientNameLabel.text = "To: \(recipientName)"
-        }
-        if let recipientRelationship = backgroundInfo.recipient_relationship {
-            recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
-        }
-        if let recipientAge = backgroundInfo.recipient_dob {
-            recipientAgeLabel.text = "DOB: \(recipientAge)"
-        }
-        if let recipientLocation = backgroundInfo.recipient_last_location {
-            recipientLocationLabel.text = "Location: \(recipientLocation)"
-        }
-        if let recipientYearsDisconnected = backgroundInfo.recipient_years_since_last_seen {
-            recipientYearsDisconnectedLabel.text = "Years disconnected: \(recipientYearsDisconnected)"
-        }
-        if let recipientOtherInfo = backgroundInfo.recipient_other_info {
-            recipientOtherInfoLabel.text = recipientOtherInfo
-        }
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "photoReferenceViewController" {
-            let backgroundController = segue.destination as? BackgroundInfoViewController
-            backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-            backgroundController?.mode = .update
-            backgroundController?.delegate = self
+        if let cameraController = segue.destination as? CameraViewController {
+            cameraController.delegate = self
+        } else if let destination = segue.destination as? BackgroundInfo1ViewController {
+            destination.mode = .update
+        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
+            destination.mode = .update
+            destination.currentLovedOne = lovedOne
         }
     }
 
@@ -117,18 +68,18 @@ class ReviewViewController: UIViewController, UIImagePickerControllerDelegate, U
             return true
         }
     }
-    
+
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-    
+
     @IBAction func didTapRecordBtn(_ sender: Any) {
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         caseID = ref.child("clients").childByAutoId().key
         UserDefaults.standard.set(caseID, forKey: Keys.caseID)
-        picker.delegate = self
+        picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         picker.allowsEditing = false
         picker.sourceType = UIImagePickerControllerSourceType.camera
         picker.cameraCaptureMode = .photo
@@ -143,9 +94,9 @@ extension ReviewViewController {
         let storageRef = storage.reference()
         let photoPathRef = storageRef.child("casePictures/\(caseID!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
+
         if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
-            let _ = photoPathRef.put(data, metadata: nil) { (metadata, error) in
+            let _ = photoPathRef.putData(data, metadata: nil) { (metadata, error) in
                 if let error = error {
                     Logger.log("Error saving photo reference \(error.localizedDescription)")
                     return
@@ -156,16 +107,16 @@ extension ReviewViewController {
             self.performSegue(withIdentifier: "cameraController", sender: self)
         })
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-}
-
-extension ReviewViewController: BackgroundInfoDelegate {
+    
     func didFinishUpdating() {
-        self.clientInfo?.save()
-        displayInfo()
+        //  TODO: Check if these are really needed
+
+        //self.theCase?.save()
+        //displayInfo()
     }
 }
 
@@ -181,5 +132,54 @@ extension ReviewViewController: CameraViewControllerDelegate {
                 navController.popToViewController(aviewcontroller, animated: true)
             }
         }
+    }
+}
+
+extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2    //  One for Sender, one for Recipients
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return currentCase.lovedOnes.isEmpty ? 1 : currentCase.lovedOnes.count
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
+
+            cell.reviewable = currentCase
+
+            return cell
+        case 1:
+            guard currentCase.lovedOnes.count > 0 else {
+                return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
+            }
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
+
+            cell.reviewable = lovedOnes[indexPath.row]
+
+            return cell
+        default: break
+        }
+
+        return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }

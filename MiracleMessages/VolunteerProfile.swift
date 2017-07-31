@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 struct VolunteerProfile {
-    static var ref: FIRDatabaseReference!
+    static var ref: DatabaseReference!
     var name: String?
     var email: String?
     var phone: String?
@@ -39,8 +39,8 @@ struct VolunteerProfile {
     }
     
     static func googleProfileCreated(with block: @escaping (Bool) -> Swift.Void) {
-        guard let user = FIRAuth.auth()?.currentUser else {return}
-        ref = FIRDatabase.database().reference()
+        guard let user = Auth.auth().currentUser else {return}
+        ref = Database.database().reference()
         ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             Logger.log("User dictionary \(String(describing: value))")

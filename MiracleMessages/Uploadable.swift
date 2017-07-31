@@ -50,6 +50,6 @@ extension Uploadable {
         
         uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
         let randomHex = generateHex()
-        return transferUtility.uploadFile(url, bucket: bucketName, key: "\(randomHex)\(name)", contentType: contentType, expression: uploadExpression, completionHander: completionBlock) 
+        return transferUtility.uploadFile(url, bucket: bucketName, key: "\(randomHex)\(name)", contentType: contentType, expression: uploadExpression, completionHandler: completionBlock) 
     }
 }
