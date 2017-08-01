@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231CB4DA1F2F2907009D2767 /* MyMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231CB4D91F2F2907009D2767 /* MyMessagesViewController.swift */; };
+		231CB4DC1F2F2E43009D2767 /* CaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231CB4DB1F2F2E43009D2767 /* CaseTableViewCell.swift */; };
+		231CB4DE1F2F3798009D2767 /* CaseSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231CB4DD1F2F3798009D2767 /* CaseSummary.swift */; };
 		232154571E5B76AE004EE344 /* MiracleMsgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232154561E5B76AE004EE344 /* MiracleMsgUITests.swift */; };
 		2321545F1E5B86F3004EE344 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321545E1E5B86F3004EE344 /* SnapshotHelper.swift */; };
 		2321551D1D9CD5F5008F2B2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2321551C1D9CD5F5008F2B2E /* MobileCoreServices.framework */; };
 		233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E410C1DA0311D001E9B3F /* CameraViewController.swift */; };
 		235407AC1E85496900FB091E /* GoogleService-Info_prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235407AB1E85496900FB091E /* GoogleService-Info_prod.plist */; };
 		235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235407AE1E855F6200FB091E /* NotificationExtension.swift */; };
+		2369668E1F2F0BCA000D559C /* CaseSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2369668D1F2F0BCA000D559C /* CaseSubject.swift */; };
 		239007A01E4D662F00A4C1DB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2390079F1E4D662F00A4C1DB /* Video.swift */; };
 		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
 		239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */; };
@@ -66,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiracleMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		231CB4D91F2F2907009D2767 /* MyMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesViewController.swift; sourceTree = "<group>"; };
+		231CB4DB1F2F2E43009D2767 /* CaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseTableViewCell.swift; sourceTree = "<group>"; };
+		231CB4DD1F2F3798009D2767 /* CaseSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseSummary.swift; sourceTree = "<group>"; };
 		232154541E5B76AE004EE344 /* MiracleMsgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiracleMsgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		232154561E5B76AE004EE344 /* MiracleMsgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiracleMsgUITests.swift; sourceTree = "<group>"; };
 		232154581E5B76AE004EE344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +81,7 @@
 		233E410C1DA0311D001E9B3F /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		235407AB1E85496900FB091E /* GoogleService-Info_prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_prod.plist"; sourceTree = "<group>"; };
 		235407AE1E855F6200FB091E /* NotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		2369668D1F2F0BCA000D559C /* CaseSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseSubject.swift; sourceTree = "<group>"; };
 		2390079F1E4D662F00A4C1DB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
 				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
 				EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */,
+				231CB4D91F2F2907009D2767 /* MyMessagesViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -196,11 +205,13 @@
 		2390079C1E4D653200A4C1DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2369668D1F2F0BCA000D559C /* CaseSubject.swift */,
 				A07773991F2CF99500AD52C0 /* CaseInfo */,
 				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
 				2390079F1E4D662F00A4C1DB /* Video.swift */,
 				EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */,
 				A0530E071F2CFA5600D3DED6 /* Source.swift */,
+				231CB4DD1F2F3798009D2767 /* CaseSummary.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -212,6 +223,7 @@
 				239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */,
 				EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */,
 				EE48909B1F135BA300E7D84E /* OvalView.swift */,
+				231CB4DB1F2F2E43009D2767 /* CaseTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -351,7 +363,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Win Inc.";
 				TargetAttributes = {
 					232154531E5B76AE004EE344 = {
@@ -456,7 +468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D6F1B67F9744C89F7A3E83AA /* [CP] Embed Pods Frameworks */ = {
@@ -507,6 +519,7 @@
 				EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */,
 				EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */,
 				A07773961F2CF97700AD52C0 /* DateFormatterExtension.swift in Sources */,
+				2369668E1F2F0BCA000D559C /* CaseSubject.swift in Sources */,
 				A0530E081F2CFA5600D3DED6 /* Source.swift in Sources */,
 				23D040161E4BE3260000D4A2 /* WebViewController.swift in Sources */,
 				EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */,
@@ -529,6 +542,7 @@
 				239C0C0D1E2C7C7B00E0DE36 /* ProfileViewController.swift in Sources */,
 				EE0FA48C1F0082F500B3A0D8 /* Uploadable.swift in Sources */,
 				23E709791E26DA1400E20582 /* GuideViewController.swift in Sources */,
+				231CB4DA1F2F2907009D2767 /* MyMessagesViewController.swift in Sources */,
 				235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
@@ -539,6 +553,8 @@
 				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,
 				239007A01E4D662F00A4C1DB /* Video.swift in Sources */,
 				A07773A01F2CF9B700AD52C0 /* Country.swift in Sources */,
+				231CB4DC1F2F2E43009D2767 /* CaseTableViewCell.swift in Sources */,
+				231CB4DE1F2F3798009D2767 /* CaseSummary.swift in Sources */,
 				233E410D1DA0311D001E9B3F /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,7 +717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
@@ -721,7 +737,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

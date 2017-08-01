@@ -79,7 +79,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
         ref = Database.database().reference()
         caseID = ref.child("clients").childByAutoId().key
         UserDefaults.standard.set(caseID, forKey: Keys.caseID)
-        picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        picker.delegate = self
         picker.allowsEditing = false
         picker.sourceType = UIImagePickerControllerSourceType.camera
         picker.cameraCaptureMode = .photo
@@ -88,7 +88,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
     }
 }
 
-extension ReviewViewController {
+extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //Send image to firebase
         let storageRef = storage.reference()
