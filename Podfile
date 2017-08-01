@@ -15,6 +15,7 @@ target 'MiracleMessages' do
     pod 'GoogleSignIn'
     pod 'Fabric', :inhibit_warnings => true
     pod 'Crashlytics'
+    pod 'Nuke', '~> 5.0'
 end
 
 post_install do |installer|

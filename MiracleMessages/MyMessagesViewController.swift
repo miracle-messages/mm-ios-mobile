@@ -17,15 +17,14 @@ class MyMessagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 75
+        tableView.rowHeight = 90
         ref = Database.database().reference()
         updateCases()
     }
 
     func updateCases()  {
-        let userID = Auth.auth().currentUser?.uid
-        // 6zZOhaFWHqOBb1X4FlHQtKgdUGn2
-        ref.child("users").child("6zZOhaFWHqOBb1X4FlHQtKgdUGn2").observeSingleEvent(of: .value, with: {[weak self] (snapshot) in
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        ref.child("users").child(userID).observeSingleEvent(of: .value, with: {[weak self] (snapshot) in
             // Get user value
             guard let value = snapshot.value as? NSDictionary else {return}
             print("Cases \(value)")
@@ -33,8 +32,12 @@ class MyMessagesViewController: UIViewController {
             print("Cases are \(cases)")
             guard let _self = self else {return}
             for (key, element) in cases {
-                print("element: \(element)")
-                let caseSummary = CaseSummary(name: "test", imageUrl: "url", key: "-Kq-3zo572fvvptiFM6l")
+                let dict = element as! [String:Any]
+                print("element: \(dict)")
+                let photoUrl = dict["photo"] as! String
+                let firstName = dict["firstName"] as! String
+                let lastName = dict["lastName"] as! String
+                let caseSummary = CaseSummary(name: "\(firstName) \(lastName)", imageUrl: photoUrl, key: key)
                 _self.cases.append(caseSummary)
                 _self.tableView.reloadData()
             }

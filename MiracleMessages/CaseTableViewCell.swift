@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class CaseTableViewCell: UITableViewCell {
 
@@ -14,9 +15,9 @@ class CaseTableViewCell: UITableViewCell {
     @IBOutlet weak var clientName: UILabel!
     @IBOutlet weak var caseImageView: UIImageView!
 
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,8 +29,9 @@ class CaseTableViewCell: UITableViewCell {
     func configure(with aCase: CaseSummary)  {
         let name = aCase.name
         clientName.text = "\(name)"
-
-
+        let url = URL(string: aCase.imageUrl)
+        Nuke.loadImage(with: url!, into: caseImageView)
+        caseImageView.layer.cornerRadius = caseImageView.frame.size.height/2
     }
 
 }
