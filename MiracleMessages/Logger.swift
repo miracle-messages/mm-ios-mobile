@@ -57,7 +57,7 @@ struct Logger {
             // Only logs on crashlytics and not on console to improve performance. Use CLSNSLogv if you want both.
             CLSLogv("\(level.toString()) |" +
                 "\((fileName as NSString).lastPathComponent)(\(line))-\(methodName) | " +
-                "\(encodeLog(message))")
+                "\(encodeLog(message))", getVaList([]))
         #endif
     }
     

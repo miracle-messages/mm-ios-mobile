@@ -1,25 +1,25 @@
 PODS:
   - Alamofire (4.5.0)
-  - AWSCore (2.5.9)
-  - AWSS3 (2.5.9):
-    - AWSCore (= 2.5.9)
-  - Crashlytics (3.8.5):
+  - AWSCore (2.5.8)
+  - AWSS3 (2.5.8):
+    - AWSCore (= 2.5.8)
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - DatePickerDialog (1.1.7)
-  - Fabric (1.6.12)
-  - Firebase/Auth (4.0.4):
+  - Fabric (1.6.11)
+  - Firebase/Auth (4.0.2):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
-  - Firebase/Core (4.0.4):
-    - FirebaseAnalytics (= 4.0.2)
-    - FirebaseCore (= 4.0.4)
-  - Firebase/Database (4.0.4):
+  - Firebase/Core (4.0.2):
+    - FirebaseAnalytics (= 4.0.1)
+    - FirebaseCore (= 4.0.2)
+  - Firebase/Database (4.0.2):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
-  - Firebase/Storage (4.0.4):
+  - Firebase/Storage (4.0.2):
     - Firebase/Core
     - FirebaseStorage (= 2.0.0)
-  - FirebaseAnalytics (4.0.2):
+  - FirebaseAnalytics (4.0.1):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
@@ -27,9 +27,8 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.4):
+  - FirebaseCore (4.0.2):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
   - FirebaseDatabase (4.0.0):
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
@@ -55,19 +54,14 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMOAuth2 (1.1.4):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.11):
-    - GTMSessionFetcher/Full (= 1.1.11)
-  - GTMSessionFetcher/Core (1.1.11)
-  - GTMSessionFetcher/Full (1.1.11):
-    - GTMSessionFetcher/Core (= 1.1.11)
+  - GTMSessionFetcher (1.1.10):
+    - GTMSessionFetcher/Full (= 1.1.10)
+  - GTMSessionFetcher/Core (1.1.10)
+  - GTMSessionFetcher/Full (1.1.10):
+    - GTMSessionFetcher/Core (= 1.1.10)
   - HockeySDK (4.1.6):
     - HockeySDK/DefaultLib (= 4.1.6)
   - HockeySDK/DefaultLib (4.1.6)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
   - Nuke (5.1.1)
   - SCLAlertView (0.7.0)
   - SnapKit (3.2.0)
@@ -90,28 +84,27 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AWSCore: c71840dd51f271dc0af8de8fd6f352767ebde8b4
-  AWSS3: c36b91edb50ccd676be4a92836bb72f0c2ac312b
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  AWSCore: cf101c44d2cc5da32abc27d5529cddc63c010415
+  AWSS3: addf558f9cf2368e7fb520440867fea5596db0fb
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DatePickerDialog: bd5e7e92e4da2c6a8966b28d5f5d8f335d6c2c63
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
-  Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
-  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
+  FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
-  FirebaseCore: cfc042628ef9f20debe09c0eb683135fcd404cb4
+  FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
-  GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
 PODFILE CHECKSUM: f4939633004e86a6b47f56a0b99bbf5de99aea32
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
