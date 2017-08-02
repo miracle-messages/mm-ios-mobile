@@ -9,11 +9,11 @@
 import UIKit
 import FirebaseStorage
 import Firebase
+import SnapKit
 
 class ReviewViewController: UIViewController, CaseDelegate {
     var currentCase: Case = Case.current
     var lovedOnes: [LovedOne] = []
-    
     let picker = UIImagePickerController()
     let storage = Storage.storage()
     var ref: DatabaseReference!
@@ -57,9 +57,7 @@ class ReviewViewController: UIViewController, CaseDelegate {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "camerController"  {
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
-                let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                showCameraError()
                 return false
             } else {
                 return true
@@ -76,16 +74,46 @@ class ReviewViewController: UIViewController, CaseDelegate {
     }
 
     @IBAction func didTapRecordBtn(_ sender: Any) {
-        ref = Database.database().reference()
-        caseID = ref.child("clients").childByAutoId().key
-        UserDefaults.standard.set(caseID, forKey: Keys.caseID)
-        picker.delegate = self
-        picker.allowsEditing = false
-        picker.sourceType = UIImagePickerControllerSourceType.camera
-        picker.cameraCaptureMode = .photo
-        picker.modalPresentationStyle = .fullScreen
-        present(picker,animated: false,completion: nil)
+        if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+            ref = Database.database().reference()
+            caseID = ref.child("clients").childByAutoId().key
+            UserDefaults.standard.set(caseID, forKey: Keys.caseID)
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+            picker.cameraCaptureMode = .photo
+            picker.modalPresentationStyle = .fullScreen
+            let overlayView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+            overlayView.backgroundColor = UIColor.clear
+            overlayView.isUserInteractionEnabled = false
+            let overlayLabel = UILabel(frame: CGRect.zero)
+            overlayLabel.numberOfLines = 0
+            overlayLabel.font = UIFont.init(name: "Arial", size: 20)
+            overlayLabel.textColor = UIColor.white
+            overlayLabel.textAlignment = .center
+            overlayLabel.text = "Take a photo of the individual for reference. Find a well-lit area and frame the face in the middle of the screen."
+            overlayView.addSubview(overlayLabel)
+            overlayLabel.snp.makeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-135)
+                make.left.equalToSuperview().offset(16)
+                make.right.equalToSuperview().offset(-16)
+            })
+            picker.cameraOverlayView = overlayView
+
+            present(picker,animated: false,completion: nil)
+        } else {
+            showCameraError()
+        }
     }
+}
+
+private extension ReviewViewController {
+    func showCameraError() {
+        let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -68,6 +73,16 @@
 			<true/>
 		</dict>
 		<key>184A1650DC0B648BD756068E60BF2C59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>22CB969603841087C36C5568D7C2670F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3894BD15BE2E3C341BA681FDB3F273E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E7D2C063337D2DF6B2AC1C1330F5BC72</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EB9AD825427F216B54E693242E671FA1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC925E3B54973F0F31F7DEAD4741187B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FD5B09A0E72528419EC792E86C560397</key>
 		<dict>
 			<key>primary</key>
 			<true/>

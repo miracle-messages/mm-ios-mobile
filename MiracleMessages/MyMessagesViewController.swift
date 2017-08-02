@@ -23,9 +23,8 @@ class MyMessagesViewController: UIViewController {
     }
 
     func updateCases()  {
-        let userID = Auth.auth().currentUser?.uid
-        // 6zZOhaFWHqOBb1X4FlHQtKgdUGn2
-        ref.child("users").child("6zZOhaFWHqOBb1X4FlHQtKgdUGn2").observeSingleEvent(of: .value, with: {[weak self] (snapshot) in
+        let userID = Auth.auth().currentUser?.uid // 6zZOhaFWHqOBb1X4FlHQtKgdUGn2
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: {[weak self] (snapshot) in
             // Get user value
             guard let value = snapshot.value as? NSDictionary else {return}
             print("Cases \(value)")
@@ -34,7 +33,7 @@ class MyMessagesViewController: UIViewController {
             guard let _self = self else {return}
             for (key, element) in cases {
                 print("element: \(element)")
-                let caseSummary = CaseSummary(name: "test", imageUrl: "url", key: "-Kq-3zo572fvvptiFM6l")
+                let caseSummary = CaseSummary(name: "test", imageUrl: "url", key: key)
                 _self.cases.append(caseSummary)
                 _self.tableView.reloadData()
             }

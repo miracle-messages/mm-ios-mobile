@@ -69,6 +69,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - SCLAlertView (0.7.0)
+  - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - HockeySDK (~> 4.1.2)
   - SCLAlertView
+  - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -105,7 +107,8 @@ SPEC CHECKSUMS:
   HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: c2028848a6c80de2bb0a1855e7a02169f126b8bf
+PODFILE CHECKSUM: 51aadb24e2b0f5725cda1e405bd917ee3fd6b04b
 
 COCOAPODS: 1.1.1

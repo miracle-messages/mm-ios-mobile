@@ -17,11 +17,6 @@ class ConsentViewController: UIViewController {
         signatureView.layer.borderWidth = 1
         signatureView.layer.borderColor = UIColor.lightGray.cgColor
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func didTapClearBtn(_ sender: Any) {
         signatureView.clear()

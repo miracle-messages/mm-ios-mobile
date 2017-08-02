@@ -79,7 +79,7 @@ class MenuViewController: UIViewController {
         }
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 
     func createWebViewController(withUrl: String) -> WebViewController {

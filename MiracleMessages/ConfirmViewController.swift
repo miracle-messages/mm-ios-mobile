@@ -35,80 +35,75 @@ class ConfirmViewController: UIViewController {
     }
 
     func bgUploadToS3(video: Video) -> Void {
-//        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
-//        let transferUtility = AWSS3TransferUtility.default()
-//        let transferExpression = AWSS3TransferUtilityUploadExpression()
-//
-//        transferExpression.progressBlock = { (task, progress) in
-//            DispatchQueue.main.sync(execute: { () -> Void in
-//                Logger.log("Progress \(progress.fractionCompleted)")
-//            })
-//        }
-//
-//        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-//
-//        uploadCompletionHandlerBlock = { (task, error) in
-//            DispatchQueue.main.sync(execute: { () -> Void in
-//                if error == nil {
-//                    Logger.log("uploadCompletionHandler: Upload Success!")
-//                    let key = self.sendInfo()
-//
-//                    let parameters = self.videoParameters(uniqId: key)
-//
-//                    Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
-//                        switch response.result {
-//                        case .success:
-//                            Logger.log("Successfully Submitted to Zapier!")
-//                        case .failure(let error):
-//                            Logger.log(level: Level.error, "Failure submitting to Zapier!")
-//                            Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
-//                        }
-//                    }
-//                } else {
-//                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
-//                }
-//            })
-//        }
-//
-//        let uploadExpression = AWSS3TransferUtilityUploadExpression()
-//
-//        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
-//
-//        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
-//            if let error = task.error {
-//                Logger.log(level: Level.error, "Failure uploading video!")
-//                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
-//            } else {
-//                DispatchQueue.main.async(execute: {
-//                    Logger.log("Something to do immediately afterwards. Not necessarily done")
-//                })
-//            }
-//            return nil
-//        })
+        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
+        let transferUtility = AWSS3TransferUtility.default()
+        let transferExpression = AWSS3TransferUtilityUploadExpression()
 
-        let key = self.sendInfo()
+        transferExpression.progressBlock = { (task, progress) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                Logger.log("Progress \(progress.fractionCompleted)")
+            })
+        }
 
-        let storageRef = storage.reference()
-        let photoPathRef = storageRef.child("caseVideos/\(key)/\(video.name)")
+        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
 
-        do {
-            let data = try Data.init(contentsOf: video.url)
-            let _ = photoPathRef.putData(data, metadata: nil, completion: { (metadata, error) in
-                if let error = error {
-                    Logger.log("Error saving photo reference \(error.localizedDescription)")
-                    return
+        uploadCompletionHandlerBlock = { (task, error) in
+            DispatchQueue.main.sync(execute: { () -> Void in
+                if error == nil {
+                    Logger.log("uploadCompletionHandler: Upload Success!")
+                    let key = self.sendInfo()
+
+                    let parameters = self.videoParameters(uniqId: key)
+
+                    Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
+                        switch response.result {
+                        case .success:
+                            Logger.log("Successfully Submitted to Zapier!")
+                        case .failure(let error):
+                            Logger.log(level: Level.error, "Failure submitting to Zapier!")
+                            Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
+                        }
+                    }
+                } else {
+                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
                 }
             })
-//                let _ = photoPathRef.putData(data, metadata: nil) { (metadata, error) in
-//                    if let error = error {
-//                        Logger.log("Error saving photo reference \(error.localizedDescription)")
-//                        return
-//                    }
-//                }
-
-        } catch {
-            print("Error")
         }
+
+        let uploadExpression = AWSS3TransferUtilityUploadExpression()
+
+        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
+
+        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
+            if let error = task.error {
+                Logger.log(level: Level.error, "Failure uploading video!")
+                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
+            } else {
+                DispatchQueue.main.async(execute: {
+                    Logger.log("Something to do immediately afterwards. Not necessarily done")
+                })
+            }
+            return nil
+        })
+
+        //UNCOMMENT this code to play with Firebase storage
+//        let key = self.sendInfo()
+//
+//        let storageRef = storage.reference()
+//        let photoPathRef = storageRef.child("caseVideos/\(key)/\(video.name)")
+//
+//        do {
+//            let data = try Data.init(contentsOf: video.url)
+//            let _ = photoPathRef.putData(data, metadata: nil, completion: { (metadata, error) in
+//                if let error = error {
+//                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+//                    return
+//                }
+//            })
+//
+//        } catch {
+//            print("Error")
+//        }
 
     }
 

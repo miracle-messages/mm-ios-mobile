@@ -9,12 +9,18 @@
 import UIKit
 import Crashlytics
 
+protocol WebViewControllerDelegate: class {
+    func didTapCloseBtn(viewController: WebViewController)
+}
+
 class WebViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var closeBtn: UIButton!
 
     var urlString: String?
+
+    weak var delegate: WebViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +43,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     func didTapBackBtn() {
         self.dismiss(animated: true, completion: nil)
+        self.delegate?.didTapCloseBtn(viewController: self)
     }
     
     @IBAction func didTapCloseBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        self.delegate?.didTapCloseBtn(viewController: self)
     }
 }

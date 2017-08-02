@@ -12,7 +12,7 @@ import GoogleSignIn
 
 class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
-//  var handle: FIRAuthStateDidChangeListenerHandle?
+  var handle: AuthStateDidChangeListenerHandle?
 
     @IBOutlet weak var signInButton: GIDSignInButton!
 
@@ -20,29 +20,13 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
         //definesPresentationContext = true
-
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        VolunteerProfile.googleProfileCreated(with: {completed in
-            if !completed {
-                self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
+        handle = Auth.auth().addStateDidChangeListener() {[unowned self] (auth, user) in
+            if auth.currentUser == nil {
+                self.dismiss(animated: false, completion: nil)
             } else {
-                let startController = self.storyboard!.instantiateViewController(withIdentifier: "startViewController")
-                let nav = UINavigationController(rootViewController: startController)
-                nav.modalPresentationStyle = .overCurrentContext
-                self.present(nav, animated: false, completion: nil)
+                self.verifyProfile()
             }
-        })
-        
-
-//        handle = FIRAuth.auth()?.addStateDidChangeListener() {[unowned self] (auth, user) in
-//            if auth.currentUser != nil {
-//                self.performSegue(withIdentifier: "loginSummarySegue", sender: self)
-//            }
-//        }
+        }
     }
 
     open override var shouldAutorotate: Bool {
@@ -56,9 +40,10 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSummarySegue" {
+        if segue.identifier == "createProfile" {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
+            webVC.delegate = self
             webVC.urlString = "https://dev.miraclemessages.org"
         }
     }
@@ -73,3 +58,24 @@ extension UINavigationBar {
     }
 }
 
+private extension ViewController {
+    func verifyProfile() {
+        VolunteerProfile.googleProfileCreated(with: {completed in
+            if !completed {
+                self.performSegue(withIdentifier: "createProfile", sender: self)
+            } else {
+                let startController = self.storyboard!.instantiateViewController(withIdentifier: "startViewController")
+                let nav = UINavigationController(rootViewController: startController)
+                nav.modalPresentationStyle = .overCurrentContext
+                self.present(nav, animated: true, completion: nil)
+            }
+        })
+    }
+}
+
+extension ViewController: WebViewControllerDelegate {
+    func didTapCloseBtn(viewController: WebViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+        verifyProfile()
+    }
+}
