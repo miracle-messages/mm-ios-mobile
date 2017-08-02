@@ -17,7 +17,7 @@ class MyMessagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 75
+        tableView.rowHeight = 90
         ref = Database.database().reference()
         updateCases()
     }
@@ -32,8 +32,12 @@ class MyMessagesViewController: UIViewController {
             print("Cases are \(cases)")
             guard let _self = self else {return}
             for (key, element) in cases {
-                print("element: \(element)")
-                let caseSummary = CaseSummary(name: "test", imageUrl: "url", key: key)
+                let dict = element as! [String:Any]
+                print("element: \(dict)")
+                let photoUrl = dict["photo"] as! String
+                let firstName = dict["firstName"] as! String
+                let lastName = dict["lastName"] as! String
+                let caseSummary = CaseSummary(name: "\(firstName) \(lastName)", imageUrl: photoUrl, key: key)
                 _self.cases.append(caseSummary)
                 _self.tableView.reloadData()
             }

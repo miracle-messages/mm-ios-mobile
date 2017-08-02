@@ -717,7 +717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				DEVELOPMENT_TEAM = 7DEUTGD6YA;
@@ -737,7 +737,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

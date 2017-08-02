@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2091,56 +2091,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PX-iv-xP0">
-                                <rect key="frame" x="16" y="40" width="343" height="41"/>
+                                <rect key="frame" x="16" y="40" width="343" height="50"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="8xW-iC-5Ui"/>
-                                    <constraint firstAttribute="height" constant="41" id="fAR-oI-wlB"/>
+                                    <constraint firstAttribute="height" constant="50" id="fAR-oI-wlB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="39"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9PQ-B5-cnA">
-                                <rect key="frame" x="0.0" y="81" width="375" height="586"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CaseTableViewCell" rowHeight="61" id="SjK-dl-qWS" customClass="CaseTableViewCell" customModule="MiracleMsg" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="61"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CaseTableViewCell" rowHeight="90" id="SjK-dl-qWS" customClass="CaseTableViewCell" customModule="MiracleMsg" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SjK-dl-qWS" id="QfW-mo-AGE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnu-q0-0nQ" userLabel="clientName">
-                                                    <rect key="frame" x="16" y="8" width="55" height="23.5"/>
-                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnu-q0-0nQ" userLabel="clientName">
+                                                    <rect key="frame" x="16" y="25" width="93.5" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yax-bn-dNA" userLabel="caseRecordDate">
-                                                    <rect key="frame" x="19" y="31" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recorded: Feb 1, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yax-bn-dNA" userLabel="caseRecordDate">
+                                                    <rect key="frame" x="16" y="53.5" width="153.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-xK-OgE">
-                                                    <rect key="frame" x="297" y="0.0" width="70" height="61"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-xK-OgE">
+                                                    <rect key="frame" x="297" y="9.5" width="70" height="70.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="1nO-PQ-6sh"/>
                                                         <constraint firstAttribute="width" constant="70" id="nbc-fc-fBc"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="xnu-q0-0nQ" firstAttribute="leading" secondItem="QfW-mo-AGE" secondAttribute="leading" constant="16" id="5hh-xO-bph"/>
-                                                <constraint firstItem="yax-bn-dNA" firstAttribute="top" secondItem="xnu-q0-0nQ" secondAttribute="bottom" constant="4" id="FlJ-cl-gGU"/>
-                                                <constraint firstItem="8Rz-xK-OgE" firstAttribute="top" secondItem="QfW-mo-AGE" secondAttribute="top" id="Jfb-AS-gH9"/>
+                                                <constraint firstItem="yax-bn-dNA" firstAttribute="top" secondItem="xnu-q0-0nQ" secondAttribute="bottom" constant="5" id="FlJ-cl-gGU"/>
                                                 <constraint firstAttribute="trailing" secondItem="8Rz-xK-OgE" secondAttribute="trailing" constant="8" id="edw-TZ-Nih"/>
-                                                <constraint firstAttribute="bottom" secondItem="8Rz-xK-OgE" secondAttribute="bottom" id="oGM-iq-1Ty"/>
-                                                <constraint firstItem="xnu-q0-0nQ" firstAttribute="top" secondItem="QfW-mo-AGE" secondAttribute="top" constant="8" id="tPf-mi-lmT"/>
+                                                <constraint firstItem="xnu-q0-0nQ" firstAttribute="top" secondItem="QfW-mo-AGE" secondAttribute="top" constant="25" id="tPf-mi-lmT"/>
                                                 <constraint firstItem="yax-bn-dNA" firstAttribute="leading" secondItem="xnu-q0-0nQ" secondAttribute="leading" id="u3e-ua-Zgt"/>
+                                                <constraint firstItem="8Rz-xK-OgE" firstAttribute="centerY" secondItem="QfW-mo-AGE" secondAttribute="centerY" id="u6d-if-RqV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2158,7 +2158,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9PQ-B5-cnA" firstAttribute="top" secondItem="1PX-iv-xP0" secondAttribute="bottom" id="1c4-4v-XOa"/>
+                            <constraint firstItem="9PQ-B5-cnA" firstAttribute="top" secondItem="1PX-iv-xP0" secondAttribute="bottom" constant="30" id="1c4-4v-XOa"/>
                             <constraint firstItem="1PX-iv-xP0" firstAttribute="leading" secondItem="9T2-Z4-Eap" secondAttribute="leading" constant="16" id="5NM-OF-142"/>
                             <constraint firstItem="FUa-Ak-IfK" firstAttribute="top" secondItem="9PQ-B5-cnA" secondAttribute="bottom" id="J0a-Su-BIn"/>
                             <constraint firstItem="1PX-iv-xP0" firstAttribute="top" secondItem="yzF-98-bCQ" secondAttribute="bottom" constant="20" id="Qfq-FA-Gb6"/>

@@ -20,11 +20,12 @@ class ConfirmViewController: UIViewController {
     var video: Video?
     var ref: DatabaseReference!
     let currentCase: Case = Case.current
-    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/hshdv5/"
+    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/1gtb1k/"
     let storage = Storage.storage()
 
     //"https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
     //https://hooks.zapier.com/hooks/catch/1838547/hshdv5/
+    //https://hooks.zapier.com/hooks/catch/1838547/1gtb1k/
 
     override func viewDidLoad() {
         super.viewDidLoad()

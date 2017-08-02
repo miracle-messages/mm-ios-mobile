@@ -68,6 +68,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Nuke (5.1.1)
   - SCLAlertView (0.7.0)
   - SnapKit (3.2.0)
 
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleSignIn
   - HockeySDK (~> 4.1.2)
+  - Nuke
   - SCLAlertView
   - SnapKit (~> 3.2.0)
 
@@ -106,9 +108,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 51aadb24e2b0f5725cda1e405bd917ee3fd6b04b
+PODFILE CHECKSUM: f4939633004e86a6b47f56a0b99bbf5de99aea32
 
 COCOAPODS: 1.1.1

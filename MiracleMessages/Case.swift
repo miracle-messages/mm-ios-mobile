@@ -84,14 +84,14 @@ class Case {
         
         guard let submissionSinceEpoch = submissionDate?.timeIntervalSince1970
             else { return }
-        guard let publicVideoAddress = publicVideoURL?.absoluteString
-            else { return }
-        guard let privateVideoAddress = privateVideoURL?.absoluteString
-            else { return }
-        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
-            else { return }
-        guard let photoAddress = photoURL?.absoluteString
-            else { return }
+//        guard let publicVideoAddress = publicVideoURL?.absoluteString
+//            else { return }
+//        guard let privateVideoAddress = privateVideoURL?.absoluteString
+//            else { return }
+//        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
+//            else { return }
+//        guard let photoAddress = photoURL?.absoluteString
+//            else { return }
         guard let givenName = firstName, let midName = middleName, let surname = lastName
             else { return }
         guard let thisCity = currentCity, let thisState = currentState, let thisCountry = currentCountry
@@ -118,11 +118,11 @@ class Case {
             "caseStatus": caseStatus.rawValue,
             "messageStatus": messageStatus.rawValue,
             "nextStep": nextStep.rawValue,
-            "pubVideo": publicVideoAddress,
-            "youtubeCover": youtubeCoverAddress,
-            "privVideo": privateVideoAddress,
+//            "pubVideo": publicVideoAddress,
+//            "youtubeCover": youtubeCoverAddress,
+//            "privVideo": privateVideoAddress,
             "source": source.dictionary,
-            "photo": photoAddress,
+//            "photo": photoAddress,
             "firstName": givenName,
             "middleName": midName,
             "lastName": surname,

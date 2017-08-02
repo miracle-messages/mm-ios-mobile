@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Nuke.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MiracleMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,12 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>22CB969603841087C36C5568D7C2670F</key>
+		<key>1FB3581F4855FB816F0C4899ED1A6026</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3894BD15BE2E3C341BA681FDB3F273E8</key>
+		<key>3A5FA3509029685653683DC63697DE23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AA60E75266E20630A3CC73C7E3293F7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD3F16D874B10915A62407229B5EE670</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,11 +128,6 @@
 			<true/>
 		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E7D2C063337D2DF6B2AC1C1330F5BC72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
