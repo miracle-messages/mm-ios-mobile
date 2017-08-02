@@ -747,7 +747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "aa9f66dc-2971-49ad-bd57-c404bcabe004";
+				PROVISIONING_PROFILE = "2c2dc825-a838-47d8-812e-f264a9779a4b";
 				PROVISIONING_PROFILE_SPECIFIER = com.miraclemessages.beta;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
