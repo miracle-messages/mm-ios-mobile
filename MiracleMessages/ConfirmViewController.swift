@@ -20,12 +20,7 @@ class ConfirmViewController: UIViewController {
     var video: Video?
     var ref: DatabaseReference!
     let currentCase: Case = Case.current
-    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/1gtb1k/"
     let storage = Storage.storage()
-
-    //"https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
-    //https://hooks.zapier.com/hooks/catch/1838547/hshdv5/
-    //https://hooks.zapier.com/hooks/catch/1838547/1gtb1k/
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,19 +47,7 @@ class ConfirmViewController: UIViewController {
             DispatchQueue.main.sync(execute: { () -> Void in
                 if error == nil {
                     Logger.log("uploadCompletionHandler: Upload Success!")
-                    let key = self.sendInfo()
-
-                    let parameters = self.videoParameters(uniqId: key)
-
-                    Alamofire.request(self.zapierUrl, parameters: parameters).responseData { response in
-                        switch response.result {
-                        case .success:
-                            Logger.log("Successfully Submitted to Zapier!")
-                        case .failure(let error):
-                            Logger.log(level: Level.error, "Failure submitting to Zapier!")
-                            Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
-                        }
-                    }
+                    let _ = self.sendInfo()
                 } else {
                     Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
                 }
