@@ -43,8 +43,12 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     @IBOutlet weak var textFieldClientDob: UITextField!
     @IBOutlet weak var dobApproximate: UISwitch!
     
+    //  Partner organizations
     @IBOutlet weak var textFieldPartner: UITextField!
+    let pickerPartner = UIPickerView()
+    let partners = Partners.instance
     
+    //  Time homeless
     @IBOutlet weak var textFieldTimeHomeless: UITextField!
     @IBOutlet weak var textFieldTimeScale: UITextField!
     let pickerTimeScale = UIPickerView()
@@ -91,6 +95,11 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         
         switchAgeApproximate.transform = transform
         dobApproximate.transform = transform
+        
+        //  Partner
+        pickerPartner.dataSource = self
+        pickerPartner.delegate = self
+        textFieldPartner.inputView = pickerPartner
         
         //  Time Scale
         pickerTimeScale.dataSource = self
@@ -160,6 +169,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             currentCase.isDOBApproximate = dobApproximate.isOn
         }
         
+        if let partner = textFieldPartner.text {
+            currentCase.partner = partner
+        }
+        
         if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
             currentCase.timeHomeless = (type, value)
         }
@@ -222,6 +235,12 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
+        //  Partner
+        guard textFieldPartner.hasText else {
+            alertIncomplete(field: textFieldPartner, saying: needToEnter("the partner organization."))
+            return false
+        }
+        
         switch mode {
         case .view:
             return true
@@ -259,6 +278,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return Country.all.count + 1
         case pickerCurrentState, pickerHomeState:
             return State.all.count + 1
+        case pickerPartner:
+            return partners.list.count + 1
         case pickerTimeScale:
             return Case.TimeType.all.count + 1
         default:
@@ -274,6 +295,9 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         case pickerCurrentState, pickerHomeState:
             guard row != 0 else { return "--" }
             return State.all[row - 1].rawValue
+        case pickerPartner:
+            guard row != 0 else { return "--" }
+            return partners.list[row - 1]
         case pickerTimeScale:
             guard row != 0 else { return "--" }
             return Case.TimeType.all[row - 1].rawValue
@@ -297,6 +321,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         case pickerCurrentState, pickerHomeState:
             let text = row == 0 ? "" : State.all[row - 1].rawValue
             (pickerView == pickerCurrentState ? textFieldCurrentState : textFieldHomeState).text = text
+        case pickerPartner:
+            textFieldPartner.text = row == 0 ? "" : partners.list[row - 1]
         case pickerTimeScale:
             textFieldTimeScale.text = row == 0 ? "" : Case.TimeType.all[row - 1].rawValue
         default:

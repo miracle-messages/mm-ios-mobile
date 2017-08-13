@@ -60,6 +60,9 @@ class Case {
     var currentCountry: Country?
     var locationGPS: String = ""
     
+    //  Partner organization
+    var partner: String?
+    
     //  Loved ones
     var lovedOnes: Set<LovedOne> = []
     
@@ -140,6 +143,10 @@ class Case {
         
         if let currentUser = Auth.auth().currentUser {
             publicPayload["createdBy"] = ["uid": currentUser.uid]
+        }
+        
+        if let partner = partner {
+            publicPayload["partner"] = ["partnerName": partner]
         }
         
         let privatePayload: [String: Any] = [
