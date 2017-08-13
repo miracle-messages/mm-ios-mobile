@@ -114,7 +114,7 @@ class Case {
         let privateCaseReference = firebase.child("/casesPrivate/\(key!)")
         
         var publicPayload: [String: Any] = [
-            "submitted": submissionSinceEpoch,
+            "submitted": Int(submissionSinceEpoch),
             "caseStatus": caseStatus.rawValue,
             "messageStatus": messageStatus.rawValue,
             "nextStep": nextStep.rawValue,
