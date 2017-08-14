@@ -14,7 +14,7 @@ import Firebase
 class ConsentViewController: UIViewController {
     @IBOutlet weak var signatureView: YPDrawSignatureView!
 
-    var currentCase = Case.current
+    var currentCase: Case!
     let storage = Storage.storage()
     var ref: DatabaseReference!
 
@@ -24,6 +24,7 @@ class ConsentViewController: UIViewController {
         signatureView.layer.borderColor = UIColor.lightGray.cgColor
         ref = Database.database().reference()
         
+        currentCase = Case.startNewCase()
     }
     
     @IBAction func didTapClearBtn(_ sender: Any) {

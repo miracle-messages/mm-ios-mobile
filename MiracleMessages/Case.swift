@@ -15,8 +15,13 @@ class Case {
     
     /**
      Replaces current case with a fresh and empty case
+     
+     Returns: The new current case
      */
-    static func reset() { current = Case() }
+    static func startNewCase() -> Case {
+        current = Case()
+        return current
+    }
     
     //  Submission Basics
     var submissionDate: Date?
