@@ -1690,7 +1690,7 @@
                                                         <rect key="frame" x="232" y="268" width="51" height="31"/>
                                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="0.75"/>
                                                     </switch>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter notes here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nrs-dO-JQW">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nrs-dO-JQW">
                                                         <rect key="frame" x="18" y="500" width="339" height="120"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="120" id="mBy-qD-cON"/>
@@ -1902,7 +1902,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn8-1r-lTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7388" y="943"/>
+            <point key="canvasLocation" x="7388" y="1008"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="W4E-71-KcJ">
@@ -2928,7 +2928,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWw-pP-c7m" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWY-n4-2Ql">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IWY-n4-2Ql">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2946,7 +2946,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogM-Iq-pBO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFz-NS-V3N">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YFz-NS-V3N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2964,7 +2964,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwM-YW-5It" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LsH-oK-gA2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LsH-oK-gA2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2982,7 +2982,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKY-Sm-hXB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGE-YI-cuE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iGE-YI-cuE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
