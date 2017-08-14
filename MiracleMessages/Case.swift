@@ -15,8 +15,13 @@ class Case {
     
     /**
      Replaces current case with a fresh and empty case
+     
+     Returns: The new current case
      */
-    static func reset() { current = Case() }
+    static func startNewCase() -> Case {
+        current = Case()
+        return current
+    }
     
     //  Submission Basics
     var submissionDate: Date?
@@ -35,7 +40,8 @@ class Case {
     var youtubeCoverURL: URL?
     var privateVideoURL: URL?
     var photoURL: URL?
-    
+    var signatureURL: URL?
+
     //  Source Info
     var source = Source.current
     
@@ -72,6 +78,10 @@ class Case {
     
     //  Notes
     var notes: String = ""
+
+    func generateKey(withRef firebase: DatabaseReference) {
+        key = firebase.child("/cases/").childByAutoId().key
+    }
     
     //  Writing to the database
     /**
@@ -152,7 +162,8 @@ class Case {
         let privatePayload: [String: Any] = [
             "dob": DateFormatter.default.string(from: dob),
             "dobApproximate": isDOBApproximate,
-            "notes": notes
+            "notes": notes,
+            "signatureUrl": signatureURL?.absoluteString ?? "none"
         ]
         
         //  Write case data

@@ -66,7 +66,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentCase = Case()
         self.hideKeyboardWithTap()
         
         //  Current location
