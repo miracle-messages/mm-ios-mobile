@@ -18,6 +18,7 @@
 		235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235407AE1E855F6200FB091E /* NotificationExtension.swift */; };
 		2369668E1F2F0BCA000D559C /* CaseSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2369668D1F2F0BCA000D559C /* CaseSubject.swift */; };
 		239007A01E4D662F00A4C1DB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2390079F1E4D662F00A4C1DB /* Video.swift */; };
+		2393762C1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393762B1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift */; };
 		239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */; };
 		239C0C071E2C6D1C00E0DE36 /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */; };
 		239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */; };
@@ -84,6 +85,7 @@
 		235407AE1E855F6200FB091E /* NotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		2369668D1F2F0BCA000D559C /* CaseSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseSubject.swift; sourceTree = "<group>"; };
 		2390079F1E4D662F00A4C1DB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		2393762B1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		2393762A1F4118C700F7ADB3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2393762B1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		23B0B7D91D98E466007DFDDE = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 		23B0B7E41D98E466007DFDDE /* MiracleMessages */ = {
 			isa = PBXGroup;
 			children = (
+				2393762A1F4118C700F7ADB3 /* Extensions */,
 				EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */,
 				2390079E1E4D658A00A4C1DB /* Resources */,
 				2390079D1E4D654200A4C1DB /* Views */,
@@ -528,6 +539,7 @@
 				EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */,
 				A07773A11F2CF9B700AD52C0 /* LovedOne.swift in Sources */,
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
+				2393762C1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				A077739F1F2CF9B700AD52C0 /* Case.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,

@@ -105,6 +105,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.dataSource = self
         pickerTimeScale.delegate = self
         textFieldTimeScale.inputView = pickerTimeScale
+
+        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
 
     override func didReceiveMemoryWarning() {

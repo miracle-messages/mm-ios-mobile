@@ -60,6 +60,8 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         let transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         switchRecipientAgeIsApproximate.transform = transform
         switchRecipientDobIsApproximate.transform = transform
+
+        textViewRecipientOtherInfo.placeholder = "How was the relationship with the loved one before losing contact? Include as many details about the loved one as possible: maiden name, high school, past jobs, college, other family, spouse’s names, etc.."
     }
 
     override func viewWillAppear(_ animated: Bool) {
