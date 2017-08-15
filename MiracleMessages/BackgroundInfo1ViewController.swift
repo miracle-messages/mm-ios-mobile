@@ -48,6 +48,9 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     let pickerPartner = UIPickerView()
     let partners = Partners.instance
     
+    //  Contact info
+    @IBOutlet weak var textFieldContactInfo: UITextField!
+    
     //  Time homeless
     @IBOutlet weak var textFieldTimeHomeless: UITextField!
     @IBOutlet weak var textFieldTimeScale: UITextField!
@@ -144,6 +147,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             textFieldTimeHomeless.text = String(timeHomelessPair.value)
             textFieldTimeScale.text = timeHomelessPair.type.rawValue
         }
+        
+        textFieldContactInfo.text = currentCase.contactInfo
     }
 
     func updateBackgroundInfo() -> Case? {
@@ -172,6 +177,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         
         if let partner = textFieldPartner.text {
             currentCase.partner = partner
+        }
+        
+        if let contactInfo = textFieldContactInfo.text {
+            currentCase.contactInfo = contactInfo
         }
         
         if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
@@ -239,6 +248,12 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         //  Partner
         guard textFieldPartner.hasText else {
             alertIncomplete(field: textFieldPartner, saying: needToEnter("the partner organization."))
+            return false
+        }
+        
+        //  Contact info
+        guard textFieldContactInfo.hasText else {
+            alertIncomplete(field: textFieldContactInfo, saying: needToEnter("the client's contact info"))
             return false
         }
         

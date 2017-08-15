@@ -78,6 +78,9 @@ class Case {
     
     //  Notes
     var notes: String = ""
+    
+    //  Contact Infor
+    var contactInfo = ""
 
     func generateKey(withRef firebase: DatabaseReference) {
         key = firebase.child("/cases/").childByAutoId().key
@@ -163,7 +166,8 @@ class Case {
             "dob": DateFormatter.default.string(from: dob),
             "dobApproximate": isDOBApproximate,
             "notes": notes,
-            "signatureUrl": signatureURL?.absoluteString ?? "none"
+            "signatureUrl": signatureURL?.absoluteString ?? "none",
+            "contactInfo": contactInfo
         ]
         
         //  Write case data
@@ -321,6 +325,8 @@ extension Case: Reviewable {
         if let state = homeState, state != "" { homeland += (location.isEmpty ? "" : ", ") +  state }
         if let country = homeCountry { homeland += (location.isEmpty ? "" : ", ") + country.name }
         if !homeland.isEmpty { this += "Hometown: \(homeland)\n" }
+        
+        if !contactInfo.isEmpty { this += "Contact Info: \(contactInfo)\n" }
         
         if let timeAway = timeHomeless {
             this += "Time away from home: \(timeAway.value) \(timeAway.type)"
