@@ -1523,18 +1523,6 @@
                                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Time apart" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-Gm-lUM">
-                                                        <rect key="frame" x="18" y="442" width="339" height="35"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="tot-zg-4Y7"/>
-                                                        </constraints>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="yes"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="q1g-V8-CMc" id="sce-6y-kWi"/>
-                                                        </connections>
-                                                    </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzr-Rj-XIj" userLabel="Years disconnected underline">
                                                         <rect key="frame" x="18" y="477" width="339" height="1"/>
                                                         <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1720,6 +1708,36 @@
                                                             <action selector="clearWithSender:" destination="q1g-V8-CMc" eventType="touchUpInside" id="mMx-hc-V33"/>
                                                         </connections>
                                                     </button>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="–" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P7F-Nc-lar" userLabel="Years on-and-off the street textfield">
+                                                        <rect key="frame" x="18" y="442" width="166" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="k9N-Uo-xCB"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="AZw-3m-puP" id="pkg-mp-CIy"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Period" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RZC-C5-SEb" userLabel="Years on-and-off the street textfield">
+                                                        <rect key="frame" x="191.5" y="442" width="165.5" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="QJk-4p-gK8"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="AZw-3m-puP" id="jJt-l0-5Mc"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnA-LY-Dq2">
+                                                        <rect key="frame" x="348" y="449" width="8.5" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
@@ -1739,10 +1757,8 @@
                                                     <constraint firstItem="rM1-lo-vpt" firstAttribute="top" secondItem="X8J-da-Hrh" secondAttribute="bottom" id="93G-0B-xK1"/>
                                                     <constraint firstItem="vft-gn-qqu" firstAttribute="top" secondItem="q2D-rV-rEz" secondAttribute="top" constant="15" id="97o-rz-o3a"/>
                                                     <constraint firstAttribute="trailing" secondItem="rM1-lo-vpt" secondAttribute="trailing" constant="18" id="9go-Se-1xR"/>
-                                                    <constraint firstItem="Pzr-Rj-XIj" firstAttribute="top" secondItem="GKP-Gm-lUM" secondAttribute="bottom" id="A3L-Ur-chp"/>
                                                     <constraint firstItem="EkX-Fw-LSV" firstAttribute="top" secondItem="fMR-ys-WWW" secondAttribute="bottom" id="BT8-LJ-fJ1"/>
                                                     <constraint firstItem="who-RX-hLo" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="BfI-zk-Kq1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="GKP-Gm-lUM" secondAttribute="trailing" constant="18" id="C9v-wd-adu"/>
                                                     <constraint firstItem="Nrs-dO-JQW" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="ChK-uk-uYg"/>
                                                     <constraint firstItem="rM1-lo-vpt" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="D7V-JD-Z9a"/>
                                                     <constraint firstItem="uKV-AJ-dKR" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="DpD-Zz-dH5"/>
@@ -1756,6 +1772,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="SNZ-Ye-kp5" secondAttribute="trailing" constant="18" id="Gvf-Vw-0MN"/>
                                                     <constraint firstAttribute="trailing" secondItem="NUb-0M-zLy" secondAttribute="trailing" constant="18" id="Gyi-Mo-N6v"/>
                                                     <constraint firstItem="5sB-XU-Nd0" firstAttribute="top" secondItem="who-RX-hLo" secondAttribute="bottom" id="Hmo-yE-O48"/>
+                                                    <constraint firstItem="RZC-C5-SEb" firstAttribute="baseline" secondItem="P7F-Nc-lar" secondAttribute="baseline" id="J7Z-NB-5uD"/>
                                                     <constraint firstAttribute="trailing" secondItem="8CQ-L8-p9t" secondAttribute="trailing" constant="18" id="Kny-5U-ybd"/>
                                                     <constraint firstItem="Zmy-8W-H9m" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="Lgr-Q7-eac"/>
                                                     <constraint firstItem="Wwl-KD-rCr" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="LsN-I0-XXq"/>
@@ -1764,7 +1781,10 @@
                                                     <constraint firstItem="8CQ-L8-p9t" firstAttribute="top" secondItem="OyB-AD-PnH" secondAttribute="bottom" id="P6h-K3-fUT"/>
                                                     <constraint firstItem="GTF-hV-kzg" firstAttribute="top" secondItem="rM1-lo-vpt" secondAttribute="bottom" id="PAk-9s-oSj"/>
                                                     <constraint firstItem="Zmy-8W-H9m" firstAttribute="leading" secondItem="jiY-wD-ubr" secondAttribute="leading" id="PM5-GJ-ow4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RZC-C5-SEb" secondAttribute="trailing" constant="18" id="Pwm-c7-rja"/>
+                                                    <constraint firstAttribute="trailing" secondItem="UnA-LY-Dq2" secondAttribute="trailing" constant="18" id="Qfw-Wq-n40"/>
                                                     <constraint firstItem="X8J-da-Hrh" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="RDD-Th-kH4"/>
+                                                    <constraint firstItem="Pzr-Rj-XIj" firstAttribute="top" secondItem="P7F-Nc-lar" secondAttribute="bottom" id="S1c-WB-tsR"/>
                                                     <constraint firstItem="ecU-X8-EqF" firstAttribute="centerY" secondItem="Did-gm-r6I" secondAttribute="centerY" id="SE1-mp-ZYm"/>
                                                     <constraint firstItem="gE4-AQ-YVQ" firstAttribute="leading" secondItem="who-RX-hLo" secondAttribute="trailing" constant="4" id="Tm5-1p-M22"/>
                                                     <constraint firstItem="mzQ-8i-gJ0" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="UXA-Jj-enL"/>
@@ -1790,6 +1810,7 @@
                                                     <constraint firstItem="gE4-AQ-YVQ" firstAttribute="centerY" secondItem="who-RX-hLo" secondAttribute="centerY" id="cee-Xs-qIq"/>
                                                     <constraint firstItem="Rly-Hk-UN0" firstAttribute="top" secondItem="GTF-hV-kzg" secondAttribute="bottom" constant="8" id="dpX-rU-3XC"/>
                                                     <constraint firstItem="uKV-AJ-dKR" firstAttribute="top" secondItem="mzQ-8i-gJ0" secondAttribute="bottom" id="eEX-MC-exC"/>
+                                                    <constraint firstItem="RZC-C5-SEb" firstAttribute="width" secondItem="P7F-Nc-lar" secondAttribute="width" id="fAv-fB-i12"/>
                                                     <constraint firstItem="vft-gn-qqu" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="fYN-xL-G9W"/>
                                                     <constraint firstItem="GTF-hV-kzg" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="fbC-sD-Puo"/>
                                                     <constraint firstItem="SNZ-Ye-kp5" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="ft7-2C-rSi"/>
@@ -1797,15 +1818,14 @@
                                                     <constraint firstItem="cSe-qI-iVN" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="g9R-pg-vLk"/>
                                                     <constraint firstAttribute="trailing" secondItem="EkX-Fw-LSV" secondAttribute="trailing" constant="18" id="gej-S9-boE"/>
                                                     <constraint firstItem="5sB-XU-Nd0" firstAttribute="leading" secondItem="who-RX-hLo" secondAttribute="leading" id="hsR-hG-IgU"/>
-                                                    <constraint firstItem="GKP-Gm-lUM" firstAttribute="top" secondItem="y5q-Qg-kx9" secondAttribute="bottom" id="i6l-kd-06p"/>
                                                     <constraint firstItem="SNZ-Ye-kp5" firstAttribute="top" secondItem="Lqp-YE-cuy" secondAttribute="bottom" id="iod-Or-Csv"/>
-                                                    <constraint firstItem="GKP-Gm-lUM" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="j9O-YN-Gni"/>
                                                     <constraint firstItem="YZf-0W-2yT" firstAttribute="top" secondItem="Pzr-Rj-XIj" secondAttribute="bottom" constant="7" id="jGw-V4-HvA"/>
                                                     <constraint firstItem="6k0-6h-UkA" firstAttribute="centerX" secondItem="q2D-rV-rEz" secondAttribute="centerX" id="jPs-Gh-btB"/>
                                                     <constraint firstAttribute="trailing" secondItem="vft-gn-qqu" secondAttribute="trailing" constant="18" id="lof-GI-ovf"/>
                                                     <constraint firstItem="jiY-wD-ubr" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="mLb-ob-KRY"/>
                                                     <constraint firstItem="NUb-0M-zLy" firstAttribute="centerY" secondItem="gE4-AQ-YVQ" secondAttribute="centerY" id="mdl-JR-EVk"/>
                                                     <constraint firstItem="OyB-AD-PnH" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="o3Q-mu-n1h"/>
+                                                    <constraint firstItem="UnA-LY-Dq2" firstAttribute="centerY" secondItem="RZC-C5-SEb" secondAttribute="centerY" id="pHV-pP-KNB"/>
                                                     <constraint firstAttribute="trailing" secondItem="ecU-X8-EqF" secondAttribute="trailing" constant="18" id="pI8-EE-PEe"/>
                                                     <constraint firstItem="fMR-ys-WWW" firstAttribute="top" secondItem="Zmy-8W-H9m" secondAttribute="bottom" constant="8" id="q2q-f5-1zk"/>
                                                     <constraint firstItem="5sB-XU-Nd0" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="qhI-Rj-Bpp"/>
@@ -1818,7 +1838,10 @@
                                                     <constraint firstAttribute="trailing" secondItem="GTF-hV-kzg" secondAttribute="trailing" constant="18" id="wbk-10-ltD"/>
                                                     <constraint firstAttribute="trailing" secondItem="Pzr-Rj-XIj" secondAttribute="trailing" constant="18" id="woT-79-yv9"/>
                                                     <constraint firstItem="ecU-X8-EqF" firstAttribute="leading" secondItem="Did-gm-r6I" secondAttribute="trailing" constant="4" id="won-T2-LlR"/>
+                                                    <constraint firstItem="P7F-Nc-lar" firstAttribute="top" secondItem="y5q-Qg-kx9" secondAttribute="bottom" id="x1U-VP-esw"/>
+                                                    <constraint firstItem="RZC-C5-SEb" firstAttribute="leading" secondItem="P7F-Nc-lar" secondAttribute="trailing" constant="8" id="x4D-MZ-y5v"/>
                                                     <constraint firstItem="Did-gm-r6I" firstAttribute="leading" secondItem="jiY-wD-ubr" secondAttribute="trailing" constant="4" id="xNR-0O-IAS"/>
+                                                    <constraint firstItem="P7F-Nc-lar" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="yHZ-O4-EtZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="uKV-AJ-dKR" secondAttribute="trailing" constant="18" id="yJH-vB-tBR"/>
                                                     <constraint firstItem="y5q-Qg-kx9" firstAttribute="leading" secondItem="q2D-rV-rEz" secondAttribute="leading" constant="18" id="ym8-qD-nT6"/>
                                                 </constraints>
@@ -1886,7 +1909,8 @@
                         <outlet property="textFieldRecipientFirstName" destination="OyB-AD-PnH" id="79L-um-D6l"/>
                         <outlet property="textFieldRecipientLastLocation" destination="EkX-Fw-LSV" id="3tB-va-KrO"/>
                         <outlet property="textFieldRecipientLastName" destination="rM1-lo-vpt" id="lu5-bx-tjo"/>
-                        <outlet property="textFieldRecipientLastSeen" destination="GKP-Gm-lUM" id="O8n-1I-ojA"/>
+                        <outlet property="textFieldRecipientLastSeen" destination="P7F-Nc-lar" id="zLQ-z3-4O2"/>
+                        <outlet property="textFieldRecipientLastSeenTimeScale" destination="RZC-C5-SEb" id="XV6-9V-kO6"/>
                         <outlet property="textFieldRecipientMiddleName" destination="uKV-AJ-dKR" id="2fM-lw-dSg"/>
                         <outlet property="textFieldRecipientRelationship" destination="Lqp-YE-cuy" id="q7j-hQ-U4I"/>
                         <outlet property="textViewRecipientOtherInfo" destination="Nrs-dO-JQW" id="Mbh-WR-a9y"/>
@@ -1896,8 +1920,9 @@
                         <outletCollection property="textFields" destination="Lqp-YE-cuy" collectionClass="NSMutableArray" id="Lzf-Mu-XxZ"/>
                         <outletCollection property="textFields" destination="jiY-wD-ubr" collectionClass="NSMutableArray" id="cMr-a3-tAn"/>
                         <outletCollection property="textFields" destination="EkX-Fw-LSV" collectionClass="NSMutableArray" id="buy-h6-Rej"/>
-                        <outletCollection property="textFields" destination="GKP-Gm-lUM" collectionClass="NSMutableArray" id="rkx-t2-mKM"/>
                         <outletCollection property="textFields" destination="who-RX-hLo" collectionClass="NSMutableArray" id="jcK-Ft-LcL"/>
+                        <outletCollection property="textFields" destination="P7F-Nc-lar" collectionClass="NSMutableArray" id="ujo-z5-Bxz"/>
+                        <outletCollection property="textFields" destination="RZC-C5-SEb" collectionClass="NSMutableArray" id="DYO-A0-SYl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn8-1r-lTT" userLabel="First Responder" sceneMemberID="firstResponder"/>

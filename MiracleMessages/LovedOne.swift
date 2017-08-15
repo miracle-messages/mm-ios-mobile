@@ -24,7 +24,7 @@ class LovedOne: Hashable {
     var lastName: String?
     var relationship: String?
     var lastKnownLocation: String?
-    var lastContact: String?
+    var lastContact: (type: Case.TimeType, value: Int)?
     var age: Int?
     var isAgeApproximate: Bool = false
     
@@ -37,7 +37,7 @@ class LovedOne: Hashable {
         if let lastName = lastName { info["lastName"] = lastName }
         if let relationship = relationship { info["relationship"] = relationship }
         if let lastKnownLocation = lastKnownLocation { info["lastKnownLocation"] = lastKnownLocation }
-        if let lastContact = lastContact { info["lastContact"] = lastContact }
+        if let lastContact = lastContact { info["lastContact"] = ["type": lastContact.type, "value": lastContact.value] }
         if let age = age { info["age"] = age }
         info["ageAppoximate"] = isAgeApproximate
         return info
@@ -87,7 +87,7 @@ extension LovedOne: Reviewable {
         
         if let location = lastKnownLocation { this += "Location: \(location)\n" }
         
-        if let timeApart = lastContact { this += "Last contact: \(timeApart)\n" }
+        if let timeApart = lastContact { this += "Last contact: \(timeApart.value) \(timeApart.type.rawValue)\n" }
         
         if let notes = notes, !notes.isEmpty { this += "Other info: \(notes)" }
         

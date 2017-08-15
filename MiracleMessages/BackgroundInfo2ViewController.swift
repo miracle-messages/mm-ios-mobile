@@ -12,7 +12,7 @@ protocol CameraViewControllerDelegate: class {
     func didFinishRecording(sender: CameraViewController)
 }
 
-class BackgroundInfo2ViewController: BackgroundInfoViewController {
+class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var currentLovedOne: LovedOne!
     
     @IBOutlet weak var textFieldRecipientFirstName: UITextField!
@@ -27,7 +27,10 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
     @IBOutlet weak var switchRecipientDobIsApproximate: UISwitch!
     
     @IBOutlet weak var textFieldRecipientLastLocation: UITextField!
+    
     @IBOutlet weak var textFieldRecipientLastSeen: UITextField!
+    @IBOutlet weak var textFieldRecipientLastSeenTimeScale: UITextField!
+    let pickerTimeScale = UIPickerView()
     
     @IBOutlet weak var textViewRecipientOtherInfo: UITextView!
     
@@ -60,6 +63,10 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         let transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         switchRecipientAgeIsApproximate.transform = transform
         switchRecipientDobIsApproximate.transform = transform
+        
+        pickerTimeScale.delegate = self
+        pickerTimeScale.dataSource = self
+        textFieldRecipientLastSeenTimeScale.inputView = pickerTimeScale
 
         textViewRecipientOtherInfo.placeholder = "How was the relationship with the loved one before losing contact? Include as many details about the loved one as possible: maiden name, high school, past jobs, college, other family, spouse’s names, etc.."
     }
@@ -99,7 +106,10 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         switchRecipientAgeIsApproximate.isOn = lovedOne.isAgeApproximate
         
         textFieldRecipientLastLocation.text = lovedOne.lastKnownLocation
-        textFieldRecipientLastSeen.text = lovedOne.lastContact
+        if let value = lovedOne.lastContact?.value, let type = lovedOne.lastContact?.type {
+            textFieldRecipientLastSeen.text = String(value)
+            textFieldRecipientLastSeenTimeScale.text = type.rawValue
+        }
         textViewRecipientOtherInfo.text = lovedOne.notes
     }
 
@@ -196,7 +206,12 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
         
         currentLovedOne.lastKnownLocation = textFieldRecipientLastLocation.text
-        currentLovedOne.lastContact = textFieldRecipientLastSeen.text
+        
+        if let valueString = textFieldRecipientLastSeen.text, let value = Int(valueString), let typeString = textFieldRecipientLastSeenTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
+            currentLovedOne.lastContact = (type, value)
+        } else { currentLovedOne.lastContact = nil }
+        
+        
         currentLovedOne.notes = textViewRecipientOtherInfo.text
         
         currentCase.lovedOnes.insert(currentLovedOne)
@@ -230,4 +245,21 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController {
         if let years = Calendar.current.dateComponents([.year], from: sender.date, to: Date()).year { textFieldRecipientAge.text = String(years) }
     }
 
+    //  Methods for picker views
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Case.TimeType.all.count + 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard row != 0, row <= Case.TimeType.all.count else { return "--" }
+        return Case.TimeType.all[row - 1].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textFieldRecipientLastSeenTimeScale.text = row == 0 ? "" : Case.TimeType.all[row - 1].rawValue
+    }
 }
