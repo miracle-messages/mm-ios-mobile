@@ -831,7 +831,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="U7x-nl-vHb"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time homeless" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1v-CE-OS3" userLabel="Years on-and-off the street label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time homeless *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1v-CE-OS3" userLabel="Years on-and-off the street label">
                                                         <rect key="frame" x="18" y="781" width="339" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="qR9-3n-nMD"/>
@@ -947,7 +947,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="f09-f7-Tj7"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbg-vy-0RS" userLabel="Location label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Country *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbg-vy-0RS" userLabel="Location label">
                                                         <rect key="frame" x="18" y="368" width="349" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="bU2-qI-Ohz"/>
@@ -981,7 +981,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPv-pg-553" userLabel="Location label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home State *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPv-pg-553" userLabel="Location label">
                                                         <rect key="frame" x="18" y="427" width="349" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="tpE-NL-qjk"/>
@@ -1015,7 +1015,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuR-uc-qU4" userLabel="Location label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home City *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuR-uc-qU4" userLabel="Location label">
                                                         <rect key="frame" x="18" y="486" width="349" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="M8b-ng-lwI"/>
@@ -1151,8 +1151,8 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to reach again*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-Tu-8hu" userLabel="Location label">
-                                                        <rect key="frame" x="18" y="722" width="118" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to reach again *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-Tu-8hu" userLabel="Location label">
+                                                        <rect key="frame" x="18" y="722" width="121" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="0yi-tw-fMw"/>
                                                         </constraints>
@@ -1495,7 +1495,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="JR7-LL-VSE"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relationship" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rly-Hk-UN0" userLabel="Relationship label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relationship *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rly-Hk-UN0" userLabel="Relationship label">
                                                         <rect key="frame" x="18" y="192" width="339" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="LbY-mH-fso"/>
@@ -1551,7 +1551,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="mzK-j0-Sh5"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-Qg-kx9">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last contact *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-Qg-kx9">
                                                         <rect key="frame" x="18" y="427" width="339" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="aHa-M7-y2b"/>
@@ -1567,7 +1567,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="Iy7-xC-4pU"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZf-0W-2yT">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZf-0W-2yT">
                                                         <rect key="frame" x="18" y="485" width="339" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="vQl-mA-Wrx"/>
@@ -1677,7 +1677,7 @@
                                                         <rect key="frame" x="232" y="327" width="51" height="31"/>
                                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="0.75"/>
                                                     </switch>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9q-IV-etF" userLabel="Date of birth label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9q-IV-etF" userLabel="Date of birth label">
                                                         <rect key="frame" x="18" y="251" width="339" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="gaL-h1-oI4"/>

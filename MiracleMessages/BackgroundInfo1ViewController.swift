@@ -246,16 +246,28 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         }
         
         //  Partner
-        guard textFieldPartner.hasText else {
-            alertIncomplete(field: textFieldPartner, saying: needToEnter("the partner organization."))
-            return false
-        }
+//        guard textFieldPartner.hasText else {
+//            alertIncomplete(field: textFieldPartner, saying: needToEnter("the partner organization."))
+//            return false
+//        }
         
         //  Contact info
         guard textFieldContactInfo.hasText else {
             alertIncomplete(field: textFieldContactInfo, saying: needToEnter("the client's contact info"))
             return false
         }
+        
+        //  Time Homeless
+        let alertTimeHomelessString = "the amount of time the client has been without a home"
+        guard textFieldTimeHomeless.hasText else {
+            alertIncomplete(field: textFieldTimeHomeless, saying: needToEnter(alertTimeHomelessString))
+            return false
+        }
+        guard textFieldTimeScale.hasText else {
+            alertIncomplete(field: textFieldTimeScale, saying: needToEnter(alertTimeHomelessString))
+            return false
+        }
+        
         
         switch mode {
         case .view:
