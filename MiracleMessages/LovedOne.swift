@@ -37,7 +37,7 @@ class LovedOne: Hashable {
         if let lastName = lastName { info["lastName"] = lastName }
         if let relationship = relationship { info["relationship"] = relationship }
         if let lastKnownLocation = lastKnownLocation { info["lastKnownLocation"] = lastKnownLocation }
-        if let lastContact = lastContact { info["lastContact"] = ["type": lastContact.type, "value": lastContact.value] }
+        if let lastContact = lastContact { info["lastContact"] = ["type": lastContact.type.rawValue, "value": lastContact.value] }
         if let age = age { info["age"] = age }
         info["ageAppoximate"] = isAgeApproximate
         return info

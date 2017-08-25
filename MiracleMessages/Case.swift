@@ -128,6 +128,8 @@ class Case {
         }
         
         let privateCaseReference = firebase.child("/casesPrivate/\(key!)")
+
+
         
         var publicPayload: [String: Any] = [
             "submitted": Int(submissionSinceEpoch),
@@ -154,13 +156,24 @@ class Case {
             "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any]
         ]
         
-        if let currentUser = Auth.auth().currentUser {
-            publicPayload["createdBy"] = ["uid": currentUser.uid]
-        }
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        publicPayload["createdBy"] = ["uid": currentUser.uid]
+
+        let userReference = firebase.child("/users/\(currentUser.uid)/cases/\(key!)")
         
         if let partner = partner {
             publicPayload["partner"] = ["partnerName": partner]
         }
+
+        let userPayload: [String: Any] = [
+            "caseID": key,
+            "caseStatus": caseStatus.rawValue,
+            "firstName": givenName,
+            "lastName": surname,
+            "messageStatus": messageStatus.rawValue,
+            "nextStep": nextStep.rawValue
+        ]
         
         let privatePayload: [String: Any] = [
             "dob": DateFormatter.default.string(from: dob),
@@ -169,55 +182,64 @@ class Case {
             "signatureUrl": signatureURL?.absoluteString ?? "none",
             "contactInfo": contactInfo
         ]
-        
-        //  Write case data
-        caseReference.setValue(publicPayload) { error, _ in
-            //  If unsuccessful, print and return
+
+        userReference.setValue(userPayload) { error, _ in
+
             guard error == nil else {
                 print(error!.localizedDescription)
                 return
             }
-            
-            //  If successful, write private case data
-            privateCaseReference.setValue(privatePayload) { error, _ in
-                //  If private write unsuccessful, remove case data and return
+
+            //  Write case data
+            caseReference.setValue(publicPayload) { error, _ in
+                //  If unsuccessful, print and return
                 guard error == nil else {
                     print(error!.localizedDescription)
-                    caseReference.removeValue()
                     return
                 }
-                
-                print("Case successfully written")
-                
-                //  If successful, write loved ones
-                for lovedOne in self.lovedOnes {
-                    //  Get reference to loved one
-                    let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
-                    lovedOne.id = lovedOneRef.key
-                    
-                    //  Try to write
-                    lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
-                        //  If unsuccessful return
-                        guard error == nil else {
-                            print(error!.localizedDescription)
-                            return
-                        }
-                        
-                        //  If successful, write private info
-                        privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
-                            //  If unsuccessful, remove public loved one info
+
+                //  If successful, write private case data
+                privateCaseReference.setValue(privatePayload) { error, _ in
+                    //  If private write unsuccessful, remove case data and return
+                    guard error == nil else {
+                        print(error!.localizedDescription)
+                        caseReference.removeValue()
+                        return
+                    }
+
+                    print("Case successfully written")
+
+                    //  If successful, write loved ones
+                    for lovedOne in self.lovedOnes {
+                        //  Get reference to loved one
+                        let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
+                        lovedOne.id = lovedOneRef.key
+
+                        //  Try to write
+                        lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
+                            //  If unsuccessful return
                             guard error == nil else {
-                                print(error!)
-                                lovedOneRef.removeValue()
+                                print(error!.localizedDescription)
                                 return
                             }
-                            
-                            print("Loved one successfully written")
+
+                            //  If successful, write private info
+                            privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
+                                //  If unsuccessful, remove public loved one info
+                                guard error == nil else {
+                                    print(error!)
+                                    lovedOneRef.removeValue()
+                                    return
+                                }
+                                print("Loved one successfully written")
+                            }
                         }
                     }
                 }
             }
+
         }
+
     }
     
     //  Enums
