@@ -14,7 +14,7 @@ class Partners {
     var list = [String]()
     
     private init() {
-        //  TODO: Populate with Firebase call
+        //  TODO: Populate with Firebase call, should be simple enough
         list = ["MSC", "Downtown Streets Team", "Mission Navigation Center"]
     }
 }
