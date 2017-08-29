@@ -15,6 +15,7 @@ class Partners {
     
     private init() {
         //  TODO: Populate with Firebase call
-        list = ["MSC", "Downtown Streets Team", "Mission Navigation Center"]
+        list = ["MSC", "Downtown Streets Team", "Mission Navigation Center",
+                "Other (see notes)", "N/A"]
     }
 }
