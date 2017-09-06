@@ -10,9 +10,9 @@ import UIKit
 
 class Partners {
     static let instance = Partners()
-    
+
     var list = [String]()
-    
+
     private init() {
         //  TODO: Populate with Firebase call
         list = ["MSC", "Downtown Streets Team", "Mission Navigation Center",

@@ -163,6 +163,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
     func appendToLovedOnes() -> Bool {
         let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
+        //  Name
         guard textFieldRecipientFirstName.hasText else {
             alertIncomplete(field: textFieldRecipientFirstName, saying: needToEnter("the recipient's first name."))
             return false
@@ -172,23 +173,33 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
+        //  Relationship
         guard textFieldRecipientRelationship.hasText else {
             alertIncomplete(field: textFieldRecipientRelationship, saying: needToEnter("the recipient's relation to the client."))
             return false
         }
         
+        //  Age
         guard textFieldRecipientAge.hasText, let age = Int(textFieldRecipientAge.text!) else {
             alertIncomplete(field: textFieldRecipientAge, saying: needToEnter("the recipient's age."))
             return false
         }
+
+        //  Location
+//        guard textFieldRecipientLastLocation.hasText else {
+//            alertIncomplete(field: textFieldRecipientLastLocation, saying: needToEnter("the recipient's last known location."))
+//            return false
+//        }
         
-        guard textFieldRecipientLastLocation.hasText else {
-            alertIncomplete(field: textFieldRecipientLastLocation, saying: needToEnter("the recipient's last known location."))
+        //  Last Contact
+        guard textFieldRecipientLastSeen.hasText else {
+            alertIncomplete(field: textFieldRecipientLastSeen, saying: needToEnter("the amount of time since the client has seen the recipient."))
             return false
         }
         
-        guard textFieldRecipientLastSeen.hasText else {
-            alertIncomplete(field: textFieldRecipientLastSeen, saying: needToEnter("the amount of time since the client has seen the recipient."))
+        //  Notes
+        guard textViewRecipientOtherInfo.hasText else {
+            alertIncomplete(field: textViewRecipientOtherInfo, saying: needToEnter("some information to help the detectives find this loved one"))
             return false
         }
         
