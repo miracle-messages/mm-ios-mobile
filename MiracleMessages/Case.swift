@@ -114,8 +114,7 @@ class Case {
             else { return }
         guard let oldCity = homeCity, let oldState = homeState, let oldCountry = homeCountry
             else { return }
-        guard let dob = dateOfBirth, let age = Calendar.current.dateComponents([.year], from: dob, to: submissionDate!).year
-            else { return }
+        guard dateOfBirth != nil || age != nil else { return }
         guard let timeWithoutHome = timeHomeless else { return }
         
         let caseReference: DatabaseReference
@@ -150,11 +149,14 @@ class Case {
             "homeCity": oldCity,
             "homeState": oldState,
             "homeCountry": oldCountry.code,
-            "age": age,
-            "ageApproximate": isDOBApproximate,
             "detectives": detectives.count > 0,
             "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any]
         ]
+        
+        if let age = self.age {
+            publicPayload["age"] = age
+            publicPayload["ageApproximate"] = isAgeApproximate
+        }
         
         guard let currentUser = Auth.auth().currentUser else { return }
 
@@ -175,13 +177,16 @@ class Case {
             "nextStep": nextStep.rawValue
         ]
         
-        let privatePayload: [String: Any] = [
-            "dob": DateFormatter.default.string(from: dob),
-            "dobApproximate": isDOBApproximate,
+        var privatePayload: [String: Any] = [
             "notes": notes,
             "signatureUrl": signatureURL?.absoluteString ?? "none",
             "contactInfo": contactInfo
         ]
+        
+        if let birthdate = dateOfBirth {
+            privatePayload["dob"] = DateFormatter.default.string(from: birthdate)
+            privatePayload["dobApproximate"] = isDOBApproximate
+        }
 
         userReference.setValue(userPayload) { error, _ in
 
