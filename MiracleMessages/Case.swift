@@ -126,9 +126,9 @@ class Case {
             caseReference = firebase.child("/cases/\(key!)")
         }
         
-        let privateCaseReference = firebase.child("/casesPrivate/\(key!)")
-
-
+        guard let key = key else { return }
+        
+        let privateCaseReference = firebase.child("/casesPrivate/\(key)")
         
         var publicPayload: [String: Any] = [
             "submitted": Int(submissionSinceEpoch),
@@ -162,10 +162,10 @@ class Case {
 
         publicPayload["createdBy"] = ["uid": currentUser.uid]
 
-        let userReference = firebase.child("/users/\(currentUser.uid)/cases/\(key!)")
+        let userReference = firebase.child("/users/\(currentUser.uid)/cases/\(key)")
         
-        if let partner = partner {
-            publicPayload["partner"] = ["partnerName": partner]
+        if let partnerName = partner, let partnerCode = Partners.instance[partnerName] {
+            publicPayload["partner"] = ["partnerName": partnerCode]
         }
 
         let userPayload: [String: Any] = [
