@@ -50,7 +50,12 @@ class LovedOne: Hashable {
     
     var privateInfo: [String: Any] {
         var info = [String: Any]()
-        if let dateOfBirth = dateOfBirth { info["dob"] = DateFormatter.default.string(from: dateOfBirth) }
+        if let dateOfBirth = dateOfBirth {
+            info["dob"] = DateFormatter.default.string(from: dateOfBirth)
+        }
+        if let notes = notes {
+            info["notes"] = notes
+        }
         info["dobApproximate"] = isDOBApproximate
         return info
     }
