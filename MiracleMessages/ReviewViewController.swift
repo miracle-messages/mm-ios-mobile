@@ -124,7 +124,8 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
-            let _ = photoPathRef.putData(data, metadata: nil) { (metadata, error) in
+            let _ = photoPathRef.putData(data, metadata: nil) { [unowned self] (metadata, error) in
+                self.currentCase.photoURL = metadata?.downloadURL()
                 if let error = error {
                     Logger.log("Error saving photo reference \(error.localizedDescription)")
                     return
