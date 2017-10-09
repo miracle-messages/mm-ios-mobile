@@ -2889,13 +2889,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-<<<<<<< HEAD
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You'll receive an email confirmation shortly with a link to the video." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9E-qz-Sgf" customClass="VerticalAlignLabel" customModule="MiracleMsg" customModuleProvider="target">
                                 <rect key="frame" x="18" y="181" width="339" height="74"/>
-=======
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join the case and help find the loved ones for your message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9E-qz-Sgf" customClass="VerticalAlignLabel" customModule="MiracleMsg" customModuleProvider="target">
-                                <rect key="frame" x="18" y="181" width="339" height="49.5"/>
->>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
