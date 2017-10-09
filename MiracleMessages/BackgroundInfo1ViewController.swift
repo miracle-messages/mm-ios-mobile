@@ -76,6 +76,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         //  Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
+        //pickerCurrentCountry.selectRow(0, inComponent: 0, animated: false)
         textFieldCurrentCountry.inputView = pickerCurrentCountry
         
         pickerCurrentState.dataSource = self
@@ -110,7 +111,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.delegate = self
         textFieldTimeScale.inputView = pickerTimeScale
 
-        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
+//        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
 
     override func didReceiveMemoryWarning() {
@@ -244,7 +245,11 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             alertIncomplete(field: textFieldHomeCity, saying: needToEnter("the client's home city."))
             return false
         }
-        
+        // DOB
+        guard textFieldClientDob.hasText else{
+            alertIncomplete(field: textFieldClientDob, saying: needToEnter("the client's date of birth."))
+            return false
+        }
         //  Age
         guard textFieldClientAge.hasText else {
             alertIncomplete(field: textFieldClientAge, saying: needToEnter("the client's age."))
@@ -294,7 +299,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
 //    override func performSegue(withIdentifier identifier: String, sender: Any?) {
 //        
 //    }
-    // hide the keyboard when the user hits
+
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
@@ -324,7 +329,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case pickerCurrentCountry, pickerHomeCountry:
-            guard row != 0 else { return "--" }
+            guard row != 0 else { return "--"}
             return Country.all[row - 1].rawValue
         case pickerCurrentState, pickerHomeState:
             guard row != 0 else { return "--" }
