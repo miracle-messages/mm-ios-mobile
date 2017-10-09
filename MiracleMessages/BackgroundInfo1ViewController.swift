@@ -76,7 +76,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         //  Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
-        //pickerCurrentCountry.selectRow(0, inComponent: 0, animated: false)
         textFieldCurrentCountry.inputView = pickerCurrentCountry
         
         pickerCurrentState.dataSource = self
@@ -123,6 +122,16 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         super.viewWillAppear(animated)
         currentCase = Case.current
         displayInfo()
+        
+        if !textFieldCurrentCountry.hasText {
+            pickerCurrentCountry.selectRow(1, inComponent: 0, animated: false)
+            pickerView(pickerCurrentCountry, didSelectRow: 1, inComponent: 0)
+        }
+        
+        if !textFieldHomeCountry.hasText {
+            pickerHomeCountry.selectRow(1, inComponent: 0, animated: false)
+            pickerView(pickerHomeCountry, didSelectRow: 1, inComponent: 0)
+        }
     }
 
     func displayInfo() -> Void {
