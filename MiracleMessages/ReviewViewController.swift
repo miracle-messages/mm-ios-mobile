@@ -18,6 +18,8 @@ class ReviewViewController: UIViewController, CaseDelegate {
     let storage = Storage.storage()
     var ref: DatabaseReference!
     var caseID: String!
+    var croppedImage: UIImage?
+
 
     let dateFormatter: DateFormatter = {
         let this = DateFormatter()
@@ -72,11 +74,37 @@ class ReviewViewController: UIViewController, CaseDelegate {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-
+    func cropImageToSquare(image: UIImage) -> UIImage? {
+        var imageHeight = image.size.height
+        var imageWidth = image.size.width
+        
+        if imageHeight > imageWidth {
+            imageHeight = imageWidth
+        }
+        else {
+            imageWidth = imageHeight
+        }
+        
+        let size = CGSize(width: imageWidth, height: imageHeight)
+        
+        let refWidth : CGFloat = CGFloat(image.cgImage!.width)
+        let refHeight : CGFloat = CGFloat(image.cgImage!.height)
+        
+        let x = (refWidth - size.width) / 2
+        let y = (refHeight - size.height) / 2
+        
+        let cropRect = CGRect(x: x, y: y, width: size.height, height: size.width)
+        if let imageRef = image.cgImage!.cropping(to: cropRect) {
+            return UIImage(cgImage: imageRef, scale: 0, orientation: image.imageOrientation)
+        }
+        
+        return nil
+    }
     @IBAction func didTapRecordBtn(_ sender: Any) {
         if UIImagePickerController.isCameraDeviceAvailable(.rear) {
             ref = Database.database().reference()
             caseID = ref.child("clients").childByAutoId().key
+            caseID = self.currentCase.key
             UserDefaults.standard.set(caseID, forKey: Keys.caseID)
             picker.delegate = self
             picker.allowsEditing = false
@@ -120,20 +148,32 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //Send image to firebase
         let storageRef = storage.reference()
-        let photoPathRef = storageRef.child("casePictures/\(caseID!)/photoReference.jpg")
+        let photoPathRef = storageRef.child("casePictures/\(currentCase.key!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-
-        if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
-            let _ = photoPathRef.putData(data, metadata: nil) { (metadata, error) in
-                if let error = error {
-                    Logger.log("Error saving photo reference \(error.localizedDescription)")
-                    return
+        if let croppedImage = cropImageToSquare(image: referenceImage){
+            //currentCase.casePhoto = referenceImage
+            let newMeta = StorageMetadata()
+            newMeta.contentType = "image/jpeg"
+            if let data = UIImageJPEGRepresentation(croppedImage, 90.0) {
+                let _ = photoPathRef.putData(data, metadata: newMeta) { (metadata, error) in
+                    if let error = error {
+                        Logger.log("Error saving photo reference \(error.localizedDescription)")
+                        return
+                    }else{
+                        self.currentCase.photoURL = metadata?.downloadURL()
+                        Logger.log("Saved the photo for the case \(self.currentCase.key!) \(self.currentCase.photoURL!)")
+                    }
                 }
             }
+            picker.dismiss(animated: true, completion: {
+                self.performSegue(withIdentifier: "cameraController", sender: self)
+            })
         }
-        picker.dismiss(animated: true, completion: {
-            self.performSegue(withIdentifier: "cameraController", sender: self)
-        })
+        else{
+            Logger.log("Unable to save the photo for this case: \(currentCase.key!)")
+            return
+        }
+
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
