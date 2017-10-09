@@ -150,6 +150,7 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
         let storageRef = storage.reference()
         let photoPathRef = storageRef.child("casePictures/\(currentCase.key!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+<<<<<<< HEAD
         if let croppedImage = cropImageToSquare(image: referenceImage){
             //currentCase.casePhoto = referenceImage
             let newMeta = StorageMetadata()
@@ -163,6 +164,15 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
                         self.currentCase.photoURL = metadata?.downloadURL()
                         Logger.log("Saved the photo for the case \(self.currentCase.key!) \(self.currentCase.photoURL!)")
                     }
+=======
+
+        if let data = UIImageJPEGRepresentation(referenceImage, 90.0) {
+            let _ = photoPathRef.putData(data, metadata: nil) { [unowned self] (metadata, error) in
+                self.currentCase.photoURL = metadata?.downloadURL()
+                if let error = error {
+                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+                    return
+>>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
                 }
             }
             picker.dismiss(animated: true, completion: {

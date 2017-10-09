@@ -109,9 +109,13 @@ class Case {
 //        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
 //            else { return }
         guard let photoAddress = photoURL?.absoluteString
+<<<<<<< HEAD
             else {
                 Logger.log("No photo was provided")
                 return }
+=======
+            else { return }
+>>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
         guard let givenName = firstName, let midName = middleName, let surname = lastName
             else { return }
         guard let thisCity = currentCity, let thisState = currentState, let thisCountry = currentCountry
