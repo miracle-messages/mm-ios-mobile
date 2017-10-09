@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
     //  Container
     @IBOutlet weak var container: UIView!
@@ -56,6 +56,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     @IBOutlet weak var textFieldTimeScale: UITextField!
     let pickerTimeScale = UIPickerView()
     
+    // Notes about the client
     @IBOutlet weak var textViewNotes: UITextView!
     
     let datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
@@ -70,6 +71,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWithTap()
+
         
         //  Current location
         pickerCurrentCountry.dataSource = self
@@ -187,6 +189,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             currentCase.timeHomeless = (type, value)
         }
         
+        if let caseNotes = textViewNotes.text{
+            currentCase.notes = caseNotes
+        }
+        
         return currentCase
     }
 
@@ -288,7 +294,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
 //    override func performSegue(withIdentifier identifier: String, sender: Any?) {
 //        
 //    }
-    
+    // hide the keyboard when the user hits
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
