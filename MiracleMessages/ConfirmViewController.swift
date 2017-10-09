@@ -31,63 +31,67 @@ class ConfirmViewController: UIViewController {
     }
 
     func bgUploadToS3(video: Video) -> Void {
-        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
-        let transferUtility = AWSS3TransferUtility.default()
-        let transferExpression = AWSS3TransferUtilityUploadExpression()
-
-        transferExpression.progressBlock = { (task, progress) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                Logger.log("Progress \(progress.fractionCompleted)")
-            })
-        }
-
-        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-
-        uploadCompletionHandlerBlock = { (task, error) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                if error == nil {
-                    Logger.log("uploadCompletionHandler: Upload Success!")
-                    let _ = self.sendInfo()
-                } else {
-                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
-                }
-            })
-        }
-
-        let uploadExpression = AWSS3TransferUtilityUploadExpression()
-
-        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
-
-        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
-            if let error = task.error {
-                Logger.log(level: Level.error, "Failure uploading video!")
-                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
-            } else {
-                DispatchQueue.main.async(execute: {
-                    Logger.log("Something to do immediately afterwards. Not necessarily done")
-                })
-            }
-            return nil
-        })
-
-        //UNCOMMENT this code to play with Firebase storage
-//        let key = self.sendInfo()
+//        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
+//        let transferUtility = AWSS3TransferUtility.default()
+//        let transferExpression = AWSS3TransferUtilityUploadExpression()
 //
-//        let storageRef = storage.reference()
-//        let photoPathRef = storageRef.child("caseVideos/\(key)/\(video.name)")
+//        transferExpression.progressBlock = { (task, progress) in
+//            DispatchQueue.main.sync(execute: { () -> Void in
+//                Logger.log("Progress \(progress.fractionCompleted)")
+//            })
+//        }
 //
-//        do {
-//            let data = try Data.init(contentsOf: video.url)
-//            let _ = photoPathRef.putData(data, metadata: nil, completion: { (metadata, error) in
-//                if let error = error {
-//                    Logger.log("Error saving photo reference \(error.localizedDescription)")
-//                    return
+//        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+//
+//        uploadCompletionHandlerBlock = { (task, error) in
+//            DispatchQueue.main.sync(execute: { () -> Void in
+//                if error == nil {
+//                    Logger.log("uploadCompletionHandler: Upload Success!")
+//                    let _ = self.sendInfo()
+//                } else {
+//                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
 //                }
 //            })
-//
-//        } catch {
-//            print("Error")
 //        }
+//
+//        let uploadExpression = AWSS3TransferUtilityUploadExpression()
+//
+//        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
+//
+//        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
+//            if let error = task.error {
+//                Logger.log(level: Level.error, "Failure uploading video!")
+//                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
+//            } else {
+//                DispatchQueue.main.async(execute: {
+//                    Logger.log("Something to do immediately afterwards. Not necessarily done")
+//                })
+//            }
+//            return nil
+//        })
+
+        //UNCOMMENT this code to play with Firebase storage
+        //let key = self.sendInfo()
+        let key = self.currentCase.key
+        let storageRef = storage.reference()
+        let photoPathRef = storageRef.child("caseVideos/\(key!)/\(video.name)")
+        let newMeta = StorageMetadata()
+        newMeta.contentType = "video/quicktime"
+        Logger.log("Firebase video ref \(photoPathRef)")
+        do {
+            let data = try Data.init(contentsOf: video.url)
+            let _ = photoPathRef.putData(data, metadata: newMeta, completion: { (metadata, error) in
+                if let error = error {
+                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+                    return
+                }
+                self.currentCase.privateVideoURL = metadata?.downloadURL()
+                let _ = self.sendInfo()
+            })
+
+        } catch {
+            print("Error")
+        }
 
     }
 

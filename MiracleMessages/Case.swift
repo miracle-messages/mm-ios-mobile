@@ -81,9 +81,11 @@ class Case {
     
     //  Contact Infor
     var contactInfo = ""
+    
 
     func generateKey(withRef firebase: DatabaseReference) {
         key = firebase.child("/cases/").childByAutoId().key
+        Logger.log("New key generated for case \(key!)")
     }
     
     //  Writing to the database
@@ -102,18 +104,21 @@ class Case {
             else { return }
 //        guard let publicVideoAddress = publicVideoURL?.absoluteString
 //            else { return }
-//        guard let privateVideoAddress = privateVideoURL?.absoluteString
-//            else { return }
+        guard let privateVideoAddress = privateVideoURL?.absoluteString
+            else { return }
 //        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
 //            else { return }
-//        guard let photoAddress = photoURL?.absoluteString
-//            else { return }
+        guard let photoAddress = photoURL?.absoluteString
+            else {
+                Logger.log("No photo was provided")
+                return }
         guard let givenName = firstName, let midName = middleName, let surname = lastName
             else { return }
         guard let thisCity = currentCity, let thisState = currentState, let thisCountry = currentCountry
             else { return }
         guard let oldCity = homeCity, let oldState = homeState, let oldCountry = homeCountry
             else { return }
+        // Date of birth is not required
         guard dateOfBirth != nil || age != nil else { return }
         guard let timeWithoutHome = timeHomeless else { return }
         
@@ -137,9 +142,9 @@ class Case {
             "nextStep": nextStep.rawValue,
 //            "pubVideo": publicVideoAddress,
 //            "youtubeCover": youtubeCoverAddress,
-//            "privVideo": privateVideoAddress,
+            "privVideo": privateVideoAddress,
             "source": source.dictionary,
-//            "photo": photoAddress,
+            "photo": photoAddress,
             "firstName": givenName,
             "middleName": midName,
             "lastName": surname,
@@ -200,6 +205,8 @@ class Case {
                 //  If unsuccessful, print and return
                 guard error == nil else {
                     print(error!.localizedDescription)
+                    Logger.log(error!.localizedDescription)
+                    Logger.log("\(publicPayload)")
                     return
                 }
 
