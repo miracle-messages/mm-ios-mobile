@@ -1,38 +1,17 @@
 PODS:
   - Alamofire (4.5.1)
-<<<<<<< HEAD
-  - AWSCore (2.6.1)
-  - AWSS3 (2.6.1):
-    - AWSCore (= 2.6.1)
-=======
   - AWSCore (2.6.2)
   - AWSS3 (2.6.2):
     - AWSCore (= 2.6.2)
->>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
   - DatePickerDialog (2.0)
   - Fabric (1.6.13)
-<<<<<<< HEAD
-  - Firebase/Auth (4.2.0):
-    - Firebase/Core
-    - FirebaseAuth (= 4.2.0)
-  - Firebase/Core (4.2.0):
-    - FirebaseAnalytics (= 4.0.3)
-    - FirebaseCore (= 4.0.7)
-  - Firebase/Database (4.2.0):
-    - Firebase/Core
-    - FirebaseDatabase (= 4.0.3)
-  - Firebase/Storage (4.2.0):
-    - Firebase/Core
-    - FirebaseStorage (= 2.0.2)
-=======
   - Firebase (4.2.0):
     - Firebase/Core (= 4.2.0)
   - Firebase/Core (4.2.0):
     - FirebaseAnalytics (= 4.0.3)
     - FirebaseCore (= 4.0.7)
->>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
   - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -108,13 +87,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-<<<<<<< HEAD
-  AWSCore: e7d37fa0715def975acf1b0d75556576780088b8
-  AWSS3: 2e18ede28199a5530955dc1a65434da43dcc4d2c
-=======
   AWSCore: 8f458961a4967be219162108f5be7df1c935639a
   AWSS3: b3e2c4aca868cae06b5b88337ceabee25709fcc5
->>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
@@ -128,11 +102,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: 8c599fc10d25b2af86a3f82fd9631e863f2b1400
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
-<<<<<<< HEAD
-  GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
-=======
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
->>>>>>> 9495b8c8921634824c660ddf81ae49d193798ed9
   HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
