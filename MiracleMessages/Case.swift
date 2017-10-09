@@ -106,8 +106,8 @@ class Case {
 //            else { return }
 //        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
 //            else { return }
-//        guard let photoAddress = photoURL?.absoluteString
-//            else { return }
+        guard let photoAddress = photoURL?.absoluteString
+            else { return }
         guard let givenName = firstName, let midName = middleName, let surname = lastName
             else { return }
         guard let thisCity = currentCity, let thisState = currentState, let thisCountry = currentCountry
@@ -139,7 +139,7 @@ class Case {
 //            "youtubeCover": youtubeCoverAddress,
 //            "privVideo": privateVideoAddress,
             "source": source.dictionary,
-//            "photo": photoAddress,
+            "photo": photoAddress,
             "firstName": givenName,
             "middleName": midName,
             "lastName": surname,
