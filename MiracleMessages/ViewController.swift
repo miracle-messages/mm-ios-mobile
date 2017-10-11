@@ -44,7 +44,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
             webVC.delegate = self
-            webVC.urlString = "https://dev.miraclemessages.org"
+            webVC.urlString = ProcessInfo.processInfo.environment["webApp"]
         }
     }
 }
