@@ -33,7 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.white
 
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
+        
+
+        if let firebaseConfig = Bundle.main.path(forResource: ProcessInfo.processInfo.environment["FIREBASE_PLIST"], ofType: "plist"), let options = FirebaseOptions(contentsOfFile: firebaseConfig){
+            FirebaseApp.configure(options: options)
+        }
+        
+        
 
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
