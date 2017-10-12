@@ -54,6 +54,7 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
             break
         default:
             nextBtn.setTitle("Next", for: .normal)
+            
             break
         }
         // Do any additional setup after loading the view.
@@ -122,8 +123,8 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
     
     //  Alert for incomplete fields
     func alertIncomplete(field: UIResponder, saying message: String) {
-        let alert = UIAlertController(title: "Cannot continue.", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Click", style: .default) { _ in
+        let alert = UIAlertController(title: "Missing Info", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Back", style: .default) { _ in
             field.becomeFirstResponder()
         })
         present(alert, animated: true)
