@@ -44,7 +44,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
             webVC.delegate = self
-            webVC.urlString = ProcessInfo.processInfo.environment["webApp"]
+            webVC.urlString = Config.baseUrl
         }
     }
 }

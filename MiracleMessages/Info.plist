@@ -83,6 +83,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>BASE_URL</key>
+	<string>${BASE_URL}</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
