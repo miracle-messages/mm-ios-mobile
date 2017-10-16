@@ -58,6 +58,7 @@
 		EE48909C1F135BA300E7D84E /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48909B1F135BA300E7D84E /* OvalView.swift */; };
 		EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC351F08678D00F3E1EA /* Logger.swift */; };
 		EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC381F09B46B00F3E1EA /* CustomError.swift */; };
+		EED9C4061F92CE6B0044E401 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9C4051F92CE6B0044E401 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		EE48909B1F135BA300E7D84E /* OvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
 		EECBEC351F08678D00F3E1EA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		EECBEC381F09B46B00F3E1EA /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		EED9C4051F92CE6B0044E401 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */,
 				A0530E071F2CFA5600D3DED6 /* Source.swift */,
 				231CB4DD1F2F3798009D2767 /* CaseSummary.swift */,
+				EED9C4051F92CE6B0044E401 /* Config.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				239C0C091E2C6D6400E0DE36 /* ConfirmViewController.swift in Sources */,
 				2393762C1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
+				EED9C4061F92CE6B0044E401 /* Config.swift in Sources */,
 				A077739F1F2CF9B700AD52C0 /* Case.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
@@ -788,17 +792,20 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APP_DISPLAY_NAME = "BETA MM";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_URL = "https://dev.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GE8VHP39HG;
+				FIREBASE = "GoogleService-Info_dev";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info_dev";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = "Dev MiracleMsg";
-				PROVISIONING_PROFILE = "025578c5-1f36-4d6f-bf9e-5af705c254e2";
+				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
 				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				REGISTER_URL = "https://dev.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WEBAPP_URLS = "https://dev.miraclemessages.org";
@@ -812,17 +819,20 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APP_DISPLAY_NAME = "Miracle Msgs";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GE8VHP39HG;
+				FIREBASE = "GoogleService-Info";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "8142957a-7f00-46c4-838e-6473bf0931cd";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dist;
+				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WEBAPP_URLS = "https://my.miraclemessages.org";
