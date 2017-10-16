@@ -44,7 +44,7 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
             webVC.delegate = self
-            webVC.urlString = Config.baseUrl
+            webVC.urlString = Config.registerUrl
         }
     }
 }
@@ -75,6 +75,16 @@ private extension ViewController {
 
 extension ViewController: WebViewControllerDelegate {
     func didTapCloseBtn(viewController: WebViewController) {
+        
+//        let firebaseAuth = Auth.auth()
+//        if firebaseAuth.currentUser != nil {
+//            do {
+//                try firebaseAuth.signOut()
+//            } catch let signOutError as NSError {
+//                Logger.forceLog(signOutError)
+//            }
+//        }
+
         viewController.dismiss(animated: true, completion: nil)
         verifyProfile()
     }

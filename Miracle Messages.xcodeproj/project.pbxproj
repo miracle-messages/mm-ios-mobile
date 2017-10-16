@@ -391,7 +391,7 @@
 					};
 					23B0B7E11D98E466007DFDDE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7DEUTGD6YA;
+						DevelopmentTeam = GE8VHP39HG;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -792,18 +792,20 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APP_DISPLAY_NAME = "BETA MM";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "https://my.miraclemessages.org";
+				BASE_URL = "https://dev.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DEUTGD6YA;
+				DEVELOPMENT_TEAM = GE8VHP39HG;
+				FIREBASE = "GoogleService-Info_dev";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info_dev";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = "Dev MiracleMsg";
-				PROVISIONING_PROFILE = "dabf71f7-1521-422b-aaaa-e9b2901473d3";
-				PROVISIONING_PROFILE_SPECIFIER = com.miraclemessages.dev;
+				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				REGISTER_URL = "https://dev.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WEBAPP_URLS = "https://dev.miraclemessages.org";
@@ -817,18 +819,20 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APP_DISPLAY_NAME = "Miracle Msgs";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "https://dev.miraclemessages.org";
+				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DEUTGD6YA;
+				DEVELOPMENT_TEAM = GE8VHP39HG;
+				FIREBASE = "GoogleService-Info";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "dabf71f7-1521-422b-aaaa-e9b2901473d3";
-				PROVISIONING_PROFILE_SPECIFIER = com.miraclemessages.dev;
+				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WEBAPP_URLS = "https://my.miraclemessages.org";

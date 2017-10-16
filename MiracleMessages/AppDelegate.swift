@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //FirebaseApp.configure()
         
 
-        if let firebaseConfig = Bundle.main.path(forResource: ProcessInfo.processInfo.environment["FIREBASE_PLIST"], ofType: "plist"), let options = FirebaseOptions(contentsOfFile: firebaseConfig){
+        if let firebaseConfig = Bundle.main.path(forResource: Config.firebaseConfigFileName, ofType: "plist"), let options = FirebaseOptions(contentsOfFile: firebaseConfig){
             FirebaseApp.configure(options: options)
         }
         
@@ -124,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL,
+            
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
                 return false
         }
@@ -195,8 +196,7 @@ extension AppDelegate {
         }
 
         guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                          accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         Auth.auth().signIn(with: credential) { (user, error) in
             // ...
             if let error = error {
