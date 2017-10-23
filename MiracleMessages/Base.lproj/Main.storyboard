@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,15 +51,16 @@
                                     <constraint firstAttribute="height" constant="71" id="TNx-du-S11"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You'll need a Google account before creating your profile" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmM-kp-l28">
-                                <rect key="frame" x="16" y="172" width="343" height="51.5"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You'll need a Google account before creating your profile" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="LmM-kp-l28">
+                                <rect key="frame" x="16" y="172" width="343" height="114"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Akv-6c-8sh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="LmM-kp-l28" secondAttribute="bottom" constant="10" id="3e9-sN-KK4"/>
                             <constraint firstItem="LmM-kp-l28" firstAttribute="top" secondItem="uxr-g0-asb" secondAttribute="bottom" constant="50" id="BFA-gN-seR"/>
                             <constraint firstAttribute="trailing" secondItem="Akv-6c-8sh" secondAttribute="trailing" constant="16" id="BfM-dK-pHs"/>
                             <constraint firstItem="Akv-6c-8sh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GMs-bV-k2q"/>
