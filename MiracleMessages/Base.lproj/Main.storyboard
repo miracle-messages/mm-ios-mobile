@@ -394,12 +394,11 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
                                 <rect key="frame" x="16" y="142" width="343" height="444"/>
-                                <mutableString key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
+                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
 a.) your video may be made public and shared widely;
 b.) we don't know how your loved one(s) will respond, if at all; and
 c.) we don't know if we'll be able to find your loved one(s).
-                                </mutableString>
-
+                                </string>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2167,6 +2166,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstItem="Hur-rx-VmS" firstAttribute="leading" secondItem="6fx-Nd-Btj" secondAttribute="leading" id="ivq-tY-hJS"/>
                             <constraint firstItem="rHV-m4-hgG" firstAttribute="trailing" secondItem="Hur-rx-VmS" secondAttribute="trailing" id="k9a-em-3I6"/>
                             <constraint firstItem="jLO-aa-829" firstAttribute="leading" secondItem="53p-ZJ-4wX" secondAttribute="leading" id="kEP-XO-8GZ"/>
+                            <constraint firstItem="pHN-Iy-dG4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jLO-aa-829" secondAttribute="bottom" constant="10" id="olB-HA-yMj"/>
                             <constraint firstItem="53p-ZJ-4wX" firstAttribute="top" secondItem="R7R-fO-Mpw" secondAttribute="bottom" constant="4" id="poj-oA-M6f"/>
                             <constraint firstItem="53p-ZJ-4wX" firstAttribute="leading" secondItem="R7R-fO-Mpw" secondAttribute="leading" id="qdT-Gk-DD7"/>
                             <constraint firstItem="6fx-Nd-Btj" firstAttribute="trailing" secondItem="VTh-Xz-h1f" secondAttribute="trailing" id="r2a-pa-J35"/>
