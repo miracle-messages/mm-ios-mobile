@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxr-g0-asb">
-                                <rect key="frame" x="16" y="81" width="343" height="41"/>
+                                <rect key="frame" x="16" y="85" width="343" height="41"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -310,7 +310,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready to record a message?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1L3-MF-TRz">
-                                <rect key="frame" x="18" y="143.5" width="328" height="92"/>
+                                <rect key="frame" x="18" y="147.5" width="328" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="328" id="2dh-Wt-jLt"/>
                                     <constraint firstAttribute="height" constant="92" id="rav-cb-N3v"/>
@@ -320,7 +320,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sO-gu-4o4" userLabel="Hello Label">
-                                <rect key="frame" x="18" y="101" width="339" height="42.5"/>
+                                <rect key="frame" x="18" y="105" width="339" height="42.5"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -375,7 +375,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GS4-Ok-gU7">
-                                <rect key="frame" x="18" y="57" width="339" height="45"/>
+                                <rect key="frame" x="18" y="105" width="339" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="mAY-lW-l7x"/>
                                 </constraints>
@@ -384,7 +384,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A script to guide you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gb1-KC-2gE">
-                                <rect key="frame" x="18" y="102" width="339" height="20"/>
+                                <rect key="frame" x="18" y="150" width="339" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="SWA-UG-tqC"/>
                                 </constraints>
@@ -393,7 +393,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
-                                <rect key="frame" x="16" y="142" width="343" height="444"/>
+                                <rect key="frame" x="16" y="190" width="343" height="396"/>
                                 <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
 a.) your video may be made public and shared widely;
 b.) we don't know how your loved one(s) will respond, if at all; and
@@ -463,7 +463,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
-                                <rect key="frame" x="16" y="169" width="343" height="20"/>
+                                <rect key="frame" x="16" y="217" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Ygz-NU-mUQ"/>
                                 </constraints>
@@ -472,7 +472,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-Fe-56t">
-                                <rect key="frame" x="0.0" y="197" width="375" height="470"/>
+                                <rect key="frame" x="0.0" y="245" width="375" height="422"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
@@ -577,13 +577,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-yh-dyO">
-                                <rect key="frame" x="16" y="49" width="343" height="74"/>
+                                <rect key="frame" x="16" y="97" width="343" height="74"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-LS-gC8">
-                                <rect key="frame" x="16" y="131" width="343" height="20"/>
+                                <rect key="frame" x="16" y="179" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="BH1-Qq-JJO"/>
                                 </constraints>
@@ -592,7 +592,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ir-qq-vHG" customClass="YPDrawSignatureView" customModule="Dev_MiracleMsg" customModuleProvider="target">
-                                <rect key="frame" x="16" y="209" width="343" height="389"/>
+                                <rect key="frame" x="16" y="257" width="343" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
@@ -604,7 +604,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-E4-YxG">
-                                <rect key="frame" x="287" y="163" width="56" height="37"/>
+                                <rect key="frame" x="287" y="211" width="56" height="37"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
@@ -612,7 +612,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfc-tt-GOr">
-                                <rect key="frame" x="16" y="169" width="121.5" height="26"/>
+                                <rect key="frame" x="16" y="217" width="121.5" height="26"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2811,7 +2811,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0M-VO-Tuz">
-                                <rect key="frame" x="18" y="87" width="339" height="45"/>
+                                <rect key="frame" x="18" y="91" width="339" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1Tc-Kb-pOL"/>
                                 </constraints>
@@ -2820,7 +2820,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything look good?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sm-UV-6GI">
-                                <rect key="frame" x="18" y="132" width="339" height="21"/>
+                                <rect key="frame" x="18" y="136" width="339" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ghv-qa-p67"/>
                                 </constraints>
@@ -2829,7 +2829,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the 'Submit' button below to upload to our database." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-V3-7h1" customClass="VerticalAlignLabel" customModule="Dev_MiracleMsg" customModuleProvider="target">
-                                <rect key="frame" x="18" y="181" width="339" height="49.5"/>
+                                <rect key="frame" x="18" y="185" width="339" height="49.5"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2851,7 +2851,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-d9-UYN">
-                                <rect key="frame" x="16" y="255.5" width="343" height="35"/>
+                                <rect key="frame" x="16" y="259.5" width="343" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="3a5-y9-UZ3"/>
                                 </constraints>
@@ -2859,8 +2859,8 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click back to retake the video." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cag-V1-dMo">
-                                <rect key="frame" x="16" y="315.5" width="343" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click back to retake the video." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cag-V1-dMo">
+                                <rect key="frame" x="16" y="319.5" width="343" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="fdE-Xx-Qcq"/>
                                 </constraints>
@@ -3017,7 +3017,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWw-pP-c7m" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWY-n4-2Ql">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3035,7 +3035,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogM-Iq-pBO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFz-NS-V3N">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3053,7 +3053,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwM-YW-5It" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LsH-oK-gA2">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3071,7 +3071,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKY-Sm-hXB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGE-YI-cuE">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
