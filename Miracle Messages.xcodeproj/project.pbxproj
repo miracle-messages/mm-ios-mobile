@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -58,6 +58,7 @@
 		EE48909C1F135BA300E7D84E /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48909B1F135BA300E7D84E /* OvalView.swift */; };
 		EECBEC361F08678D00F3E1EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC351F08678D00F3E1EA /* Logger.swift */; };
 		EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBEC381F09B46B00F3E1EA /* CustomError.swift */; };
+		EED645A11FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED645A01FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift */; };
 		EED9C4061F92CE6B0044E401 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED9C4051F92CE6B0044E401 /* Config.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,7 @@
 		EE48909B1F135BA300E7D84E /* OvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
 		EECBEC351F08678D00F3E1EA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		EECBEC381F09B46B00F3E1EA /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		EED645A01FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundInfoOptionalViewController.swift; sourceTree = "<group>"; };
 		EED9C4051F92CE6B0044E401 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 		2390079B1E4D64FC00A4C1DB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EED645A01FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift */,
 				23B0B7E71D98E466007DFDDE /* ViewController.swift */,
 				23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
@@ -573,6 +576,7 @@
 			files = (
 				EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */,
 				EECBEC391F09B46B00F3E1EA /* CustomError.swift in Sources */,
+				EED645A11FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift in Sources */,
 				A07773961F2CF97700AD52C0 /* DateFormatterExtension.swift in Sources */,
 				2369668E1F2F0BCA000D559C /* CaseSubject.swift in Sources */,
 				A0530E081F2CFA5600D3DED6 /* Source.swift in Sources */,
