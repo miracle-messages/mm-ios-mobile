@@ -82,6 +82,8 @@ class Case {
     //  Contact Infor
     var contactInfo = ""
     
+    // Background research questions.
+    var research: (quest1: String, quest2: String)?
 
     func generateKey(withRef firebase: DatabaseReference) {
         key = firebase.child("/cases/").childByAutoId().key
@@ -155,7 +157,8 @@ class Case {
             "homeState": oldState,
             "homeCountry": oldCountry.code,
             "detectives": detectives.count > 0,
-            "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any]
+            "timeHomeless": ["type": timeWithoutHome.type.rawValue, "value": timeWithoutHome.value] as [String: Any],
+            "research":["quest1": research?.quest1 , "quest2":research?.quest2]
         ]
         
         if let age = self.age {

@@ -2,6 +2,8 @@
 //  BackgroundInfoOptionalViewController.swift
 //  MiracleMessages
 //
+//  This is the screen where optional questions are shown.
+//
 //  Created by Shobhit on 2017-11-06.
 //  Copyright © 2017 Win Inc. All rights reserved.
 //
@@ -9,41 +11,43 @@
 import UIKit
 
 class BackgroundInfoOptionalViewController: UIViewController {
+    let currentCase: Case = Case.current
 
+    // Container to set text why they lost touch with loved ones.
     @IBOutlet weak var mLooseTouchReasonText: UITextView!
-    
+
+    // Container to set reason for homelessness.
     @IBOutlet weak var mHomelessReason: UITextView!
+    
+    // Handles click of next button on screen.
+    @IBAction func onClickNext(_ sender: Any) {
+        updateBackgroundInfo()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mLooseTouchReasonText.placeholder = "Answer"
-        mHomelessReason.placeholder = "Answer"
-        // Do any additional setup after loading the view.
+        // Set placeholder text
+        mLooseTouchReasonText.placeholder = "Answer (optional)"
+        mHomelessReason.placeholder = "Answer (optional)"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        displayInfo()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // let _ = self.updateBackgroundInfo()
-        // Pass the selected object to the new view controller.
+    func displayInfo() -> Void {
+        if let caseResearch = currentCase.research {
+            mLooseTouchReasonText.text = caseResearch.quest1
+            mHomelessReason.text = caseResearch.quest2
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+    func updateBackgroundInfo() -> Void {
+        currentCase.research = (mLooseTouchReasonText.text, mHomelessReason.text)
     }
-    */
-
 }
