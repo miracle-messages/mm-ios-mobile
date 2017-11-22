@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -825,7 +825,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GE8VHP39HG;
 				FIREBASE = "GoogleService-Info";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info";
@@ -834,8 +834,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "8142957a-7f00-46c4-838e-6473bf0931cd";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dist;
+				PROVISIONING_PROFILE = "28453e43-3ba0-4936-a8de-30facb7a832b";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
 				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
