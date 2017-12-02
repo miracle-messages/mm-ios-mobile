@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import Firebase
+import NVActivityIndicatorView
 
 protocol CameraViewControllerDelegate: class {
     func didFinishRecording(sender: CameraViewController)
 }
 
-class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewDelegate, UIPickerViewDataSource, NVActivityIndicatorViewable {
+   
     var currentLovedOne: LovedOne!
+    //  Loved ones
+    var lovedOnes: Set<LovedOne> = []
+    var ref: DatabaseReference!
     
     @IBOutlet weak var textFieldRecipientFirstName: UITextField!
     @IBOutlet weak var textFieldRecipientMiddleName: UITextField!
@@ -51,6 +57,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref = Database.database().reference()
         hideKeyboardWithTap()
 
         self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
@@ -84,6 +91,139 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
             buttonClearViews.isHidden = true
             buttonAddAnotherRecipient.isHidden = true
         }
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
+    }
+    
+    @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
+        let needToEnter: (String) -> String = { "You will need to enter " + $0 }
+        
+        //  Name
+        guard textFieldRecipientFirstName.hasText else {
+            alertIncomplete(field: textFieldRecipientFirstName, saying: needToEnter("the recipient's first name."))
+            return
+        }
+        guard textFieldRecipientLastName.hasText else {
+            alertIncomplete(field: textFieldRecipientLastName, saying: needToEnter("the recipient's last name."))
+            return
+        }
+        
+        //  Relationship
+        guard textFieldRecipientRelationship.hasText else {
+            alertIncomplete(field: textFieldRecipientRelationship, saying: needToEnter("the recipient's relation to the client."))
+            return
+        }
+        
+        //  Age
+        guard textFieldRecipientAge.hasText, let age = Int(textFieldRecipientAge.text!) else {
+            alertIncomplete(field: textFieldRecipientAge, saying: needToEnter("the recipient's age."))
+            return
+        }
+        
+        //  Last Contact
+        guard textFieldRecipientLastSeen.hasText else {
+            alertIncomplete(field: textFieldRecipientLastSeen, saying: needToEnter("the amount of time since the client has seen the recipient."))
+            return
+        }
+        
+        //  Notes
+        guard textViewRecipientOtherInfo.hasText else {
+            alertIncomplete(field: textViewRecipientOtherInfo, saying: needToEnter("some information to help the detectives find this loved one"))
+            return
+        }
+        
+        if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
+            return
+        } else { return self.saveLovedOneFormData(age: age) }
+        
+    }
+    
+    func saveLovedOneFormData(age: Int){
+        self.ShowActivityIndicator()
+        currentLovedOne.firstName = textFieldRecipientFirstName.text
+        currentLovedOne.middleName = textFieldRecipientMiddleName.text ?? ""
+        currentLovedOne.lastName = textFieldRecipientLastName.text
+        
+        currentLovedOne.relationship = textFieldRecipientRelationship.text
+        
+        currentLovedOne.age = age
+        currentLovedOne.isAgeApproximate = switchRecipientAgeIsApproximate.isOn
+        if let dateOfBirth = textFieldRecipientDob.text {
+            currentLovedOne.dateOfBirth = dateFormatter.date(from: dateOfBirth)
+        }
+        currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
+        
+        currentLovedOne.lastKnownLocation = textFieldRecipientLastLocation.text
+        
+        if let valueString = textFieldRecipientLastSeen.text, let value = Int(valueString), let typeString = textFieldRecipientLastSeenTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
+            currentLovedOne.lastContact = (type, value)
+        } else { currentLovedOne.lastContact = nil }
+        
+        
+        currentLovedOne.notes = textViewRecipientOtherInfo.text
+        
+        self.lovedOnes.insert(currentLovedOne)
+        
+        guard let key = currentCase.key else {return}
+        let caseReference: DatabaseReference
+        caseReference = self.ref.child("/cases/\(key)")
+        
+        let privateCaseReference = ref.child("/casesPrivate/\(key)")
+        
+        //  If successful, write loved ones
+        for lovedOne in self.lovedOnes {
+            //  Get reference to loved one
+            let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
+            lovedOne.id = lovedOneRef.key
+            
+            //  Try to write
+            lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
+                //  If unsuccessful return
+                guard error == nil else {
+                    self.RemoveActivityIndicator()
+                    self.showAlertView()
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                //  If successful, write private info
+                privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
+                    self.RemoveActivityIndicator()
+                    //  If unsuccessful, remove public loved one info
+                    guard error == nil else {
+                        self.showAlertView()
+                        print(error!)
+                        lovedOneRef.removeValue()
+                        return
+                    }
+                    print("Loved one successfully written")
+                    
+                    let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
+                    self.navigationController?.pushViewController(reviewVC!, animated: true)
+                }
+            }
+        }
+    }
+    
+    func showAlertView(){
+        // create the alert
+        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     func displayInfo() -> Void {
@@ -230,7 +370,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         return true
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  /*  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         let _ = self.updateBackgroundInfo()
         // Pass the selected object to the new view controller.
@@ -248,7 +388,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
                 return true
             } else { return appendToLovedOnes() }
         }
-    }
+    } */
     
     //  Update values based on picker
     func onDatePickerValueChanged(by sender: UIDatePicker) {

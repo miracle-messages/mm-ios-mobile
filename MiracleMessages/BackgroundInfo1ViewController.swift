@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import NVActivityIndicatorView
 
-class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable{
     
+    var ref: DatabaseReference!
     //  Container
     @IBOutlet weak var container: UIView!
     
@@ -70,9 +73,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
         self.hideKeyboardWithTap()
 
-        
         //  Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
@@ -132,6 +136,194 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             pickerHomeCountry.selectRow(1, inComponent: 0, animated: false)
             pickerView(pickerHomeCountry, didSelectRow: 1, inComponent: 0)
         }
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
+    }
+    
+    @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
+        
+        let needToEnter: (String) -> String = { "You will need to enter " + $0 }
+        
+        //  Client names
+        guard textFieldClientFirstName.hasText else {
+            alertIncomplete(field: textFieldClientFirstName, saying: needToEnter("the client's first name."))
+            return
+        }
+        guard textFieldClientLastName.hasText else {
+            alertIncomplete(field: textFieldClientLastName, saying: needToEnter("the client's last name."))
+            return
+        }
+        
+        //  Current location
+        guard let currentCountry = textFieldCurrentCountry.text else {
+            alertIncomplete(field: textFieldCurrentCountry, saying: needToEnter("the client's current country."))
+            return
+        }
+        if Country(rawValue: currentCountry) == .UnitedStates {
+            guard textFieldCurrentState.hasText else {
+                alertIncomplete(field: textFieldCurrentState, saying: needToEnter("the client's current state."))
+                return
+            }
+        }
+        guard textFieldCurrentCity.hasText else {
+            alertIncomplete(field: textFieldCurrentCity, saying: needToEnter("the client's current city."))
+            return
+        }
+        
+        //  Home location
+        guard let homeCountry = textFieldHomeCountry.text else {
+            alertIncomplete(field: textFieldHomeCountry, saying: needToEnter("the client's home country."))
+            return
+        }
+        if Country(rawValue: homeCountry) == .UnitedStates {
+            guard textFieldHomeState.hasText else {
+                alertIncomplete(field: textFieldHomeState, saying: needToEnter("the client's home state."))
+                return
+            }
+        }
+        guard textFieldHomeCity.hasText else {
+            alertIncomplete(field: textFieldHomeCity, saying: needToEnter("the client's home city."))
+            return
+        }
+        // DOB
+        guard textFieldClientDob.hasText else{
+            alertIncomplete(field: textFieldClientDob, saying: needToEnter("the client's date of birth."))
+            return
+        }
+        //  Age
+        guard textFieldClientAge.hasText else {
+            alertIncomplete(field: textFieldClientAge, saying: needToEnter("the client's age."))
+            return
+        }
+        
+        //  Contact info
+        guard textFieldContactInfo.hasText else {
+            alertIncomplete(field: textFieldContactInfo, saying: needToEnter("the client's contact info"))
+            return
+        }
+        
+        //  Time Homeless
+        let alertTimeHomelessString = "the amount of time the client has been without a home"
+        guard textFieldTimeHomeless.hasText else {
+            alertIncomplete(field: textFieldTimeHomeless, saying: needToEnter(alertTimeHomelessString))
+            return
+        }
+        guard textFieldTimeScale.hasText else {
+            alertIncomplete(field: textFieldTimeScale, saying: needToEnter(alertTimeHomelessString))
+            return
+        }
+        
+        self.saveHomelessIndividualFormData()
+    }
+    
+    func saveHomelessIndividualFormData(){
+        self.ShowActivityIndicator()
+        guard let key = currentCase.key else {return}
+        
+        let caseStatusReference: DatabaseReference
+        caseStatusReference = self.ref.child("/cases/\(key)")
+        
+        guard let thisCountry = Country(rawValue: textFieldCurrentCountry.text!)
+            else { return }
+        guard let oldCountry = Country(rawValue: textFieldHomeCountry.text!)
+            else { return }
+        
+        var publicPayload: [String: Any] = [
+            "firstName": textFieldClientFirstName.text!,
+            "middleName": textFieldClientMiddleName.text!,
+            "lastName": textFieldClientLastName.text!,
+            "currentCity": textFieldCurrentCity.text!,
+            "currentState": textFieldCurrentState.text!,
+            "currentCountry": thisCountry.code,
+            "homeCity": textFieldHomeCity.text!,
+            "homeState": textFieldHomeState.text!,
+            "homeCountry": oldCountry.code,
+            ]
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        publicPayload["createdBy"] = ["uid": currentUser.uid]
+        
+        if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
+            let timeHomeless = (type: type, value: value)
+            publicPayload["timeHomeless"] = ["type": timeHomeless.type.rawValue, "value": timeHomeless.value] as [String: Any]
+        }
+        
+        if let age = Int(textFieldClientAge.text!) {
+            publicPayload["age"] = age
+            publicPayload["ageApproximate"] = switchAgeApproximate.isOn
+        }
+        
+        if let partnerName = textFieldPartner.text, let partnerCode = Partners.instance[partnerName] {
+            publicPayload["partner"] = ["partnerName": partnerCode]
+        }
+        
+        print("Public Payload\(publicPayload)")
+        
+        // Write case data
+        caseStatusReference.updateChildValues(publicPayload) { error, _ in
+            // If unsuccessful, print and return
+            guard error == nil else {
+                self.RemoveActivityIndicator()
+                self.showAlertView()
+                print(error!.localizedDescription)
+                Logger.log(error!.localizedDescription)
+                Logger.log("\(publicPayload)")
+                return
+            }
+        }
+        
+        //Private Case
+        let privateCaseReference = ref.child("/casesPrivate/\(key)")
+        var privatePayload: [String: Any] = [:]
+        if let contactInfo = textFieldContactInfo.text {
+            privatePayload["contactInfo"] = contactInfo
+        }
+        
+        if let caseNotes = textViewNotes.text{
+            privatePayload["notes"] = caseNotes
+        }
+        
+        if let birthdate = textFieldClientDob.text {
+            privatePayload["dob"] = DateFormatter.default.string(from: dateFormatter.date(from: birthdate)!)
+            privatePayload["dobApproximate"] = dobApproximate.isOn
+        }
+        
+        print("Private Payload\(privatePayload)")
+        
+        //  If successful, write private case data
+        privateCaseReference.updateChildValues(privatePayload) { error, _ in
+            self.RemoveActivityIndicator()
+            //  If private write unsuccessful, remove case data and return
+            guard error == nil else {
+                self.showAlertView()
+                print(error!.localizedDescription)
+                return
+            }
+            let backgroundInfo2VC = self.storyboard?.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController")
+            self.navigationController?.pushViewController(backgroundInfo2VC!, animated: true)
+        }
+    }
+    
+    func showAlertView(){
+        // create the alert
+        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     func displayInfo() -> Void {
@@ -206,7 +398,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         return currentCase
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let _ = updateBackgroundInfo()
     }
 
@@ -302,7 +494,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             })
             return false
         }
-    }
+    } */
     
     //  Perform segue
 //    override func performSegue(withIdentifier identifier: String, sender: Any?) {

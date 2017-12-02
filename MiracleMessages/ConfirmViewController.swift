@@ -11,11 +11,12 @@ import AWSS3
 import FirebaseDatabase
 import Alamofire
 import FirebaseStorage
+import NVActivityIndicatorView
 struct Keys {
     static let caseID = "caseID"
 }
 
-class ConfirmViewController: UIViewController {
+class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
     var video: Video?
     var ref: DatabaseReference!
@@ -28,6 +29,18 @@ class ConfirmViewController: UIViewController {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
     }
 
     func bgUploadToS3(video: Video) -> Void {
@@ -72,6 +85,7 @@ class ConfirmViewController: UIViewController {
 
         //UNCOMMENT this code to play with Firebase storage
         //let key = self.sendInfo()
+        self.ShowActivityIndicator()
         let key = self.currentCase.key
         let storageRef = storage.reference()
         let photoPathRef = storageRef.child("caseVideos/\(key!)/\(video.name)")
@@ -82,17 +96,60 @@ class ConfirmViewController: UIViewController {
             let data = try Data.init(contentsOf: video.url)
             let _ = photoPathRef.putData(data, metadata: newMeta, completion: { (metadata, error) in
                 if let error = error {
+                    self.RemoveActivityIndicator()
                     Logger.log("Error saving photo reference \(error.localizedDescription)")
                     return
                 }
                 self.currentCase.privateVideoURL = metadata?.downloadURL()
-                let _ = self.sendInfo()
+                guard let caseKey = self.currentCase.key else {return}
+                let caseReference: DatabaseReference
+                caseReference = self.ref.child("/cases/\(caseKey)")
+                
+                let url = metadata?.downloadURL()?.absoluteString
+                
+                let publicPayload: [String: Any] = [
+                    "caseStatus": self.currentCase.caseStatus.rawValue,
+                    "messageStatus": self.currentCase.messageStatus.rawValue,
+                    "nextStep": self.currentCase.nextStep.rawValue,
+                    "source": self.currentCase.source.dictionary,
+                    "detectives": self.currentCase.detectives.count > 0,
+                    "submitted": Int(Date().timeIntervalSince1970),
+                    "privVideo": url!,
+                    "publishStatus": "published",
+                    ]
+                
+                print("Public Payload\(publicPayload)")
+                
+                // Write case data
+                caseReference.updateChildValues(publicPayload) { error, _ in
+                    self.RemoveActivityIndicator()
+                    // If unsuccessful, print and return
+                    guard error == nil else {
+                        self.showAlertView()
+                        print(error!.localizedDescription)
+                        Logger.log(error!.localizedDescription)
+                        Logger.log("\(publicPayload)")
+                        return
+                    }
+                    
+                }
             })
 
         } catch {
             print("Error")
         }
 
+    }
+    
+    func showAlertView(){
+        // create the alert
+        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     func submit() {

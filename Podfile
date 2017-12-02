@@ -18,6 +18,7 @@ target 'MiracleMessages' do
     pod 'Nuke', '~> 5.2'
     pod 'SCLAlertView', '~> 0.7'
     pod 'SnapKit', '~> 3.2'
+    pod 'NVActivityIndicatorView'
 end
 
 post_install do |installer|

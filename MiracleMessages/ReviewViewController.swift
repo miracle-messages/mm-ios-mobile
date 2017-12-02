@@ -10,8 +10,9 @@ import UIKit
 import FirebaseStorage
 import Firebase
 import SnapKit
+import NVActivityIndicatorView
 
-class ReviewViewController: UIViewController, CaseDelegate {
+class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorViewable {
     var currentCase: Case = Case.current
     var lovedOnes: [LovedOne] = []
     let picker = UIImagePickerController()
@@ -41,6 +42,18 @@ class ReviewViewController: UIViewController, CaseDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
     }
 
     // MARK: - Navigation
@@ -147,6 +160,7 @@ private extension ReviewViewController {
 extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //Send image to firebase
+        self.ShowActivityIndicator()
         let storageRef = storage.reference()
         let photoPathRef = storageRef.child("casePictures/\(currentCase.key!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -157,23 +171,57 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
             if let data = UIImageJPEGRepresentation(croppedImage, 90.0) {
                 let _ = photoPathRef.putData(data, metadata: newMeta) { (metadata, error) in
                     if let error = error {
+                        self.RemoveActivityIndicator()
                         Logger.log("Error saving photo reference \(error.localizedDescription)")
                         return
                     }else{
                         self.currentCase.photoURL = metadata?.downloadURL()
+                        
+                        guard let key = self.currentCase.key else {return}
+                        let publicPayload: [String: Any] = [
+                            "photo": metadata?.downloadURL()?.absoluteString,
+                            ]
+                        
+                        let caseReference: DatabaseReference
+                        caseReference = self.ref.child("/cases/\(key)")
+                        
+                        //  Write case data
+                        caseReference.updateChildValues(publicPayload) { error, _ in
+                            self.RemoveActivityIndicator()
+                            //  If unsuccessful, print and return
+                            guard error == nil else {
+                                self.showAlertView()
+                                print(error!.localizedDescription)
+                                Logger.log(error!.localizedDescription)
+                                Logger.log("\(publicPayload)")
+                                return
+                            }
+                            
+                            picker.dismiss(animated: true, completion: {
+                                self.performSegue(withIdentifier: "cameraController", sender: self)
+                            })
+                        }
                         Logger.log("Saved the photo for the case \(self.currentCase.key!) \(self.currentCase.photoURL!)")
                     }
                 }
             }
-            picker.dismiss(animated: true, completion: {
-                self.performSegue(withIdentifier: "cameraController", sender: self)
-            })
         }
         else{
             Logger.log("Unable to save the photo for this case: \(currentCase.key!)")
             return
         }
 
+    }
+    
+    func showAlertView(){
+        // create the alert
+        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
