@@ -2548,6 +2548,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tblReview" destination="PM3-gJ-sp4" id="cn0-L5-K88"/>
                         <segue destination="gOP-GA-scO" kind="show" identifier="cameraController" id="YCz-ty-BPu"/>
                     </connections>
                 </viewController>
@@ -2696,7 +2697,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <action selector="didPressTakePhoto:" destination="gOP-GA-scO" eventType="touchUpInside" id="SIA-lv-b21"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-ah-h8i">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-ah-h8i">
                                         <rect key="frame" x="134" y="30" width="107" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="107" id="Oid-UK-eY1"/>
@@ -2708,13 +2709,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-w9-H6h">
-                                        <rect key="frame" x="322" y="44" width="45" height="45"/>
+                                        <rect key="frame" x="322" y="3" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="F8u-ns-sro"/>
                                             <constraint firstAttribute="width" constant="45" id="tSN-V1-m1D"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                        <state key="normal" title="X"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <state key="normal" title="Skip"/>
                                         <connections>
                                             <action selector="didPressCloseBtn:" destination="gOP-GA-scO" eventType="touchUpInside" id="vSW-Yt-Q6G"/>
                                         </connections>
@@ -2724,7 +2725,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="0rH-RB-l24" secondAttribute="bottom" constant="131" id="1WT-Xp-sij"/>
                                     <constraint firstAttribute="trailing" secondItem="0rH-RB-l24" secondAttribute="trailing" constant="67" id="7La-TG-2aB"/>
-                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="topMargin" constant="16" id="Cmh-Lt-F9S"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="topMargin" constant="-25" id="Cmh-Lt-F9S"/>
                                     <constraint firstItem="0rH-RB-l24" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="M3a-w9-5N8"/>
                                     <constraint firstItem="Hpd-ah-h8i" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" constant="30" id="OtW-mi-815"/>
                                     <constraint firstItem="v3n-w9-H6h" firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailingMargin" id="PlZ-Vu-U4M"/>
@@ -2819,21 +2820,6 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything look good?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sm-UV-6GI">
-                                <rect key="frame" x="18" y="132" width="339" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ghv-qa-p67"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the 'Submit' button below to upload to our database." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-V3-7h1" customClass="VerticalAlignLabel" customModule="Dev_MiracleMsg" customModuleProvider="target">
-                                <rect key="frame" x="18" y="181" width="339" height="49.5"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsm-hI-BbH">
                                 <rect key="frame" x="13" y="592" width="349" height="57"/>
                                 <constraints>
@@ -2850,53 +2836,88 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <segue destination="3kV-pB-FSe" kind="show" id="imn-jA-z8X"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-d9-UYN">
-                                <rect key="frame" x="16" y="255.5" width="343" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="3a5-y9-UZ3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click back to retake the video." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cag-V1-dMo">
-                                <rect key="frame" x="16" y="315.5" width="343" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="fdE-Xx-Qcq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pHk-Hy-2RB">
+                                <rect key="frame" x="0.0" y="140" width="375" height="432"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConfirmTableViewCell" rowHeight="101" id="njg-GI-l9P" customClass="ConfirmTableViewCell" customModule="Dev_MiracleMsg" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="njg-GI-l9P" id="gbU-Da-DQI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknownUser" translatesAutoresizingMaskIntoConstraints="NO" id="BNU-pt-nuf">
+                                                    <rect key="frame" x="15" y="5" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="2fY-1D-8lk"/>
+                                                        <constraint firstAttribute="width" constant="80" id="Tbm-mj-Qjp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Case Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIr-0Y-YrC">
+                                                    <rect key="frame" x="112" y="35" width="173" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-HH-eak">
+                                                    <rect key="frame" x="335" y="35" width="12" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="12" id="XJn-1x-jgT"/>
+                                                    </constraints>
+                                                    <state key="normal" image="editBtn">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BNU-pt-nuf" firstAttribute="top" secondItem="gbU-Da-DQI" secondAttribute="top" constant="5" id="1kZ-Qu-5wf"/>
+                                                <constraint firstItem="0hA-HH-eak" firstAttribute="leading" secondItem="BIr-0Y-YrC" secondAttribute="trailing" constant="50" id="8YL-2A-QhD"/>
+                                                <constraint firstAttribute="bottom" secondItem="BNU-pt-nuf" secondAttribute="bottom" constant="15.5" id="JMA-Bh-MCR"/>
+                                                <constraint firstItem="0hA-HH-eak" firstAttribute="top" secondItem="gbU-Da-DQI" secondAttribute="top" constant="35" id="Pbp-en-top"/>
+                                                <constraint firstAttribute="bottom" secondItem="BIr-0Y-YrC" secondAttribute="bottom" constant="44.5" id="UI6-zW-M2J"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0hA-HH-eak" secondAttribute="trailing" constant="13" id="URq-la-5At"/>
+                                                <constraint firstItem="BIr-0Y-YrC" firstAttribute="leading" secondItem="BNU-pt-nuf" secondAttribute="trailing" constant="17" id="Vhy-0G-ZxS"/>
+                                                <constraint firstItem="BNU-pt-nuf" firstAttribute="leading" secondItem="gbU-Da-DQI" secondAttribute="leading" constant="15" id="iBi-oZ-Nb1"/>
+                                                <constraint firstAttribute="bottom" secondItem="0hA-HH-eak" secondAttribute="bottom" constant="44.5" id="l2R-cm-k7S"/>
+                                                <constraint firstItem="BIr-0Y-YrC" firstAttribute="top" secondItem="gbU-Da-DQI" secondAttribute="top" constant="35" id="sk0-Mi-E3m"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgPhoto" destination="BNU-pt-nuf" id="qez-Xt-m7G"/>
+                                            <outlet property="lblName" destination="BIr-0Y-YrC" id="dDf-mF-fRj"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qSn-er-zzE" id="SPV-D8-OhL"/>
+                                    <outlet property="delegate" destination="qSn-er-zzE" id="RtP-Wz-eXg"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tJl-d9-UYN" firstAttribute="top" secondItem="LjX-V3-7h1" secondAttribute="bottom" constant="25" id="2Bn-x1-fr8"/>
-                            <constraint firstItem="LjX-V3-7h1" firstAttribute="leading" secondItem="7Sm-UV-6GI" secondAttribute="leading" id="99g-l3-z6B"/>
-                            <constraint firstItem="cag-V1-dMo" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="16" id="GBP-Wa-PZG"/>
-                            <constraint firstItem="7Sm-UV-6GI" firstAttribute="leading" secondItem="a0M-VO-Tuz" secondAttribute="leading" id="HSU-1S-d56"/>
+                            <constraint firstItem="Tsm-hI-BbH" firstAttribute="top" secondItem="pHk-Hy-2RB" secondAttribute="bottom" constant="20" id="6Z5-tQ-dEV"/>
+                            <constraint firstAttribute="trailing" secondItem="pHk-Hy-2RB" secondAttribute="trailing" id="GFd-dY-eY0"/>
                             <constraint firstItem="a0M-VO-Tuz" firstAttribute="top" secondItem="dNA-xb-G8N" secondAttribute="bottom" constant="23" id="KBT-aK-ddH"/>
-                            <constraint firstItem="tJl-d9-UYN" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="16" id="LaE-hj-1jn"/>
                             <constraint firstAttribute="trailing" secondItem="a0M-VO-Tuz" secondAttribute="trailing" constant="18" id="LdZ-VX-uoD"/>
-                            <constraint firstItem="7Sm-UV-6GI" firstAttribute="top" secondItem="a0M-VO-Tuz" secondAttribute="bottom" id="MlQ-ln-TKC"/>
-                            <constraint firstItem="cag-V1-dMo" firstAttribute="top" secondItem="tJl-d9-UYN" secondAttribute="bottom" constant="25" id="Xwr-JK-hjO"/>
-                            <constraint firstItem="7Sm-UV-6GI" firstAttribute="trailing" secondItem="a0M-VO-Tuz" secondAttribute="trailing" id="akp-B5-Snb"/>
                             <constraint firstItem="Tsm-hI-BbH" firstAttribute="centerX" secondItem="qu7-VL-gc2" secondAttribute="centerX" id="cCO-rE-72H"/>
-                            <constraint firstItem="LjX-V3-7h1" firstAttribute="top" secondItem="7Sm-UV-6GI" secondAttribute="bottom" constant="28" id="fPs-y5-NLv"/>
-                            <constraint firstAttribute="trailing" secondItem="tJl-d9-UYN" secondAttribute="trailing" constant="16" id="hBK-4L-rhN"/>
+                            <constraint firstItem="pHk-Hy-2RB" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" id="hIw-YS-7sc"/>
+                            <constraint firstItem="pHk-Hy-2RB" firstAttribute="top" secondItem="a0M-VO-Tuz" secondAttribute="bottom" constant="8" id="hMo-S2-VXU"/>
                             <constraint firstItem="LBf-qf-nKb" firstAttribute="top" secondItem="Tsm-hI-BbH" secondAttribute="bottom" constant="18" id="oBX-S9-CqS"/>
                             <constraint firstItem="Tsm-hI-BbH" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="13" id="red-5m-eLm"/>
-                            <constraint firstAttribute="trailing" secondItem="cag-V1-dMo" secondAttribute="trailing" constant="16" id="saX-44-vbs"/>
                             <constraint firstAttribute="trailing" secondItem="Tsm-hI-BbH" secondAttribute="trailing" constant="13" id="u27-r8-oMi"/>
-                            <constraint firstItem="LjX-V3-7h1" firstAttribute="trailing" secondItem="7Sm-UV-6GI" secondAttribute="trailing" id="wox-t7-eSI"/>
                             <constraint firstItem="a0M-VO-Tuz" firstAttribute="leading" secondItem="qu7-VL-gc2" secondAttribute="leading" constant="18" id="yQK-B6-pEA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Cqe-Me-OzH"/>
+                    <connections>
+                        <outlet property="tblConfirm" destination="pHk-Hy-2RB" id="Hjn-Qe-Fw1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1iZ-ze-Wc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9486" y="868"/>
+            <point key="canvasLocation" x="9485.6000000000004" y="867.61619190404804"/>
         </scene>
         <!--Next View Controller-->
         <scene sceneID="HUu-a1-HbL">
@@ -3090,6 +3111,7 @@ c.) we don't know if we'll be able to find your loved one(s).
         <image name="homeback" width="640" height="960"/>
         <image name="pillBtn" width="349" height="57"/>
         <image name="recordBtn" width="640" height="583"/>
+        <image name="unknownUser" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1GO-dG-DW3"/>

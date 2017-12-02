@@ -193,8 +193,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         dimissCamera()
     }
 
-
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
@@ -245,6 +243,32 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         cameraSession?.startRunning()
+    }
+    
+    func showAlertView() {
+        
+        // create the alert
+        let alert = UIAlertController(title: "Are you sure you want to skip this step?", message: "Skip this step if the client would prefer not to record a video, or if you're a service provide and are unable to record the video.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Don't Skip", style: UIAlertActionStyle.default, handler: { action in
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Skip", style: UIAlertActionStyle.default, handler: { action in
+          if self.isRecording {
+             self.stopTimer()
+             self.changeRecordBtn(recording: false)
+             self.dataOutput.stopRecording()
+             self.isRecording = false
+             }
+            
+            let confirmationController: ConfirmViewController = self.storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+            self.navigationController?.pushViewController(confirmationController, animated: true)
+
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -298,11 +322,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
-        let strFraction = String(format: "%02d", fraction)
+       // let strFraction = String(format: "%02d", fraction)
 
+       // timerLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
+        timerLabel.text = "\(strMinutes):\(strSeconds)/3:00"
         
-        timerLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
-        
+        if(minutes >= 3){
+            stopTimer()
+            changeRecordBtn(recording: false)
+            dataOutput.stopRecording()
+            isRecording = false
+        }
     }
 
     func showProgressView() {
@@ -340,6 +370,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         cameraSession?.stopRunning()
 
+
         self.presentConfirmation(outputFileURL: outputFileURL)
     }
 
@@ -376,7 +407,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func stopTimer() {
         timer.invalidate()
-        timerLabel.text = "00:00:00"
+        timerLabel.text = "00:00"
     }
 
     func sendEmail() {
@@ -542,14 +573,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {
-        if isRecording {
-            stopTimer()
-            changeRecordBtn(recording: false)
-            dataOutput.stopRecording()
-            isRecording = false
-        }
-        let _ = navigationController?.popViewController(animated: true)
-    }
+        self.showAlertView()
+     }
 
 }
 

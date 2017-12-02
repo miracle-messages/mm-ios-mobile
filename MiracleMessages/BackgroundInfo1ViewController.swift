@@ -228,6 +228,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     
     func saveHomelessIndividualFormData(){
         self.ShowActivityIndicator()
+        let _ = updateBackgroundInfo()
         guard let key = currentCase.key else {return}
         
         let caseStatusReference: DatabaseReference
@@ -310,8 +311,15 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
                 print(error!.localizedDescription)
                 return
             }
-            let backgroundInfo2VC = self.storyboard?.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController")
-            self.navigationController?.pushViewController(backgroundInfo2VC!, animated: true)
+            
+            if(self.mode == .update){
+                self.dismiss(animated: true, completion: {
+                    self.delegate?.didFinishUpdating()
+                })
+            } else {
+                let backgroundInfo2VC = self.storyboard?.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController")
+                self.navigationController?.pushViewController(backgroundInfo2VC!, animated: true)
+            }
         }
     }
     

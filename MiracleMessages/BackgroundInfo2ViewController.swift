@@ -173,6 +173,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         currentLovedOne.notes = textViewRecipientOtherInfo.text
         
         self.lovedOnes.insert(currentLovedOne)
+        self.currentCase.lovedOnes.insert(currentLovedOne)
         
         guard let key = currentCase.key else {return}
         let caseReference: DatabaseReference
@@ -208,8 +209,13 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
                     }
                     print("Loved one successfully written")
                     
-                    let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
-                    self.navigationController?.pushViewController(reviewVC!, animated: true)
+                    if(self.mode == .update){
+                      // self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    } else{
+                        let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
+                        self.navigationController?.pushViewController(reviewVC!, animated: true)
+                    }
                 }
             }
         }

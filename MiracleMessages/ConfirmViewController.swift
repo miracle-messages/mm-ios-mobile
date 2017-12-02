@@ -12,6 +12,8 @@ import FirebaseDatabase
 import Alamofire
 import FirebaseStorage
 import NVActivityIndicatorView
+import AVFoundation
+
 struct Keys {
     static let caseID = "caseID"
 }
@@ -22,13 +24,56 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     var ref: DatabaseReference!
     let currentCase: Case = Case.current
     let storage = Storage.storage()
-
+    var arrConfirmData :  NSMutableArray = []
+    @IBOutlet weak var tblConfirm: UITableView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
+        self.setConfirmViewData()
+    }
+    
+    func setConfirmViewData(){
+        let dictPhoto : NSDictionary!
+        let dictVideo : NSDictionary!
+        
+        if self.currentCase.photoURL != nil{
+            dictPhoto = ["lblName":"Case Photo","imgPhoto":self.currentCase.photoURL!] as NSDictionary
+        } else {
+            dictPhoto = ["lblName":"No Case Photo","imgPhoto":nil] as NSDictionary
+        }
+        
+        if self.video?.url != nil{
+            dictVideo = ["lblName":"Recording","imgPhoto":self.video?.url] as NSDictionary
+        } else {
+            dictVideo = ["lblName":"No Recording","imgPhoto":nil] as NSDictionary
+        }
+        
+        self.arrConfirmData = [dictPhoto, dictVideo] as NSMutableArray
+        self.tblConfirm.reloadData()
+    }
+    
+    func videoSnapshot(filePathLocal: NSURL) -> UIImage? {
+        
+       // let vidURL = NSURL(fileURLWithPath:filePathLocal as String)
+        let asset = AVURLAsset(url: filePathLocal as URL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        
+        let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
+        
+        do {
+            let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
+            return UIImage(cgImage: imageRef)
+        }
+        catch let error as NSError
+        {
+            print("Image generation failed with error \(error)")
+            return nil
+        }
     }
     
     //Show activity indicator while saving data
@@ -44,44 +89,6 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     func bgUploadToS3(video: Video) -> Void {
-//        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
-//        let transferUtility = AWSS3TransferUtility.default()
-//        let transferExpression = AWSS3TransferUtilityUploadExpression()
-//
-//        transferExpression.progressBlock = { (task, progress) in
-//            DispatchQueue.main.sync(execute: { () -> Void in
-//                Logger.log("Progress \(progress.fractionCompleted)")
-//            })
-//        }
-//
-//        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-//
-//        uploadCompletionHandlerBlock = { (task, error) in
-//            DispatchQueue.main.sync(execute: { () -> Void in
-//                if error == nil {
-//                    Logger.log("uploadCompletionHandler: Upload Success!")
-//                    let _ = self.sendInfo()
-//                } else {
-//                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
-//                }
-//            })
-//        }
-//
-//        let uploadExpression = AWSS3TransferUtilityUploadExpression()
-//
-//        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
-//
-//        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
-//            if let error = task.error {
-//                Logger.log(level: Level.error, "Failure uploading video!")
-//                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
-//            } else {
-//                DispatchQueue.main.async(execute: {
-//                    Logger.log("Something to do immediately afterwards. Not necessarily done")
-//                })
-//            }
-//            return nil
-//        })
 
         //UNCOMMENT this code to play with Firebase storage
         //let key = self.sendInfo()
@@ -137,6 +144,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
         } catch {
             print("Error")
+            self.RemoveActivityIndicator()
         }
 
     }
@@ -179,5 +187,82 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.submit()
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+}
+
+extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1   //  One for Sender, one for Recipients
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        var cell: ConfirmTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
+        if cell == nil {
+            tableView.register(UINib(nibName: "ConfirmTableViewCell", bundle: nil), forCellReuseIdentifier: "ConfirmTableViewCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
+        }
+        
+        let dict : NSDictionary = self.arrConfirmData[indexPath.row] as! NSDictionary
+        cell.lblName.text = dict.object(forKey: "lblName") as! NSString as String
+        
+        cell.imgPhoto.layer.cornerRadius = cell.imgPhoto.frame.width/2
+        cell.imgPhoto.layer.masksToBounds = true
+        
+        
+        let imageURL = dict.object(forKey: "imgPhoto") as? NSURL
+       print("Image URL\(imageURL)")
+        if(imageURL != nil){
+            getDataFromUrl(url: imageURL! as URL) { data, response, error in
+                guard let data = data, error == nil else { return }
+                print(response?.suggestedFilename ?? imageURL?.lastPathComponent)
+                print("Download Finished")
+                DispatchQueue.main.async() {
+                    if(indexPath.row == 0){
+                        cell.imgPhoto.image = UIImage(data: data)
+                    }
+                    else{
+                        cell.imgPhoto.image = self.videoSnapshot(filePathLocal: imageURL!)
+                    }
+                }
+            }
+        }else{
+            if(indexPath.row == 0){
+                cell.imgPhoto.image = #imageLiteral(resourceName: "unknownUser")
+            }
+            else{
+                cell.imgPhoto.image = #imageLiteral(resourceName: "VideoOff")
+            }
+        }
+    
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0){
+             let reviewController = self.storyboard!.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+            reviewController.isEditPhoto = true
+            self.navigationController?.pushViewController(reviewController, animated: true)
+        } else{
+            // self.performSegue(withIdentifier: "cameraController", sender: self)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }

@@ -20,8 +20,10 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
     var ref: DatabaseReference!
     var caseID: String!
     var croppedImage: UIImage?
+    var isEditPhoto: Bool!
 
-
+    @IBOutlet weak var tblReview: UITableView!
+    
     let dateFormatter: DateFormatter = {
         let this = DateFormatter()
         this.dateStyle = .long
@@ -35,8 +37,13 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if(isEditPhoto == true){
+            self.openCamera()
+        }
         currentCase = Case.current
         lovedOnes = Array(currentCase.lovedOnes)
+        self.tblReview.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +53,6 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
     
     //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
@@ -113,7 +119,8 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
         
         return nil
     }
-    @IBAction func didTapRecordBtn(_ sender: Any) {
+    
+    func openCamera(){
         if UIImagePickerController.isCameraDeviceAvailable(.rear) {
             ref = Database.database().reference()
             caseID = ref.child("clients").childByAutoId().key
@@ -140,11 +147,15 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
                 make.right.equalToSuperview().offset(-16)
             })
             picker.cameraOverlayView = overlayView
-
+            
             present(picker,animated: false,completion: nil)
         } else {
             showCameraError()
         }
+    }
+    
+    @IBAction func didTapRecordBtn(_ sender: Any) {
+        self.openCamera()
     }
 }
 
@@ -273,6 +284,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
 
             cell.reviewable = currentCase
+            print(currentCase)
 
             return cell
         case 1:
@@ -283,6 +295,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
 
             cell.reviewable = lovedOnes[indexPath.row]
+            print(lovedOnes[indexPath.row])
 
             return cell
         default: break

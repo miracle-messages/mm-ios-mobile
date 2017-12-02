@@ -40,6 +40,7 @@
 		23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709801E2956EF00E20582 /* MenuViewController.swift */; };
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
+		996C2CA11FD2BC4D00A0A3F1 /* ConfirmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */; };
 		A02DABA71F3B498100FAA17A /* Partners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DABA61F3B498100FAA17A /* Partners.swift */; };
 		A0530E081F2CFA5600D3DED6 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0530E071F2CFA5600D3DED6 /* Source.swift */; };
 		A0530E0A1F2CFA9A00D3DED6 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0530E091F2CFA9A00D3DED6 /* UIViewControllerExtension.swift */; };
@@ -112,6 +113,7 @@
 		23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitNavigationControllerController.swift; sourceTree = "<group>"; };
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
+		996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmTableViewCell.swift; sourceTree = "<group>"; };
 		A02DABA61F3B498100FAA17A /* Partners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partners.swift; sourceTree = "<group>"; };
 		A0530E071F2CFA5600D3DED6 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		A0530E091F2CFA9A00D3DED6 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		2390079D1E4D654200A4C1DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */,
 				A07773971F2CF98D00AD52C0 /* ReviewTableViewCell.swift */,
 				239C0C061E2C6D1C00E0DE36 /* VerticalAlignLabel.swift */,
 				EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */,
@@ -587,6 +590,7 @@
 				EED9C4061F92CE6B0044E401 /* Config.swift in Sources */,
 				A077739F1F2CF9B700AD52C0 /* Case.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
+				996C2CA11FD2BC4D00A0A3F1 /* ConfirmTableViewCell.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
 				23D040181E4C03CC0000D4A2 /* NextViewController.swift in Sources */,
 				239C0C0F1E2D701000E0DE36 /* VolunteerProfile.swift in Sources */,
