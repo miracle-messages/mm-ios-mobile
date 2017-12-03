@@ -11,17 +11,19 @@ import AWSCore
 import AWSS3
 import HockeySDK
 import Firebase
+import GoogleSignIn
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
     let cognitoIdentityPoolId = "us-west-2:22d14ee0-7c0a-4ddc-b74d-24b09e62a5d6"
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-
+        
+        UserDefaults.standard.register(defaults: ["UserAgent": "com.miraclemessages.app"])
         UIApplication.shared.statusBarView?.backgroundColor = .white
 
         let backIcon = UIImage(named: "backBtn")
@@ -31,10 +33,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.white
 
         // Override point for customization after application launch.
-        FIRApp.configure()
+        //FirebaseApp.configure()
+        
 
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.usWest2, identityPoolId: cognitoIdentityPoolId)
-        let configuration = AWSServiceConfiguration(region: AWSRegionType.usWest2, credentialsProvider: credentialsProvider)
+        if let firebaseConfig = Bundle.main.path(forResource: Config.firebaseConfigFileName, ofType: "plist"), let options = FirebaseOptions(contentsOfFile: firebaseConfig){
+            FirebaseApp.configure(options: options)
+        }
+        
+        
+
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSRegionType.USWest2, identityPoolId: cognitoIdentityPoolId)
+        let configuration = AWSServiceConfiguration(region: AWSRegionType.USWest2, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
 
         let pageControl = UIPageControl.appearance()
@@ -45,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
 
+        // Init Crashlytics. This should be the last line after other loggers have initialized.
+        Fabric.with([Crashlytics.self])
         return true
     }
 
@@ -74,6 +88,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AWSS3TransferUtility.interceptApplication(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
     }
 
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: [:])
+    }
+
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
             if (rootViewController.responds(to: Selector(("canRotate")))) {
@@ -97,7 +119,115 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return rootViewController
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+        
+        if (components.path == "get_started") {
+            self.presentDetailViewController()
+            return true
+        }
 
+        let webpageUrl = URL(string: "https://miraclemessages.org")!
+        application.openURL(webpageUrl)
+        
+        return false
+    }
+}
+
+extension AppDelegate {
+    
+    func presentDetailViewController() {
+        let currentVC = getCurrentViewController()
+        currentVC?.dismiss(animated: false, completion: {[unowned self] in
+            let vc = self.getCurrentViewController()!
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let startController = storyBoard.instantiateViewController(withIdentifier: "startViewController")
+            let nav = UINavigationController(rootViewController: startController)
+            nav.modalPresentationStyle = .overCurrentContext
+            vc.present(nav, animated: false, completion: nil)
+        })
+    }
+    
+    // Returns the most recently presented UIViewController (visible)
+    func getCurrentViewController() -> UIViewController? {
+        
+        // If the root view is a navigation controller, we can just return the visible ViewController
+        if let navigationController = getNavigationController() {
+            
+            return navigationController.visibleViewController
+        }
+        
+        // Otherwise, we must get the root UIViewController and iterate through presented views
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            
+            var currentController: UIViewController! = rootController
+            
+            // Each ViewController keeps track of the view it has presented, so we
+            // can move from the head to the tail, which will always be the current view
+            while( currentController.presentedViewController != nil ) {
+                
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        return nil
+    }
+    
+    // Returns the navigation controller if it exists
+    func getNavigationController() -> UINavigationController? {
+        if let navigationController = UIApplication.shared.keyWindow?.rootViewController  {
+            return navigationController as? UINavigationController
+        }
+        return nil
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            Logger.forceLog(CustomError.loginError(error.localizedDescription))
+            return
+        }
+
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            // ...
+            if let error = error {
+                // ...
+                Logger.forceLog(CustomError.loginError(error.localizedDescription))
+                return
+            }
+            guard let user = user else {return}
+
+            let defaults = UserDefaults.standard
+            defaults.set(user.providerData[0].displayName, forKey: "name")
+            defaults.set(user.providerData[0].email, forKey: "email")
+            defaults.synchronize()
+            
+            // After successful login, initialize user for crashlytics to better identify the user in crashes.
+            Logger.initCrashlyticsUser(user.uid, user.email, user.displayName)
+        }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+                withError error: NSError!) {
+        // Perform any operations when the user disconnects from app here.
+        // Since there is a limit of 8 force logged NSError per user session, we should use them wisely.
+        // If user manually cancels the signin, we need not report it to crashlyitcs.
+        // https://docs.fabric.io/apple/crashlytics/logged-errors.html
+        if (error.code != GIDSignInErrorCode.canceled.rawValue) {
+            Logger.forceLog(error)
+        } else {
+            Logger.log(level: Level.error, "User cancelled the sign in request. Code: \(error.code), error: \(error.description)")
+        }
+    }
 
 }
 

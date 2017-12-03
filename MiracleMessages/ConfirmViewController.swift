@@ -10,146 +10,117 @@ import UIKit
 import AWSS3
 import FirebaseDatabase
 import Alamofire
+import FirebaseStorage
+struct Keys {
+    static let caseID = "caseID"
+}
 
 class ConfirmViewController: UIViewController {
 
     var video: Video?
-    var ref: FIRDatabaseReference!
-    let backgroundInfo: BackgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-    let zapierUrl = "https://hooks.zapier.com/hooks/catch/1838547/hshdv5/"
-
-    //"https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/"
-    //https://hooks.zapier.com/hooks/catch/1838547/hshdv5/
+    var ref: DatabaseReference!
+    let currentCase: Case = Case.current
+    let storage = Storage.storage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-
         self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func bgUploadToS3(video: Video) -> Void {
-        let transferUtility = AWSS3TransferUtility.default()
-        let transferExpression = AWSS3TransferUtilityUploadExpression()
+//        Logger.log("bgUploadToS3: url:\(video.url.absoluteString), name:\(video.name), bucket:\(video.bucketName)")
+//        let transferUtility = AWSS3TransferUtility.default()
+//        let transferExpression = AWSS3TransferUtilityUploadExpression()
+//
+//        transferExpression.progressBlock = { (task, progress) in
+//            DispatchQueue.main.sync(execute: { () -> Void in
+//                Logger.log("Progress \(progress.fractionCompleted)")
+//            })
+//        }
+//
+//        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+//
+//        uploadCompletionHandlerBlock = { (task, error) in
+//            DispatchQueue.main.sync(execute: { () -> Void in
+//                if error == nil {
+//                    Logger.log("uploadCompletionHandler: Upload Success!")
+//                    let _ = self.sendInfo()
+//                } else {
+//                    Logger.forceLog(CustomError.videoUploadError(error!.localizedDescription))
+//                }
+//            })
+//        }
+//
+//        let uploadExpression = AWSS3TransferUtilityUploadExpression()
+//
+//        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
+//
+//        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHandler: uploadCompletionHandlerBlock).continueWith(block: { (task) -> AnyObject! in
+//            if let error = task.error {
+//                Logger.log(level: Level.error, "Failure uploading video!")
+//                Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
+//            } else {
+//                DispatchQueue.main.async(execute: {
+//                    Logger.log("Something to do immediately afterwards. Not necessarily done")
+//                })
+//            }
+//            return nil
+//        })
 
-        transferExpression.progressBlock = { (task, progress) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                print("Progress \(progress.fractionCompleted)")
-            })
-        }
-
-        var uploadCompletionHandlerBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-
-        uploadCompletionHandlerBlock = { (task, error) in
-            DispatchQueue.main.sync(execute: { () -> Void in
-                if error != nil {
-                    print("Upload successful")
-                } else {
-                    print("Error here: \(error.debugDescription)")
+        //UNCOMMENT this code to play with Firebase storage
+        //let key = self.sendInfo()
+        let key = self.currentCase.key
+        let storageRef = storage.reference()
+        let photoPathRef = storageRef.child("caseVideos/\(key!)/\(video.name)")
+        let newMeta = StorageMetadata()
+        newMeta.contentType = "video/quicktime"
+        Logger.log("Firebase video ref \(photoPathRef)")
+        do {
+            let data = try Data.init(contentsOf: video.url)
+            let _ = photoPathRef.putData(data, metadata: newMeta, completion: { (metadata, error) in
+                if let error = error {
+                    Logger.log("Error saving photo reference \(error.localizedDescription)")
+                    return
                 }
+                self.currentCase.privateVideoURL = metadata?.downloadURL()
+                let _ = self.sendInfo()
             })
+
+        } catch {
+            print("Error")
         }
 
-        let uploadExpression = AWSS3TransferUtilityUploadExpression()
-
-        uploadExpression.setValue("public-read", forRequestHeader: "x-amz-acl")
-
-        transferUtility.uploadFile(video.url, bucket: video.bucketName, key: video.name, contentType: "application/octet-stream", expression: uploadExpression, completionHander: uploadCompletionHandlerBlock).continue( { (task) -> AnyObject! in
-            if task.error != nil {
-                print("Error: \(task.error)")
-            } else {
-                print("Uploading file.")
-                DispatchQueue.main.async(execute: {
-                    print("Upload successful.")
-                })
-            }
-            return nil
-        })
     }
 
     func submit() {
         if let video = self.video {
             self.bgUploadToS3(video: video)
-
-            self.sendInfo()
-
-            let parameters = self.videoParameters()
-
-            Alamofire.request(zapierUrl, parameters: parameters).responseData { response in
-                switch response.result {
-                case .success:
-                    print("Submitted")
-                case .failure(let error):
-                    print(error)
-                }
-            }
         }
     }
 
-    func videoParameters() -> Parameters {
+    func videoParameters(uniqId: String) -> Parameters {
         let defaults = UserDefaults.standard
 
         if let v = self.video {
             return [ "email" :  defaults.string(forKey: "email")!,
                      "name" : defaults.string(forKey: "name")!,
                      "video" : v.videoLink,
-                     "ID": v.uniqId]
+                     "ID": uniqId]
         } else {
             return [:]
         }
     }
 
-    func sendInfo() -> Void {
-        //Create new user ID
-        let defaults = UserDefaults.standard
-
-        let key = ref.child("clients").childByAutoId().key
-        //Create new client info payload
-        let payload = [
-            "volunteer_name" : defaults.string(forKey: "name")!,
-            "volunteer_email" : defaults.string(forKey: "email")!,
-            "volunteer_phone" : defaults.string(forKey: "phone")!,
-            "volunteer_location" : defaults.string(forKey: "location")!,
-            "client_name" : self.backgroundInfo.client_name ?? "missing name",
-            "client_dob" : self.backgroundInfo.client_dob!,
-            "client_current_city" : self.backgroundInfo.client_current_city!,
-            "client_hometown" : self.backgroundInfo.client_hometown!,
-            "client_contact_info" : self.backgroundInfo.client_contact_info!,
-            "client_years_homeless" : self.backgroundInfo.client_years_homeless!,
-            "recipient_name" : self.backgroundInfo.recipient_name!,
-            "recipient_dob" : self.backgroundInfo.recipient_dob!,
-            "recipient_relationship" : self.backgroundInfo.recipient_relationship!,
-            "recipient_last_location" : self.backgroundInfo.recipient_last_location!,
-            "recipient_last_seen" : self.backgroundInfo.recipient_years_since_last_seen!,
-            "recipient_other_info" : self.backgroundInfo.recipient_other_info!,
-            "volunteer_uploaded_url" : self.video?.videoLink ?? "none",
-            "created_at" : floor(NSDate().timeIntervalSince1970)
-            ] as [String : Any]
-
-        //Send payload to server
-        let childUpdates = ["/clients/\(key)": payload]
-        ref.updateChildValues(childUpdates)
-        
+    func sendInfo() -> String {
+        currentCase.submitCase(to: ref)
+        return currentCase.key ?? "No key returned"
     }
-
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         self.submit()
     }
-
-
 }

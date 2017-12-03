@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Crashlytics
+
+protocol WebViewControllerDelegate: class {
+    func didTapCloseBtn(viewController: WebViewController)
+}
 
 class WebViewController: UIViewController, UIWebViewDelegate {
 
@@ -15,6 +20,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
 
     var urlString: String?
 
+    weak var delegate: WebViewControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
@@ -22,26 +29,25 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
         }
-        // Do any additional setup after loading the view.
+        if let _ = navigationController {
+            let close = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapBackBtn))
+            navigationItem.leftBarButtonItem = close
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        URLCache.shared.removeAllCachedResponses()
+    }
+    
+    
+    func didTapBackBtn() {
+        self.dismiss(animated: true, completion: nil)
+        self.delegate?.didTapCloseBtn(viewController: self)
     }
     
     @IBAction func didTapCloseBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        self.delegate?.didTapCloseBtn(viewController: self)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -254,7 +254,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func configureCamera() -> Void {
         do {
-
+            Logger.log("configureCamera")
             cameraSession?.beginConfiguration()
 
             let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -281,7 +281,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         }
         catch let error as NSError {
-            NSLog("\(error), \(error.localizedDescription)")
+            Logger.forceLog(error)
         }
     }
 
@@ -317,6 +317,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+        Logger.log("capture: outputFileUrl:\(outputFileURL)")
+        if let error = error {
+            Logger.forceLog(CustomError.caputureImageError(error.localizedDescription))
+        }
 
         guard let _ = NSData(contentsOf: outputFileURL as URL) else {
             return
@@ -325,8 +329,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
         }) { saved, error in
+            if let error = error {
+                Logger.forceLog(CustomError.caputureImageError(error.localizedDescription))
+            }
+            
             if saved {
-                print("Saved successfully.")
+                Logger.log("Saved successfully.")
             }
         }
 
@@ -455,6 +463,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func uploadtoS3(url: URL) -> Void {
+        Logger.log("uploadtoS3: \(url.absoluteString)")
         let transferManager = AWSS3TransferManager.default()
         let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
 
@@ -477,16 +486,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                     let percentageNumber = NSNumber(value: percentage)
 
                     self.percentageLbl.text = percentFormatter.string(from:  percentageNumber)
-                    print("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \(percentage * 100)")
+                    Logger.log("\(totalBytesSent) and total:\(totalBytesExpectedToSend) => \(percentage * 100)")
                 })
             }
 
-            let task = transferManager?.upload(uploadRequest1)
-            task?.continue( { (task) -> AnyObject! in
-                if task.error != nil {
-                    print("Error: \(task.error)")
+            let task = transferManager.upload(uploadRequest1)
+            task.continueWith(block: { (task) -> AnyObject! in
+                if let error = task.error {
+                    Logger.log(level: Level.error, "Failure uploadtoS3!")
+                    Logger.forceLog(CustomError.videoUploadError(error.localizedDescription))
                 } else {
-                    print("Upload successful")
+                    Logger.log("Upload successful")
                     DispatchQueue.main.async(execute: {[unowned self] in
                         //self.sendInfo()
                         self.hideProgressView()
@@ -521,7 +531,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func presentConfirmation(outputFileURL: URL!) -> Void {
         let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
-        confirmationController.video = Video(awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+        
+        confirmationController.video = Video(contentType: "application/octet-stream", completionBlock: nil, awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
 
         let backItem = UIBarButtonItem()
         backItem.title = "Retake Video?"

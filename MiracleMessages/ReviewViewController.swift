@@ -7,136 +7,188 @@
 //
 
 import UIKit
+import FirebaseStorage
+import Firebase
+import SnapKit
 
-class ReviewViewController: UIViewController {
-    @IBOutlet weak var clientNameLabel: UILabel!
-    @IBOutlet weak var clientDobLabel: UILabel!
-    @IBOutlet weak var clientLocationLabel: UILabel!
-    @IBOutlet weak var clientHometownLabel: UILabel!
-    @IBOutlet weak var yearsAwayLabel: UILabel!
-    @IBOutlet weak var clientContactLabel: UILabel!
+class ReviewViewController: UIViewController, CaseDelegate {
+    var currentCase: Case = Case.current
+    var lovedOnes: [LovedOne] = []
+    let picker = UIImagePickerController()
+    let storage = Storage.storage()
+    var ref: DatabaseReference!
+    var caseID: String!
+    var croppedImage: UIImage?
 
-    @IBOutlet weak var recipientNameLabel: UILabel!
-    @IBOutlet weak var recipientRelationshipLabel: UILabel!
-    @IBOutlet weak var recipientAgeLabel: UILabel!
-    @IBOutlet weak var recipientLocationLabel: UILabel!
-    @IBOutlet weak var recipientYearsDisconnectedLabel: UILabel!
 
-    @IBOutlet weak var recipientOtherInfoLabel: UILabel!
-
-    var clientInfo: BackgroundInfo?
+    let dateFormatter: DateFormatter = {
+        let this = DateFormatter()
+        this.dateStyle = .long
+        this.timeStyle = .none
+        return this
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clientInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-        displayInfo()
-    }
-
-    func displayInfo() -> Void {
-        guard let backgroundInfo = self.clientInfo else { return }
-        if let clientName = backgroundInfo.client_name {
-            clientNameLabel.text = "From: \(clientName)"
-        }
-        if let clientDob = backgroundInfo.client_dob {
-            clientDobLabel.text = "Date of birth: \(clientDob)"
-        }
-        if let clientCurrentCity = backgroundInfo.client_current_city {
-            clientLocationLabel.text = "Location: \(clientCurrentCity)"
-        }
-        if let clientHometown = backgroundInfo.client_hometown {
-            clientHometownLabel.text = "Hometown: \(clientHometown)"
-        }
-        if let clientYearsAway = backgroundInfo.client_years_homeless {
-            yearsAwayLabel.text = "Years away from home: \(clientYearsAway)"
-        }
-        if let clientContact = backgroundInfo.client_contact_info {
-            clientContactLabel.text = clientContact
-        }
-
-
-        if let recipientName = backgroundInfo.recipient_name {
-            recipientNameLabel.text = "To: \(recipientName)"
-        }
-        if let recipientRelationship = backgroundInfo.recipient_relationship {
-            recipientRelationshipLabel.text = "Relationship: \(recipientRelationship)"
-        }
-        if let recipientAge = backgroundInfo.recipient_dob {
-            recipientAgeLabel.text = "Age: \(recipientAge)"
-        }
-        if let recipientLocation = backgroundInfo.recipient_last_location {
-            recipientLocationLabel.text = "Location: \(recipientLocation)"
-        }
-        if let recipientYearsDisconnected = backgroundInfo.recipient_years_since_last_seen {
-            recipientYearsDisconnectedLabel.text = "Years disconnected: \(recipientYearsDisconnected)"
-        }
-        if let recipientOtherInfo = backgroundInfo.recipient_other_info {
-            recipientOtherInfoLabel.text = recipientOtherInfo
-        }
-
+        currentCase = Case.current
+        lovedOnes = Array(currentCase.lovedOnes)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "cameraViewController" {
-            let cameraController = segue.destination as? CameraViewController
-            cameraController?.delegate = self
-            //cameraController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-        } else {
-            let backgroundController = segue.destination as? BackgroundInfoViewController
-            backgroundController?.backgroundInfo = BackgroundInfo.init(defaults: UserDefaults.standard)
-            backgroundController?.mode = .update
-            backgroundController?.delegate = self
+        if let cameraController = segue.destination as? CameraViewController {
+            cameraController.delegate = self
+        } else if let destination = segue.destination as? BackgroundInfo1ViewController {
+            destination.mode = .update
+        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
+            destination.mode = .update
+            destination.currentLovedOne = lovedOne
         }
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "cameraViewController" {
+        if identifier == "camerController"  {
             if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
-                let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                showCameraError()
                 return false
             } else {
                 return true
             }
         } else {
-
             return true
+        }
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    func cropImageToSquare(image: UIImage) -> UIImage? {
+        var imageHeight = image.size.height
+        var imageWidth = image.size.width
+        
+        if imageHeight > imageWidth {
+            imageHeight = imageWidth
+        }
+        else {
+            imageWidth = imageHeight
+        }
+        
+        let size = CGSize(width: imageWidth, height: imageHeight)
+        
+        let refWidth : CGFloat = CGFloat(image.cgImage!.width)
+        let refHeight : CGFloat = CGFloat(image.cgImage!.height)
+        
+        let x = (refWidth - size.width) / 2
+        let y = (refHeight - size.height) / 2
+        
+        let cropRect = CGRect(x: x, y: y, width: size.height, height: size.width)
+        if let imageRef = image.cgImage!.cropping(to: cropRect) {
+            return UIImage(cgImage: imageRef, scale: 0, orientation: image.imageOrientation)
+        }
+        
+        return nil
+    }
+    @IBAction func didTapRecordBtn(_ sender: Any) {
+        if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+            ref = Database.database().reference()
+            caseID = ref.child("clients").childByAutoId().key
+            caseID = self.currentCase.key
+            UserDefaults.standard.set(caseID, forKey: Keys.caseID)
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+            picker.cameraCaptureMode = .photo
+            picker.modalPresentationStyle = .fullScreen
+            let overlayView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+            overlayView.backgroundColor = UIColor.clear
+            overlayView.isUserInteractionEnabled = false
+            let overlayLabel = UILabel(frame: CGRect.zero)
+            overlayLabel.numberOfLines = 0
+            overlayLabel.font = UIFont.init(name: "Arial", size: 20)
+            overlayLabel.textColor = UIColor.white
+            overlayLabel.textAlignment = .center
+            overlayLabel.text = "Take a photo of the individual for reference. Find a well-lit area and frame the face in the middle of the screen."
+            overlayView.addSubview(overlayLabel)
+            overlayLabel.snp.makeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-135)
+                make.left.equalToSuperview().offset(16)
+                make.right.equalToSuperview().offset(-16)
+            })
+            picker.cameraOverlayView = overlayView
+
+            present(picker,animated: false,completion: nil)
+        } else {
+            showCameraError()
         }
     }
 }
 
-extension ReviewViewController: BackgroundInfoDelegate {
+private extension ReviewViewController {
+    func showCameraError() {
+        let alert = UIAlertController(title: "Cannot access camera.", message: "You will need a rear-view camera to record an interview", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+}
+
+extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //Send image to firebase
+        let storageRef = storage.reference()
+        let photoPathRef = storageRef.child("casePictures/\(currentCase.key!)/photoReference.jpg")
+        let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if let croppedImage = cropImageToSquare(image: referenceImage){
+            //currentCase.casePhoto = referenceImage
+            let newMeta = StorageMetadata()
+            newMeta.contentType = "image/jpeg"
+            if let data = UIImageJPEGRepresentation(croppedImage, 90.0) {
+                let _ = photoPathRef.putData(data, metadata: newMeta) { (metadata, error) in
+                    if let error = error {
+                        Logger.log("Error saving photo reference \(error.localizedDescription)")
+                        return
+                    }else{
+                        self.currentCase.photoURL = metadata?.downloadURL()
+                        Logger.log("Saved the photo for the case \(self.currentCase.key!) \(self.currentCase.photoURL!)")
+                    }
+                }
+            }
+            picker.dismiss(animated: true, completion: {
+                self.performSegue(withIdentifier: "cameraController", sender: self)
+            })
+        }
+        else{
+            Logger.log("Unable to save the photo for this case: \(currentCase.key!)")
+            return
+        }
+
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
     func didFinishUpdating() {
-        self.clientInfo?.save()
-        displayInfo()
+        //  TODO: Check if these are really needed
+
+        //self.theCase?.save()
+        //displayInfo()
     }
 }
+
+
 
 extension ReviewViewController: CameraViewControllerDelegate {
     func didFinishRecording(sender: CameraViewController) -> Void {
@@ -148,5 +200,54 @@ extension ReviewViewController: CameraViewControllerDelegate {
                 navController.popToViewController(aviewcontroller, animated: true)
             }
         }
+    }
+}
+
+extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2    //  One for Sender, one for Recipients
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return currentCase.lovedOnes.isEmpty ? 1 : currentCase.lovedOnes.count
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
+
+            cell.reviewable = currentCase
+
+            return cell
+        case 1:
+            guard currentCase.lovedOnes.count > 0 else {
+                return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
+            }
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
+
+            cell.reviewable = lovedOnes[indexPath.row]
+
+            return cell
+        default: break
+        }
+
+        return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }

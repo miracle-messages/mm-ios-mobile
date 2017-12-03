@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Firebase
 
 struct VolunteerProfile {
+    static var ref: DatabaseReference!
     var name: String?
     var email: String?
     var phone: String?
@@ -34,6 +36,21 @@ struct VolunteerProfile {
         self.email = email
         self.phone = phone
         self.location = location
+    }
+    
+    static func googleProfileCreated(with block: @escaping (Bool) -> Swift.Void) {
+        guard let user = Auth.auth().currentUser else {return}
+        ref = Database.database().reference()
+        ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            Logger.log("User dictionary \(String(describing: value))")
+
+            // Initialize the user for crashlytics
+            Logger.initCrashlyticsUser(user.uid, user.email, user.displayName)
+            block(value != nil)
+        }) { (error) in
+            Logger.forceLog(CustomError.loginError(error.localizedDescription))
+        }
     }
 
     func save() -> Void {

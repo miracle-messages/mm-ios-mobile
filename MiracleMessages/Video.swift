@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import AWSS3
 
-struct Video {
+struct Video: Uploadable {
+
+    var contentType: String
+
+    var completionBlock: AWSS3TransferUtilityUploadCompletionHandlerBlock?
     let awsHost: String
     let bucketName: String
     let name: String
@@ -17,30 +22,5 @@ struct Video {
         get {
             return "\(self.awsHost)/\(self.bucketName)/\(self.name)"
         }
-    }
-
-    var uniqId: String {
-        get {
-            return randomString(length: 10)
-        }
-    }
-
-    func save() -> Void {
-    }
-
-    func randomString(length: Int) -> String {
-
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let len = UInt32(letters.length)
-
-        var randomString = ""
-
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        
-        return randomString
     }
 }

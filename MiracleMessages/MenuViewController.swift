@@ -8,34 +8,22 @@
 
 import UIKit
 import MessageUI
+import GoogleSignIn
+import FirebaseAuth
+import Crashlytics
 
 class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if segue.identifier == "GuideViewController" {
             let vc = segue.destination as! GuideViewController
             vc.mode = .disconnected
         }
     }
-
 
     @IBAction func btnEmailTapped(_ sender: UIButton)
     {
@@ -83,9 +71,15 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func didTapLogoutBtn(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            Logger.forceLog(signOutError)
+        }
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 
     func createWebViewController(withUrl: String) -> WebViewController {
@@ -96,8 +90,10 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: MFMailComposeViewControllerDelegate {
-    // MARK: MFMailComposeViewControllerDelegate Method
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let error = error {
+            Logger.log(level: Level.error, error.localizedDescription)
+        }
         controller.dismiss(animated: true, completion: nil)
     }
 }
