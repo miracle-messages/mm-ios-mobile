@@ -106,6 +106,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
     }
     
     @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
+        
         let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
         //  Name
@@ -145,7 +146,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
             return
         } else { return self.saveLovedOneFormData(age: age) }
-        
+ 
     }
     
     func saveLovedOneFormData(age: Int){

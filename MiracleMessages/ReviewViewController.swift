@@ -20,7 +20,7 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
     var ref: DatabaseReference!
     var caseID: String!
     var croppedImage: UIImage?
-    var isEditPhoto: Bool!
+    var isEditPhoto: Bool = false
 
     @IBOutlet weak var tblReview: UITableView!
     
@@ -170,6 +170,7 @@ private extension ReviewViewController {
 
 extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+      
         //Send image to firebase
         self.ShowActivityIndicator()
         let storageRef = storage.reference()
@@ -209,7 +210,12 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
                             }
                             
                             picker.dismiss(animated: true, completion: {
-                                self.performSegue(withIdentifier: "cameraController", sender: self)
+                                if(self.isEditPhoto == false){
+                                    self.performSegue(withIdentifier: "cameraController", sender: self)
+                                } else{
+                                    let confirmController = self.storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+                                    self.navigationController?.pushViewController(confirmController, animated: true)
+                                }
                             })
                         }
                         Logger.log("Saved the photo for the case \(self.currentCase.key!) \(self.currentCase.photoURL!)")
@@ -221,7 +227,6 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
             Logger.log("Unable to save the photo for this case: \(currentCase.key!)")
             return
         }
-
     }
     
     func showAlertView(){
@@ -246,8 +251,6 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
         //displayInfo()
     }
 }
-
-
 
 extension ReviewViewController: CameraViewControllerDelegate {
     func didFinishRecording(sender: CameraViewController) -> Void {

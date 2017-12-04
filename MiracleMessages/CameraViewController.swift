@@ -14,16 +14,22 @@ import MessageUI
 import Photos
 import SCLAlertView
 import Alamofire
+import MobileCoreServices
+import Photos
 
-class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var images = [PHAsset]()
+    
     var startTime = TimeInterval()
     var timer = Timer()
     var videoFileName: String?
     var video: Video?
-
+    var videoURL: URL?
+    var localVideoURL: URL?
     weak var delegate:CameraViewControllerDelegate?
-
+    let currentCase: Case = Case.current
+    
     //Landscape constraints
     @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnRtConstraint: NSLayoutConstraint!
@@ -42,6 +48,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var previewView: UIView!
     
+    @IBOutlet weak var btnGallery: UIButton!
+    
+    var videoPickerController = UIImagePickerController()
     var cameraSession: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
 
@@ -63,11 +72,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var thnkYouMsgLabel: UILabel!
     @IBOutlet weak var infoMsgLabel: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
-
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.progressBarView.progress = 0
         self.hideProgressView()
 
@@ -103,7 +110,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             questionWidth += scrollViewWidth
         }
 
-
         self.pageControl.backgroundColor = UIColor.clear
 
         self.questionScrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(questionsArray.count), height: scrollViewHeight)
@@ -111,13 +117,75 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.pageControl.currentPage = 0
 
         pageControl.alpha = 1
+        self.getLastVideoFromGallery()
+    }
+    
+    func getLastVideoFromGallery() {
+        let assets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
+
+        self.images.append(assets.lastObject!)
+        
+        let options: PHVideoRequestOptions = PHVideoRequestOptions()
+        options.version = .original
+        PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
+            if let urlAsset = asset as? AVURLAsset {
+                self.localVideoURL = urlAsset.url
+                print(self.localVideoURL)
+            }
+        })
+    }
+    
+    @IBAction func btnPickVideoFromGalletyClicked(_ sender: UIButton) {
+      self.pickVideoFromGallery()
+    }
+    
+    func pickVideoFromGallery(){
+        videoPickerController.sourceType = .savedPhotosAlbum
+        videoPickerController.delegate = self
+        videoPickerController.mediaTypes = [(kUTTypeMovie as NSString) as String]
+        self.present(videoPickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        videoURL = info[UIImagePickerControllerMediaURL] as! NSURL as URL
+        print(videoURL!)
+        
+        self.currentCase.localVideoURL = videoURL
+        print(self.currentCase.localVideoURL!)
+
+        // get the asset
+        let asset = AVURLAsset(url: videoURL!)
+        // get the time in seconds
+        let seconds = asset.duration.seconds
+        NSLog("duration: %.2f", seconds);
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        if(seconds >= 180){
+            // create the alert
+            let alert = UIAlertController(title: "Miracle Messages", message: "Sorry! you can't upload more than 3 minutes video.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
+            }))
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: { action in
+                self.pickVideoFromGallery()
+            }))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        } else{
+            self.presentConfirmation(outputFileURL: videoURL)
+        }
+       
     }
 
     func configurePreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: cameraSession)
         previewView.layer.addSublayer(previewLayer!)
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-
 
         self.previewView.bringSubview(toFront: self.recordBtn)
         self.previewView.bringSubview(toFront: self.timerLabel)
@@ -243,7 +311,41 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         cameraSession?.startRunning()
+        
+        let asset = AVURLAsset(url: self.localVideoURL as! URL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        
+        let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
+        
+        do {
+            let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
+            self.btnGallery.setImage(UIImage(cgImage: imageRef), for: UIControlState.normal)
+        }
+        catch let error as NSError
+        {
+            print("Image generation failed with error \(error)")
+            return
+        }
     }
+    
+    func optionAlertviewForPickingMedia() {
+        
+        // create the alert
+        let alert = UIAlertController(title: "Miracle Messages", message: "Are you sure you want to record video or you can import video from camera roll also.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { action in
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default, handler: { action in
+            self.pickVideoFromGallery()
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
     
     func showAlertView() {
         
@@ -370,6 +472,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         cameraSession?.stopRunning()
 
+        self.currentCase.localVideoURL = outputFileURL
+        print(self.currentCase.localVideoURL!)
 
         self.presentConfirmation(outputFileURL: outputFileURL)
     }
@@ -574,8 +678,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     @IBAction func didPressCloseBtn(_ sender: AnyObject) {
         self.showAlertView()
-     }
-
+    }
 }
 
 extension CameraViewController : UIScrollViewDelegate {

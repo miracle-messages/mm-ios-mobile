@@ -46,8 +46,8 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
             dictPhoto = ["lblName":"No Case Photo","imgPhoto":nil] as NSDictionary
         }
         
-        if self.video?.url != nil{
-            dictVideo = ["lblName":"Recording","imgPhoto":self.video?.url] as NSDictionary
+        if self.currentCase.localVideoURL != nil{
+            dictVideo = ["lblName":"Recording","imgPhoto":self.currentCase.localVideoURL!] as NSDictionary
         } else {
             dictVideo = ["lblName":"No Recording","imgPhoto":nil] as NSDictionary
         }
@@ -221,11 +221,11 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         let imageURL = dict.object(forKey: "imgPhoto") as? NSURL
-       print("Image URL\(imageURL)")
+      
         if(imageURL != nil){
             getDataFromUrl(url: imageURL! as URL) { data, response, error in
                 guard let data = data, error == nil else { return }
-                print(response?.suggestedFilename ?? imageURL?.lastPathComponent)
+                
                 print("Download Finished")
                 DispatchQueue.main.async() {
                     if(indexPath.row == 0){
@@ -254,7 +254,8 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             reviewController.isEditPhoto = true
             self.navigationController?.pushViewController(reviewController, animated: true)
         } else{
-            // self.performSegue(withIdentifier: "cameraController", sender: self)
+            let cameraController = self.storyboard!.instantiateViewController(withIdentifier: "cameraViewController") as! CameraViewController
+            self.navigationController?.pushViewController(cameraController, animated: true)
         }
     }
     

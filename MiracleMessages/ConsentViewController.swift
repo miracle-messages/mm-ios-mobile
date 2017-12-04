@@ -64,9 +64,13 @@ class ConsentViewController: UIViewController, NVActivityIndicatorViewable {
             let caseStatusReference: DatabaseReference
             caseStatusReference = self.ref.child("/cases/\(key)")
             
-            let statusPayload: [String: Any] = [
+            var statusPayload: [String: Any] = [
                 "publishStatus": "draft",
                 ]
+            
+            guard let currentUser = Auth.auth().currentUser else { return }
+            
+            statusPayload["createdBy"] = ["uid": currentUser.uid]
             
             print("Payload\(statusPayload)")
             
@@ -92,7 +96,7 @@ class ConsentViewController: UIViewController, NVActivityIndicatorViewable {
     @IBAction func didTapClearBtn(_ sender: Any) {
         signatureView.clear()
     }
-    
+
     @IBAction func didTapConsentBtn(_ sender: Any) {
          self.ShowActivityIndicator()
         if let imageUrl = signatureView.saveAsJPEG() {
@@ -100,9 +104,11 @@ class ConsentViewController: UIViewController, NVActivityIndicatorViewable {
             let storageRef = storage.reference()
             guard let key = currentCase.key else {return}
             let signaturePathRef = storageRef.child("caseSignatures/\(key)/signature.jpg")
+            let newMeta = StorageMetadata()
+            newMeta.contentType = "image/jpeg"
             do {
                 let data = try Data.init(contentsOf: imageUrl)
-                let _ = signaturePathRef.putData(data, metadata: nil) { (metadata, error) in
+                let _ = signaturePathRef.putData(data, metadata: newMeta) { (metadata, error) in
                     if let error = error {
                         self.showAlertView()
                         self.RemoveActivityIndicator()
@@ -111,13 +117,15 @@ class ConsentViewController: UIViewController, NVActivityIndicatorViewable {
                     } else {
                         print("Saved signature")
                         self.currentCase.signatureURL = metadata?.downloadURL()
-                    self.saveSignatureAndStatusToFirebase(signatureURL: (metadata?.downloadURL())!)
+                        self.saveSignatureAndStatusToFirebase(signatureURL: (metadata?.downloadURL())!)
                     }
                 }
             } catch {
                 self.RemoveActivityIndicator()
                 Logger.log("There was an issue processing image data for signature")
             }
+        } else{
+            self.RemoveActivityIndicator()
         }
     }
  

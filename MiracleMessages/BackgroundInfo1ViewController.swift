@@ -151,8 +151,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
     
     @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
-        
-        let needToEnter: (String) -> String = { "You will need to enter " + $0 }
+
+       let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
         //  Client names
         guard textFieldClientFirstName.hasText else {
@@ -224,6 +224,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         }
         
         self.saveHomelessIndividualFormData()
+ 
     }
     
     func saveHomelessIndividualFormData(){
@@ -250,10 +251,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             "homeState": textFieldHomeState.text!,
             "homeCountry": oldCountry.code,
             ]
-        
-        guard let currentUser = Auth.auth().currentUser else { return }
-        
-        publicPayload["createdBy"] = ["uid": currentUser.uid]
         
         if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
             let timeHomeless = (type: type, value: value)

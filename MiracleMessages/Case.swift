@@ -39,6 +39,7 @@ class Case {
     var publicVideoURL: URL?
     var youtubeCoverURL: URL?
     var privateVideoURL: URL?
+    var localVideoURL: URL?
     var photoURL: URL?
     var signatureURL: URL?
 

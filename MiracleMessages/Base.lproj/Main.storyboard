@@ -2575,7 +2575,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your message has been sent" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gV-GG-hMq">
-                                        <rect key="frame" x="17" y="125" width="233" height="117"/>
+                                        <rect key="frame" x="27" y="125" width="223" height="117"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="117" id="p97-sJ-Ynk"/>
                                         </constraints>
@@ -2626,7 +2626,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <constraint firstItem="jqm-aG-g2T" firstAttribute="leading" secondItem="MHf-sn-PRI" secondAttribute="leading" id="Iv5-f7-Kdp"/>
                                     <constraint firstAttribute="bottom" secondItem="jqm-aG-g2T" secondAttribute="bottom" id="P7f-aX-isA"/>
                                     <constraint firstAttribute="trailing" secondItem="vcy-vF-rHs" secondAttribute="trailing" constant="8" id="PWd-6A-qdN"/>
-                                    <constraint firstItem="3gV-GG-hMq" firstAttribute="leading" secondItem="MHf-sn-PRI" secondAttribute="leading" constant="17" id="VvT-Pq-kcD"/>
+                                    <constraint firstItem="3gV-GG-hMq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MHf-sn-PRI" secondAttribute="leading" id="VvT-Pq-kcD"/>
                                     <constraint firstItem="9gY-vo-mgL" firstAttribute="centerX" secondItem="MHf-sn-PRI" secondAttribute="centerX" id="XPS-I0-fEB"/>
                                     <constraint firstItem="vcy-vF-rHs" firstAttribute="leading" secondItem="MHf-sn-PRI" secondAttribute="leading" constant="8" id="c69-lD-k9T"/>
                                     <constraint firstAttribute="trailing" secondItem="iK8-D5-Gdp" secondAttribute="trailing" constant="8" id="g1p-bY-3T5"/>
@@ -2709,10 +2709,11 @@ c.) we don't know if we'll be able to find your loved one(s).
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-w9-H6h">
-                                        <rect key="frame" x="322" y="3" width="45" height="45"/>
+                                        <rect key="frame" x="291" y="0.0" width="84" height="48"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="F8u-ns-sro"/>
-                                            <constraint firstAttribute="width" constant="45" id="tSN-V1-m1D"/>
+                                            <constraint firstAttribute="height" constant="48" id="Dpt-yB-Jp6"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="usb-Qi-sGW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <state key="normal" title="Skip"/>
@@ -2725,11 +2726,12 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="0rH-RB-l24" secondAttribute="bottom" constant="131" id="1WT-Xp-sij"/>
                                     <constraint firstAttribute="trailing" secondItem="0rH-RB-l24" secondAttribute="trailing" constant="67" id="7La-TG-2aB"/>
-                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="topMargin" constant="-25" id="Cmh-Lt-F9S"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fsx-89-y2w" secondAttribute="leadingMargin" id="CRs-NG-RI4"/>
                                     <constraint firstItem="0rH-RB-l24" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="M3a-w9-5N8"/>
                                     <constraint firstItem="Hpd-ah-h8i" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" constant="30" id="OtW-mi-815"/>
-                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailingMargin" id="PlZ-Vu-U4M"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailingMargin" constant="8" id="PlZ-Vu-U4M"/>
                                     <constraint firstItem="0rH-RB-l24" firstAttribute="centerY" secondItem="Fsx-89-y2w" secondAttribute="centerY" id="atf-0Z-vos"/>
+                                    <constraint firstItem="v3n-w9-H6h" firstAttribute="top" secondItem="Fsx-89-y2w" secondAttribute="top" id="qVa-gJ-GRv"/>
                                     <constraint firstItem="Hpd-ah-h8i" firstAttribute="centerX" secondItem="Fsx-89-y2w" secondAttribute="centerX" id="vz6-ef-eQM"/>
                                 </constraints>
                                 <variation key="default">
@@ -2752,7 +2754,19 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </constraints>
                                 <color key="pageIndicatorTintColor" red="0.26274509800000001" green="0.59999999999999998" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTK-Cg-5iH">
+                                <rect key="frame" x="19" y="466" width="70" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="A2w-1G-0un"/>
+                                    <constraint firstAttribute="height" constant="60" id="c01-3f-Ym1"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnPickVideoFromGalletyClicked:" destination="gOP-GA-scO" eventType="touchUpInside" id="7Oe-E4-4Dl"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Fsx-89-y2w" secondAttribute="trailing" id="1kr-H2-nn1"/>
                             <constraint firstAttribute="bottom" secondItem="Fsx-89-y2w" secondAttribute="bottom" id="5kF-IG-JxY"/>
@@ -2762,6 +2776,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstItem="5zC-6Q-4zl" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="EZp-EK-Li0"/>
                             <constraint firstItem="SJI-Zr-8E9" firstAttribute="centerX" secondItem="vfe-RP-1dz" secondAttribute="centerX" id="GgH-OH-4ey"/>
                             <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="MHf-sn-PRI" secondAttribute="bottom" id="JaN-9C-f9H"/>
+                            <constraint firstItem="oTK-Cg-5iH" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" constant="19" id="K58-Wb-TFA"/>
                             <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="5zC-6Q-4zl" secondAttribute="bottom" id="KSI-wH-tsH"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="QCU-ki-NZI"/>
                             <constraint firstItem="Fsx-89-y2w" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="RFa-LT-B5k"/>
@@ -2770,12 +2785,14 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstAttribute="trailing" secondItem="5zC-6Q-4zl" secondAttribute="trailing" id="df8-Xx-Roe"/>
                             <constraint firstItem="2RH-0I-EIY" firstAttribute="leading" secondItem="vfe-RP-1dz" secondAttribute="leading" id="qf0-yg-9Du"/>
                             <constraint firstAttribute="trailing" secondItem="2RH-0I-EIY" secondAttribute="trailing" id="t72-9O-Md8"/>
+                            <constraint firstItem="1OR-qU-1lw" firstAttribute="top" secondItem="oTK-Cg-5iH" secondAttribute="bottom" constant="141" id="tZ2-hf-o0B"/>
                             <constraint firstItem="MHf-sn-PRI" firstAttribute="top" secondItem="vfe-RP-1dz" secondAttribute="top" id="ul1-Ow-8rw"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="btnGallery" destination="oTK-Cg-5iH" id="Wi4-Xt-QrT"/>
                         <outlet property="closeBtn" destination="v3n-w9-H6h" id="r9U-w5-j5a"/>
                         <outlet property="doneBtn" destination="vcy-vF-rHs" id="mjL-qW-dfe"/>
                         <outlet property="infoMsgLabel" destination="9gY-vo-mgL" id="12s-ED-9mF"/>
@@ -2797,7 +2814,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxh-87-0Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9354" y="-295"/>
+            <point key="canvasLocation" x="9352.7999999999993" y="-295.50224887556226"/>
         </scene>
         <!--Confirm View Controller-->
         <scene sceneID="pG5-3i-3XY">
