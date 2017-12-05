@@ -165,7 +165,6 @@ private extension ReviewViewController {
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
