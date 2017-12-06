@@ -42,6 +42,7 @@
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
 		9935927E1FD69F5F00FFFD37 /* DraftPhotoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935927D1FD69F5F00FFFD37 /* DraftPhotoVideoViewController.swift */; };
 		996C2CA11FD2BC4D00A0A3F1 /* ConfirmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */; };
+		997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */; };
 		99ACF8E81FD66855000DB87D /* DraftCasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACF8E71FD66855000DB87D /* DraftCasesViewController.swift */; };
 		99ACF8EA1FD66B52000DB87D /* DraftCasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACF8E91FD66B52000DB87D /* DraftCasesCell.swift */; };
 		A02DABA71F3B498100FAA17A /* Partners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DABA61F3B498100FAA17A /* Partners.swift */; };
@@ -118,6 +119,7 @@
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
 		9935927D1FD69F5F00FFFD37 /* DraftPhotoVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftPhotoVideoViewController.swift; sourceTree = "<group>"; };
 		996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmTableViewCell.swift; sourceTree = "<group>"; };
+		997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoOptionalViewController.swift; sourceTree = "<group>"; };
 		99ACF8E71FD66855000DB87D /* DraftCasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftCasesViewController.swift; sourceTree = "<group>"; };
 		99ACF8E91FD66B52000DB87D /* DraftCasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftCasesCell.swift; sourceTree = "<group>"; };
 		A02DABA61F3B498100FAA17A /* Partners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partners.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		2390079B1E4D64FC00A4C1DB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */,
 				23B0B7E71D98E466007DFDDE /* ViewController.swift */,
 				23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */,
 				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
@@ -623,6 +626,7 @@
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
 				EE0FA4881F006D3300B3A0D8 /* YPDrawSignatureView.swift in Sources */,
+				997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
 				23E709771E25BF2900E20582 /* ProfileNavigationViewController.swift in Sources */,
 				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,

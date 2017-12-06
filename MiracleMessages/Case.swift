@@ -80,6 +80,9 @@ class Case {
     //  Notes
     var notes: String = ""
     
+    // Background research questions.
+    var research: (quest1: String, quest2: String)?
+    
     //  Contact Infor
     var contactInfo = ""
     

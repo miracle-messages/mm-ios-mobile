@@ -103,6 +103,7 @@ class ConsentViewController: UIViewController, NVActivityIndicatorViewable {
             currentCase.generateKey(withRef: ref)
             let storageRef = storage.reference()
             guard let key = currentCase.key else {return}
+            print("Key-->\(key)")
             let signaturePathRef = storageRef.child("caseSignatures/\(key)/signature.jpg")
             let newMeta = StorageMetadata()
             newMeta.contentType = "image/jpeg"

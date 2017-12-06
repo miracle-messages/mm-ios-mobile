@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable{
+class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable, UITextViewDelegate{
     
     var ref: DatabaseReference!
     //  Container
@@ -113,46 +113,14 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.dataSource = self
         pickerTimeScale.delegate = self
         textFieldTimeScale.inputView = pickerTimeScale
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
 
 //        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        currentCase = Case.current
-        displayInfo()
-        
-        if !textFieldCurrentCountry.hasText {
-            pickerCurrentCountry.selectRow(1, inComponent: 0, animated: false)
-            pickerView(pickerCurrentCountry, didSelectRow: 1, inComponent: 0)
-        }
-        
-        if !textFieldHomeCountry.hasText {
-            pickerHomeCountry.selectRow(1, inComponent: 0, animated: false)
-            pickerView(pickerHomeCountry, didSelectRow: 1, inComponent: 0)
-        }
-    }
-    
-    //Show activity indicator while saving data
-    func ShowActivityIndicator(){
-        
-        let size = CGSize(width: 50, height:50)
-        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
-    }
-    
-    //Remove activity indicator
-    func RemoveActivityIndicator(){
-        stopAnimating()
-    }
-    
-    @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
-
-       let needToEnter: (String) -> String = { "You will need to enter " + $0 }
+    func btnNextTapped(sender: UIBarButtonItem) {
+        let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
         //  Client names
         guard textFieldClientFirstName.hasText else {
@@ -223,11 +191,56 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return
         }
         
-        self.saveHomelessIndividualFormData()
- 
+        switch mode {
+        case .view:
+            self.saveHomelessIndividualFormData(isNext: true)
+            return
+        case .update:
+            if self.updateBackgroundInfo() != nil {
+                //TODO: Clean up
+                //self.delegate?.clientInfo = clientInfo
+            }
+            self.dismiss(animated: true, completion: {
+                self.delegate?.didFinishUpdating()
+            })
+            return
+        }
     }
     
-    func saveHomelessIndividualFormData(){
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        currentCase = Case.current
+        displayInfo()
+        
+        if !textFieldCurrentCountry.hasText {
+            pickerCurrentCountry.selectRow(1, inComponent: 0, animated: false)
+            pickerView(pickerCurrentCountry, didSelectRow: 1, inComponent: 0)
+        }
+        
+        if !textFieldHomeCountry.hasText {
+            pickerHomeCountry.selectRow(1, inComponent: 0, animated: false)
+            pickerView(pickerHomeCountry, didSelectRow: 1, inComponent: 0)
+        }
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
+    }
+    
+    func saveHomelessIndividualFormData(isNext: Bool){
         self.ShowActivityIndicator()
         let _ = updateBackgroundInfo()
         guard let key = currentCase.key else {return}
@@ -309,13 +322,14 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
                 return
             }
             
-            if(self.mode == .update){
+            if(isNext == true){
+              if(self.mode == .update){
                 self.dismiss(animated: true, completion: {
                     self.delegate?.didFinishUpdating()
                 })
-            } else {
-                let backgroundInfo2VC = self.storyboard?.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController")
-                self.navigationController?.pushViewController(backgroundInfo2VC!, animated: true)
+              } else {
+                 self.performSegue(withIdentifier: "BackgroundInfo1ViewController", sender: nil)
+              }
             }
         }
     }
@@ -403,7 +417,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         return currentCase
     }
 
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let _ = updateBackgroundInfo()
     }
 
@@ -462,12 +476,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
-        //  Partner
-//        guard textFieldPartner.hasText else {
-//            alertIncomplete(field: textFieldPartner, saying: needToEnter("the partner organization."))
-//            return false
-//        }
-        
         //  Contact info
         guard textFieldContactInfo.hasText else {
             alertIncomplete(field: textFieldContactInfo, saying: needToEnter("the client's contact info"))
@@ -485,9 +493,9 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
-        
         switch mode {
         case .view:
+            self.saveHomelessIndividualFormData(isNext: false)
             return true
         case .update:
             if self.updateBackgroundInfo() != nil {
@@ -499,13 +507,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             })
             return false
         }
-    } */
+    }
     
-    //  Perform segue
-//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-//        
-//    }
-
     //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)

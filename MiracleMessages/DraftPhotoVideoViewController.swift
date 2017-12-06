@@ -37,6 +37,8 @@ class DraftPhotoVideoViewController: UIViewController, UIImagePickerControllerDe
         super.viewDidLoad()
         print("CASE ID --->\(self.caseID)")
         
+        ref = Database.database().reference()
+        
         self.btnPhoto.layer.cornerRadius = 4
         self.btnPhoto.layer.masksToBounds = true
         
@@ -73,6 +75,7 @@ class DraftPhotoVideoViewController: UIViewController, UIImagePickerControllerDe
             //Send image to firebase
             self.ShowActivityIndicator()
             let storageRef = storage.reference()
+            print("Image KEY --> \(self.caseID)")
             let photoPathRef = storageRef.child("casePictures/\(self.caseID)/photoReference.jpg")
             let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
             self.btnPhoto.setImage(referenceImage, for: .normal)
@@ -198,6 +201,8 @@ class DraftPhotoVideoViewController: UIViewController, UIImagePickerControllerDe
         //let key = self.sendInfo()
         self.ShowActivityIndicator()
         let key = self.caseID
+        
+        print("Video KEY --> \(key)")
         let storageRef = storage.reference()
         let photoPathRef = storageRef.child("caseVideos/\(key)/\(video.name)")
         let newMeta = StorageMetadata()
@@ -254,8 +259,7 @@ class DraftPhotoVideoViewController: UIViewController, UIImagePickerControllerDe
     
     func openCamera(){
         if UIImagePickerController.isCameraDeviceAvailable(.rear) {
-            ref = Database.database().reference()
-            self.caseID = ref.child("clients").childByAutoId().key
+//            self.caseID = ref.child("clients").childByAutoId().key
             picker.delegate = self
             picker.allowsEditing = false
             picker.sourceType = UIImagePickerControllerSourceType.camera

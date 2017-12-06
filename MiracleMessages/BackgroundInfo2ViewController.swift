@@ -14,7 +14,7 @@ protocol CameraViewControllerDelegate: class {
     func didFinishRecording(sender: CameraViewController)
 }
 
-class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewDelegate, UIPickerViewDataSource, NVActivityIndicatorViewable {
+class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewDelegate, UIPickerViewDataSource, NVActivityIndicatorViewable, UITextViewDelegate {
    
     var currentLovedOne: LovedOne!
     //  Loved ones
@@ -74,8 +74,14 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.delegate = self
         pickerTimeScale.dataSource = self
         textFieldRecipientLastSeenTimeScale.inputView = pickerTimeScale
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
 
         textViewRecipientOtherInfo.placeholder = "How was the relationship with the loved one before losing contact? Include as many details about the loved one as possible: maiden name, high school, past jobs, college, other family, spouse’s names, etc.."
+    }
+    
+    func btnNextTapped(sender: UIBarButtonItem) {
+        self.setBackgroundInfo()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +111,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         stopAnimating()
     }
     
-    @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
+    func setBackgroundInfo(){
         
         let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
@@ -146,7 +152,10 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
             return
         } else { return self.saveLovedOneFormData(age: age) }
- 
+    }
+    
+    @IBAction func btnNavigateToNextFormClicked(_ sender: Any) {
+       self.setBackgroundInfo()
     }
     
     func saveLovedOneFormData(age: Int){
@@ -211,7 +220,6 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
                     print("Loved one successfully written")
                     
                     if(self.mode == .update){
-                      // self.navigationController?.popViewController(animated: true)
                         self.dismiss(animated: true, completion: nil)
                     } else{
                         let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
