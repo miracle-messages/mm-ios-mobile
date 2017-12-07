@@ -38,6 +38,8 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.navigationBar.isHidden = false
+        
         if(isEditPhoto == true){
             self.openCamera()
         }
@@ -64,16 +66,17 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cameraController = segue.destination as? CameraViewController {
-            cameraController.delegate = self
-        } else if let destination = segue.destination as? BackgroundInfo1ViewController {
-            destination.mode = .update
-        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
-            destination.mode = .update
-            destination.currentLovedOne = lovedOne
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let cameraController = segue.destination as? CameraViewController {
+//            cameraController.delegate = self
+//        }
+////        else if let destination = segue.destination as? BackgroundInfo1ViewController {
+////            destination.mode = .update
+////        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
+////            destination.mode = .update
+////            destination.currentLovedOne = lovedOne
+////        }
+//    }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "camerController"  {
@@ -306,6 +309,21 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo1ViewController") as! BackgroundInfo1ViewController
+            bgInfoController.mode = .update
+            self.navigationController?.pushViewController(bgInfoController, animated: true)
+        case 1:
+            let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController") as! BackgroundInfo2ViewController
+            bgInfo2Controller.mode = .update
+            bgInfo2Controller.currentLovedOne = lovedOnes[indexPath.row]
+            self.navigationController?.pushViewController(bgInfo2Controller, animated: true)
+        default: break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -314,3 +332,4 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         return 250
     }
 }
+

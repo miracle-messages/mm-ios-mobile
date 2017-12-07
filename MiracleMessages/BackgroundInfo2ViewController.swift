@@ -75,8 +75,6 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.dataSource = self
         textFieldRecipientLastSeenTimeScale.inputView = pickerTimeScale
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
-
         textViewRecipientOtherInfo.placeholder = "How was the relationship with the loved one before losing contact? Include as many details about the loved one as possible: maiden name, high school, past jobs, college, other family, spouse’s names, etc.."
     }
     
@@ -97,6 +95,9 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
             buttonClearViews.isHidden = true
             buttonAddAnotherRecipient.isHidden = true
         }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
+
     }
     
     //Show activity indicator while saving data
@@ -220,7 +221,8 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
                     print("Loved one successfully written")
                     
                     if(self.mode == .update){
-                        self.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)
+                      //  self.dismiss(animated: true, completion: nil)
                     } else{
                         let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
                         self.navigationController?.pushViewController(reviewVC!, animated: true)

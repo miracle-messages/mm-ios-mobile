@@ -15,6 +15,7 @@ class DraftCasesViewController: UIViewController {
     @IBOutlet weak var tblCases: UITableView!
     var ref: DatabaseReference!
     var arrCases : NSMutableArray = NSMutableArray()
+    var currentCase: Case = Case.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +84,13 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
         let dict : NSDictionary = self.arrCases[indexPath.row] as! NSDictionary
         let caseKey = dict.object(forKey: "caseKey") as! NSString
         
-        let draftPhotoVideoVC = self.storyboard?.instantiateViewController(withIdentifier: "DraftPhotoVideoViewController") as! DraftPhotoVideoViewController
-        draftPhotoVideoVC.caseID = caseKey as String!
-        self.navigationController?.pushViewController(draftPhotoVideoVC, animated: true)
+        let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        self.currentCase.key = caseKey as String
+        self.navigationController?.pushViewController(confirmVC, animated: true)
+        
+//        let draftPhotoVideoVC = self.storyboard?.instantiateViewController(withIdentifier: "DraftPhotoVideoViewController") as! DraftPhotoVideoViewController
+//        draftPhotoVideoVC.caseID = caseKey as String!
+//        self.navigationController?.pushViewController(draftPhotoVideoVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -114,8 +114,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerTimeScale.delegate = self
         textFieldTimeScale.inputView = pickerTimeScale
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
-
+        self.textViewNotes.delegate = self
+        
 //        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
 
@@ -196,13 +196,14 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             self.saveHomelessIndividualFormData(isNext: true)
             return
         case .update:
-            if self.updateBackgroundInfo() != nil {
-                //TODO: Clean up
-                //self.delegate?.clientInfo = clientInfo
-            }
-            self.dismiss(animated: true, completion: {
-                self.delegate?.didFinishUpdating()
-            })
+            self.saveHomelessIndividualFormData(isNext: true)
+//            if self.updateBackgroundInfo() != nil {
+//                //TODO: Clean up
+//                //self.delegate?.clientInfo = clientInfo
+//            }
+//            self.dismiss(animated: true, completion: {
+//                self.delegate?.didFinishUpdating()
+//            })
             return
         }
     }
@@ -226,6 +227,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             pickerHomeCountry.selectRow(1, inComponent: 0, animated: false)
             pickerView(pickerHomeCountry, didSelectRow: 1, inComponent: 0)
         }
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
+        
     }
     
     //Show activity indicator while saving data
@@ -324,12 +329,19 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             
             if(isNext == true){
               if(self.mode == .update){
-                self.dismiss(animated: true, completion: {
-                    self.delegate?.didFinishUpdating()
-                })
+                self.delegate?.didFinishUpdating()
+                self.navigationController?.popViewController(animated: true)
+//                self.dismiss(animated: true, completion: {
+//                    self.delegate?.didFinishUpdating()
+//                })
               } else {
                  self.performSegue(withIdentifier: "BackgroundInfo1ViewController", sender: nil)
               }
+            } else{
+                if(self.mode == .update){
+                    self.delegate?.didFinishUpdating()
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
@@ -493,18 +505,22 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
+//        self.saveHomelessIndividualFormData(isNext: false)
+//        return true
+        
         switch mode {
         case .view:
             self.saveHomelessIndividualFormData(isNext: false)
             return true
         case .update:
-            if self.updateBackgroundInfo() != nil {
-                //TODO: Clean up
-                //self.delegate?.clientInfo = clientInfo
-            }
-            self.dismiss(animated: true, completion: {
-                self.delegate?.didFinishUpdating()
-            })
+            self.saveHomelessIndividualFormData(isNext: false)
+//            if self.updateBackgroundInfo() != nil {
+//                //TODO: Clean up
+//                //self.delegate?.clientInfo = clientInfo
+//            }
+//            self.dismiss(animated: true, completion: {
+//                self.delegate?.didFinishUpdating()
+//            })
             return false
         }
     }

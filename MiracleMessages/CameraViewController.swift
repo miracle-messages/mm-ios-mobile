@@ -315,9 +315,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let asset = AVURLAsset(url: self.localVideoURL as! URL)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
-        
+
         let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
-        
+
         do {
             let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
             self.btnGallery.setImage(UIImage(cgImage: imageRef), for: UIControlState.normal)

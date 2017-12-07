@@ -40,16 +40,14 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
     
     @IBAction func btnGetStartedClicked(_ sender: Any) {
         
-    
         let previouscase = DispatchGroup()
         guard let currentUser = Auth.auth().currentUser else { return }
-        print("currentUser id --> \(currentUser.uid)")
         
             for key in self.arrKey {
                 previouscase.enter()
                 self.ref?.child("/cases/").child(key as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                    
-                    print(snapshot.value)
+                    print("Start-->\(snapshot.value)")
                     let dict = snapshot.value as? NSDictionary
                     let createdBy = dict?.object(forKey: "createdBy") as? NSDictionary
                     if(createdBy != nil){
@@ -58,12 +56,47 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                             if let publishStatus = dict?.object(forKey: "publishStatus") as? String {
                                 if(publishStatus == "draft"){
                                     let submittedISO = dict?.object(forKey: "submittedISO") as! String
-                    
-                                    let dictCases = ["submittedOn":submittedISO,
+                                    let firstName = dict?.object(forKey: "firstName") as? String
+                                    let middleName = dict?.object(forKey: "middleName") as? String
+                                    let lastName = dict?.object(forKey: "lastName") as? String
+                                    let currentCity = dict?.object(forKey: "currentCity") as? String
+                                    let currentState = dict?.object(forKey: "currentState") as? String
+                                    let currentCountry = dict?.object(forKey: "currentCountry") as? String
+                                    let homeCity = dict?.object(forKey: "homeCity") as? String
+                                    let homeState = dict?.object(forKey: "homeState") as? String
+                                    let homeCountry = dict?.object(forKey: "homeCountry") as? String
+                                    //timehomeless
+                                    let timeHomeless = dict?.object(forKey: "timeHomeless") as? NSDictionary
+                                    let type = timeHomeless?.object(forKey: "type") as? String
+                                    let value = timeHomeless?.object(forKey: "value") as? Int
+                                    //age
+                                    let age = dict?.object(forKey: "age") as? Int
+                                    let ageApproximate = dict?.object(forKey: "ageApproximate") as? Bool
+                                    //partner
+                                    let dictPartner = dict?.object(forKey: "partner") as? NSDictionary
+                                    let partnerName = dictPartner?.object(forKey: "partnerName") as? String
+                                    
+                                    var dictCases: [String: Any] = ["submittedOn":submittedISO,
                                                     "caseKey":snapshot.key,
-                                                    "publishStatus":publishStatus
-                                    ] as NSDictionary
-                    
+                                                    "publishStatus":publishStatus,
+                                                    "firstName":firstName ?? "",
+                                                    "middleName":middleName ?? "",
+                                                    "lastName":lastName ?? "",
+                                                    "currentCity":currentCity ?? "",
+                                                    "currentState": currentState ?? "",
+                                                    "currentCountry": currentCountry ?? ""
+                                    ]
+                                    
+//                                    dictCases["currentState"] = currentState ?? ""
+//                                    dictCases["currentCountry"] = currentCountry ?? ""
+//                                    dictCases["homeCity"] = homeCity ?? ""
+//                                    dictCases["homeState"] = homeState ?? ""
+//                                    dictCases["homeCountry"] = homeCountry ?? ""
+//                                    dictCases["timeHomeless"] = ["type": type ?? "", "value": value ?? 0]
+//                                    dictCases["age"] = age
+//                                    dictCases["ageApproximate"] = ageApproximate
+//                                    dictCases["partner"] = ["partnerName": partnerName ?? ""]
+                                    
                                     self.arrCases.add(dictCases)
                                   
                                  }

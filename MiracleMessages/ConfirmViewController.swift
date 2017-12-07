@@ -23,6 +23,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     var video: Video?
     var ref: DatabaseReference!
     let currentCase: Case = Case.current
+    var lovedOnes: [LovedOne] = []
     let storage = Storage.storage()
     var arrConfirmData :  NSMutableArray = []
     @IBOutlet weak var tblConfirm: UITableView!
@@ -30,10 +31,16 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        lovedOnes = Array(currentCase.lovedOnes)
+        
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         self.navigationController?.navigationItem.backBarButtonItem?.title = "test"
         self.setConfirmViewData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tblConfirm.reloadData()
     }
     
     func setConfirmViewData(){
@@ -87,6 +94,45 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     func RemoveActivityIndicator(){
         stopAnimating()
     }
+    
+    func saveDataToFirebase(privateVideoURL: URL?){
+        self.ShowActivityIndicator()
+        guard let caseKey = self.currentCase.key else {return}
+        let caseReference: DatabaseReference
+        caseReference = self.ref.child("/cases/\(caseKey)")
+        
+        var publicPayload: [String: Any] = [
+            "caseStatus": self.currentCase.caseStatus.rawValue,
+            "messageStatus": self.currentCase.messageStatus.rawValue,
+            "nextStep": self.currentCase.nextStep.rawValue,
+            "source": self.currentCase.source.dictionary,
+            "detectives": self.currentCase.detectives.count > 0,
+            "submitted": Int(Date().timeIntervalSince1970),
+            "publishStatus": "published",
+            ]
+        
+        if let url = privateVideoURL?.absoluteString {
+            publicPayload["privVideo"] = url
+        }
+        
+        print("Public Payload\(publicPayload)")
+        
+        // Write case data
+        caseReference.updateChildValues(publicPayload) { error, _ in
+            self.RemoveActivityIndicator()
+            // If unsuccessful, print and return
+            guard error == nil else {
+                self.showAlertView()
+                print(error!.localizedDescription)
+                Logger.log("\(publicPayload)")
+                return
+            }
+            
+            let nextController = self.storyboard!.instantiateViewController(withIdentifier: "NextViewController") as! NextViewController
+            self.navigationController?.pushViewController(nextController, animated: true)
+            
+        }
+    }
 
     func bgUploadToS3(video: Video) -> Void {
 
@@ -102,44 +148,13 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
         do {
             let data = try Data.init(contentsOf: video.url)
             let _ = photoPathRef.putData(data, metadata: newMeta, completion: { (metadata, error) in
+                self.RemoveActivityIndicator()
                 if let error = error {
-                    self.RemoveActivityIndicator()
                     Logger.log("Error saving photo reference \(error.localizedDescription)")
                     return
                 }
                 self.currentCase.privateVideoURL = metadata?.downloadURL()
-                guard let caseKey = self.currentCase.key else {return}
-                let caseReference: DatabaseReference
-                caseReference = self.ref.child("/cases/\(caseKey)")
-                
-                let url = metadata?.downloadURL()?.absoluteString
-                
-                let publicPayload: [String: Any] = [
-                    "caseStatus": self.currentCase.caseStatus.rawValue,
-                    "messageStatus": self.currentCase.messageStatus.rawValue,
-                    "nextStep": self.currentCase.nextStep.rawValue,
-                    "source": self.currentCase.source.dictionary,
-                    "detectives": self.currentCase.detectives.count > 0,
-                    "submitted": Int(Date().timeIntervalSince1970),
-                    "privVideo": url!,
-                    "publishStatus": "published",
-                    ]
-                
-                print("Public Payload\(publicPayload)")
-                
-                // Write case data
-                caseReference.updateChildValues(publicPayload) { error, _ in
-                    self.RemoveActivityIndicator()
-                    // If unsuccessful, print and return
-                    guard error == nil else {
-                        self.showAlertView()
-                        print(error!.localizedDescription)
-                        Logger.log(error!.localizedDescription)
-                        Logger.log("\(publicPayload)")
-                        return
-                    }
-                    
-                }
+                self.saveDataToFirebase(privateVideoURL: metadata?.downloadURL())
             })
 
         } catch {
@@ -159,6 +174,15 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func btnSubmitClicked(sender: UIButton) {
+        if let video = self.video {
+            self.bgUploadToS3(video: video)
+        } else{
+            self.saveDataToFirebase(privateVideoURL: nil)
+        }
+    }
+    
 
     func submit() {
         if let video = self.video {
@@ -185,9 +209,9 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.submit()
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        self.submit()
+//    }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -198,64 +222,113 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
 extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1   //  One for Sender, one for Recipients
+        return 3  //  One for Sender, one for Recipients
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            return 1
+        case 2:
+            return currentCase.lovedOnes.isEmpty ? 1 : currentCase.lovedOnes.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        var cell: ConfirmTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
-        if cell == nil {
-            tableView.register(UINib(nibName: "ConfirmTableViewCell", bundle: nil), forCellReuseIdentifier: "ConfirmTableViewCell")
-            cell = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
-        }
+        switch indexPath.section {
+        case 0:
+            var cell: ConfirmTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
+            if cell == nil {
+                tableView.register(UINib(nibName: "ConfirmTableViewCell", bundle: nil), forCellReuseIdentifier: "ConfirmTableViewCell")
+                cell = tableView.dequeueReusableCell(withIdentifier: "ConfirmTableViewCell") as? ConfirmTableViewCell
+            }
         
-        let dict : NSDictionary = self.arrConfirmData[indexPath.row] as! NSDictionary
-        cell.lblName.text = dict.object(forKey: "lblName") as! NSString as String
+            let dict : NSDictionary = self.arrConfirmData[indexPath.row] as! NSDictionary
+            cell.lblName.text = dict.object(forKey: "lblName") as! NSString as String
         
-        cell.imgPhoto.layer.cornerRadius = cell.imgPhoto.frame.width/2
-        cell.imgPhoto.layer.masksToBounds = true
+            cell.imgPhoto.layer.cornerRadius = cell.imgPhoto.frame.width/2
+            cell.imgPhoto.layer.masksToBounds = true
         
         
-        let imageURL = dict.object(forKey: "imgPhoto") as? NSURL
-      
-        if(imageURL != nil){
-            getDataFromUrl(url: imageURL! as URL) { data, response, error in
-                guard let data = data, error == nil else { return }
+            let imageURL = dict.object(forKey: "imgPhoto") as? NSURL
+        
+            if(imageURL != nil){
+                getDataFromUrl(url: imageURL! as URL) { data, response, error in
+                    guard let data = data, error == nil else { return }
                 
-                print("Download Finished")
-                DispatchQueue.main.async() {
-                    if(indexPath.row == 0){
-                        cell.imgPhoto.image = UIImage(data: data)
-                    }
-                    else{
-                        cell.imgPhoto.image = self.videoSnapshot(filePathLocal: imageURL!)
+                    print("Download Finished")
+                    DispatchQueue.main.async() {
+                        if(indexPath.row == 0){
+                            cell.imgPhoto.image = UIImage(data: data)
+                        }
+                        else{
+                            cell.imgPhoto.image = self.videoSnapshot(filePathLocal: imageURL!)
+                        }
                     }
                 }
+            }else{
+                if(indexPath.row == 0){
+                    cell.imgPhoto.image = #imageLiteral(resourceName: "unknownUser")
+                }
+                else{
+                    cell.imgPhoto.image = #imageLiteral(resourceName: "VideoOff")
+                }
             }
-        }else{
-            if(indexPath.row == 0){
-                cell.imgPhoto.image = #imageLiteral(resourceName: "unknownUser")
+            cell.selectionStyle = .none
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
+        
+            cell.reviewable = currentCase
+            print(currentCase)
+        
+            cell.selectionStyle = .none
+            return cell
+        case 2:
+            guard currentCase.lovedOnes.count > 0 else {
+                return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
             }
-            else{
-                cell.imgPhoto.image = #imageLiteral(resourceName: "VideoOff")
-            }
+        
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
+        
+            cell.reviewable = lovedOnes[indexPath.row]
+            print(lovedOnes[indexPath.row])
+        
+            cell.selectionStyle = .none
+            return cell
+        
+         default: break
         }
-    
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
-             let reviewController = self.storyboard!.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
-            reviewController.isEditPhoto = true
-            self.navigationController?.pushViewController(reviewController, animated: true)
-        } else{
-            let cameraController = self.storyboard!.instantiateViewController(withIdentifier: "cameraViewController") as! CameraViewController
-            self.navigationController?.pushViewController(cameraController, animated: true)
+        switch indexPath.section {
+            case 0:
+                if(indexPath.row == 0){
+                    let reviewController = self.storyboard!.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+                    reviewController.isEditPhoto = true
+                    self.navigationController?.pushViewController(reviewController, animated: true)
+                } else{
+                    let cameraController = self.storyboard!.instantiateViewController(withIdentifier: "cameraViewController") as! CameraViewController
+                    self.navigationController?.pushViewController(cameraController, animated: true)
+                }
+            case 1:
+                let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo1ViewController") as! BackgroundInfo1ViewController
+                bgInfoController.mode = .update
+                self.navigationController?.pushViewController(bgInfoController, animated: true)
+            case 2:
+                let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController") as! BackgroundInfo2ViewController
+                bgInfo2Controller.mode = .update
+                if(lovedOnes[indexPath.row] != nil){
+                    bgInfo2Controller.currentLovedOne = lovedOnes[indexPath.row]
+                }
+                self.navigationController?.pushViewController(bgInfo2Controller, animated: true)
+            default: break
         }
     }
     
