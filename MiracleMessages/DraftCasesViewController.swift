@@ -74,9 +74,109 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
         let df = DateFormatter()
         df.dateStyle = .medium
         df.dateFormat = "MMM d, yyyy h:mm a"
-        let submittedDate = df.string(from: date!)
-        print("submittedDate: \(submittedDate)")
-        return submittedDate
+        if(date != nil){
+            let submittedDate = df.string(from: date!)
+            return submittedDate
+        } else{
+            return ""
+        }
+    }
+    
+    func updateBackgroundInfo(dictBgInfo: NSDictionary) {
+//        currentCase = Case.current
+
+        let dateFormatter = DateFormatter.default
+        let firstName = dictBgInfo.object(forKey: "firstName") as? String
+      
+        if(firstName != ""){
+            currentCase.firstName = (dictBgInfo.object(forKey: "firstName") as! String)
+            currentCase.middleName = (dictBgInfo.object(forKey: "lastName") as! String)
+            currentCase.lastName = (dictBgInfo.object(forKey: "middleName") as! String)
+
+            //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
+            currentCase.currentCountry = Country(rawValue: dictBgInfo.object(forKey: "currentCountry") as! String)
+            currentCase.currentState = (dictBgInfo.object(forKey: "currentState") as! String)
+            currentCase.currentCity = (dictBgInfo.object(forKey: "currentCity") as! String)
+
+            currentCase.homeCountry = Country(rawValue: dictBgInfo.object(forKey: "homeCountry") as! String)
+            currentCase.homeState = (dictBgInfo.object(forKey: "homeState") as! String)
+            currentCase.homeCity = (dictBgInfo.object(forKey: "homeCity") as! String)
+
+            if let age = dictBgInfo.object(forKey: "age") {
+                currentCase.age = age as? Int
+                currentCase.isAgeApproximate = dictBgInfo.object(forKey: "ageApproximate") as! Bool
+            }
+        
+            if let birthdate = dictBgInfo.object(forKey: "dob") {
+                currentCase.dateOfBirth = dateFormatter.date(from: birthdate as! String)
+                currentCase.isDOBApproximate = dictBgInfo.object(forKey: "dobApproximate") as! Bool
+            }
+
+            let partner = dictBgInfo.object(forKey: "partner") as! NSDictionary
+            let partnerName = partner.value(forKey: "name")
+        
+            if let partner = partnerName {
+                currentCase.chapterID = partner as? String
+            }
+
+            if let contactInfo = dictBgInfo.object(forKey: "contactInfo") {
+                currentCase.contactInfo = contactInfo as! String
+            }
+
+            let dictTimeHomeless = dictBgInfo.object(forKey: "timeHomeless") as! NSDictionary
+            let typeValue = Case.TimeType(rawValue: dictTimeHomeless.value(forKey: "type") as! String)
+            let value = dictTimeHomeless.value(forKey: "value") as! Int
+        
+            if let type = typeValue {
+                currentCase.timeHomeless = (type, value) as (type: Case.TimeType, value: Int)
+            }
+    
+            if let caseNotes = dictBgInfo.object(forKey: "notes"){
+                currentCase.notes = caseNotes as! String
+            }
+        } 
+        
+        //Background Info 2
+        let arrLovedOnes = dictBgInfo.object(forKey: "lovedOnes") as? NSArray
+        if let arrLovedOne = arrLovedOnes?.count {
+            let dictLovedOnes = arrLovedOnes?.object(at: 0) as! NSDictionary
+            
+        for key in dictLovedOnes.allKeys {
+
+            print("key --> \(key)")
+            let currentLovedOne: LovedOne = LovedOne()
+            //Loved Ones
+            let dictCurrentLovedOne = dictLovedOnes.object(forKey: key) as! NSDictionary
+            currentLovedOne.firstName =  (dictCurrentLovedOne.object(forKey: "firstName") as! String)
+            currentLovedOne.middleName = (dictCurrentLovedOne.object(forKey: "middleName") as! String)
+            currentLovedOne.lastName = (dictCurrentLovedOne.object(forKey: "lastName") as! String)
+            
+            currentLovedOne.relationship = (dictCurrentLovedOne.object(forKey: "relationship") as! String)
+            
+            currentLovedOne.age = (dictCurrentLovedOne.object(forKey: "age") as! Int)
+            currentLovedOne.isAgeApproximate = dictCurrentLovedOne.object(forKey: "ageAppoximate") as! Bool
+          
+            if let dateOfBirth = (dictBgInfo.object(forKey: "lovedOneDob") as? String) {
+                currentLovedOne.dateOfBirth = dateFormatter.date(from: dateOfBirth)
+            }
+//            currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
+            
+            currentLovedOne.lastKnownLocation = (dictCurrentLovedOne.object(forKey: "lastKnownLocation") as! String)
+            
+            let dictLastContact = dictCurrentLovedOne.object(forKey: "lastContact") as! NSDictionary
+            let typeValue = Case.TimeType(rawValue: dictLastContact.value(forKey: "type") as! String)
+            let value = dictLastContact.value(forKey: "value") as! Int
+            
+            if let type = typeValue {
+                currentLovedOne.lastContact = (type, value)
+            }
+            
+            currentLovedOne.notes = (dictBgInfo.object(forKey: "lovedOneNotes") as? String)
+    
+            self.currentCase.lovedOnes.insert(currentLovedOne)
+          }
+       }
+   
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,12 +185,12 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
         let caseKey = dict.object(forKey: "caseKey") as! NSString
         
         let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        self.currentCase.lovedOnes.removeAll()
+        self.currentCase = Case.current
+        let _ = Case.startNewCase()
         self.currentCase.key = caseKey as String
+        _ = self.updateBackgroundInfo(dictBgInfo: dict)
         self.navigationController?.pushViewController(confirmVC, animated: true)
-        
-//        let draftPhotoVideoVC = self.storyboard?.instantiateViewController(withIdentifier: "DraftPhotoVideoViewController") as! DraftPhotoVideoViewController
-//        draftPhotoVideoVC.caseID = caseKey as String!
-//        self.navigationController?.pushViewController(draftPhotoVideoVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

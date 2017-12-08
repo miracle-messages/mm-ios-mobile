@@ -123,6 +123,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func getLastVideoFromGallery() {
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
 
+        if(assets.count > 0){
         self.images.append(assets.lastObject!)
         
         let options: PHVideoRequestOptions = PHVideoRequestOptions()
@@ -133,6 +134,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 print(self.localVideoURL)
             }
         })
+        }
     }
     
     @IBAction func btnPickVideoFromGalletyClicked(_ sender: UIButton) {

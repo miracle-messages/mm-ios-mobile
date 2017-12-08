@@ -281,7 +281,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         }
         
         if let partnerName = textFieldPartner.text, let partnerCode = Partners.instance[partnerName] {
-            publicPayload["partner"] = ["partnerName": partnerCode]
+            publicPayload["partner"] = ["name": partnerName,
+                                        "code":partnerCode]
         }
         
         print("Public Payload\(publicPayload)")

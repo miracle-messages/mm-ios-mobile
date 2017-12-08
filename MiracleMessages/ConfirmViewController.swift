@@ -176,10 +176,23 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     @IBAction func btnSubmitClicked(sender: UIButton) {
-        if let video = self.video {
-            self.bgUploadToS3(video: video)
+        print(currentCase.firstName)
+        print(self.lovedOnes.count)
+        if(currentCase.firstName != "" && self.lovedOnes.count > 0){
+            if let video = self.video {
+                self.bgUploadToS3(video: video)
+            } else{
+                self.saveDataToFirebase(privateVideoURL: nil)
+            }
         } else{
-            self.saveDataToFirebase(privateVideoURL: nil)
+            // create the alert
+            let alert = UIAlertController(title: "Miracle Messages", message: "Please fill all information", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -281,10 +294,14 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
+            
+            guard currentCase.firstName != nil else {
+                return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
+            }
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
         
             cell.reviewable = currentCase
-            print(currentCase)
         
             cell.selectionStyle = .none
             return cell
@@ -324,7 +341,7 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             case 2:
                 let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController") as! BackgroundInfo2ViewController
                 bgInfo2Controller.mode = .update
-                if(lovedOnes[indexPath.row] != nil){
+                if(lovedOnes.count > 0){
                     bgInfo2Controller.currentLovedOne = lovedOnes[indexPath.row]
                 }
                 self.navigationController?.pushViewController(bgInfo2Controller, animated: true)
