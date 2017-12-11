@@ -192,40 +192,73 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         
         let privateCaseReference = ref.child("/casesPrivate/\(key)")
         
-        //  If successful, write loved ones
-        for lovedOne in self.lovedOnes {
-            //  Get reference to loved one
-            let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
-            lovedOne.id = lovedOneRef.key
+        if(self.mode == .update && self.currentLovedOne.id != nil){
+            for lovedOne in self.lovedOnes {
+                let id = self.currentLovedOne.id as! String
+                let lovedOneRef = caseReference.child("/lovedOnes/\(String(describing: id))")
+                lovedOne.id = lovedOneRef.key
             
-            //  Try to write
-            lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
-                //  If unsuccessful return
-                guard error == nil else {
-                    self.RemoveActivityIndicator()
-                    self.showAlertView()
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                //  If successful, write private info
-                privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
-                    self.RemoveActivityIndicator()
-                    //  If unsuccessful, remove public loved one info
+                //  Try to write
+                lovedOneRef.updateChildValues(lovedOne.publicInfo) { error, _ in
+                    //  If unsuccessful return
                     guard error == nil else {
+                        self.RemoveActivityIndicator()
                         self.showAlertView()
-                        print(error!)
-                        lovedOneRef.removeValue()
+                        print(error!.localizedDescription)
                         return
                     }
-                    print("Loved one successfully written")
-                    
-                    if(self.mode == .update){
+                
+                    //  If successful, write private info
+                    privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").updateChildValues(lovedOne.privateInfo) { error, _ in
+                        self.RemoveActivityIndicator()
+                        //  If unsuccessful, remove public loved one info
+                        guard error == nil else {
+                            self.showAlertView()
+                            print(error!)
+                            lovedOneRef.removeValue()
+                            return
+                        }
+                        print("Loved one successfully written")
                         self.navigationController?.popViewController(animated: true)
-                      //  self.dismiss(animated: true, completion: nil)
-                    } else{
-                        let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
-                        self.navigationController?.pushViewController(reviewVC!, animated: true)
+                    }
+                }
+            }
+        }
+        else{
+            //  If successful, write loved ones
+            for lovedOne in self.currentCase.lovedOnes {
+                //  Get reference to loved one
+                let lovedOneRef = caseReference.child("/lovedOnes/").childByAutoId()
+                lovedOne.id = lovedOneRef.key
+            
+                //  Try to write
+                lovedOneRef.setValue(lovedOne.publicInfo) { error, _ in
+                    //  If unsuccessful return
+                    guard error == nil else {
+                        self.RemoveActivityIndicator()
+                        self.showAlertView()
+                        print(error!.localizedDescription)
+                        return
+                    }
+                
+                    //  If successful, write private info
+                    privateCaseReference.child("/lovedOnes/\(lovedOne.id!)").setValue(lovedOne.privateInfo) { error, _ in
+                        self.RemoveActivityIndicator()
+                        //  If unsuccessful, remove public loved one info
+                        guard error == nil else {
+                            self.showAlertView()
+                            print(error!)
+                            lovedOneRef.removeValue()
+                            return
+                        }
+                        print("Loved one successfully written")
+                    
+                        if(self.mode == .update){
+                            self.navigationController?.popViewController(animated: true)
+                        } else{
+                            let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController")
+                            self.navigationController?.pushViewController(reviewVC!, animated: true)
+                        }
                     }
                 }
             }

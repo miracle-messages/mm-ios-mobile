@@ -15,7 +15,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
 
     @IBOutlet weak var helloLbl: UILabel!
     var ref: DatabaseReference!
-    var arrCases : NSMutableArray = NSMutableArray()
+    var arrCases : NSMutableArray!
     var arrKey : NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
@@ -24,6 +24,10 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
         resetCaseID()
         displayVolunteerInfo()
         self.getAllPreviousCases()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        arrCases = NSMutableArray()
     }
     
     func getAllPreviousCases(){
@@ -46,7 +50,6 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                 previouscase.enter()
                 let arrLovedOnes: NSMutableArray = NSMutableArray()
                 self.ref?.child("/cases/").child(key as! String).observeSingleEvent(of: .value, with: { (snapshot) in
-                    print("Data --> \(snapshot.value)")
                     let dict = snapshot.value as? NSDictionary
                     let createdBy = dict?.object(forKey: "createdBy") as? NSDictionary
                     if(createdBy != nil){
@@ -88,7 +91,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                                         
                                     }
                                     
-                                    let submittedISO = dict?.object(forKey: "submittedISO") as? String
+                                    let submittedISO = dict?.object(forKey: "created") as? String
                                     let firstName = dict?.object(forKey: "firstName") as? String
                                     let middleName = dict?.object(forKey: "middleName") as? String
                                     let lastName = dict?.object(forKey: "lastName") as? String
@@ -146,7 +149,6 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                                         }
                                         
                                         if let lovedOnes = dict?.object(forKey: "lovedOnes") as? NSDictionary {
-                                            print("lovedOnes Key--->\(lovedOnes)")
                                             for key in lovedOnes.allKeys {
                                                 let dict = lovedOnes.object(forKey: key) as! NSDictionary
                                                 let dob =  dict.object(forKey: "dob") as! String
@@ -173,6 +175,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
             self.RemoveActivityIndicator()
             if(self.arrCases.count > 0){
                 let draftCasesVC = self.storyboard?.instantiateViewController(withIdentifier: "DraftCasesViewController") as! DraftCasesViewController
+                draftCasesVC.arrCases = NSMutableArray()
                 draftCasesVC.arrCases = self.arrCases
                 self.navigationController?.pushViewController(draftCasesVC, animated: true)
             } else{

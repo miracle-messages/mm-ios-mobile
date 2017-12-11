@@ -9,19 +9,19 @@
 import UIKit
 import FirebaseStorage
 import Firebase
+import NVActivityIndicatorView
 
-class DraftCasesViewController: UIViewController {
+class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
 
     @IBOutlet weak var tblCases: UITableView!
     var ref: DatabaseReference!
-    var arrCases : NSMutableArray = NSMutableArray()
+    var arrCases : NSMutableArray!
     var currentCase: Case = Case.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tblCases.reloadData()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -83,8 +83,6 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func updateBackgroundInfo(dictBgInfo: NSDictionary) {
-//        currentCase = Case.current
-
         let dateFormatter = DateFormatter.default
         let firstName = dictBgInfo.object(forKey: "firstName") as? String
       
@@ -93,7 +91,6 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
             currentCase.middleName = (dictBgInfo.object(forKey: "lastName") as! String)
             currentCase.lastName = (dictBgInfo.object(forKey: "middleName") as! String)
 
-            //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
             currentCase.currentCountry = Country(rawValue: dictBgInfo.object(forKey: "currentCountry") as! String)
             currentCase.currentState = (dictBgInfo.object(forKey: "currentState") as! String)
             currentCase.currentCity = (dictBgInfo.object(forKey: "currentCity") as! String)
@@ -139,55 +136,96 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
         //Background Info 2
         let arrLovedOnes = dictBgInfo.object(forKey: "lovedOnes") as? NSArray
         if let arrLovedOne = arrLovedOnes?.count {
-            let dictLovedOnes = arrLovedOnes?.object(at: 0) as! NSDictionary
+            for lovedOne in arrLovedOnes! {
+                let dictLovedOnes = lovedOne as! NSDictionary
+                let key = dictLovedOnes.allKeys[0]
             
-        for key in dictLovedOnes.allKeys {
-
-            print("key --> \(key)")
-            let currentLovedOne: LovedOne = LovedOne()
-            //Loved Ones
-            let dictCurrentLovedOne = dictLovedOnes.object(forKey: key) as! NSDictionary
-            currentLovedOne.firstName =  (dictCurrentLovedOne.object(forKey: "firstName") as! String)
-            currentLovedOne.middleName = (dictCurrentLovedOne.object(forKey: "middleName") as! String)
-            currentLovedOne.lastName = (dictCurrentLovedOne.object(forKey: "lastName") as! String)
-            
-            currentLovedOne.relationship = (dictCurrentLovedOne.object(forKey: "relationship") as! String)
-            
-            currentLovedOne.age = (dictCurrentLovedOne.object(forKey: "age") as! Int)
-            currentLovedOne.isAgeApproximate = dictCurrentLovedOne.object(forKey: "ageAppoximate") as! Bool
+                let currentLovedOne: LovedOne = LovedOne()
+                //Loved Ones
+                let dictCurrentLovedOne = dictLovedOnes.object(forKey: key) as! NSDictionary
+                currentLovedOne.id = key as? String
+                currentLovedOne.firstName =  (dictCurrentLovedOne.object(forKey: "firstName") as! String)
+                currentLovedOne.middleName = (dictCurrentLovedOne.object(forKey: "middleName") as! String)
+                currentLovedOne.lastName = (dictCurrentLovedOne.object(forKey: "lastName") as! String)
+                currentLovedOne.relationship = (dictCurrentLovedOne.object(forKey: "relationship") as! String)
+                currentLovedOne.age = (dictCurrentLovedOne.object(forKey: "age") as! Int)
+                currentLovedOne.isAgeApproximate = dictCurrentLovedOne.object(forKey: "ageAppoximate") as! Bool
           
-            if let dateOfBirth = (dictBgInfo.object(forKey: "lovedOneDob") as? String) {
-                currentLovedOne.dateOfBirth = dateFormatter.date(from: dateOfBirth)
+                if let dateOfBirth = (dictBgInfo.object(forKey: "lovedOneDob") as? String) {
+                    currentLovedOne.dateOfBirth = dateFormatter.date(from: dateOfBirth)
+                }
+            
+                //currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
+            
+                currentLovedOne.lastKnownLocation = (dictCurrentLovedOne.object(forKey: "lastKnownLocation") as! String)
+            
+                let dictLastContact = dictCurrentLovedOne.object(forKey: "lastContact") as! NSDictionary
+                let typeValue = Case.TimeType(rawValue: dictLastContact.value(forKey: "type") as! String)
+                let value = dictLastContact.value(forKey: "value") as! Int
+            
+                if let type = typeValue {
+                    currentLovedOne.lastContact = (type, value)
+                }
+            
+                currentLovedOne.notes = (dictBgInfo.object(forKey: "lovedOneNotes") as? String)
+                self.currentCase.lovedOnes.insert(currentLovedOne)
             }
-//            currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
-            
-            currentLovedOne.lastKnownLocation = (dictCurrentLovedOne.object(forKey: "lastKnownLocation") as! String)
-            
-            let dictLastContact = dictCurrentLovedOne.object(forKey: "lastContact") as! NSDictionary
-            let typeValue = Case.TimeType(rawValue: dictLastContact.value(forKey: "type") as! String)
-            let value = dictLastContact.value(forKey: "value") as! Int
-            
-            if let type = typeValue {
-                currentLovedOne.lastContact = (type, value)
-            }
-            
-            currentLovedOne.notes = (dictBgInfo.object(forKey: "lovedOneNotes") as? String)
+        }
+    }
     
-            self.currentCase.lovedOnes.insert(currentLovedOne)
-          }
-       }
-   
+    func clearAllCaseData(){
+        self.currentCase.firstName = nil
+        self.currentCase.lastName = nil
+        self.currentCase.middleName = nil
+        self.currentCase.currentCountry = nil
+        self.currentCase.currentState = nil
+        self.currentCase.currentCity = nil
+        self.currentCase.homeCountry = nil
+        self.currentCase.homeState = nil
+        self.currentCase.homeCity = nil
+        self.currentCase.dateOfBirth = nil
+        self.currentCase.age = nil
+        self.currentCase.partner = nil
+        self.currentCase.chapterID = nil
+        self.currentCase.photoURL = nil
+        self.currentCase.lovedOnes.removeAll()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            self.ShowActivityIndicator()
+            let dict : NSDictionary = self.arrCases[indexPath.row] as! NSDictionary
+            let caseKey = dict.object(forKey: "caseKey") as! NSString
+            
+            let ref: DatabaseReference = Database.database().reference()
+            ref.child("/cases/").child(caseKey as String).removeValue { (error, ref) in
+                if error != nil {
+                    print("error \(String(describing: error))")
+                }
+                
+                self.ref?.child("/casesPrivate/").child(caseKey as String).removeValue { (error, ref) in
+                    if error != nil {
+                        print("error \(String(describing:error))")
+                    } else{
+                        self.arrCases.removeObject(at:indexPath.row)
+                        self.tblCases.reloadData()
+                    }
+                    self.RemoveActivityIndicator()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let dict : NSDictionary = self.arrCases[indexPath.row] as! NSDictionary
         let caseKey = dict.object(forKey: "caseKey") as! NSString
-        
         let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
-        self.currentCase.lovedOnes.removeAll()
-        self.currentCase = Case.current
-        let _ = Case.startNewCase()
+        clearAllCaseData()
         self.currentCase.key = caseKey as String
         _ = self.updateBackgroundInfo(dictBgInfo: dict)
         self.navigationController?.pushViewController(confirmVC, animated: true)
@@ -195,5 +233,17 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101
+    }
+    
+    //Show activity indicator while saving data
+    func ShowActivityIndicator(){
+        
+        let size = CGSize(width: 50, height:50)
+        startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
+    }
+    
+    //Remove activity indicator
+    func RemoveActivityIndicator(){
+        stopAnimating()
     }
 }

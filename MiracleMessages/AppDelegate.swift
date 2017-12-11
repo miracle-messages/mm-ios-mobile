@@ -40,8 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             FirebaseApp.configure(options: options)
         }
         
-        
-
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
 

@@ -314,20 +314,22 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         UIDevice.current.setValue(value, forKey: "orientation")
         cameraSession?.startRunning()
         
-        let asset = AVURLAsset(url: self.localVideoURL as! URL)
-        let generator = AVAssetImageGenerator(asset: asset)
-        generator.appliesPreferredTrackTransform = true
+        if(self.localVideoURL != nil){
+            let asset = AVURLAsset(url: self.localVideoURL as! URL)
+            let generator = AVAssetImageGenerator(asset: asset)
+            generator.appliesPreferredTrackTransform = true
 
-        let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
+            let timestamp = CMTime(seconds: 1, preferredTimescale: 60)
 
-        do {
-            let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
-            self.btnGallery.setImage(UIImage(cgImage: imageRef), for: UIControlState.normal)
-        }
-        catch let error as NSError
-        {
-            print("Image generation failed with error \(error)")
-            return
+            do {
+                let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
+                self.btnGallery.setImage(UIImage(cgImage: imageRef), for: UIControlState.normal)
+            }
+            catch let error as NSError
+            {
+                print("Image generation failed with error \(error)")
+                return
+            }
         }
     }
     
@@ -592,11 +594,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let defaults = UserDefaults.standard
         let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased()
         let date = Date()
-
+  
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MM-dd-yyyy-HHmmss"
         let stringDate = dayTimePeriodFormatter.string(from: date)
-        return "\(name!)-\(stringDate).mov"
+        if(name != nil){
+            return "\(name!)-\(stringDate).mov"
+        }else {
+            return "\(stringDate).mov"
+        }
     }
 
     func uploadtoS3(url: URL) -> Void {

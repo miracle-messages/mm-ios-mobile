@@ -31,7 +31,6 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        lovedOnes = Array(currentCase.lovedOnes)
         
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -40,6 +39,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        lovedOnes = Array(currentCase.lovedOnes)
         self.tblConfirm.reloadData()
     }
     
@@ -176,9 +176,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     @IBAction func btnSubmitClicked(sender: UIButton) {
-        print(currentCase.firstName)
-        print(self.lovedOnes.count)
-        if(currentCase.firstName != "" && self.lovedOnes.count > 0){
+        if(currentCase.firstName != "" && self.lovedOnes.count > 0 && self.currentCase.photoURL != nil){
             if let video = self.video {
                 self.bgUploadToS3(video: video)
             } else{
@@ -220,11 +218,6 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
         currentCase.submitCase(to: ref)
         return currentCase.key ?? "No key returned"
     }
-
-    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        self.submit()
-//    }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -311,7 +304,7 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             }
         
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
-        
+           
             cell.reviewable = lovedOnes[indexPath.row]
             print(lovedOnes[indexPath.row])
         

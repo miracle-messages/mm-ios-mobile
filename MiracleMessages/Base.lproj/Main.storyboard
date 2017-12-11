@@ -17,9 +17,6 @@
         <array key="ArialBold.ttf">
             <string>Arial-BoldMT</string>
         </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Bold</string>
-        </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -3380,95 +3377,6 @@ c.) we don't know if we'll be able to find your loved one(s).
             </objects>
             <point key="canvasLocation" x="3733.5999999999999" y="731.78410794602701"/>
         </scene>
-        <!--Draft Photo Video View Controller-->
-        <scene sceneID="e96-BO-cCh">
-            <objects>
-                <viewController storyboardIdentifier="DraftPhotoVideoViewController" id="2IA-S3-NNL" customClass="DraftPhotoVideoViewController" customModule="Dev_MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aLl-eP-5fz"/>
-                        <viewControllerLayoutGuide type="bottom" id="w9G-id-GSb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rJg-V0-JvL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yi-qd-UOF">
-                                <rect key="frame" x="16" y="20" width="343" height="18"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEo-mB-5Uo">
-                                <rect key="frame" x="16" y="45" width="150" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="OBO-Mk-SeE"/>
-                                    <constraint firstAttribute="height" constant="140" id="Vcq-Vu-Dpv"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="placeholder_User"/>
-                                <connections>
-                                    <action selector="btnCapturePhotoClicked:" destination="2IA-S3-NNL" eventType="touchUpInside" id="Dz6-uh-sqE"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Video From Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjN-gL-Lyf">
-                                <rect key="frame" x="16" y="206" width="187.5" height="18"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzG-5c-HzF">
-                                <rect key="frame" x="16" y="232" width="150" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="7QG-0C-7No"/>
-                                    <constraint firstAttribute="height" constant="140" id="FOo-nu-eik"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="VideoOff"/>
-                                <connections>
-                                    <action selector="btnUploadVideoClicked:" destination="2IA-S3-NNL" eventType="touchUpInside" id="Dyx-5H-48H"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nac-hd-U02">
-                                <rect key="frame" x="10" y="590" width="349" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="349" id="6L8-tA-pQ8"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="349" id="8Bf-OA-hLq"/>
-                                    <constraint firstAttribute="height" constant="57" id="Lxw-fl-Vt0"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="57" id="hW5-Hl-fLA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
-                                <state key="normal" title="Home" backgroundImage="pillBtn">
-                                    <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnHomeclicked:" destination="2IA-S3-NNL" eventType="touchUpInside" id="Ium-9z-sHB"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6yi-qd-UOF" secondAttribute="trailing" constant="16" id="6NS-ef-s5b"/>
-                            <constraint firstItem="Nac-hd-U02" firstAttribute="leading" secondItem="rJg-V0-JvL" secondAttribute="leading" constant="10" id="6mC-OH-uSl"/>
-                            <constraint firstItem="MEo-mB-5Uo" firstAttribute="leading" secondItem="rJg-V0-JvL" secondAttribute="leading" constant="16" id="KsN-zA-Ade"/>
-                            <constraint firstItem="w9G-id-GSb" firstAttribute="top" secondItem="Nac-hd-U02" secondAttribute="bottom" constant="20" id="Tv5-mU-SXz"/>
-                            <constraint firstItem="rjN-gL-Lyf" firstAttribute="leading" secondItem="rJg-V0-JvL" secondAttribute="leading" constant="16" id="adr-Kp-poL"/>
-                            <constraint firstAttribute="trailing" secondItem="Nac-hd-U02" secondAttribute="trailing" constant="16" id="b9a-Oh-jBv"/>
-                            <constraint firstItem="6yi-qd-UOF" firstAttribute="top" secondItem="aLl-eP-5fz" secondAttribute="bottom" id="cCc-hb-Mgh"/>
-                            <constraint firstItem="vzG-5c-HzF" firstAttribute="leading" secondItem="rJg-V0-JvL" secondAttribute="leading" constant="16" id="qWu-OI-miE"/>
-                            <constraint firstItem="6yi-qd-UOF" firstAttribute="leading" secondItem="rJg-V0-JvL" secondAttribute="leading" constant="16" id="qvp-Zi-E8Z"/>
-                            <constraint firstItem="vzG-5c-HzF" firstAttribute="top" secondItem="rjN-gL-Lyf" secondAttribute="bottom" constant="8" id="tOD-mY-cXv"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rjN-gL-Lyf" secondAttribute="trailing" constant="20" symbolic="YES" id="tnv-xW-7Wq"/>
-                            <constraint firstItem="rjN-gL-Lyf" firstAttribute="top" secondItem="MEo-mB-5Uo" secondAttribute="bottom" constant="21" id="xpy-ch-m2l"/>
-                            <constraint firstItem="MEo-mB-5Uo" firstAttribute="top" secondItem="6yi-qd-UOF" secondAttribute="bottom" constant="7" id="zU0-hf-Gvt"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="btnPhoto" destination="MEo-mB-5Uo" id="65K-uy-wah"/>
-                        <outlet property="btnVideo" destination="vzG-5c-HzF" id="FmJ-Kb-qZf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ohD-FP-W6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4408.8000000000002" y="731.78410794602701"/>
-        </scene>
         <!--Background Info Optional View Controller-->
         <scene sceneID="J22-RH-uO6">
             <objects>
@@ -3626,12 +3534,10 @@ c.) we don't know if we'll be able to find your loved one(s).
         </scene>
     </scenes>
     <resources>
-        <image name="VideoOff" width="150" height="150"/>
         <image name="blackBtn" width="349" height="57"/>
         <image name="editBtn" width="12" height="13"/>
         <image name="homeback" width="640" height="960"/>
         <image name="pillBtn" width="349" height="57"/>
-        <image name="placeholder_User" width="150" height="150"/>
         <image name="recordBtn" width="640" height="583"/>
         <image name="unknownUser" width="40" height="40"/>
     </resources>
