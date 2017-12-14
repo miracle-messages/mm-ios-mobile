@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import NVActivityIndicatorView
 
-class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable, UITextViewDelegate{
-    
+class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable{
+     
     var ref: DatabaseReference!
     //  Container
     @IBOutlet weak var container: UIView!
@@ -60,7 +60,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     let pickerTimeScale = UIPickerView()
     
     // Notes about the client
-    @IBOutlet weak var textViewNotes: UITextView!
+    @IBOutlet weak var textViewNotes: UITextField!
     
     let datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
         var this = UIDatePicker()
@@ -118,7 +118,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         
 //        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
-
+  
     func btnNextTapped(sender: UIBarButtonItem) {
         let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
@@ -593,6 +593,43 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         default:
             return
         }
+    }
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if(textField == textFieldClientFirstName){
+            textFieldClientMiddleName.becomeFirstResponder()
+        } else if(textField == textFieldClientMiddleName){
+            textFieldClientLastName.becomeFirstResponder()
+        } else if(textField == textFieldClientLastName){
+            textFieldCurrentCountry.becomeFirstResponder()
+        } else if(textField == textFieldCurrentCountry){
+            textFieldCurrentState.becomeFirstResponder()
+        } else if(textField == textFieldCurrentState){
+            textFieldCurrentCity.becomeFirstResponder()
+        } else if(textField == textFieldCurrentCity){
+            textFieldHomeCountry.becomeFirstResponder()
+        } else if(textField == textFieldHomeCountry){
+            textFieldHomeState.becomeFirstResponder()
+        } else if(textField == textFieldHomeState){
+            textFieldHomeCity.becomeFirstResponder()
+        } else if(textField == textFieldHomeCity){
+            textFieldClientDob.becomeFirstResponder()
+        } else if(textField == textFieldClientDob){
+            textFieldClientAge.becomeFirstResponder()
+        } else if(textField == textFieldClientAge){
+            textFieldPartner.becomeFirstResponder()
+        } else if(textField == textFieldPartner){
+            textFieldContactInfo.becomeFirstResponder()
+        } else if(textField == textFieldContactInfo){
+            textFieldTimeHomeless.becomeFirstResponder()
+        } else if(textField == textFieldTimeHomeless){
+            textFieldTimeScale.becomeFirstResponder()
+        } else if(textField == textFieldTimeScale){
+            textViewNotes.becomeFirstResponder()
+        } else if(textField == textViewNotes){
+            textViewNotes.resignFirstResponder()
+        }
+        return true
     }
 
 }

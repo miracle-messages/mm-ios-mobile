@@ -12,14 +12,14 @@ import UIKit
 import NVActivityIndicatorView
 import Firebase
 
-class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicatorViewable, UITextViewDelegate {
+class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicatorViewable, UITextFieldDelegate {
     let currentCase: Case = Case.current
     var ref: DatabaseReference!
     // Container to set text why they lost touch with loved ones.
-    @IBOutlet weak var mLooseTouchReasonText: UITextView!
-
+    @IBOutlet weak var mLooseTouchReasonText: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     // Container to set reason for homelessness.
-    @IBOutlet weak var mHomelessReason: UITextView!
+    @IBOutlet weak var mHomelessReason: UITextField!
     
     // Handles click of next button on screen.
     @IBAction func onClickNext(_ sender: Any) {
@@ -37,6 +37,36 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         mHomelessReason.placeholder = "Answer (optional)"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+
+    func keyboardWillShowNotification(notification: NSNotification) {
+
+        // get the size of the keyboard
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.view.frame
+            aRect.size.height -= keyboardSize.size.height
+        }
+
+    }
+
+    func keyboardWillHideNotification(notification: NSNotification) {
+        // get the size of the keyboard
+        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
     }
     
     func btnNextTapped(sender: UIBarButtonItem) {
@@ -61,7 +91,7 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         
     func updateBackgroundInfo(isTopNext: Bool) -> Void {
         self.ShowActivityIndicator()
-        currentCase.research = (mLooseTouchReasonText.text, mHomelessReason.text)
+        currentCase.research = (mLooseTouchReasonText.text, mHomelessReason.text) as! (quest1: String, quest2: String)
         
         var txtmLooseTouchReason : String = ""
         var txtmHomelessReason : String = ""

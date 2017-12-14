@@ -38,7 +38,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
     @IBOutlet weak var textFieldRecipientLastSeenTimeScale: UITextField!
     let pickerTimeScale = UIPickerView()
     
-    @IBOutlet weak var textViewRecipientOtherInfo: UITextView!
+    @IBOutlet weak var textViewRecipientOtherInfo: UITextField!
     
     @IBOutlet var textFields: [UITextField]!
     
@@ -420,25 +420,30 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         return true
     }
 
-  /*  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        let _ = self.updateBackgroundInfo()
-        // Pass the selected object to the new view controller.
-    }
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        //  TODO: Figure out what's happening here
-        switch mode {
-        case .view:
-            if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
-                return true
-            } else { return appendToLovedOnes() }
-        default:
-            if fieldsAreClear() && currentCase.lovedOnes.count > 0 {
-                return true
-            } else { return appendToLovedOnes() }
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if(textField == textFieldRecipientFirstName){
+            textFieldRecipientMiddleName.becomeFirstResponder()
+        } else if(textField == textFieldRecipientMiddleName){
+            textFieldRecipientLastName.becomeFirstResponder()
+        } else if(textField == textFieldRecipientLastName){
+            textFieldRecipientRelationship.becomeFirstResponder()
+        } else if(textField == textFieldRecipientRelationship){
+            textFieldRecipientDob.becomeFirstResponder()
+        } else if(textField == textFieldRecipientDob){
+            textFieldRecipientAge.becomeFirstResponder()
+        } else if(textField == textFieldRecipientAge){
+            textFieldRecipientLastLocation.becomeFirstResponder()
+        } else if(textField == textFieldRecipientLastLocation){
+            textFieldRecipientLastSeen.becomeFirstResponder()
+        } else if(textField == textFieldRecipientLastSeen){
+            textFieldRecipientLastSeenTimeScale.becomeFirstResponder()
+        } else if(textField == textFieldRecipientLastSeenTimeScale){
+            textViewRecipientOtherInfo.becomeFirstResponder()
+        } else if(textField == textViewRecipientOtherInfo){
+            textViewRecipientOtherInfo.resignFirstResponder()
         }
-    } */
+        return true
+    }
     
     //  Update values based on picker
     func onDatePickerValueChanged(by sender: UIDatePicker) {
