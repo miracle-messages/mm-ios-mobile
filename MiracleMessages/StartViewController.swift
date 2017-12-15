@@ -11,7 +11,7 @@ import FirebaseStorage
 import Firebase
 import NVActivityIndicatorView
 
-class StartViewController: ProfileNavigationViewController, NVActivityIndicatorViewable {
+class StartViewController: ProfileNavigationViewController, NVActivityIndicatorViewable, UIWebViewDelegate{
 
     @IBOutlet weak var helloLbl: UILabel!
     var ref: DatabaseReference!
@@ -20,6 +20,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
         resetCaseID()
         displayVolunteerInfo()
@@ -40,8 +41,21 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
        
     }
     
+    func createWebViewController(withUrl: String) -> WebViewController {
+        let webController: WebViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webViewController") as! WebViewController
+        webController.urlString = withUrl
+        return webController
+    }
+    
+    func loadWebview(){
+        let viewController = self.createWebViewController(withUrl: "https://dev.miraclemessages.org")
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
     @IBAction func btnGetStartedClicked(_ sender: Any) {
-        self.ShowActivityIndicator()
+        self.loadWebview()
+        
+        /*self.ShowActivityIndicator()
         let previouscase = DispatchGroup()
         let privatecase = DispatchGroup()
         guard let currentUser = Auth.auth().currentUser else { return }
@@ -183,7 +197,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                 self.navigationController?.pushViewController(guideVC, animated: true)
             }
         }
-      
+      */
     }
     
     //Show activity indicator while saving data
