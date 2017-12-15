@@ -131,7 +131,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
             if let urlAsset = asset as? AVURLAsset {
                 self.localVideoURL = urlAsset.url
-                print(self.localVideoURL)
             }
         })
         }
@@ -350,9 +349,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.present(alert, animated: true, completion: nil)
     }
 
-    
     func showAlertView() {
-        
         // create the alert
         let alert = UIAlertController(title: "Are you sure you want to skip this step?", message: "Skip this step if the client would prefer not to record a video, or if you're a service provide and are unable to record the video.", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -401,7 +398,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             if (cameraSession?.canAddInput(audioInput) == true) {
                 cameraSession?.addInput(audioInput)
             }
-
 
             if (cameraSession?.canAddOutput(dataOutput) == true) {
                 cameraSession?.addOutput(dataOutput)

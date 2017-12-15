@@ -207,7 +207,7 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
                     print("error \(String(describing: error))")
                 }
                 
-                self.ref?.child("/casesPrivate/").child(caseKey as String).removeValue { (error, ref) in
+                ref.child("/casesPrivate/").child(caseKey as String).removeValue { (error, ref) in
                     if error != nil {
                         print("error \(String(describing:error))")
                     } else{
