@@ -19,25 +19,11 @@ import Photos
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var images = [PHAsset]()
-    
-    var startTime = TimeInterval()
-    var timer = Timer()
-    var videoFileName: String?
-    var video: Video?
-    var videoURL: URL?
-    var localVideoURL: URL?
-    weak var delegate:CameraViewControllerDelegate?
-    let currentCase: Case = Case.current
-    
-    //Landscape constraints
     @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnRtConstraint: NSLayoutConstraint!
     @IBOutlet weak var thankYouView: UIView!
-    //Portrait constraints
     @IBOutlet weak var recordBtnBtmConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnCenterConstraint: NSLayoutConstraint!
-
     @IBOutlet weak var percentageLbl: UILabel!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var progressBarView: UIProgressView!
@@ -47,34 +33,36 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var previewView: UIView!
-    
     @IBOutlet weak var btnGallery: UIButton!
-    
-    var videoPickerController = UIImagePickerController()
-    var cameraSession: AVCaptureSession?
-    var previewLayer: AVCaptureVideoPreviewLayer?
-
-    var isRecording = false
-    let dataOutput = AVCaptureMovieFileOutput()
-
-
-    let bucketName: String = "mm-interview-vids"
-    let awsHost: String = "https://s3-us-west-2.amazonaws.com"
-    let questionsArray: [String] = [
-        "Hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'Yes', invite them to look at the camera, and speak to their loved one as if they were there."
-    ]
-
-    //Player
-    var player: AVPlayer = AVPlayer()
-    var avPlayerLayer: AVPlayerLayer!
-
     //Thank you
     @IBOutlet weak var thnkYouMsgLabel: UILabel!
     @IBOutlet weak var infoMsgLabel: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
+    
+    var images = [PHAsset]()
+    var startTime = TimeInterval()
+    var timer = Timer()
+    var videoFileName: String?
+    var video: Video?
+    var videoURL: URL?
+    var localVideoURL: URL?
+    //Player
+    var player: AVPlayer = AVPlayer()
+    var avPlayerLayer: AVPlayerLayer!
+    weak var delegate:CameraViewControllerDelegate?
+    let currentCase: Case = Case.current
+    var videoPickerController = UIImagePickerController()
+    var cameraSession: AVCaptureSession?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    var isRecording = false
+    let dataOutput = AVCaptureMovieFileOutput()
+    let questionsArray: [String] = [
+        "Hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'Yes', invite them to look at the camera, and speak to their loved one as if they were there."
+    ]
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.progressBarView.progress = 0
         self.hideProgressView()
 
@@ -84,7 +72,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         //Add inputs
         configureCamera()
-
         configurePreview()
 
         self.questionScrollView.frame = CGRect(x: 0, y: self.previewView.frame.size.height, width: self.view.frame.size.width, height: 125)
@@ -122,22 +109,21 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     func getLastVideoFromGallery() {
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
-
         if(assets.count > 0){
-        self.images.append(assets.lastObject!)
+            self.images.append(assets.lastObject!)
         
         let options: PHVideoRequestOptions = PHVideoRequestOptions()
         options.version = .original
         PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
-            if let urlAsset = asset as? AVURLAsset {
-                self.localVideoURL = urlAsset.url
-            }
-        })
+                if let urlAsset = asset as? AVURLAsset {
+                    self.localVideoURL = urlAsset.url
+                }
+            })
         }
     }
     
     @IBAction func btnPickVideoFromGalletyClicked(_ sender: UIButton) {
-      self.pickVideoFromGallery()
+        self.pickVideoFromGallery()
     }
     
     func pickVideoFromGallery(){
@@ -148,46 +134,33 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        videoURL = info[UIImagePickerControllerMediaURL] as! NSURL as URL
-        print(videoURL!)
         
+        videoURL = info[UIImagePickerControllerMediaURL] as! NSURL as URL
         self.currentCase.localVideoURL = videoURL
-        print(self.currentCase.localVideoURL!)
-
+       
         // get the asset
         let asset = AVURLAsset(url: videoURL!)
-        // get the time in seconds
         let seconds = asset.duration.seconds
-        NSLog("duration: %.2f", seconds);
-        
+       
         self.dismiss(animated: true, completion: nil)
         
         if(seconds >= 180){
-            // create the alert
-            let alert = UIAlertController(title: "Miracle Messages", message: "Sorry! you can't upload more than 3 minutes video.", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add the actions (buttons)
+            let alert = UIAlertController(title: AppName, message: "Sorry! you can't upload more than 3 minutes video.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
             }))
-            
-            // add the actions (buttons)
             alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: { action in
                 self.pickVideoFromGallery()
             }))
-            
-            // show the alert
             self.present(alert, animated: true, completion: nil)
         } else{
             self.presentConfirmation(outputFileURL: videoURL)
         }
-       
     }
 
     func configurePreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: cameraSession)
         previewView.layer.addSublayer(previewLayer!)
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-
         self.previewView.bringSubview(toFront: self.recordBtn)
         self.previewView.bringSubview(toFront: self.timerLabel)
         self.previewView.bringSubview(toFront: self.closeBtn)
@@ -252,7 +225,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBAction func didPushNextBtn(_ sender: UIButton) {
         thnkYouMsgLabel.text = "What's next"
         infoMsgLabel.text = "Get in touch with your local chapter to begin searching for loved ones."
-        //UIApplication.shared.openURL(NSURL(string: "http://www.google.com")! as URL)
         doneBtn.setTitle("Home", for: .normal)
         doneBtn.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
         doneBtn.addTarget(self, action: #selector(CameraViewController.homeBtnSelected), for: .touchUpInside)
@@ -275,10 +247,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
         self.navigationController?.navigationBar.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-
     }
 
     func enablePortraitConstraints() -> Void {
@@ -314,7 +282,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         cameraSession?.startRunning()
         
         if(self.localVideoURL != nil){
-            let asset = AVURLAsset(url: self.localVideoURL as! URL)
+            let asset = AVURLAsset(url: self.localVideoURL!)
             let generator = AVAssetImageGenerator(asset: asset)
             generator.appliesPreferredTrackTransform = true
 
@@ -333,27 +301,20 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func optionAlertviewForPickingMedia() {
+        let alert = UIAlertController(title: AppName, message: "Are you sure you want to record video or you can import video from camera roll also.", preferredStyle: UIAlertControllerStyle.alert)
         
-        // create the alert
-        let alert = UIAlertController(title: "Miracle Messages", message: "Are you sure you want to record video or you can import video from camera roll also.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { action in
         }))
-        
         alert.addAction(UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default, handler: { action in
             self.pickVideoFromGallery()
         }))
         
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
 
     func showAlertView() {
-        // create the alert
         let alert = UIAlertController(title: "Are you sure you want to skip this step?", message: "Skip this step if the client would prefer not to record a video, or if you're a service provide and are unable to record the video.", preferredStyle: UIAlertControllerStyle.alert)
         
-        // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Don't Skip", style: UIAlertActionStyle.default, handler: { action in
         }))
         
@@ -365,12 +326,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
              self.isRecording = false
              }
             
-            let confirmationController: ConfirmViewController = self.storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+            let confirmationController: ConfirmViewController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireConfirmView) as! ConfirmViewController
             self.navigationController?.pushViewController(confirmationController, animated: true)
 
         }))
         
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -412,21 +372,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func updateTime() {
-
         let currentTime = NSDate.timeIntervalSinceReferenceDate
-
         var elapsedTime: TimeInterval = currentTime - startTime
         let minutes = UInt8(elapsedTime / 60.0)
         elapsedTime -= (TimeInterval(minutes) * 60)
         let seconds = UInt8(elapsedTime)
         elapsedTime -= TimeInterval(seconds)
         let fraction = UInt8(elapsedTime * 100)
-
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
-       // let strFraction = String(format: "%02d", fraction)
-
-       // timerLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
         timerLabel.text = "\(strMinutes):\(strSeconds)/3:00"
         
         if(minutes >= 3){
@@ -440,8 +394,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func showProgressView() {
         self.view.bringSubview(toFront: self.progressView)
     }
-
-    func canRotate() -> Void {}
 
     func hideProgressView() {
         self.percentageLbl.text = "0%"
@@ -471,10 +423,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
 
         cameraSession?.stopRunning()
-
         self.currentCase.localVideoURL = outputFileURL
-        print(self.currentCase.localVideoURL!)
-
         self.presentConfirmation(outputFileURL: outputFileURL)
     }
 
@@ -531,7 +480,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         alertController.addAction(OKAction)
 
         self.present(alertController, animated: true, completion: nil)
-
     }
 
     func displayVolunteerInfo() -> String {
@@ -544,7 +492,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func videoLink() -> String {
-        return "\(self.awsHost)/\(self.bucketName)/\(self.videoFileName!)"
+        return "\(awsHost)/\(bucketName)/\(self.videoFileName!)"
     }
 
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -574,7 +522,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let urlAsset = AVURLAsset(url: inputURL, options: nil)
         guard let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) else {
             handler(nil)
-
             return
         }
 
@@ -607,7 +554,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
 
         if let newVideoFileName = self.videoFileName {
-            uploadRequest1.bucket = self.bucketName
+            uploadRequest1.bucket = bucketName
             uploadRequest1.key =  newVideoFileName
             uploadRequest1.acl = AWSS3ObjectCannedACL.publicRead
             uploadRequest1.body = url
@@ -644,7 +591,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 return nil
             })
         }
-
     }
 
     func dimissCamera() -> Void {
@@ -652,26 +598,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let _ = navigationController?.popViewController(animated: true)
     }
 
-    /*
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-
-        self.dismiss(animated: true, completion: {[unowned self] in
-            switch result {
-            case MFMailComposeResult.sent:
-                self.presentConfirmation()
-                break
-            default:
-                break
-            }
-        })
-
-    }
- */
-
     func presentConfirmation(outputFileURL: URL!) -> Void {
-        let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        let confirmationController: ConfirmViewController = storyboard!.instantiateViewController(withIdentifier: IdentifireConfirmView) as! ConfirmViewController
         
-        confirmationController.video = Video(contentType: "application/octet-stream", completionBlock: nil, awsHost: self.awsHost, bucketName: self.bucketName, name: self.generateVideoFileName(), url: outputFileURL)
+        confirmationController.video = Video(contentType: "application/octet-stream", completionBlock: nil, awsHost: awsHost, bucketName: bucketName, name: self.generateVideoFileName(), url: outputFileURL)
 
         let backItem = UIBarButtonItem()
         backItem.title = "Retake Video?"

@@ -22,9 +22,7 @@ class NextViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "webViewController" {
             let webController = segue.destination as? WebViewController
-            webController?.urlString = "https://miraclemessages.org/getinvolved/"
+            webController?.urlString = "\(appWebsite)/getinvolved/"
         }
     }
-
-
 }

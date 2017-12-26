@@ -13,6 +13,9 @@ import SnapKit
 import NVActivityIndicatorView
 
 class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorViewable {
+    
+    @IBOutlet weak var tblReview: UITableView!
+    
     var currentCase: Case = Case.current
     var lovedOnes: [LovedOne] = []
     let picker = UIImagePickerController()
@@ -21,8 +24,6 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
     var caseID: String!
     var croppedImage: UIImage?
     var isEditPhoto: Bool = false
-
-    @IBOutlet weak var tblReview: UITableView!
     
     let dateFormatter: DateFormatter = {
         let this = DateFormatter()
@@ -50,33 +51,16 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //Show activity indicator while saving data
     func ShowActivityIndicator(){
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
     
-    //Remove activity indicator
     func RemoveActivityIndicator(){
         stopAnimating()
     }
-
-    // MARK: - Navigation
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let cameraController = segue.destination as? CameraViewController {
-//            cameraController.delegate = self
-//        }
-////        else if let destination = segue.destination as? BackgroundInfo1ViewController {
-////            destination.mode = .update
-////        } else if let destination = segue.destination as? BackgroundInfo2ViewController, let sender = sender as? ReviewTableViewCell, let lovedOne = sender.reviewable as? LovedOne {
-////            destination.mode = .update
-////            destination.currentLovedOne = lovedOne
-////        }
-//    }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "camerController"  {
@@ -96,6 +80,7 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
+    
     func cropImageToSquare(image: UIImage) -> UIImage? {
         var imageHeight = image.size.height
         var imageWidth = image.size.width
@@ -119,7 +104,6 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
         if let imageRef = image.cgImage!.cropping(to: cropRect) {
             return UIImage(cgImage: imageRef, scale: 0, orientation: image.imageOrientation)
         }
-        
         return nil
     }
     
@@ -179,7 +163,6 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
         let photoPathRef = storageRef.child("casePictures/\(currentCase.key!)/photoReference.jpg")
         let referenceImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         if let croppedImage = cropImageToSquare(image: referenceImage){
-            //currentCase.casePhoto = referenceImage
             let newMeta = StorageMetadata()
             newMeta.contentType = "image/jpeg"
             if let data = UIImageJPEGRepresentation(croppedImage, 90.0) {
@@ -197,7 +180,7 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
                             ]
                         
                         let caseReference: DatabaseReference
-                        caseReference = self.ref.child("/cases/\(key)")
+                        caseReference = self.ref.child("/\(cases)/\(key)")
                         
                         //  Write case data
                         caseReference.updateChildValues(publicPayload) { error, _ in
@@ -215,7 +198,7 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
                                 if(self.isEditPhoto == false){
                                     self.performSegue(withIdentifier: "cameraController", sender: self)
                                 } else{
-                                    let confirmController = self.storyboard!.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+                                    let confirmController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireConfirmView) as! ConfirmViewController
                                     self.navigationController?.pushViewController(confirmController, animated: true)
                                 }
                             })
@@ -232,13 +215,8 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
     
     func showAlertView(){
-        // create the alert
-        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add an action (button)
+        let alert = UIAlertController(title: AppName, message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -247,10 +225,6 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
     
     func didFinishUpdating() {
-        //  TODO: Check if these are really needed
-
-        //self.theCase?.save()
-        //displayInfo()
     }
 }
 
@@ -269,7 +243,7 @@ extension ReviewViewController: CameraViewControllerDelegate {
 
 extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2    //  One for Sender, one for Recipients
+        return 2   //  One for Sender, one for Recipients
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -312,11 +286,11 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo1ViewController") as! BackgroundInfo1ViewController
+            let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireBackgroundInfo1View) as! BackgroundInfo1ViewController
             bgInfoController.mode = .update
             self.navigationController?.pushViewController(bgInfoController, animated: true)
         case 1:
-            let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController") as! BackgroundInfo2ViewController
+            let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: IdentifireBackgroundInfo2View) as! BackgroundInfo2ViewController
             bgInfo2Controller.mode = .update
             bgInfo2Controller.currentLovedOne = lovedOnes[indexPath.row]
             self.navigationController?.pushViewController(bgInfo2Controller, animated: true)
@@ -332,4 +306,3 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         return 250
     }
 }
-

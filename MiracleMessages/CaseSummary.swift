@@ -15,6 +15,6 @@ struct CaseSummary {
     let key: String
 
     var caseURL: String {
-        return "https://my.miraclemessages.org/#!/cases/\(key)"
+        return "https://my.miraclemessages.org/#!/\(cases)/\(key)"
     }
 }

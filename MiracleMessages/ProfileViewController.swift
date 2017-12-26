@@ -10,60 +10,56 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    let profile: VolunteerProfile = VolunteerProfile(defaults: UserDefaults.standard)
-
     @IBOutlet weak var fullNameTxtfield: UITextField!
     @IBOutlet weak var emailTxtfield: UITextField!
     @IBOutlet weak var phoneTxtfield: UITextField!
     @IBOutlet weak var locationTxtfield: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    let profile: VolunteerProfile = VolunteerProfile(defaults: UserDefaults.standard)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.isHidden = true
+        
         displayVolunteerInfo()
-        // Do any additional setup after loading the view.
         self.addDoneButtonOnKeyboard()
 
         self.fullNameTxtfield.delegate = self
         self.emailTxtfield.delegate = self
         self.phoneTxtfield.delegate = self
         self.locationTxtfield.delegate = self
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    func keyboardWillShowNotification(notification: NSNotification) {
-
-        // get the size of the keyboard
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-//            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-//            self.scrollView.contentInset = contentInsets
-//            self.scrollView.scrollIndicatorInsets = contentInsets
-//            var aRect = self.view.frame
-//            aRect.size.height -= keyboardSize.size.height
-//            keyboardIsVisible = true
-        }
-
-
-    }
-
-    func keyboardWillHideNotification(notification: NSNotification) {
-        // get the size of the keyboard
-//        guard self.keyboardIsVisible else {
-//            return
+//    func keyboardWillShowNotification(notification: NSNotification) {
+//        // get the size of the keyboard
+//        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+////            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+////            self.scrollView.contentInset = contentInsets
+////            self.scrollView.scrollIndicatorInsets = contentInsets
+////            var aRect = self.view.frame
+////            aRect.size.height -= keyboardSize.size.height
+////            keyboardIsVisible = true
 //        }
-//        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
-//        self.scrollView.contentInset = contentInsets
-//        self.scrollView.scrollIndicatorInsets = contentInsets
-//        keyboardIsVisible = false
-    }
+//    }
+//
+//    func keyboardWillHideNotification(notification: NSNotification) {
+//        // get the size of the keyboard
+////        guard self.keyboardIsVisible else {
+////            return
+////        }
+////        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
+////        self.scrollView.contentInset = contentInsets
+////        self.scrollView.scrollIndicatorInsets = contentInsets
+////        keyboardIsVisible = false
+//    }
 
     func addDoneButtonOnKeyboard()
     {
@@ -84,11 +80,9 @@ class ProfileViewController: UIViewController {
         self.fullNameTxtfield.inputAccessoryView = doneToolbar
         self.locationTxtfield.inputAccessoryView = doneToolbar
         self.phoneTxtfield.inputAccessoryView = doneToolbar
-
     }
 
-    func doneButtonAction()
-    {
+    func doneButtonAction(){
         self.emailTxtfield.resignFirstResponder()
         self.fullNameTxtfield.resignFirstResponder()
         self.locationTxtfield.resignFirstResponder()
@@ -116,7 +110,6 @@ class ProfileViewController: UIViewController {
             errorLabel.isHidden = false
         }
     }
-
 }
 
 extension ProfileViewController: UITextFieldDelegate {

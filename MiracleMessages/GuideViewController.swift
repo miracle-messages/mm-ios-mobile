@@ -14,8 +14,9 @@ enum GuideMode {
 }
 
 class GuideViewController: ProfileNavigationViewController {
-    var mode: GuideMode = .connected
+   
     @IBOutlet weak var nextBtn: UIButton!
+    var mode: GuideMode = .connected
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,7 @@ class GuideViewController: ProfileNavigationViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BackgroundInfo1ViewController {
-            //  TODO: Is there a cleaner way of doing this?
-            Case.current = Case()   //  BackgroundInfoViewController will pull the current case
+            Case.current = Case()   // BackgroundInfoViewController will pull the current case
         }
     }
 

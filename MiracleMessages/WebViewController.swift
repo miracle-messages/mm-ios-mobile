@@ -19,7 +19,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var closeBtn: UIButton!
 
     var urlString: String?
-
     weak var delegate: WebViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -39,7 +38,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.viewDidDisappear(animated)
         URLCache.shared.removeAllCachedResponses()
     }
-    
     
     func didTapBackBtn() {
         self.dismiss(animated: true, completion: nil)

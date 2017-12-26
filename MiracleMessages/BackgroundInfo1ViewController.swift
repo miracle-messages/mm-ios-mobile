@@ -11,57 +11,53 @@ import Firebase
 import NVActivityIndicatorView
 
 class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewDataSource, UIPickerViewDelegate, NVActivityIndicatorViewable{
-     
-    var ref: DatabaseReference!
-    //  Container
-    @IBOutlet weak var container: UIView!
     
-    //  Name
+    @IBOutlet weak var container: UIView!
+    // Name
     @IBOutlet weak var textFieldClientFirstName: UITextField!
     @IBOutlet weak var textFieldClientMiddleName: UITextField!
     @IBOutlet weak var textFieldClientLastName: UITextField!
     
-    //  Current Location
+    // Current Location
     @IBOutlet weak var textFieldCurrentCountry: UITextField!
     @IBOutlet weak var textFieldCurrentState: UITextField!
     @IBOutlet weak var textFieldCurrentCity: UITextField!
     
-    let pickerCurrentCountry = UIPickerView()
-    let pickerCurrentState = UIPickerView()
-    var keyboardCurrentState: UIView?
-    
-    //  Home Location
+    // Home Location
     @IBOutlet weak var textFieldHomeCountry: UITextField!
     @IBOutlet weak var textFieldHomeState: UITextField!
     @IBOutlet weak var textFieldHomeCity: UITextField!
     
-    let pickerHomeCountry = UIPickerView()
-    let pickerHomeState = UIPickerView()
-    var keyboardHomeState: UIView?
-    
-    //  Date of Birth & Age
+    // Date of Birth & Age
     @IBOutlet weak var textFieldClientAge: UITextField!
     @IBOutlet weak var switchAgeApproximate: UISwitch!
     
     @IBOutlet weak var textFieldClientDob: UITextField!
     @IBOutlet weak var dobApproximate: UISwitch!
     
-    //  Partner organizations
+    // Partner organizations
     @IBOutlet weak var textFieldPartner: UITextField!
-    let pickerPartner = UIPickerView()
-    let partners = Partners.instance
     
-    //  Contact info
+    // Contact info
     @IBOutlet weak var textFieldContactInfo: UITextField!
     
-    //  Time homeless
+    // Time homeless
     @IBOutlet weak var textFieldTimeHomeless: UITextField!
     @IBOutlet weak var textFieldTimeScale: UITextField!
-    let pickerTimeScale = UIPickerView()
     
     // Notes about the client
     @IBOutlet weak var textViewNotes: UITextField!
     
+    let pickerHomeCountry = UIPickerView()
+    let pickerHomeState = UIPickerView()
+    var keyboardHomeState: UIView?
+    var ref: DatabaseReference!
+    let pickerCurrentCountry = UIPickerView()
+    let pickerCurrentState = UIPickerView()
+    var keyboardCurrentState: UIView?
+    let pickerPartner = UIPickerView()
+    let partners = Partners.instance
+    let pickerTimeScale = UIPickerView()
     let datePickerClientDob: UIDatePicker = { _ -> UIDatePicker in
         var this = UIDatePicker()
         this.datePickerMode = .date
@@ -77,7 +73,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         ref = Database.database().reference()
         self.hideKeyboardWithTap()
 
-        //  Current location
+        // Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
         textFieldCurrentCountry.inputView = pickerCurrentCountry
@@ -86,7 +82,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerCurrentState.delegate = self
         keyboardCurrentState = textFieldCurrentState.inputView
         
-        //  Home location
+        // Home location
         pickerHomeCountry.dataSource = self
         pickerHomeCountry.delegate = self
         textFieldHomeCountry.inputView = pickerHomeCountry
@@ -95,7 +91,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         pickerHomeState.delegate = self
         keyboardHomeState = textFieldHomeState.inputView
         
-        //  Date of Birth
+        // Date of Birth
         textFieldClientDob.delegate = self
         textFieldClientDob.inputView = datePickerClientDob
         
@@ -104,25 +100,22 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         switchAgeApproximate.transform = transform
         dobApproximate.transform = transform
         
-        //  Partner
+        // Partner
         pickerPartner.dataSource = self
         pickerPartner.delegate = self
         textFieldPartner.inputView = pickerPartner
         
-        //  Time Scale
+        // Time Scale
         pickerTimeScale.dataSource = self
         pickerTimeScale.delegate = self
         textFieldTimeScale.inputView = pickerTimeScale
-        
         self.textViewNotes.delegate = self
-        
-//        textViewNotes.placeholder = "How would the client like us to describe their current situation to their loved one,  how we met them; their housing status etc. Any background information on how the client lost contact with their loved ones."
     }
   
     func btnNextTapped(sender: UIBarButtonItem) {
         let needToEnter: (String) -> String = { "You will need to enter " + $0 }
         
-        //  Client names
+        // Client names
         guard textFieldClientFirstName.hasText else {
             alertIncomplete(field: textFieldClientFirstName, saying: needToEnter("the client's first name."))
             return
@@ -132,7 +125,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return
         }
         
-        //  Current location
+        // Current location
         guard let currentCountry = textFieldCurrentCountry.text else {
             alertIncomplete(field: textFieldCurrentCountry, saying: needToEnter("the client's current country."))
             return
@@ -148,7 +141,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return
         }
         
-        //  Home location
+        // Home location
         guard let homeCountry = textFieldHomeCountry.text else {
             alertIncomplete(field: textFieldHomeCountry, saying: needToEnter("the client's home country."))
             return
@@ -168,19 +161,19 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             alertIncomplete(field: textFieldClientDob, saying: needToEnter("the client's date of birth."))
             return
         }
-        //  Age
+        // Age
         guard textFieldClientAge.hasText else {
             alertIncomplete(field: textFieldClientAge, saying: needToEnter("the client's age."))
             return
         }
         
-        //  Contact info
+        // Contact info
         guard textFieldContactInfo.hasText else {
             alertIncomplete(field: textFieldContactInfo, saying: needToEnter("the client's contact info"))
             return
         }
         
-        //  Time Homeless
+        // Time Homeless
         let alertTimeHomelessString = "the amount of time the client has been without a home"
         guard textFieldTimeHomeless.hasText else {
             alertIncomplete(field: textFieldTimeHomeless, saying: needToEnter(alertTimeHomelessString))
@@ -197,13 +190,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return
         case .update:
             self.saveHomelessIndividualFormData(isNext: true)
-//            if self.updateBackgroundInfo() != nil {
-//                //TODO: Clean up
-//                //self.delegate?.clientInfo = clientInfo
-//            }
-//            self.dismiss(animated: true, completion: {
-//                self.delegate?.didFinishUpdating()
-//            })
             return
         }
     }
@@ -230,12 +216,10 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
-        
     }
     
     //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
@@ -251,7 +235,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         guard let key = currentCase.key else {return}
         
         let caseStatusReference: DatabaseReference
-        caseStatusReference = self.ref.child("/cases/\(key)")
+        caseStatusReference = self.ref.child("/\(cases)/\(key)")
         
         guard let thisCountry = Country(rawValue: textFieldCurrentCountry.text!)
             else { return }
@@ -268,7 +252,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             "homeCity": textFieldHomeCity.text!,
             "homeState": textFieldHomeState.text!,
             "homeCountry": oldCountry.code,
-            ]
+        ]
         
         if let valueString = textFieldTimeHomeless.text, let value = Int(valueString), let typeString = textFieldTimeScale.text, let type = Case.TimeType(rawValue: typeString) {
             let timeHomeless = (type: type, value: value)
@@ -285,8 +269,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
                                         "code":partnerCode]
         }
         
-        print("Public Payload\(publicPayload)")
-        
         // Write case data
         caseStatusReference.updateChildValues(publicPayload) { error, _ in
             // If unsuccessful, print and return
@@ -300,8 +282,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             }
         }
         
-        //Private Case
-        let privateCaseReference = ref.child("/casesPrivate/\(key)")
+        // Private Case
+        let privateCaseReference = ref.child("/\(casesPrivate)/\(key)")
         var privatePayload: [String: Any] = [:]
         if let contactInfo = textFieldContactInfo.text {
             privatePayload["contactInfo"] = contactInfo
@@ -315,10 +297,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             privatePayload["dob"] = DateFormatter.default.string(from: dateFormatter.date(from: birthdate)!)
             privatePayload["dobApproximate"] = dobApproximate.isOn
         }
-        
-        print("Private Payload\(privatePayload)")
-        
-        //  If successful, write private case data
+       
+        // If successful, write private case data
         privateCaseReference.updateChildValues(privatePayload) { error, _ in
             self.RemoveActivityIndicator()
             //  If private write unsuccessful, remove case data and return
@@ -332,9 +312,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
               if(self.mode == .update){
                 self.delegate?.didFinishUpdating()
                 self.navigationController?.popViewController(animated: true)
-//                self.dismiss(animated: true, completion: {
-//                    self.delegate?.didFinishUpdating()
-//                })
               } else {
                  self.performSegue(withIdentifier: "BackgroundInfo1ViewController", sender: nil)
               }
@@ -348,18 +325,12 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
     
     func showAlertView(){
-        // create the alert
-        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add an action (button)
+        let alert = UIAlertController(title: AppName, message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
 
     func displayInfo() -> Void {
-        //guard let clientInfo = currentCase else {return}
         textFieldClientFirstName.text = currentCase.firstName
         textFieldClientMiddleName.text = currentCase.middleName
         textFieldClientLastName.text = currentCase.lastName
@@ -391,8 +362,7 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         currentCase.firstName = textFieldClientFirstName.text
         currentCase.middleName = textFieldClientMiddleName.text
         currentCase.lastName = textFieldClientLastName.text
-        
-        //  Need not worry about unwrapping as shouldPerformSeque(…) should only return true when the country is supplied
+
         currentCase.currentCountry = Country(rawValue: textFieldCurrentCountry.text!)
         currentCase.currentState = textFieldCurrentState.text
         currentCase.currentCity = textFieldCurrentCity.text
@@ -506,33 +476,21 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
             return false
         }
         
-//        self.saveHomelessIndividualFormData(isNext: false)
-//        return true
-        
         switch mode {
         case .view:
             self.saveHomelessIndividualFormData(isNext: false)
             return true
         case .update:
             self.saveHomelessIndividualFormData(isNext: false)
-//            if self.updateBackgroundInfo() != nil {
-//                //TODO: Clean up
-//                //self.delegate?.clientInfo = clientInfo
-//            }
-//            self.dismiss(animated: true, completion: {
-//                self.delegate?.didFinishUpdating()
-//            })
             return false
         }
     }
     
-    //  Update values!
     func onDatePickerValueChanged(by sender: UIDatePicker) {
         textFieldClientDob.text = dateFormatter.string(from: sender.date)
         if let years = Calendar.current.dateComponents([.year], from: sender.date, to: Date()).year { textFieldClientAge.text = String(years) }
     }
     
-    //  Picker view!
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -572,8 +530,6 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Update the background info and text fields
-        //  TODO: Update the case info!
         switch pickerView {
         case pickerCurrentCountry:
             let text = row == 0 ? "" : Country.all[row - 1].rawValue
@@ -631,5 +587,4 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
         }
         return true
     }
-
 }

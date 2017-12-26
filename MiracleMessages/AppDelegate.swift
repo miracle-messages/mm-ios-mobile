@@ -19,8 +19,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
-    let cognitoIdentityPoolId = "us-west-2:22d14ee0-7c0a-4ddc-b74d-24b09e62a5d6"
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.register(defaults: ["UserAgent": "com.miraclemessages.app"])
@@ -31,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backIcon
         UINavigationBar.appearance().tintColor = UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().backgroundColor = UIColor.white
-
-        // Override point for customization after application launch.
-        //FirebaseApp.configure()
-        
 
         if let firebaseConfig = Bundle.main.path(forResource: Config.firebaseConfigFileName, ofType: "plist"), let options = FirebaseOptions(contentsOfFile: firebaseConfig){
             FirebaseApp.configure(options: options)
@@ -51,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = UIColor.black
 
-        BITHockeyManager.shared().configure(withIdentifier: "f181897382a64cafaba5f2d86a98cf4a")
+        BITHockeyManager.shared().configure(withIdentifier: BITHockeyID)
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
 
@@ -132,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return true
         }
 
-        let webpageUrl = URL(string: "https://miraclemessages.org")!
+        let webpageUrl = URL(string: appWebsite)!
         application.openURL(webpageUrl)
         
         return false
@@ -146,7 +141,7 @@ extension AppDelegate {
         currentVC?.dismiss(animated: false, completion: {[unowned self] in
             let vc = self.getCurrentViewController()!
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let startController = storyBoard.instantiateViewController(withIdentifier: "startViewController")
+            let startController = storyBoard.instantiateViewController(withIdentifier: IdentifireStartView)
             let nav = UINavigationController(rootViewController: startController)
             nav.modalPresentationStyle = .overCurrentContext
             vc.present(nav, animated: false, completion: nil)
@@ -187,7 +182,6 @@ extension AppDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
         if let error = error {
             Logger.forceLog(CustomError.loginError(error.localizedDescription))
             return
@@ -226,7 +220,6 @@ extension AppDelegate {
             Logger.log(level: Level.error, "User cancelled the sign in request. Code: \(error.code), error: \(error.description)")
         }
     }
-
 }
 
 extension UIApplication {

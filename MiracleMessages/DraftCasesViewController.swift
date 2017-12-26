@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
 
     @IBOutlet weak var tblCases: UITableView!
+    
     var ref: DatabaseReference!
     var arrCases : NSMutableArray!
     var currentCase: Case = Case.current
@@ -22,11 +23,10 @@ class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
         super.viewDidLoad()
         
         self.tblCases.reloadData()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func btnRecordNewVideoClicked(_ sender: Any) {
-       let guideVC = self.storyboard?.instantiateViewController(withIdentifier: "GuideViewController") as! GuideViewController
+       let guideVC = self.storyboard?.instantiateViewController(withIdentifier: IdentifireGuideView) as! GuideViewController
        self.navigationController?.pushViewController(guideVC, animated: true)
     }
 
@@ -38,7 +38,7 @@ class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
 
 extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1   //  One for Sender, one for Recipients
+        return 1   // One for Sender, one for Recipients
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,7 +139,6 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
             for lovedOne in arrLovedOnes! {
                 let dictLovedOnes = lovedOne as! NSDictionary
                 let key = dictLovedOnes.allKeys[0]
-            
                 let currentLovedOne: LovedOne = LovedOne()
                 //Loved Ones
                 let dictCurrentLovedOne = dictLovedOnes.object(forKey: key) as! NSDictionary
@@ -154,9 +153,7 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
                 if let dateOfBirth = (dictBgInfo.object(forKey: "lovedOneDob") as? String) {
                     currentLovedOne.dateOfBirth = dateFormatter.date(from: dateOfBirth)
                 }
-            
-                //currentLovedOne.isDOBApproximate = switchRecipientDobIsApproximate.isOn
-            
+                
                 currentLovedOne.lastKnownLocation = (dictCurrentLovedOne.object(forKey: "lastKnownLocation") as! String)
             
                 let dictLastContact = dictCurrentLovedOne.object(forKey: "lastContact") as! NSDictionary
@@ -202,12 +199,12 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
             let caseKey = dict.object(forKey: "caseKey") as! NSString
             
             let ref: DatabaseReference = Database.database().reference()
-            ref.child("/cases/").child(caseKey as String).removeValue { (error, ref) in
+            ref.child("/\(cases)/").child(caseKey as String).removeValue { (error, ref) in
                 if error != nil {
                     print("error \(String(describing: error))")
                 }
                 
-                ref.child("/casesPrivate/").child(caseKey as String).removeValue { (error, ref) in
+                ref.child("/\(casesPrivate)/").child(caseKey as String).removeValue { (error, ref) in
                     if error != nil {
                         print("error \(String(describing:error))")
                     } else{
@@ -221,10 +218,9 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let dict : NSDictionary = self.arrCases[indexPath.row] as! NSDictionary
         let caseKey = dict.object(forKey: "caseKey") as! NSString
-        let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+        let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: IdentifireConfirmView) as! ConfirmViewController
         clearAllCaseData()
         self.currentCase.key = caseKey as String
         _ = self.updateBackgroundInfo(dictBgInfo: dict)
@@ -235,14 +231,11 @@ extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
         return 101
     }
     
-    //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
-    
-    //Remove activity indicator
+   
     func RemoveActivityIndicator(){
         stopAnimating()
     }

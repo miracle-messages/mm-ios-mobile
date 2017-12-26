@@ -88,7 +88,7 @@ class Case {
     
 
     func generateKey(withRef firebase: DatabaseReference) {
-        key = firebase.child("/cases/").childByAutoId().key
+        key = firebase.child("/\(cases)/").childByAutoId().key
         Logger.log("New key generated for case \(key!)")
     }
     
@@ -106,12 +106,10 @@ class Case {
         
         guard let submissionSinceEpoch = submissionDate?.timeIntervalSince1970
             else { return }
-//        guard let publicVideoAddress = publicVideoURL?.absoluteString
-//            else { return }
+
         guard let privateVideoAddress = privateVideoURL?.absoluteString
             else { return }
-//        guard let youtubeCoverAddress = youtubeCoverURL?.absoluteString
-//            else { return }
+
         guard let photoAddress = photoURL?.absoluteString
             else {
                 Logger.log("No photo was provided")
@@ -129,23 +127,21 @@ class Case {
         let caseReference: DatabaseReference
         
         if key == nil {
-            caseReference = firebase.child("/cases/").childByAutoId()
+            caseReference = firebase.child("/\(cases)/").childByAutoId()
             key = caseReference.key
         } else {
-            caseReference = firebase.child("/cases/\(key!)")
+            caseReference = firebase.child("/\(cases)/\(key!)")
         }
         
         guard let key = key else { return }
         
-        let privateCaseReference = firebase.child("/casesPrivate/\(key)")
+        let privateCaseReference = firebase.child("/\(casesPrivate)/\(key)")
         
         var publicPayload: [String: Any] = [
             "submitted": Int(submissionSinceEpoch),
             "caseStatus": caseStatus.rawValue,
             "messageStatus": messageStatus.rawValue,
             "nextStep": nextStep.rawValue,
-//            "pubVideo": publicVideoAddress,
-//            "youtubeCover": youtubeCoverAddress,
             "privVideo": privateVideoAddress,
             "source": source.dictionary,
             "photo": photoAddress,
@@ -171,7 +167,7 @@ class Case {
 
         publicPayload["createdBy"] = ["uid": currentUser.uid]
 
-        let userReference = firebase.child("/users/\(currentUser.uid)/cases/\(key)")
+        let userReference = firebase.child("/\(users)/\(currentUser.uid)/\(cases)/\(key)")
         
         if let partnerName = partner, let partnerCode = Partners.instance[partnerName] {
             publicPayload["partner"] = ["partnerName": partnerCode]
@@ -223,8 +219,6 @@ class Case {
                         return
                     }
 
-                    print("Case successfully written")
-
                     //  If successful, write loved ones
                     for lovedOne in self.lovedOnes {
                         //  Get reference to loved one
@@ -253,9 +247,7 @@ class Case {
                     }
                 }
             }
-
         }
-
     }
     
     //  Enums

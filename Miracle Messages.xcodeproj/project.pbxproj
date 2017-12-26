@@ -40,6 +40,7 @@
 		23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709801E2956EF00E20582 /* MenuViewController.swift */; };
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
+		9948F6631FF220F100913F6F /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9948F6621FF220F100913F6F /* AppConstant.swift */; };
 		996C2CA11FD2BC4D00A0A3F1 /* ConfirmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */; };
 		997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */; };
 		99ACF8E81FD66855000DB87D /* DraftCasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACF8E71FD66855000DB87D /* DraftCasesViewController.swift */; };
@@ -116,6 +117,7 @@
 		23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitNavigationControllerController.swift; sourceTree = "<group>"; };
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
+		9948F6621FF220F100913F6F /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmTableViewCell.swift; sourceTree = "<group>"; };
 		997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoOptionalViewController.swift; sourceTree = "<group>"; };
 		99ACF8E71FD66855000DB87D /* DraftCasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftCasesViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		23B0B7E41D98E466007DFDDE /* MiracleMessages */ = {
 			isa = PBXGroup;
 			children = (
+				9948F6611FF220C200913F6F /* Utility */,
 				2393762A1F4118C700F7ADB3 /* Extensions */,
 				EE2E06C71EEC8D4100D486DF /* MiracleMsg.entitlements */,
 				2390079E1E4D658A00A4C1DB /* Resources */,
@@ -310,6 +313,14 @@
 				931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9948F6611FF220C200913F6F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9948F6621FF220F100913F6F /* AppConstant.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		A07773991F2CF99500AD52C0 /* CaseInfo */ = {
@@ -624,6 +635,7 @@
 				EE0FA4881F006D3300B3A0D8 /* YPDrawSignatureView.swift in Sources */,
 				997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */,
 				23B0B7E61D98E466007DFDDE /* AppDelegate.swift in Sources */,
+				9948F6631FF220F100913F6F /* AppConstant.swift in Sources */,
 				23E709771E25BF2900E20582 /* ProfileNavigationViewController.swift in Sources */,
 				23A1051F1DD074F700276DDD /* BackgroundInfo1ViewController.swift in Sources */,
 				239007A01E4D662F00A4C1DB /* Video.swift in Sources */,

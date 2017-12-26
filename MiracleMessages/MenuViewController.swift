@@ -25,15 +25,12 @@ class MenuViewController: UIViewController {
         }
     }
 
-    @IBAction func btnEmailTapped(_ sender: UIButton)
-    {
+    @IBAction func btnEmailTapped(_ sender: UIButton){
         let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail()
-        {
+        if MFMailComposeViewController.canSendMail(){
             self.present(mailComposeViewController, animated: true, completion: nil)
         }
-        else
-        {
+        else{
             self.showSendMailErrorAlert()
         }
     }
@@ -56,17 +53,17 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func didTapResourcesBtn(_ sender: Any) {
-        let viewController = self.createWebViewController(withUrl: "https://miraclemessages.org/")
+        let viewController = self.createWebViewController(withUrl: appWebsite)
         self.present(viewController, animated: true, completion: nil)
     }
 
     @IBAction func didTapAboutBtn(_ sender: Any) {
-        let viewController = self.createWebViewController(withUrl: "https://miraclemessages.org/about/")
+        let viewController = self.createWebViewController(withUrl: "\(appWebsite)/about/")
         self.present(viewController, animated: true, completion: nil)
     }
 
     @IBAction func didTapFaqBtn(_ sender: Any) {
-        let viewController = self.createWebViewController(withUrl: "https://miraclemessages.org/faq/")
+        let viewController = self.createWebViewController(withUrl: "\(appWebsite)/faq/")
         self.present(viewController, animated: true, completion: nil)
     }
 
@@ -83,7 +80,7 @@ class MenuViewController: UIViewController {
     }
 
     func createWebViewController(withUrl: String) -> WebViewController {
-        let webController: WebViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webViewController") as! WebViewController
+        let webController: WebViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IdentifireWebView) as! WebViewController
         webController.urlString = withUrl
         return webController
     }
