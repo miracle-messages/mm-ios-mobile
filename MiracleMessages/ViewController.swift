@@ -12,14 +12,13 @@ import GoogleSignIn
 
 class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
-  var handle: AuthStateDidChangeListenerHandle?
-
     @IBOutlet weak var signInButton: GIDSignInButton!
+    var handle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         GIDSignIn.sharedInstance().uiDelegate = self
-        //definesPresentationContext = true
         handle = Auth.auth().addStateDidChangeListener() {[unowned self] (auth, user) in
             if auth.currentUser == nil {
                 self.dismiss(animated: false, completion: nil)
@@ -50,7 +49,6 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 }
 
 extension UINavigationBar {
-
     func transparentNavigationBar() {
         self.setBackgroundImage(UIImage(), for: .default)
         self.shadowImage = UIImage()
@@ -64,7 +62,7 @@ private extension ViewController {
             if !completed {
                 self.performSegue(withIdentifier: "createProfile", sender: self)
             } else {
-                let startController = self.storyboard!.instantiateViewController(withIdentifier: "startViewController")
+                let startController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireStartView)
                 let nav = UINavigationController(rootViewController: startController)
                 nav.modalPresentationStyle = .overCurrentContext
                 self.present(nav, animated: true, completion: nil)
@@ -75,16 +73,6 @@ private extension ViewController {
 
 extension ViewController: WebViewControllerDelegate {
     func didTapCloseBtn(viewController: WebViewController) {
-        
-//        let firebaseAuth = Auth.auth()
-//        if firebaseAuth.currentUser != nil {
-//            do {
-//                try firebaseAuth.signOut()
-//            } catch let signOutError as NSError {
-//                Logger.forceLog(signOutError)
-//            }
-//        }
-
         viewController.dismiss(animated: true, completion: nil)
         verifyProfile()
     }

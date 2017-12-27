@@ -41,7 +41,7 @@ struct VolunteerProfile {
     static func googleProfileCreated(with block: @escaping (Bool) -> Swift.Void) {
         guard let user = Auth.auth().currentUser else {return}
         ref = Database.database().reference()
-        ref.child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child(users).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             Logger.log("User dictionary \(String(describing: value))")
 

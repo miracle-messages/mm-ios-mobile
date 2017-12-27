@@ -20,14 +20,15 @@ struct Keys {
 
 class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
+    @IBOutlet weak var tblConfirm: UITableView!
+    
     var video: Video?
     var ref: DatabaseReference!
     let currentCase: Case = Case.current
     var lovedOnes: [LovedOne] = []
     let storage = Storage.storage()
     var arrConfirmData :  NSMutableArray = []
-    @IBOutlet weak var tblConfirm: UITableView!
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -64,8 +65,6 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     func videoSnapshot(filePathLocal: NSURL) -> UIImage? {
-        
-       // let vidURL = NSURL(fileURLWithPath:filePathLocal as String)
         let asset = AVURLAsset(url: filePathLocal as URL)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
@@ -76,30 +75,27 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
             let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
             return UIImage(cgImage: imageRef)
         }
-        catch let error as NSError
-        {
+        catch let error as NSError {
             print("Image generation failed with error \(error)")
             return nil
         }
     }
     
-    //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
     
-    //Remove activity indicator
     func RemoveActivityIndicator(){
         stopAnimating()
     }
     
     func saveDataToFirebase(privateVideoURL: URL?){
         self.ShowActivityIndicator()
+        
         guard let caseKey = self.currentCase.key else {return}
         let caseReference: DatabaseReference
-        caseReference = self.ref.child("/cases/\(caseKey)")
+        caseReference = self.ref.child("/\(cases)/\(caseKey)")
         
         var publicPayload: [String: Any] = [
             "caseStatus": self.currentCase.caseStatus.rawValue,
@@ -109,13 +105,11 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
             "detectives": self.currentCase.detectives.count > 0,
             "submitted": Int(Date().timeIntervalSince1970),
             "publishStatus": "published",
-            ]
+        ]
         
         if let url = privateVideoURL?.absoluteString {
             publicPayload["privVideo"] = url
         }
-        
-        print("Public Payload\(publicPayload)")
         
         // Write case data
         caseReference.updateChildValues(publicPayload) { error, _ in
@@ -128,20 +122,16 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
                 return
             }
             
-            let nextController = self.storyboard!.instantiateViewController(withIdentifier: "NextViewController") as! NextViewController
+            let nextController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireNextView) as! NextViewController
             self.navigationController?.pushViewController(nextController, animated: true)
-            
         }
     }
 
     func bgUploadToS3(video: Video) -> Void {
-
-        //UNCOMMENT this code to play with Firebase storage
-        //let key = self.sendInfo()
         self.ShowActivityIndicator()
         let key = self.currentCase.key
         let storageRef = storage.reference()
-        let photoPathRef = storageRef.child("caseVideos/\(key!)/\(video.name)")
+        let photoPathRef = storageRef.child("\(caseVideos)/\(key!)/\(video.name)")
         let newMeta = StorageMetadata()
         newMeta.contentType = "video/quicktime"
         Logger.log("Firebase video ref \(photoPathRef)")
@@ -158,20 +148,14 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
             })
 
         } catch {
-            print("Error")
             self.RemoveActivityIndicator()
         }
 
     }
     
     func showAlertView(){
-        // create the alert
-        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add an action (button)
+        let alert = UIAlertController(title: AppName, message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -183,17 +167,11 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
                 self.saveDataToFirebase(privateVideoURL: nil)
             }
         } else{
-            // create the alert
-            let alert = UIAlertController(title: "Miracle Messages", message: "Please fill all information", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add an action (button)
+            let alert = UIAlertController(title: AppName, message: "Please fill all information", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
-            // show the alert
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
 
     func submit() {
         if let video = self.video {
@@ -203,12 +181,12 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
     func videoParameters(uniqId: String) -> Parameters {
         let defaults = UserDefaults.standard
-
         if let v = self.video {
             return [ "email" :  defaults.string(forKey: "email")!,
                      "name" : defaults.string(forKey: "name")!,
                      "video" : v.videoLink,
-                     "ID": uniqId]
+                     "ID": uniqId
+            ]
         } else {
             return [:]
         }
@@ -222,7 +200,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
-            }.resume()
+        }.resume()
     }
 }
 
@@ -255,18 +233,14 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
         
             let dict : NSDictionary = self.arrConfirmData[indexPath.row] as! NSDictionary
             cell.lblName.text = dict.object(forKey: "lblName") as! NSString as String
-        
             cell.imgPhoto.layer.cornerRadius = cell.imgPhoto.frame.width/2
             cell.imgPhoto.layer.masksToBounds = true
         
-        
             let imageURL = dict.object(forKey: "imgPhoto") as? NSURL
-        
             if(imageURL != nil){
                 getDataFromUrl(url: imageURL! as URL) { data, response, error in
                     guard let data = data, error == nil else { return }
-                
-                    print("Download Finished")
+            
                     DispatchQueue.main.async() {
                         if(indexPath.row == 0){
                             cell.imgPhoto.image = UIImage(data: data)
@@ -287,7 +261,6 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
-            
             guard currentCase.firstName != nil else {
                 return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
             }
@@ -320,19 +293,19 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
             case 0:
                 if(indexPath.row == 0){
-                    let reviewController = self.storyboard!.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+                    let reviewController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireReviewView) as! ReviewViewController
                     reviewController.isEditPhoto = true
                     self.navigationController?.pushViewController(reviewController, animated: true)
                 } else{
-                    let cameraController = self.storyboard!.instantiateViewController(withIdentifier: "cameraViewController") as! CameraViewController
+                    let cameraController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireCameraView) as! CameraViewController
                     self.navigationController?.pushViewController(cameraController, animated: true)
                 }
             case 1:
-                let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo1ViewController") as! BackgroundInfo1ViewController
+                let bgInfoController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireBackgroundInfo1View) as! BackgroundInfo1ViewController
                 bgInfoController.mode = .update
                 self.navigationController?.pushViewController(bgInfoController, animated: true)
             case 2:
-                let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: "BackgroundInfo2ViewController") as! BackgroundInfo2ViewController
+                let bgInfo2Controller = self.storyboard!.instantiateViewController(withIdentifier: IdentifireBackgroundInfo2View) as! BackgroundInfo2ViewController
                 bgInfo2Controller.mode = .update
                 if(lovedOnes.count > 0){
                     bgInfo2Controller.currentLovedOne = lovedOnes[indexPath.row]

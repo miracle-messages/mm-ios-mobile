@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol CaseDelegate: class {
     var currentCase: Case { get set }
     func didFinishUpdating() -> Void
@@ -35,16 +34,13 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
     @IBOutlet weak var nextBtn: UIButton!
 
     weak var delegate: CaseDelegate?
-
-    // the Case
     var currentCase: Case!
-    
     var keyboardIsVisible = false
-
     var mode: BackgroundInfoMode = .view
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
 
@@ -54,13 +50,10 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
             break
         default:
             nextBtn.setTitle("Next", for: .normal)
-            
             break
         }
-        // Do any additional setup after loading the view.
     }
-
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -77,8 +70,6 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
     }
 
     func keyboardWillShowNotification(notification: NSNotification) {
-
-        // get the size of the keyboard
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
@@ -87,12 +78,9 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
             aRect.size.height -= keyboardSize.size.height
             keyboardIsVisible = true
         }
-
-
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
-        // get the size of the keyboard
         guard self.keyboardIsVisible else {
             return
         }
@@ -102,7 +90,6 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         keyboardIsVisible = false
     }
     
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -129,5 +116,4 @@ class BackgroundInfoViewController: ProfileNavigationViewController, UITextField
         })
         present(alert, animated: true)
     }
-
 }

@@ -14,12 +14,14 @@ import NVActivityIndicatorView
 class StartViewController: ProfileNavigationViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var helloLbl: UILabel!
+    
     var ref: DatabaseReference!
     var arrCases : NSMutableArray!
     var arrKey : NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
         resetCaseID()
         displayVolunteerInfo()
@@ -32,12 +34,10 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
     
     func getAllPreviousCases(){
         self.ShowActivityIndicator()
-     
-        ref.child("/cases/").observe(.childAdded, with: { (snapshot) in
+        ref.child("/\(cases)/").observe(.childAdded, with: { (snapshot) in
             self.arrKey.add(snapshot.key)
             self.RemoveActivityIndicator()
         })
-       
     }
     
     @IBAction func btnGetStartedClicked(_ sender: Any) {
@@ -49,7 +49,7 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
             for key in self.arrKey {
                 previouscase.enter()
                 let arrLovedOnes: NSMutableArray = NSMutableArray()
-                self.ref?.child("/cases/").child(key as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                self.ref?.child("/\(cases)/").child(key as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                     let dict = snapshot.value as? NSDictionary
                     let createdBy = dict?.object(forKey: "createdBy") as? NSDictionary
                     if(createdBy != nil){
@@ -69,14 +69,14 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                                             let relationship =  dictInvitedFriend.object(forKey: "relationship") as! String
                                             let lastKnownLocation =  dictInvitedFriend.object(forKey: "lastKnownLocation") as! String
                                             let age =  dictInvitedFriend.object(forKey: "age") as! Int
-                                            let ageAppoximate =  dictInvitedFriend.object(forKey: "ageAppoximate") as! Bool
+                                            let ageAppoximate =  dictInvitedFriend.object(forKey: "ageAppoximate") as? Bool
                                             let dictLastContact =  dictInvitedFriend.object(forKey: "lastContact") as! NSDictionary
                                             let type =  dictLastContact.object(forKey: "type") as! String
                                             let value =  dictLastContact.object(forKey: "value") as! Int
                                             
                                             let dictLovedCases: [String: Any] = [
                                                 "age":age,
-                                                "ageAppoximate":ageAppoximate,
+                                                "ageAppoximate":ageAppoximate ?? false,
                                                 "firstName":firstName,
                                                 "lastContact":["type": type, "value":value],
                                                 "lastKnownLocation":lastKnownLocation,
@@ -132,18 +132,22 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
                                     ]
                                     
                                     privatecase.enter()
-                                    self.ref?.child("/casesPrivate/").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
+                                    self.ref?.child("/\(casesPrivate)/").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
 
                                         let dict = snapshot.value as? NSDictionary
                                         let contactInfo = dict?.object(forKey: "contactInfo") as? String
                                         let notes = dict?.object(forKey: "notes") as? String
                                         let dob = dict?.object(forKey: "dob") as? String
-                                        let dobApproximate = dict?.object(forKey: "dobApproximate") as? Bool
+                                        if let dobApproximate = dict?.object(forKey: "dobApproximate") as? Bool{
+                                            dictCases["dobApproximate"] = dobApproximate
+                                        } else {
+                                            dictCases["dobApproximate"] = false
+                                        }
 
                                         dictCases["contactInfo"] = contactInfo
                                         dictCases["notes"] = notes
                                         dictCases["dob"] = dob
-                                        dictCases["dobApproximate"] = dobApproximate
+
                                         if(arrLovedOnes.count > 0) {
                                             dictCases["lovedOnes"] = arrLovedOnes
                                         }
@@ -174,26 +178,22 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
         previouscase.notify(queue:DispatchQueue.main) {
             self.RemoveActivityIndicator()
             if(self.arrCases.count > 0){
-                let draftCasesVC = self.storyboard?.instantiateViewController(withIdentifier: "DraftCasesViewController") as! DraftCasesViewController
+                let draftCasesVC = self.storyboard?.instantiateViewController(withIdentifier: IdentifireDraftCasesView) as! DraftCasesViewController
                 draftCasesVC.arrCases = NSMutableArray()
                 draftCasesVC.arrCases = self.arrCases
                 self.navigationController?.pushViewController(draftCasesVC, animated: true)
             } else{
-                let guideVC = self.storyboard?.instantiateViewController(withIdentifier: "GuideViewController") as! GuideViewController
+                let guideVC = self.storyboard?.instantiateViewController(withIdentifier: IdentifireGuideView) as! GuideViewController
                 self.navigationController?.pushViewController(guideVC, animated: true)
             }
         }
-      
     }
     
-    //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
     
-    //Remove activity indicator
     func RemoveActivityIndicator(){
         stopAnimating()
     }
@@ -204,12 +204,9 @@ class StartViewController: ProfileNavigationViewController, NVActivityIndicatorV
 
     func displayVolunteerInfo() -> Void {
         let defaults = UserDefaults.standard
-
         let fullName = defaults.string(forKey: "name")
-
         if let fullNameArr = fullName?.components(separatedBy: " ") {
             helloLbl.text = "Hello \(fullNameArr[0]),"
         }
     }
-
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate {
 
     @IBOutlet weak var helloLabel: UILabel!
@@ -20,7 +19,6 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
 
     var pageViewController : UIPageViewController!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         displayVolunteerInfo()
@@ -29,8 +27,6 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,10 +50,8 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
         return UIInterfaceOrientationMask.portrait
     }
 
-
     func displayVolunteerInfo() -> Void {
         let defaults = UserDefaults.standard
-
         let fullName = defaults.string(forKey: "name")
 
         if let fullNameArr = fullName?.components(separatedBy: " ") {
@@ -69,17 +63,4 @@ class LoginSummaryViewController: UIViewController, UIPageViewControllerDelegate
         volunteerPhoneLabel.text = defaults.string(forKey: "phone")
         volunteerLocationLabel.text = defaults.string(forKey: "location")
     }
-
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-//        segue.destination
-    }
-
-
 }

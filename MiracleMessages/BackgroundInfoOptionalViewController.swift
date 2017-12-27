@@ -12,25 +12,19 @@ import UIKit
 import NVActivityIndicatorView
 import Firebase
 
-class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicatorViewable, UITextFieldDelegate {
-    let currentCase: Case = Case.current
-    var ref: DatabaseReference!
-    // Container to set text why they lost touch with loved ones.
+class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicatorViewable, UITextFieldDelegate{
+    
     @IBOutlet weak var mLooseTouchReasonText: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    // Container to set reason for homelessness.
     @IBOutlet weak var mHomelessReason: UITextField!
     
-    // Handles click of next button on screen.
-    @IBAction func onClickNext(_ sender: Any) {
-        updateBackgroundInfo(isTopNext:false)
-    }
+    let currentCase: Case = Case.current
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set placeholder text
-        ref = Database.database().reference()
         
+        ref = Database.database().reference()
         mLooseTouchReasonText.delegate = self
         mHomelessReason.delegate = self
         mLooseTouchReasonText.placeholder = "Answer (optional)"
@@ -40,7 +34,11 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayInfo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,10 +46,12 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    @IBAction func onClickNext(_ sender: Any) {
+        updateBackgroundInfo(isTopNext:false)
+    }
 
     func keyboardWillShowNotification(notification: NSNotification) {
-
-        // get the size of the keyboard
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
@@ -59,11 +59,9 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
             var aRect = self.view.frame
             aRect.size.height -= keyboardSize.size.height
         }
-
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
-        // get the size of the keyboard
         let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
@@ -77,11 +75,6 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        displayInfo()
-    }
-    
     func displayInfo() -> Void {
         if let caseResearch = currentCase.research {
             mLooseTouchReasonText.text = caseResearch.quest1
@@ -91,7 +84,7 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         
     func updateBackgroundInfo(isTopNext: Bool) -> Void {
         self.ShowActivityIndicator()
-        currentCase.research = (mLooseTouchReasonText.text, mHomelessReason.text) as! (quest1: String, quest2: String)
+        currentCase.research = (mLooseTouchReasonText.text, mHomelessReason.text) as? (quest1: String, quest2: String)
         
         var txtmLooseTouchReason : String = ""
         var txtmHomelessReason : String = ""
@@ -107,11 +100,13 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         guard let key = currentCase.key else {return}
         
         let caseReference: DatabaseReference
-        caseReference = self.ref.child("/cases/\(key)")
+        caseReference = self.ref.child("/\(cases)/\(key)")
         let publicPayload: [String: Any] = [
-            "research":["quest1": txtmLooseTouchReason , "quest2":txtmHomelessReason]
+            "research":[
+                "quest1": txtmLooseTouchReason,
+                "quest2": txtmHomelessReason
+            ]
         ]
-        print("Public Payload\(publicPayload)")
         
         // Write case data
         caseReference.updateChildValues(publicPayload) { error, _ in
@@ -128,25 +123,16 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
             if(isTopNext == true){
                 self.performSegue(withIdentifier: "backgroundInfoOptional", sender: nil)
             }
-            
         }
-        
     }
      
     func showAlertView(){
-        // create the alert
-        let alert = UIAlertController(title: "Miracle Messages", message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add an action (button)
+        let alert = UIAlertController(title: AppName, message: "Something went wrong. please try again later.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        
-        // show the alert
         self.present(alert, animated: true, completion: nil)
     }
     
-    //Show activity indicator while saving data
     func ShowActivityIndicator(){
-        
         let size = CGSize(width: 50, height:50)
         startAnimating(size, message: nil, type: NVActivityIndicatorType(rawValue: 6)!)
     }
