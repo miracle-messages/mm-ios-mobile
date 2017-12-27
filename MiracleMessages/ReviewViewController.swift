@@ -176,8 +176,8 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
                         
                         guard let key = self.currentCase.key else {return}
                         let publicPayload: [String: Any] = [
-                            "photo": metadata?.downloadURL()?.absoluteString,
-                            ]
+                            "photo": metadata?.downloadURL()?.absoluteString ?? "",
+                        ]
                         
                         let caseReference: DatabaseReference
                         caseReference = self.ref.child("/\(cases)/\(key)")
@@ -209,6 +209,7 @@ extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationCon
             }
         }
         else{
+            self.RemoveActivityIndicator()
             Logger.log("Unable to save the photo for this case: \(currentCase.key!)")
             return
         }

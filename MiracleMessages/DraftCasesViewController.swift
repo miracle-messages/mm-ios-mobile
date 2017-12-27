@@ -21,7 +21,6 @@ class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tblCases.reloadData()
     }
     
@@ -38,7 +37,7 @@ class DraftCasesViewController: UIViewController,NVActivityIndicatorViewable {
 
 extension DraftCasesViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1   // One for Sender, one for Recipients
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
