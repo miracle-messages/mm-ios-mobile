@@ -180,7 +180,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
         
         if(self.mode == .update && self.currentLovedOne.id != nil){
             for lovedOne in self.lovedOnes {
-                let id = self.currentLovedOne.id as! String
+                let id = self.currentLovedOne.id
                 let lovedOneRef = caseReference.child("/lovedOnes/\(String(describing: id))")
                 lovedOne.id = lovedOneRef.key
             

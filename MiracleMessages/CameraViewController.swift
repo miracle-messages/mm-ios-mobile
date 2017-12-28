@@ -370,13 +370,23 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
 
             cameraSession?.commitConfiguration()
-
         }
         catch let error as NSError {
+            print("Access denied for camera")
             Logger.forceLog(error)
         }
     }
 
+   /* func alertPromptToAllowCameraAccessViaSettings() {
+        let alert = UIAlertController(title: "\"<Miracle Messages>\" Would Like To Access the Camera", message: "Please grant permission to use the Camera.", preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "Open Settings", style: .cancel) { alert in
+            if let appSettingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettingsURL as! URL)
+            }
+        })
+        present(alert, animated: true, completion: nil)
+    } */
+    
     func updateTime() {
         let currentTime = NSDate.timeIntervalSinceReferenceDate
         var elapsedTime: TimeInterval = currentTime - startTime
