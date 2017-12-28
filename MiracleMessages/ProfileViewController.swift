@@ -33,33 +33,7 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
-//    func keyboardWillShowNotification(notification: NSNotification) {
-//        // get the size of the keyboard
-//        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-////            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-////            self.scrollView.contentInset = contentInsets
-////            self.scrollView.scrollIndicatorInsets = contentInsets
-////            var aRect = self.view.frame
-////            aRect.size.height -= keyboardSize.size.height
-////            keyboardIsVisible = true
-//        }
-//    }
-//
-//    func keyboardWillHideNotification(notification: NSNotification) {
-//        // get the size of the keyboard
-////        guard self.keyboardIsVisible else {
-////            return
-////        }
-////        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
-////        self.scrollView.contentInset = contentInsets
-////        self.scrollView.scrollIndicatorInsets = contentInsets
-////        keyboardIsVisible = false
-//    }
 
     func addDoneButtonOnKeyboard()
     {
@@ -105,7 +79,7 @@ class ProfileViewController: UIViewController {
             errorLabel.isHidden = true
             let updatedProfile = VolunteerProfile(name: fullNameTxtfield.text!, email: emailTxtfield.text!, phone: phoneTxtfield.text!, location: locationTxtfield.text!)
             updatedProfile.save()
-            let _ = self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         } else {
             errorLabel.isHidden = false
         }

@@ -17,7 +17,7 @@ import Alamofire
 import MobileCoreServices
 import Photos
 
-class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, MFMailComposeViewControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var recordBtnCntrVrtConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordBtnRtConstraint: NSLayoutConstraint!
@@ -112,13 +112,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if(assets.count > 0){
             self.images.append(assets.lastObject!)
         
-        let options: PHVideoRequestOptions = PHVideoRequestOptions()
-        options.version = .original
-        PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
-                if let urlAsset = asset as? AVURLAsset {
-                    self.localVideoURL = urlAsset.url
-                }
-            })
+            let options: PHVideoRequestOptions = PHVideoRequestOptions()
+            options.version = .original
+            PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
+                    if let urlAsset = asset as? AVURLAsset {
+                        self.localVideoURL = urlAsset.url
+                    }
+                })
         }
     }
     
@@ -194,9 +194,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         previewLayer!.frame = self.previewView.bounds
 
         reconfigureQuestionScrollView()
-
-        let orientation = UIApplication.shared.statusBarOrientation
+        let orientation = UIApplication.shared.statusBarOrientation //UIDevice.current.orientation
         let captureConnection = dataOutput.connection(withMediaType: AVMediaTypeVideo)
+        
         switch orientation {
         case .portrait:
             previewLayer?.connection.videoOrientation = .portrait
@@ -249,6 +249,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.navigationController?.navigationBar.tintColor = UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+    }
+    
+    func canRotate() -> Void {}
+    
     func enablePortraitConstraints() -> Void {
         //Landscape constraints
         self.recordBtnCntrVrtConstraint.isActive = false
@@ -271,6 +277,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
@@ -347,7 +354,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
             let captureDeviceAudio = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
 
-
             let deviceInput = try AVCaptureDeviceInput(device: captureDevice)
             let audioInput = try AVCaptureDeviceInput(device: captureDeviceAudio)
 
@@ -364,13 +370,23 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
 
             cameraSession?.commitConfiguration()
-
         }
         catch let error as NSError {
+            print("Access denied for camera")
             Logger.forceLog(error)
         }
     }
 
+   /* func alertPromptToAllowCameraAccessViaSettings() {
+        let alert = UIAlertController(title: "\"<Miracle Messages>\" Would Like To Access the Camera", message: "Please grant permission to use the Camera.", preferredStyle: .alert )
+        alert.addAction(UIAlertAction(title: "Open Settings", style: .cancel) { alert in
+            if let appSettingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettingsURL as! URL)
+            }
+        })
+        present(alert, animated: true, completion: nil)
+    } */
+    
     func updateTime() {
         let currentTime = NSDate.timeIntervalSinceReferenceDate
         var elapsedTime: TimeInterval = currentTime - startTime
@@ -378,7 +394,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         elapsedTime -= (TimeInterval(minutes) * 60)
         let seconds = UInt8(elapsedTime)
         elapsedTime -= TimeInterval(seconds)
-        let fraction = UInt8(elapsedTime * 100)
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
         timerLabel.text = "\(strMinutes):\(strSeconds)/3:00"
@@ -463,25 +478,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         timerLabel.text = "00:00"
     }
 
-    func sendEmail() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
-        }
-    }
-
-    func showSendMailErrorAlert() {
-        let alertController = UIAlertController(title: "Error sending email.", message: "Could not send email.", preferredStyle: .alert)
-
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
-        }
-        alertController.addAction(OKAction)
-
-        self.present(alertController, animated: true, completion: nil)
-    }
-
     func displayVolunteerInfo() -> String {
         let defaults = UserDefaults.standard
         if let name = defaults.string(forKey: "name"), let email = defaults.string(forKey: "email"), let phone = defaults.string(forKey: "phone"), let location = defaults.string(forKey: "location") {
@@ -493,24 +489,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func videoLink() -> String {
         return "\(awsHost)/\(bucketName)/\(self.videoFileName!)"
-    }
-
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-
-        var components = DateComponents()
-        components.setValue(1, for: .hour)
-
-        let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.long
-        formatter.timeStyle = .medium
-
-        mailComposerVC.setToRecipients(["mm@miraclemessages.org"])
-        mailComposerVC.setSubject("[MM] Interview video")
-        mailComposerVC.setMessageBody("\(self.displayVolunteerInfo())\n\nLink to video:\n\(self.videoLink()).\n\nPlease add any additional notes here:", isHTML: false)
-
-        return mailComposerVC
     }
 
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
@@ -535,14 +513,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func generateVideoFileName() -> String {
         let defaults = UserDefaults.standard
-        let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased()
+        var videoName: String!
+        if let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased() {
+            videoName = name
+        }
+        
         let date = Date()
   
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MM-dd-yyyy-HHmmss"
         let stringDate = dayTimePeriodFormatter.string(from: date)
-        if(name != nil){
-            return "\(name!)-\(stringDate).mov"
+        if(videoName != nil){
+            return "\(videoName)-\(stringDate).mov"
         }else {
             return "\(stringDate).mov"
         }

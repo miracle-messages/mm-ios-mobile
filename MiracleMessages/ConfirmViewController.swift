@@ -266,9 +266,7 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
-        
             cell.reviewable = currentCase
-        
             cell.selectionStyle = .none
             return cell
         case 2:
@@ -277,10 +275,7 @@ extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
             }
         
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
-           
             cell.reviewable = lovedOnes[indexPath.row]
-            print(lovedOnes[indexPath.row])
-        
             cell.selectionStyle = .none
             return cell
         
