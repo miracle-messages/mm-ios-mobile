@@ -17,6 +17,9 @@
         <array key="ArialBold.ttf">
             <string>Arial-BoldMT</string>
         </array>
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -3198,6 +3201,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWw-pP-c7m" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWY-n4-2Ql">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3215,6 +3219,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogM-Iq-pBO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFz-NS-V3N">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3232,6 +3237,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwM-YW-5It" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LsH-oK-gA2">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3249,6 +3255,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKY-Sm-hXB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iGE-YI-cuE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3376,6 +3383,127 @@ c.) we don't know if we'll be able to find your loved one(s).
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbp-uh-8Jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3733.5999999999999" y="731.78410794602701"/>
+        </scene>
+        <!--Permission View Controller-->
+        <scene sceneID="Rha-lr-ddB">
+            <objects>
+                <viewController storyboardIdentifier="PermissionViewController" id="ROt-iW-CMD" customClass="PermissionViewController" customModule="Dev_MiracleMsg" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hll-m5-bKA"/>
+                        <viewControllerLayoutGuide type="bottom" id="ang-ia-fPS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tdf-5V-6oE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-Pk-Myn">
+                                <rect key="frame" x="25" y="100" width="325" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="aWH-5f-8Sq"/>
+                                </constraints>
+                                <string key="text">In order to get started the app needs permission to access your camera, microphone, and camera roll. Use the buttons below to enable access before proceeding.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuA-Lv-Oat">
+                                <rect key="frame" x="25" y="213" width="325" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="kqc-YC-dlM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Allow camera access">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCameraAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="JIc-cN-Oki"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-Dz-ems">
+                                <rect key="frame" x="25" y="272" width="325" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="Hql-7F-1Jf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Allow microphone access">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnMicrophoneAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="ks6-fj-4ju"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-KQ-HdD">
+                                <rect key="frame" x="25" y="333" width="325" height="43"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="tDC-06-lF5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Allow camera roll access">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGalleryAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="xCV-cO-SUQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsZ-8h-RiW">
+                                <rect key="frame" x="13" y="590" width="349" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="349" id="5da-VL-Vb1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="349" id="8Ag-v3-WOb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="57" id="MgB-P0-Yqf"/>
+                                    <constraint firstAttribute="height" constant="57" id="wph-N5-oPn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
+                                <state key="normal" title="Next" backgroundImage="pillBtn">
+                                    <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnNextClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="VW5-2J-V3J"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon_black" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-FG-8K8">
+                                <rect key="frame" x="167" y="43" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="7TB-5H-X5L"/>
+                                    <constraint firstAttribute="width" constant="40" id="RJl-dE-9U3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Stu-Pk-Myn" secondAttribute="trailing" constant="25" id="26E-18-dwb"/>
+                            <constraint firstItem="CGl-FG-8K8" firstAttribute="top" secondItem="hll-m5-bKA" secondAttribute="bottom" constant="23" id="9tI-eX-6oZ"/>
+                            <constraint firstAttribute="trailing" secondItem="m0J-KQ-HdD" secondAttribute="trailing" constant="25" id="A9Q-KZ-5NZ"/>
+                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="Ao7-r6-omf"/>
+                            <constraint firstItem="X7z-Dz-ems" firstAttribute="top" secondItem="HuA-Lv-Oat" secondAttribute="bottom" constant="16" id="BbY-mt-iJB"/>
+                            <constraint firstAttribute="trailing" secondItem="X7z-Dz-ems" secondAttribute="trailing" constant="25" id="D0c-RP-Sy9"/>
+                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="top" secondItem="Stu-Pk-Myn" secondAttribute="bottom" constant="25" id="JFU-up-Pjs"/>
+                            <constraint firstItem="ang-ia-fPS" firstAttribute="top" secondItem="rsZ-8h-RiW" secondAttribute="bottom" constant="20" id="JYG-7O-Gf7"/>
+                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="top" secondItem="X7z-Dz-ems" secondAttribute="bottom" constant="18" id="LIC-zk-lRK"/>
+                            <constraint firstAttribute="trailing" secondItem="rsZ-8h-RiW" secondAttribute="trailing" constant="13" id="NI8-j3-Ckx"/>
+                            <constraint firstItem="X7z-Dz-ems" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="Sjg-jV-l5J"/>
+                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="13" id="THz-g0-xQp"/>
+                            <constraint firstItem="CGl-FG-8K8" firstAttribute="centerX" secondItem="Stu-Pk-Myn" secondAttribute="centerX" id="Yhj-zO-fUp"/>
+                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="kj5-eY-KyD"/>
+                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="22" id="nZc-Vd-ZmX"/>
+                            <constraint firstAttribute="trailing" secondItem="HuA-Lv-Oat" secondAttribute="trailing" constant="25" id="rg0-hc-fYQ"/>
+                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="uE2-9W-dWX"/>
+                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="zia-7C-lwN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnCameraAccess" destination="HuA-Lv-Oat" id="EM2-kS-miD"/>
+                        <outlet property="btnGalleryAccess" destination="m0J-KQ-HdD" id="7nb-Wn-h5Q"/>
+                        <outlet property="btnMicrophoneAccess" destination="X7z-Dz-ems" id="ZM3-Ib-lGA"/>
+                        <outlet property="btnNext" destination="rsZ-8h-RiW" id="bPI-8i-5fx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wx5-hJ-GA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4557.6000000000004" y="730.88455772113946"/>
         </scene>
         <!--Background Info Optional View Controller-->
         <scene sceneID="J22-RH-uO6">
@@ -3532,6 +3660,7 @@ c.) we don't know if we'll be able to find your loved one(s).
         <image name="blackBtn" width="349" height="57"/>
         <image name="editBtn" width="12" height="13"/>
         <image name="homeback" width="640" height="960"/>
+        <image name="mm_icon_black" width="488" height="439"/>
         <image name="pillBtn" width="349" height="57"/>
         <image name="recordBtn" width="640" height="583"/>
         <image name="unknownUser" width="40" height="40"/>

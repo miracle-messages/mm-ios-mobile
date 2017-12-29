@@ -15,7 +15,6 @@ import Photos
 import SCLAlertView
 import Alamofire
 import MobileCoreServices
-import Photos
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
