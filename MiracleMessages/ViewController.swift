@@ -62,8 +62,8 @@ private extension ViewController {
             if !completed {
                 self.performSegue(withIdentifier: "createProfile", sender: self)
             } else {
-                let startController = self.storyboard!.instantiateViewController(withIdentifier: IdentifireStartView)
-                let nav = UINavigationController(rootViewController: startController)
+                let permissionController = self.storyboard!.instantiateViewController(withIdentifier:IdentifirePermissionView)
+                let nav = UINavigationController(rootViewController: permissionController)
                 nav.modalPresentationStyle = .overCurrentContext
                 self.present(nav, animated: true, completion: nil)
             }

@@ -44,7 +44,12 @@ struct VolunteerProfile {
         ref.child(users).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             Logger.log("User dictionary \(String(describing: value))")
-
+            
+            let name = value?.object(forKey: "firstName")
+            let defaults = UserDefaults.standard
+            defaults.set(name, forKey: "name")
+            defaults.synchronize()
+            
             // Initialize the user for crashlytics
             Logger.initCrashlyticsUser(user.uid, user.email, user.displayName)
             block(value != nil)
