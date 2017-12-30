@@ -110,14 +110,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
         if(assets.count > 0){
             self.images.append(assets.lastObject!)
-        
             let options: PHVideoRequestOptions = PHVideoRequestOptions()
             options.version = .original
             PHImageManager.default().requestAVAsset(forVideo: self.images.last!, options: options, resultHandler: { (asset, audioMix, info) in
                     if let urlAsset = asset as? AVURLAsset {
                         self.localVideoURL = urlAsset.url
                     }
-                })
+                }
+            )
         }
     }
     

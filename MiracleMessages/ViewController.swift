@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import AVFoundation
+import Photos
 
 class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
 
@@ -62,10 +64,21 @@ private extension ViewController {
             if !completed {
                 self.performSegue(withIdentifier: "createProfile", sender: self)
             } else {
-                let permissionController = self.storyboard!.instantiateViewController(withIdentifier:IdentifirePermissionView)
-                let nav = UINavigationController(rootViewController: permissionController)
-                nav.modalPresentationStyle = .overCurrentContext
-                self.present(nav, animated: true, completion: nil)
+                let statusOfCamera = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+                let statusOfMicrophone = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio)
+                let photos = PHPhotoLibrary.authorizationStatus()
+                
+                if(statusOfCamera == .authorized && statusOfMicrophone == .authorized && photos == .authorized){
+                    let startController = self.storyboard!.instantiateViewController(withIdentifier:IdentifireStartView)
+                    let nav = UINavigationController(rootViewController: startController)
+                    nav.modalPresentationStyle = .overCurrentContext
+                    self.present(nav, animated: true, completion: nil)
+                } else {
+                    let permissionController = self.storyboard!.instantiateViewController(withIdentifier:IdentifirePermissionView)
+                    let nav = UINavigationController(rootViewController: permissionController)
+                    nav.modalPresentationStyle = .overCurrentContext
+                    self.navigationController?.pushViewController(permissionController, animated: true)
+                }
             }
         })
     }

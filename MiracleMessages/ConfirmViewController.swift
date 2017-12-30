@@ -206,7 +206,7 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
 
 extension ConfirmViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3  //  One for Sender, one for Recipients
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

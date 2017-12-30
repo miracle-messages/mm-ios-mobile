@@ -3397,17 +3397,17 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-Pk-Myn">
-                                <rect key="frame" x="25" y="100" width="325" height="88"/>
+                                <rect key="frame" x="25" y="86" width="325" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="aWH-5f-8Sq"/>
+                                    <constraint firstAttribute="height" constant="128" id="aWH-5f-8Sq"/>
                                 </constraints>
                                 <string key="text">In order to get started the app needs permission to access your camera, microphone, and camera roll. Use the buttons below to enable access before proceeding.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuA-Lv-Oat">
-                                <rect key="frame" x="25" y="213" width="325" height="43"/>
+                                <rect key="frame" x="25" y="247" width="325" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="kqc-YC-dlM"/>
@@ -3421,7 +3421,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-Dz-ems">
-                                <rect key="frame" x="25" y="272" width="325" height="43"/>
+                                <rect key="frame" x="25" y="306" width="325" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Hql-7F-1Jf"/>
@@ -3435,7 +3435,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-KQ-HdD">
-                                <rect key="frame" x="25" y="333" width="325" height="43"/>
+                                <rect key="frame" x="25" y="367" width="325" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="tDC-06-lF5"/>
@@ -3480,7 +3480,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstItem="Stu-Pk-Myn" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="Ao7-r6-omf"/>
                             <constraint firstItem="X7z-Dz-ems" firstAttribute="top" secondItem="HuA-Lv-Oat" secondAttribute="bottom" constant="16" id="BbY-mt-iJB"/>
                             <constraint firstAttribute="trailing" secondItem="X7z-Dz-ems" secondAttribute="trailing" constant="25" id="D0c-RP-Sy9"/>
-                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="top" secondItem="Stu-Pk-Myn" secondAttribute="bottom" constant="25" id="JFU-up-Pjs"/>
+                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="top" secondItem="Stu-Pk-Myn" secondAttribute="bottom" constant="33" id="JFU-up-Pjs"/>
                             <constraint firstItem="ang-ia-fPS" firstAttribute="top" secondItem="rsZ-8h-RiW" secondAttribute="bottom" constant="20" id="JYG-7O-Gf7"/>
                             <constraint firstItem="m0J-KQ-HdD" firstAttribute="top" secondItem="X7z-Dz-ems" secondAttribute="bottom" constant="18" id="LIC-zk-lRK"/>
                             <constraint firstAttribute="trailing" secondItem="rsZ-8h-RiW" secondAttribute="trailing" constant="13" id="NI8-j3-Ckx"/>
@@ -3488,7 +3488,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstItem="rsZ-8h-RiW" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="13" id="THz-g0-xQp"/>
                             <constraint firstItem="CGl-FG-8K8" firstAttribute="centerX" secondItem="Stu-Pk-Myn" secondAttribute="centerX" id="Yhj-zO-fUp"/>
                             <constraint firstItem="HuA-Lv-Oat" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="kj5-eY-KyD"/>
-                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="22" id="nZc-Vd-ZmX"/>
+                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="8" id="nZc-Vd-ZmX"/>
                             <constraint firstAttribute="trailing" secondItem="HuA-Lv-Oat" secondAttribute="trailing" constant="25" id="rg0-hc-fYQ"/>
                             <constraint firstItem="Stu-Pk-Myn" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="uE2-9W-dWX"/>
                             <constraint firstItem="m0J-KQ-HdD" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="zia-7C-lwN"/>
