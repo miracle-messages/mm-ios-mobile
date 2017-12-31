@@ -40,7 +40,6 @@ class ReviewViewController: UIViewController, CaseDelegate, NVActivityIndicatorV
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = false
-        
         if(isEditPhoto == true){
             self.openCamera()
         }
@@ -262,21 +261,14 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "fromCell", for: indexPath) as? ReviewTableViewCell else { break }
-
             cell.reviewable = currentCase
-            print(currentCase)
-
             return cell
         case 1:
             guard currentCase.lovedOnes.count > 0 else {
                 return tableView.dequeueReusableCell(withIdentifier: "noneCell", for: indexPath)
             }
-
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "toCell", for: indexPath) as? ReviewTableViewCell else { break }
-
             cell.reviewable = lovedOnes[indexPath.row]
-            print(lovedOnes[indexPath.row])
-
             return cell
         default: break
         }

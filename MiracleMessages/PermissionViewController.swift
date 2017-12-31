@@ -105,7 +105,9 @@ class PermissionViewController: UIViewController {
         if (status == .notDetermined) {
             AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { response in
                 if response {
-                    self.setButtonLayoutBlack(btn: self.btnCameraAccess)
+                    DispatchQueue.main.async {
+                        self.setButtonLayoutBlack(btn: self.btnCameraAccess)
+                    }
                 }
             }
         } else if (status == .authorized) {
@@ -122,7 +124,9 @@ class PermissionViewController: UIViewController {
             AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeAudio) { response in
                 print(response)
                 if response {
-                     self.setButtonLayoutBlack(btn: self.btnMicrophoneAccess)
+                    DispatchQueue.main.async {
+                        self.setButtonLayoutBlack(btn: self.btnMicrophoneAccess)
+                    }
                 }
             }
         } else if status == .restricted || status == .denied {
@@ -137,7 +141,9 @@ class PermissionViewController: UIViewController {
         if photos == .notDetermined {
             PHPhotoLibrary.requestAuthorization({status in
                 if status == .authorized{
-                    self.setButtonLayoutBlack(btn: self.btnGalleryAccess)
+                    DispatchQueue.main.async {
+                        self.setButtonLayoutBlack(btn: self.btnGalleryAccess)
+                    }
                 }
             })
         } else if photos == .authorized {
