@@ -17,9 +17,8 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     @IBOutlet weak var signInButton: GIDSignInButton!
     var handle: AuthStateDidChangeListenerHandle?
 
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         handle = Auth.auth().addStateDidChangeListener() {[unowned self] (auth, user) in
             if auth.currentUser == nil {

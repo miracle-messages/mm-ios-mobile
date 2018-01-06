@@ -40,6 +40,7 @@
 		23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E709801E2956EF00E20582 /* MenuViewController.swift */; };
 		23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */; };
 		23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */; };
+		9952991D2000A1D300453124 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9952991C2000A1D300453124 /* SignUpViewController.swift */; };
 		996C2CA11FD2BC4D00A0A3F1 /* ConfirmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */; };
 		997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */; };
 		99A762311FF5F88A0039474F /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A762301FF5F88A0039474F /* PermissionViewController.swift */; };
@@ -117,6 +118,7 @@
 		23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitNavigationControllerController.swift; sourceTree = "<group>"; };
 		3B5B76555A408D0ACD4F035F /* Pods-MiracleMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.debug.xcconfig"; sourceTree = "<group>"; };
 		931EDC37A5245A99C1521F03 /* Pods-MiracleMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiracleMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages.release.xcconfig"; sourceTree = "<group>"; };
+		9952991C2000A1D300453124 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		996C2CA01FD2BC4C00A0A3F1 /* ConfirmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmTableViewCell.swift; sourceTree = "<group>"; };
 		997F479E1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundInfoOptionalViewController.swift; sourceTree = "<group>"; };
 		99A762301FF5F88A0039474F /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				231CB4D91F2F2907009D2767 /* MyMessagesViewController.swift */,
 				99ACF8E71FD66855000DB87D /* DraftCasesViewController.swift */,
 				99A762301FF5F88A0039474F /* PermissionViewController.swift */,
+				9952991C2000A1D300453124 /* SignUpViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				235407AF1E855F6200FB091E /* NotificationExtension.swift in Sources */,
 				23E709751E25BA0E00E20582 /* StartViewController.swift in Sources */,
 				23F1776B1D9902FC00000C65 /* LoginSummaryViewController.swift in Sources */,
+				9952991D2000A1D300453124 /* SignUpViewController.swift in Sources */,
 				23E709811E2956EF00E20582 /* MenuViewController.swift in Sources */,
 				EE0FA4881F006D3300B3A0D8 /* YPDrawSignatureView.swift in Sources */,
 				997F479F1FD7BBB0006861C2 /* BackgroundInfoOptionalViewController.swift in Sources */,
