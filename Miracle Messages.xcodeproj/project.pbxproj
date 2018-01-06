@@ -396,7 +396,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = GE8VHP39HG;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -799,7 +799,8 @@
 				BASE_URL = "https://dev.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GE8VHP39HG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FIREBASE = "GoogleService-Info_dev";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info_dev";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -807,8 +808,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = "Dev MiracleMsg";
-				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_URL = "https://dev.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -826,7 +827,8 @@
 				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GE8VHP39HG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FIREBASE = "GoogleService-Info";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -834,8 +836,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "28453e43-3ba0-4936-a8de-30facb7a832b";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
