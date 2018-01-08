@@ -7,29 +7,73 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,UITextFieldDelegate
+{
+    @IBOutlet weak var Img_Profile: UIImageView!
+    @IBOutlet weak var view_iagree: UIView!
+    @IBOutlet weak var txt_FirstName: UITextField!
+    @IBOutlet weak var txt_LastName: UITextField!
+    @IBOutlet weak var txt_Country: UITextField!
+    @IBOutlet weak var txt_City: UITextField!
+    @IBOutlet weak var txt_State: UITextField!
+    @IBOutlet weak var txt_Email: UITextField!
+    @IBOutlet weak var txt_PhoneNumber: UITextField!
+    @IBOutlet weak var Btn_Age: UIButton!
+    @IBOutlet weak var Btn_IAgree: UIButton!
+    var ref: DatabaseReference!
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        ref = Database.database().reference()
+        self.txt_PhoneNumber.delegate = self
+        
+        Img_Profile.layer.cornerRadius = 40
+        view_iagree.layer.borderWidth = 1
+        view_iagree.layer.borderColor = UIColor.black.cgColor
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func Btn_AgeCick(_ sender: UIButton)
+    {
+        if Btn_Age.isSelected == true
+        {
+            Btn_Age.isSelected = false
+        }
+        else
+        {
+            Btn_Age.isSelected = true
+        }
     }
-    */
+    
+    @IBAction func Btn_IAgreeClick(_ sender: UIButton)
+    {
+        Btn_IAgree.isSelected = true
+        let key = ref.child("users").childByAutoId().key
+        let users = ["firstName": txt_FirstName.text! as String,
+                     "lastName": txt_LastName.text! as String,
+                     "country": txt_Country.text! as String,
+                     "city": txt_City.text! as String,
+                     "state": txt_State.text! as String,
+                     "email": txt_Email.text! as String,
+                     "phone": txt_PhoneNumber.text! as String
+                    ]
+        ref.child("users").child(key).setValue(users)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        txt_PhoneNumber.resignFirstResponder()
+        
+        return true
+    }
+
 
 }

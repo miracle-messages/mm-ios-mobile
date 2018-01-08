@@ -61,7 +61,9 @@ private extension ViewController {
     func verifyProfile() {
         VolunteerProfile.googleProfileCreated(with: {completed in
             if !completed {
-                self.performSegue(withIdentifier: "createProfile", sender: self)
+                //self.performSegue(withIdentifier: "createProfile", sender: self)
+                let nav = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+                self.navigationController?.pushViewController(nav, animated: true)
             } else {
                 let statusOfCamera = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
                 let statusOfMicrophone = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio)
