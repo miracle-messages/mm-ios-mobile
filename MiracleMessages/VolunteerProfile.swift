@@ -43,8 +43,8 @@ struct VolunteerProfile {
         ref = Database.database().reference()
         ref.child(users).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+            print(snapshot)
             Logger.log("User dictionary \(String(describing: value))")
-            
             let name = value?.object(forKey: "firstName")
             let defaults = UserDefaults.standard
             defaults.set(name, forKey: "name")

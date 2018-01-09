@@ -42,6 +42,7 @@ let IdentifireBackgroundInfo2View = "BackgroundInfo2ViewController"
 let IdentifireCameraView = "cameraViewController"
 let IdentifireNextView = "NextViewController"
 let IdentifirePermissionView = "PermissionViewController"
+let IdentifireSignUpView = "SignUpViewController"
 
 // Keyword
 let AppName = "Miracle Messages"

@@ -40,11 +40,15 @@ class ViewController: ProfileNavigationViewController, GIDSignInUIDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createProfile" {
+        if segue.identifier != "createProfile" {
+            let nav = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+            self.navigationController?.pushViewController(nav, animated: true)
+            /*
             let nav = segue.destination as! UINavigationController
             let webVC = nav.viewControllers[0] as! WebViewController
             webVC.delegate = self
             webVC.urlString = Config.registerUrl
+             */
         }
     }
 }
@@ -60,10 +64,12 @@ extension UINavigationBar {
 private extension ViewController {
     func verifyProfile() {
         VolunteerProfile.googleProfileCreated(with: {completed in
-            if !completed {
+            if !completed
+            {
                 //self.performSegue(withIdentifier: "createProfile", sender: self)
                 let nav = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
                 self.navigationController?.pushViewController(nav, animated: true)
+
             } else {
                 let statusOfCamera = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
                 let statusOfMicrophone = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio)
