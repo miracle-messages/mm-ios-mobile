@@ -46,3 +46,7 @@ let IdentifireSignUpView = "SignUpViewController"
 
 // Keyword
 let AppName = "Miracle Messages"
+let Propic = UserDefaults.standard
+
+
+

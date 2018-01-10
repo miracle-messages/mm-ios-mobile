@@ -197,7 +197,6 @@ extension AppDelegate {
                 return
             }
             guard let user = user else {return}
-
             let defaults = UserDefaults.standard
             defaults.set(user.providerData[0].displayName, forKey: "name")
             defaults.set(user.providerData[0].email, forKey: "email")

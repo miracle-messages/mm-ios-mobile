@@ -10,8 +10,10 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDataSource, UIPickerViewDelegate
-{
+class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate{
+    
+    @IBOutlet weak var ScrollView: UIScrollView!
+    
     @IBOutlet weak var Img_Profile: UIImageView!
     @IBOutlet weak var view_iagree: UIView!
     @IBOutlet weak var txt_FirstName: UITextField!
@@ -24,63 +26,119 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
     @IBOutlet weak var Btn_Age: UIButton!
     @IBOutlet weak var Btn_IAgree: UIButton!
     var somedate = String()
-    var keyboardCurrentState: UIView?
-
+    @IBOutlet weak var activeTextField: UITextField?
+    
     let pickerCurrentCountry = UIPickerView()
-    let pickerCurrentState = UIPickerView()
-
 
     var ref: DatabaseReference!
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad(){
         super.viewDidLoad()
         
+        let Profilepic = Propic.value(forKey: "profile")
+        let url = URL(string: resultNSString as String)
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        Img_Profile.image = UIImage(data: data!)
+        
+        //Hide keybord when user click on view
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        // Create iso string
+        let stringFromDate = Date().iso8601    // "2017-03-22T13:22:13.933Z"
+        somedate = String(describing:stringFromDate)
+
         // Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
         txt_Country.inputView = pickerCurrentCountry
-        
-        pickerCurrentState.dataSource = self
-        pickerCurrentState.delegate = self
-        keyboardCurrentState = txt_State.inputView
-        
-        let date = Date()
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-        let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        let seconds = calendar.component(.second, from: date)
-        //let nanosecond = calendar.component(.nanosecond, from: date)
-        
-        somedate = String(describing:year) + "-" + String(describing:month) + "-" + String(describing:day) + "T" + String(describing:hour) + ":" + String(describing:minutes) + ":" +  String(describing:seconds) //+ ":" + String(describing:nanosecond)
-        print(somedate)
+                
         ref = Database.database().reference()
-        self.txt_PhoneNumber.delegate = self
+       // self.txt_PhoneNumber.delegate = self
         Img_Profile.layer.cornerRadius = 40
         view_iagree.layer.borderWidth = 1
         view_iagree.layer.borderColor = UIColor.black.cgColor
+        
+        //text field delegate
+        textDelegate()
     }
     
-    @IBAction func Btn_AgeCick(_ sender: UIButton)
+    override func viewWillAppear(_ animated: Bool) {
+        // call method for keyboard notification
+        self.setNotificationKeyboard()
+    }
+    
+    // Notification when keyboard show
+    func setNotificationKeyboard ()  {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    //will Display keyboard
+    func keyboardWasShown(notification: NSNotification)
     {
-        if Btn_Age.isSelected == true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height+10, 0.0)
+        self.ScrollView.contentInset = contentInsets
+        self.ScrollView.scrollIndicatorInsets = contentInsets
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeTextField
         {
-            Btn_Age.isSelected = false
-        }
-        else
-        {
-            Btn_Age.isSelected = true
+            if (!aRect.contains(activeField.frame.origin))
+            {
+                self.ScrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
         }
     }
-   
-    @IBAction func Btn_IAgreeClick(_ sender: UIButton)
+    
+    // when keyboard hide reduce height of scroll view
+    func keyboardWillBeHidden(notification: NSNotification){
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0,0.0, 0.0)
+        self.ScrollView.contentInset = contentInsets
+        self.ScrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+    }
+    
+    //set textfield delegate
+    func textDelegate()
     {
-        guard let thisCountry = Country(rawValue: txt_Country.text!)
-            else { return }
-        
+        self.txt_PhoneNumber.delegate = self
+        self.txt_FirstName.delegate = self
+        self.txt_LastName.delegate = self
+        self.txt_City.delegate = self
+        self.txt_State.delegate = self
+        self.txt_Country.delegate = self
+        self.txt_Email.delegate = self
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    @IBAction func Btn_AgeCick(_ sender: UIButton){
+        Btn_Age.isSelected = true
+    }
+   
+    @IBAction func Btn_IAgreeClick(_ sender: UIButton){
+        if Btn_Age.isSelected == true {
+            txtvalid()
+        }
+        else{
+            let alert = UIAlertController(title: "Alert", message: "Only volunteers over the age of 13 can sign up for our volunteer services.", preferredStyle: UIAlertControllerStyle.alert)
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func AddData(){
         guard let user = Auth.auth().currentUser else{return}
         Btn_IAgree.isSelected = true
         let users = ["cases": "false",
@@ -89,32 +147,33 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
                      "myStory": "",
                      "firstName": txt_FirstName.text! as String,
                      "lastName": txt_LastName.text! as String,
-                     "country": thisCountry.code,
+                     "country": txt_Country.text! as String,
                      "city": txt_City.text! as String,
                      "state": txt_State.text! as String,
                      "email": "",
                      "phone": "",
-                     "groups": ["volunteer" :""] as [String: Any],
+                     "groups": ["volunteer": ""],
                      "privacyPolicy": somedate,
                      "profileComplete": "true",
-                   /*  "profilePhoto" : ,*/
                      "shareEmail": "false",
                      "sharePhone": "false",
-                     "positions":["other": "true","otherNote": "Development"] as [String: Any],
+                     "positions": ["other": "true",
+                                   "otherNote": "Development"],
                      "termsConditions": somedate,
                      "uid": user.uid as String
             ] as [String : Any]
-        ref.child("users").child(user.uid).setValue(users){ error, _ in
-        //  If private write unsuccessful, remove case data and return
-        guard error == nil else {
-            print(error!.localizedDescription)
-            return
-        }
-        }
         
         let info = ["email": txt_Email.text! as String,
-                    "phone": txt_PhoneNumber.text! as String] as [String : Any]
+                    "phone": txt_PhoneNumber.text! as String
+        ]
         
+        ref.child("users").child(user.uid).setValue(users){ error, _ in
+            //  If private write unsuccessful, remove case data and return
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+        }
         ref.child("usersPrivate").child(user.uid).setValue(info){ error, _ in
             //  If private write unsuccessful, remove case data and return
             guard error == nil else {
@@ -122,18 +181,28 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
                 return
             }
         }
-       
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        txt_PhoneNumber.resignFirstResponder()
-        
+        if(textField == txt_FirstName){
+            txt_LastName.becomeFirstResponder()
+        } else if(textField == txt_LastName){
+            txt_Country.becomeFirstResponder()
+        } else if(textField == txt_Country){
+            txt_City.becomeFirstResponder()
+        } else if(textField == txt_City){
+            txt_State.becomeFirstResponder()
+        } else if(textField == txt_State){
+            txt_Email.becomeFirstResponder()
+        } else if(textField == txt_Email){
+            txt_PhoneNumber.becomeFirstResponder()
+        } else if(textField == txt_PhoneNumber){
+            txt_PhoneNumber.resignFirstResponder()
+        }
         return true
     }
     
@@ -141,8 +210,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
         switch pickerView {
         case pickerCurrentCountry:
             return Country.all.count + 1
-        case pickerCurrentState:
-            return State.all.count + 1
         default:
             return 0
         }
@@ -157,9 +224,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
         case pickerCurrentCountry:
             guard row != 0 else { return "--"}
             return Country.all[row - 1].rawValue
-        case pickerCurrentState:
-            guard row != 0 else { return "--" }
-            return State.all[row - 1].rawValue
         default:
             return ""
         }
@@ -170,14 +234,98 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDat
         case pickerCurrentCountry:
             let text = row == 0 ? "" : Country.all[row - 1].rawValue
             txt_Country.text = text
-            txt_State.inputView = text == Country.UnitedStates.rawValue ? pickerCurrentState : keyboardCurrentState
-        case pickerCurrentState:
-            let text = row == 0 ? "" : State.all[row - 1].rawValue
-            (pickerView == pickerCurrentState ? txt_State : txt_State).text = text
         default:
             return
         }
     }
+    
+    //Email Validation
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: txt_Email.text)
+    }
+    
+    
+    //Phone Validation
+    func isValidPhone(testStr:String) -> Bool {
+        if txt_Country.text == "United States"
+        {
+            let numberRegEx = "[0-9]{3}+[-]+[0-9]{3}+[-]+[0-9]{4}"
+            let numberTest = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
+            return numberTest.evaluate(with: txt_PhoneNumber.text)
 
+        }
+        else
+        {
+            let numberRegEx = "[0-9]{10}"
+            let numberTest = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
+            return numberTest.evaluate(with: txt_PhoneNumber.text)
 
+        }
+    
+    }
+    
+    
+    //checking textfields are valid not
+    func txtvalid(){
+        if isValidEmail(testStr: txt_Email.text!) != true{
+            let alert = UIAlertController(title: "Alert", message: "Enter valid Email.", preferredStyle: UIAlertControllerStyle.alert)
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+             self.present(alert, animated: true, completion: nil)
+        }
+        else if isValidPhone(testStr: txt_PhoneNumber.text!) != true{
+            if txt_Country.text == "United States"
+            {
+                let alert = UIAlertController(title: "Alert", message: "Example,Phone number : 111-222-3333", preferredStyle: UIAlertControllerStyle.alert)
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
+            }
+            else{
+                let alert = UIAlertController(title: "Alert", message: "Phone number shold be 10 digit.", preferredStyle: UIAlertControllerStyle.alert)
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+
+        }
+        else if txt_FirstName.text == "" || txt_LastName.text == "" || txt_Country.text == "" || txt_State.text == "" || txt_Email.text == "" || txt_PhoneNumber.text == "" || txt_City.text == "" {
+            let alert = UIAlertController(title: "Alert", message: "Please enter all fields.", preferredStyle: UIAlertControllerStyle.alert)
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else{
+            AddData()
+        }
+    }
+    
 }
+
+extension Formatter {
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter
+    }()
+}
+extension Date {
+    var iso8601: String {
+        return Formatter.iso8601.string(from: self)
+    }
+}
+
+extension String {
+    var dateFromISO8601: Date? {
+        return Formatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
+    }
+}
+
+

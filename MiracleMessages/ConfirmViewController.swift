@@ -150,7 +150,6 @@ class ConfirmViewController: UIViewController, NVActivityIndicatorViewable {
         } catch {
             self.RemoveActivityIndicator()
         }
-
     }
     
     func showAlertView(){
