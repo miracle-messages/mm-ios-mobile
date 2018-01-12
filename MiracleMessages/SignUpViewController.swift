@@ -1,3 +1,4 @@
+
 //
 //  SignUpViewController.swift
 //  MiracleMessages
@@ -13,7 +14,6 @@ import FirebaseDatabase
 class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate{
     
     @IBOutlet weak var ScrollView: UIScrollView!
-    
     @IBOutlet weak var Img_Profile: UIImageView!
     @IBOutlet weak var view_iagree: UIView!
     @IBOutlet weak var txt_FirstName: UITextField!
@@ -25,20 +25,29 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
     @IBOutlet weak var txt_PhoneNumber: UITextField!
     @IBOutlet weak var Btn_Age: UIButton!
     @IBOutlet weak var Btn_IAgree: UIButton!
-    var somedate = String()
     @IBOutlet weak var activeTextField: UITextField?
+
+    
+    @IBOutlet weak var lbl_msg: UILabel!
+    var somedate = String()
+    var profilephoto = String()
+    var temp = String()
+    var userPhoto = String()
     
     let pickerCurrentCountry = UIPickerView()
-
+    
     var ref: DatabaseReference!
-
+    
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        let Profilepic = Propic.value(forKey: "profile")
-        let url = URL(string: resultNSString as String)
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        guard let user = Auth.auth().currentUser else {return}
+        let Profilepic = user.photoURL
+        let data = try? Data(contentsOf: Profilepic!)
+        let profilephoto = String(describing:Profilepic)
         Img_Profile.image = UIImage(data: data!)
+        let temp = profilephoto.dropFirst(9)
+        let temp1 = temp.dropLast(1)
+        userPhoto = String(temp1)
         
         //Hide keybord when user click on view
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -47,14 +56,14 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
         // Create iso string
         let stringFromDate = Date().iso8601    // "2017-03-22T13:22:13.933Z"
         somedate = String(describing:stringFromDate)
-
+        
         // Current location
         pickerCurrentCountry.dataSource = self
         pickerCurrentCountry.delegate = self
         txt_Country.inputView = pickerCurrentCountry
-                
+        
         ref = Database.database().reference()
-       // self.txt_PhoneNumber.delegate = self
+        // self.txt_PhoneNumber.delegate = self
         Img_Profile.layer.cornerRadius = 40
         view_iagree.layer.borderWidth = 1
         view_iagree.layer.borderColor = UIColor.black.cgColor
@@ -68,6 +77,16 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
         self.setNotificationKeyboard()
     }
     
+    @IBAction func End_Editing(_ sender: UITextField) {
+        let country = txt_Country.text
+        if country == "United States"{
+            lbl_msg.text = "###-###-####"
+        }
+        else{
+            lbl_msg.text = "Use your country code and your number without seperators or symbols"
+        }
+    }
+
     // Notification when keyboard show
     func setNotificationKeyboard ()  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: .UIKeyboardWillShow, object: nil)
@@ -125,7 +144,7 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
     @IBAction func Btn_AgeCick(_ sender: UIButton){
         Btn_Age.isSelected = true
     }
-   
+    
     @IBAction func Btn_IAgreeClick(_ sender: UIButton){
         if Btn_Age.isSelected == true {
             txtvalid()
@@ -150,6 +169,7 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
                      "country": txt_Country.text! as String,
                      "city": txt_City.text! as String,
                      "state": txt_State.text! as String,
+                     "profilePhoto": userPhoto,
                      "email": "",
                      "phone": "",
                      "groups": ["volunteer": ""],
@@ -181,6 +201,9 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
                 return
             }
         }
+        
+        let nav = self.storyboard?.instantiateViewController(withIdentifier: "PermissionViewController")as! PermissionViewController
+        navigationController?.pushViewController(nav, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -201,7 +224,7 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
         } else if(textField == txt_Email){
             txt_PhoneNumber.becomeFirstResponder()
         } else if(textField == txt_PhoneNumber){
-            txt_PhoneNumber.resignFirstResponder()
+            txt_Email.resignFirstResponder()
         }
         return true
     }
@@ -241,7 +264,6 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
     
     //Email Validation
     func isValidEmail(testStr:String) -> Bool {
-        // print("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: txt_Email.text)
@@ -255,16 +277,13 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
             let numberRegEx = "[0-9]{3}+[-]+[0-9]{3}+[-]+[0-9]{4}"
             let numberTest = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
             return numberTest.evaluate(with: txt_PhoneNumber.text)
-
         }
         else
         {
             let numberRegEx = "[0-9]{10}"
             let numberTest = NSPredicate(format:"SELF MATCHES %@", numberRegEx)
             return numberTest.evaluate(with: txt_PhoneNumber.text)
-
         }
-    
     }
     
     
@@ -274,7 +293,7 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
             let alert = UIAlertController(title: "Alert", message: "Enter valid Email.", preferredStyle: UIAlertControllerStyle.alert)
             // add an action (button)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-             self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
         else if isValidPhone(testStr: txt_PhoneNumber.text!) != true{
             if txt_Country.text == "United States"
@@ -283,7 +302,6 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-
             }
             else{
                 let alert = UIAlertController(title: "Alert", message: "Phone number shold be 10 digit.", preferredStyle: UIAlertControllerStyle.alert)
@@ -291,7 +309,6 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-
         }
         else if txt_FirstName.text == "" || txt_LastName.text == "" || txt_Country.text == "" || txt_State.text == "" || txt_Email.text == "" || txt_PhoneNumber.text == "" || txt_City.text == "" {
             let alert = UIAlertController(title: "Alert", message: "Please enter all fields.", preferredStyle: UIAlertControllerStyle.alert)
@@ -303,7 +320,6 @@ class SignUpViewController: UIViewController,UIPickerViewDataSource, UIPickerVie
             AddData()
         }
     }
-    
 }
 
 extension Formatter {

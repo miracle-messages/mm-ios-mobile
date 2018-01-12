@@ -36,21 +36,21 @@ struct VolunteerProfile {
         self.email = email
         self.phone = phone
         self.location = location
+       
     }
     
     static func googleProfileCreated(with block: @escaping (Bool) -> Swift.Void) {
         guard let user = Auth.auth().currentUser else {return}
-        print(user.photoURL)
         let profile = user.photoURL
+        Propic.set(profile, forKey: "profile")
         ref = Database.database().reference()
         ref.child(users).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             print(snapshot)
+            let defaults = UserDefaults.standard
             Logger.log("User dictionary \(String(describing: value))")
             let name = value?.object(forKey: "firstName")
-            let defaults = UserDefaults.standard
             defaults.set(name, forKey: "name")
-            Propic.set(profile, forKey: "profile")
             defaults.synchronize()
             
             // Initialize the user for crashlytics
@@ -67,6 +67,7 @@ struct VolunteerProfile {
         defaults.set(email, forKey: "email")
         defaults.set(phone, forKey: "phone")
         defaults.set(location, forKey: "location")
+
         defaults.synchronize()
     }
 }
