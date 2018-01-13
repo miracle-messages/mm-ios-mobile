@@ -41,7 +41,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You'll need a Google account before creating your profile" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrg-lb-KVM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You'll need a Google account before creating your profile" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrg-lb-KVM">
                                 <rect key="frame" x="16" y="172" width="343" height="114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -57,8 +57,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Akv-6c-8sh" customClass="GIDSignInButton">
-                                <rect key="frame" x="16" y="298" width="343" height="71"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Akv-6c-8sh" customClass="GIDSignInButton">
+                                <rect key="frame" x="16" y="309" width="343" height="71"/>
                                 <color key="backgroundColor" red="1" green="0.2492442513" blue="0.2013350941" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="Qq4-er-ZiP"/>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vrg-lb-KVM" firstAttribute="top" secondItem="H0n-9f-7d3" secondAttribute="bottom" constant="44" id="1JM-gn-Gk7"/>
-                            <constraint firstItem="Akv-6c-8sh" firstAttribute="top" secondItem="Vrg-lb-KVM" secondAttribute="bottom" constant="12" id="Ovx-3y-Ieu"/>
+                            <constraint firstItem="Akv-6c-8sh" firstAttribute="top" secondItem="Vrg-lb-KVM" secondAttribute="bottom" constant="23" id="Ovx-3y-Ieu"/>
                             <constraint firstItem="Akv-6c-8sh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SYy-6w-Zfo"/>
                             <constraint firstItem="Vrg-lb-KVM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ufu-Ym-cpO"/>
                             <constraint firstItem="H0n-9f-7d3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="17" id="WgB-Qt-fpk"/>
@@ -76,7 +76,13 @@
                             <constraint firstItem="Akv-6c-8sh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="cAF-9a-VIb"/>
                             <constraint firstItem="H0n-9f-7d3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mY7-Me-sp4"/>
                             <constraint firstItem="Akv-6c-8sh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pVu-tn-PHL"/>
+                            <constraint firstItem="Akv-6c-8sh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ykJ-eo-9yd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="SYy-6w-Zfo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ben-bi-8Lm"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -4060,58 +4066,102 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-Pk-Myn">
-                                <rect key="frame" x="25" y="86" width="325" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon_black" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-FG-8K8">
+                                <rect key="frame" x="167" y="43" width="40" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="aWH-5f-8Sq"/>
+                                    <constraint firstAttribute="height" constant="35" id="7TB-5H-X5L"/>
+                                    <constraint firstAttribute="width" constant="40" id="RJl-dE-9U3"/>
                                 </constraints>
-                                <string key="text">In order to get started the app needs permission to access your camera, microphone, and camera roll. Use the buttons below to enable access before proceeding.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuA-Lv-Oat">
-                                <rect key="frame" x="25" y="247" width="325" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sw6-QM-18u">
+                                <rect key="frame" x="0.0" y="96" width="375" height="476"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT0-Fg-55Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="476"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-Pk-Myn">
+                                                <rect key="frame" x="16" y="10" width="343" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="D5W-uu-gbh"/>
+                                                </constraints>
+                                                <string key="text">In order to get started the app needs permission to access your camera, microphone, and camera roll. Use the buttons below to enable access before proceeding.</string>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuA-Lv-Oat">
+                                                <rect key="frame" x="33.5" y="150" width="308" height="43"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="43" id="JTb-cW-njZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title="Allow camera access">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnCameraAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="JIc-cN-Oki"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-Dz-ems">
+                                                <rect key="frame" x="33.5" y="220" width="308" height="43"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="43" id="rTT-lY-xab"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title="Allow microphone access">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnMicrophoneAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="ks6-fj-4ju"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-KQ-HdD">
+                                                <rect key="frame" x="33.5" y="290" width="308" height="43"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="43" id="IYY-dM-PZb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                <state key="normal" title="Allow camera roll access">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnGalleryAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="xCV-cO-SUQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="X7z-Dz-ems" firstAttribute="leading" secondItem="bT0-Fg-55Q" secondAttribute="leading" constant="33.5" id="2SO-KJ-Gwo"/>
+                                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="top" secondItem="bT0-Fg-55Q" secondAttribute="top" constant="10" id="DLH-GM-Rpz"/>
+                                            <constraint firstAttribute="bottom" secondItem="m0J-KQ-HdD" secondAttribute="bottom" constant="143" id="Etb-5S-hKz"/>
+                                            <constraint firstItem="X7z-Dz-ems" firstAttribute="top" secondItem="HuA-Lv-Oat" secondAttribute="bottom" constant="27" id="Hx7-fD-Okk"/>
+                                            <constraint firstAttribute="trailing" secondItem="X7z-Dz-ems" secondAttribute="trailing" constant="33.5" id="IBo-G3-i5r"/>
+                                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="top" secondItem="X7z-Dz-ems" secondAttribute="bottom" constant="27" id="IxK-fK-Ihy"/>
+                                            <constraint firstAttribute="trailing" secondItem="m0J-KQ-HdD" secondAttribute="trailing" constant="33.5" id="Phj-0z-iYI"/>
+                                            <constraint firstAttribute="trailing" secondItem="Stu-Pk-Myn" secondAttribute="trailing" constant="16" id="cya-sY-qAR"/>
+                                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="top" secondItem="Stu-Pk-Myn" secondAttribute="bottom" constant="12" id="fAD-5U-VNQ"/>
+                                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="leading" secondItem="bT0-Fg-55Q" secondAttribute="leading" constant="33.5" id="gtI-8S-OUk"/>
+                                            <constraint firstAttribute="trailing" secondItem="HuA-Lv-Oat" secondAttribute="trailing" constant="33.5" id="mSs-RF-7bJ"/>
+                                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="leading" secondItem="bT0-Fg-55Q" secondAttribute="leading" constant="16" id="tJn-SK-mOV"/>
+                                            <constraint firstAttribute="width" constant="375" id="tKJ-Dv-YNn"/>
+                                            <constraint firstAttribute="height" constant="476" id="ukP-7p-v2v"/>
+                                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="leading" secondItem="bT0-Fg-55Q" secondAttribute="leading" constant="33.5" id="wxv-t3-sNA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="kqc-YC-dlM"/>
+                                    <constraint firstItem="bT0-Fg-55Q" firstAttribute="top" secondItem="sw6-QM-18u" secondAttribute="top" id="7ve-tv-Ria"/>
+                                    <constraint firstItem="bT0-Fg-55Q" firstAttribute="centerX" secondItem="sw6-QM-18u" secondAttribute="centerX" id="BYc-a0-7Px"/>
+                                    <constraint firstItem="bT0-Fg-55Q" firstAttribute="leading" secondItem="sw6-QM-18u" secondAttribute="leading" id="JQL-NX-T6o"/>
+                                    <constraint firstAttribute="bottom" secondItem="bT0-Fg-55Q" secondAttribute="bottom" id="Ucl-0g-7sq"/>
+                                    <constraint firstAttribute="width" constant="375" id="dHW-G0-6ZL"/>
+                                    <constraint firstAttribute="height" constant="476" id="epr-ou-6dG"/>
+                                    <constraint firstAttribute="trailing" secondItem="bT0-Fg-55Q" secondAttribute="trailing" id="p4D-nf-xCS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="Allow camera access">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnCameraAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="JIc-cN-Oki"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-Dz-ems">
-                                <rect key="frame" x="25" y="306" width="325" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="Hql-7F-1Jf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="Allow microphone access">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnMicrophoneAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="ks6-fj-4ju"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0J-KQ-HdD">
-                                <rect key="frame" x="25" y="367" width="325" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="tDC-06-lF5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="Allow camera roll access">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnGalleryAccessClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="xCV-cO-SUQ"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsZ-8h-RiW">
                                 <rect key="frame" x="13" y="590" width="349" height="57"/>
                                 <constraints>
@@ -4128,34 +4178,19 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <action selector="btnNextClicked:" destination="ROt-iW-CMD" eventType="touchUpInside" id="VW5-2J-V3J"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mm_icon_black" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-FG-8K8">
-                                <rect key="frame" x="167" y="43" width="40" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="7TB-5H-X5L"/>
-                                    <constraint firstAttribute="width" constant="40" id="RJl-dE-9U3"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Stu-Pk-Myn" secondAttribute="trailing" constant="25" id="26E-18-dwb"/>
+                            <constraint firstItem="sw6-QM-18u" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="18" id="31d-R4-dkZ"/>
                             <constraint firstItem="CGl-FG-8K8" firstAttribute="top" secondItem="hll-m5-bKA" secondAttribute="bottom" constant="23" id="9tI-eX-6oZ"/>
-                            <constraint firstAttribute="trailing" secondItem="m0J-KQ-HdD" secondAttribute="trailing" constant="25" id="A9Q-KZ-5NZ"/>
-                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="Ao7-r6-omf"/>
-                            <constraint firstItem="X7z-Dz-ems" firstAttribute="top" secondItem="HuA-Lv-Oat" secondAttribute="bottom" constant="16" id="BbY-mt-iJB"/>
-                            <constraint firstAttribute="trailing" secondItem="X7z-Dz-ems" secondAttribute="trailing" constant="25" id="D0c-RP-Sy9"/>
-                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="top" secondItem="Stu-Pk-Myn" secondAttribute="bottom" constant="33" id="JFU-up-Pjs"/>
+                            <constraint firstItem="CGl-FG-8K8" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="HNr-jk-bja"/>
                             <constraint firstItem="ang-ia-fPS" firstAttribute="top" secondItem="rsZ-8h-RiW" secondAttribute="bottom" constant="20" id="JYG-7O-Gf7"/>
-                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="top" secondItem="X7z-Dz-ems" secondAttribute="bottom" constant="18" id="LIC-zk-lRK"/>
                             <constraint firstAttribute="trailing" secondItem="rsZ-8h-RiW" secondAttribute="trailing" constant="13" id="NI8-j3-Ckx"/>
-                            <constraint firstItem="X7z-Dz-ems" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="Sjg-jV-l5J"/>
+                            <constraint firstItem="sw6-QM-18u" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" id="SNo-Sd-OWU"/>
                             <constraint firstItem="rsZ-8h-RiW" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="13" id="THz-g0-xQp"/>
-                            <constraint firstItem="CGl-FG-8K8" firstAttribute="centerX" secondItem="Stu-Pk-Myn" secondAttribute="centerX" id="Yhj-zO-fUp"/>
-                            <constraint firstItem="HuA-Lv-Oat" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="kj5-eY-KyD"/>
-                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="8" id="nZc-Vd-ZmX"/>
-                            <constraint firstAttribute="trailing" secondItem="HuA-Lv-Oat" secondAttribute="trailing" constant="25" id="rg0-hc-fYQ"/>
-                            <constraint firstItem="Stu-Pk-Myn" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="uE2-9W-dWX"/>
-                            <constraint firstItem="m0J-KQ-HdD" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="25" id="zia-7C-lwN"/>
+                            <constraint firstAttribute="trailing" secondItem="sw6-QM-18u" secondAttribute="trailing" id="V1o-Aw-DDR"/>
+                            <constraint firstItem="sw6-QM-18u" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="g8a-4Q-UbV"/>
+                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="top" secondItem="sw6-QM-18u" secondAttribute="bottom" constant="18" id="q6z-4N-aco"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
