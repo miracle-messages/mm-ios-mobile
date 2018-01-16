@@ -17,6 +17,8 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
     @IBOutlet weak var mLooseTouchReasonText: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mHomelessReason: UITextField!
+    @IBOutlet weak var activeTextField: UITextField?
+
     
     let currentCase: Case = Case.current
     var ref: DatabaseReference!
@@ -31,6 +33,9 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
         mHomelessReason.placeholder = "Answer (optional)"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(btnNextTapped(sender:)))
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -53,19 +58,36 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
 
     func keyboardWillShowNotification(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
             var aRect = self.view.frame
             aRect.size.height -= keyboardSize.size.height
+            if let activeField = self.activeTextField
+            {
+                if (!aRect.contains(activeField.frame.origin))
+                {
+                    self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+                }
+            }
         }
+    }
+    
+    override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     func keyboardWillHideNotification(notification: NSNotification) {
-        let contentInsets = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+
     
     func btnNextTapped(sender: UIBarButtonItem) {
         self.updateBackgroundInfo(isTopNext:true)
@@ -124,6 +146,15 @@ class BackgroundInfoOptionalViewController: UIViewController, NVActivityIndicato
                 self.performSegue(withIdentifier: "backgroundInfoOptional", sender: nil)
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if(textField == mLooseTouchReasonText){
+            mHomelessReason.becomeFirstResponder()
+        } else if(textField == mHomelessReason){
+            mHomelessReason.resignFirstResponder()
+        }
+        return true
     }
      
     func showAlertView(){
