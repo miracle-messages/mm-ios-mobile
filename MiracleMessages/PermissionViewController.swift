@@ -26,7 +26,7 @@ class PermissionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         self.btnNext.isHidden = true
+         self.btnNext.isHidden = false
          self.checkPermission()
     }
     

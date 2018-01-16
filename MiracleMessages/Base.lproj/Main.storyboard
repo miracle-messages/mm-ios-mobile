@@ -407,17 +407,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
-                                <rect key="frame" x="16" y="142" width="343" height="444"/>
-                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
-a.) your video may be made public and shared widely;
-b.) we don't know how your loved one(s) will respond, if at all; and
-c.) we don't know if we'll be able to find your loved one(s).
-                                </string>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-5d-4ze">
                                 <rect key="frame" x="13" y="594" width="349" height="57"/>
                                 <constraints>
@@ -432,6 +421,17 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <segue destination="s3l-P6-vyx" kind="show" id="Bkd-ed-pGD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
+                                <rect key="frame" x="16" y="142" width="343" height="444"/>
+                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
+a.) your video may be made public and shared widely;
+b.) we don't know how your loved one(s) will respond, if at all; and
+c.) we don't know if we'll be able to find your loved one(s).
+                                </string>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -468,21 +468,17 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <viewControllerLayoutGuide type="bottom" id="u7f-m9-vaa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="v7l-lT-L7d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-a2-18h">
-                                <rect key="frame" x="16" y="50" width="343" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="WRV-x9-22n"/>
-                                    <constraint firstAttribute="height" constant="80" id="nx0-hA-OXR"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-a2-18h">
+                                <rect key="frame" x="16" y="50" width="343" height="63"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
-                                <rect key="frame" x="16" y="130" width="343" height="20"/>
+                                <rect key="frame" x="16" y="140" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="EEc-AO-auh"/>
                                 </constraints>
@@ -491,15 +487,15 @@ c.) we don't know if we'll be able to find your loved one(s).
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-Fe-56t">
-                                <rect key="frame" x="0.0" y="158" width="375" height="492"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="529"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="492"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-3N-oCA">
-                                                <rect key="frame" x="16" y="10" width="343" height="183"/>
+                                                <rect key="frame" x="16" y="3" width="343" height="239"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="183" id="9U2-In-AUv"/>
+                                                    <constraint firstAttribute="height" constant="239" id="9U2-In-AUv"/>
                                                 </constraints>
                                                 <string key="text">Without expectation of compensation or other remuneration, now or in the future, I hereby give my consent to Miracle Messages, its affiliates, agents, voluenteers, partners, and sponsors, to use my image and likeness and/or any interview statements and audio/video recordings from me in publications, advertising, and other media activities, online and/or offline.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -508,18 +504,18 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                 <string key="userLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem neque, pulvinar nec facilisis ac, consectetur non eros. Maecenas accumsan sit amet magna ac elementum. Etiam at laoreet metus. Donec placerat, turpis non rhoncus lobortis, felis mauris convallis ligula, quis ornare leo arcu quis arcu. Nulla lacus risus, volutpat quis luctus sit amet, convallis sit amet mi. Proin turpis elit, dapibus vel condimentum et, mattis in elit. In non convallis arcu. Praesent tincidunt iaculis dolor, suscipit blandit ligula cursus at. Morbi quis mauris tincidunt, venenatis sapien sit amet, tempus tortor.  Morbi quis consequat ipsum. Nam sit amet ullamcorper leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus posuere nibh, sit amet cursus eros pharetra non. Quisque bibendum leo pellentesque lobortis vestibulum. Maecenas porta posuere ligula, ac suscipit ipsum sodales id. Integer consequat nisl tristique, auctor mauris eget, consequat enim. Integer laoreet tortor nec efficitur ornare. Mauris sit amet ipsum iaculis, rutrum quam a, dapibus nisl. Aenean vitae sollicitudin diam, condimentum sollicitudin sapien.  Vestibulum turpis leo, porta ut mollis quis, elementum ut odio. Mauris commodo risus a lectus posuere, non porttitor orci consectetur. Nunc ultrices, orci id rutrum tincidunt, velit justo aliquet risus, ac blandit velit lacus ac justo. Nulla varius tempor varius. Nulla accumsan orci nec quam ornare, in euismod magna fermentum. Cras vel consequat arcu. Etiam lobortis justo scelerisque ornare tincidunt. In condimentum, turpis nec rhoncus eleifend, enim orci placerat sapien, eu dapibus felis justo et ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum iaculis sem sed congue varius. Vivamus in congue neque, eu tempor ex.  Morbi rhoncus nulla eu finibus posuere. Ut efficitur tempor libero sit amet eleifend. Donec at tortor arcu. Donec gravida tortor eu sem fermentum facilisis. Vivamus sodales fringilla velit. Maecenas cursus tortor sit amet massa fringilla molestie. Ut posuere magna justo, eget pulvinar mi facilisis at.  Donec semper sapien ac cursus feugiat. Donec vulputate viverra odio, vel malesuada tortor placerat a. Vestibulum vel enim lobortis, vulputate elit id, bibendum nibh. Integer hendrerit, dolor vitae vehicula finibus, lectus ligula pretium lectus, non tincidunt orci tellus vel libero. Aliquam gravida ac justo quis bibendum. Quisque nisi felis, pellentesque id justo quis, porttitor suscipit turpis. Quisque eu lacinia nibh. Aenean quis quam luctus, cursus enim sed, accumsan sem. In molestie mattis ligula ac luctus. Phasellus cursus ultrices sodales.</string>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This consent includes, but is not limited to:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-eU-klR">
-                                                <rect key="frame" x="16" y="215" width="343" height="21"/>
+                                                <rect key="frame" x="16" y="240" width="343" height="56"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="DDF-EN-KhZ"/>
+                                                    <constraint firstAttribute="height" constant="56" id="DDF-EN-KhZ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCz-6U-Ra9">
-                                                <rect key="frame" x="16" y="255" width="351" height="69"/>
+                                                <rect key="frame" x="16" y="295" width="351" height="90"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="69" id="DeR-Z3-Pr7"/>
+                                                    <constraint firstAttribute="height" constant="90" id="DeR-Z3-Pr7"/>
                                                 </constraints>
                                                 <string key="text">Permission to interview, film, photograph, tape, or otherwise make a video reproduction of me and/or related to Miracle Messages.</string>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
@@ -527,7 +523,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pio-G3-WuB">
-                                                <rect key="frame" x="16" y="332" width="343" height="160"/>
+                                                <rect key="frame" x="16" y="380" width="343" height="160"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="wze-du-aBT"/>
                                                 </constraints>
@@ -544,12 +540,12 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <constraint firstItem="Nje-3N-oCA" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="ILR-WJ-rC4"/>
                                             <constraint firstAttribute="trailing" secondItem="Nje-3N-oCA" secondAttribute="trailing" constant="16" id="LCj-Jz-r5n"/>
                                             <constraint firstAttribute="trailing" secondItem="Pio-G3-WuB" secondAttribute="trailing" constant="16" id="LlL-B3-CXd"/>
-                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="top" secondItem="NCz-6U-Ra9" secondAttribute="bottom" constant="8" id="NEl-El-3Od"/>
-                                            <constraint firstItem="TB5-eU-klR" firstAttribute="top" secondItem="Nje-3N-oCA" secondAttribute="bottom" constant="22" id="RYE-5I-s0S"/>
-                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="top" secondItem="TB5-eU-klR" secondAttribute="bottom" constant="19" id="Usu-2v-AmW"/>
+                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="top" secondItem="NCz-6U-Ra9" secondAttribute="bottom" constant="-5" id="NEl-El-3Od"/>
+                                            <constraint firstItem="TB5-eU-klR" firstAttribute="top" secondItem="Nje-3N-oCA" secondAttribute="bottom" constant="-2" id="RYE-5I-s0S"/>
+                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="top" secondItem="TB5-eU-klR" secondAttribute="bottom" constant="-1" id="Usu-2v-AmW"/>
                                             <constraint firstItem="Pio-G3-WuB" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="WOT-Fs-6QW"/>
                                             <constraint firstItem="NCz-6U-Ra9" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="gGc-72-asn"/>
-                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" constant="10" id="sPY-1T-ZHk"/>
+                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" constant="3" id="sPY-1T-ZHk"/>
                                             <constraint firstAttribute="bottom" secondItem="Pio-G3-WuB" secondAttribute="bottom" id="yic-Dr-MMj"/>
                                             <constraint firstAttribute="trailing" secondItem="TB5-eU-klR" secondAttribute="trailing" constant="16" id="znt-W2-wOy"/>
                                         </constraints>
@@ -559,12 +555,12 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <constraint firstItem="6jR-qY-Ejq" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="top" id="Rl9-vH-xYM"/>
                                     <constraint firstAttribute="trailing" secondItem="6jR-qY-Ejq" secondAttribute="trailing" id="Z6c-zw-HeL"/>
                                     <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerX" secondItem="55o-Fe-56t" secondAttribute="centerX" id="jOf-6X-b1K"/>
-                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" id="opJ-Ux-lT9"/>
+                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" constant="-1" id="opJ-Ux-lT9"/>
                                     <constraint firstItem="6jR-qY-Ejq" firstAttribute="leading" secondItem="55o-Fe-56t" secondAttribute="leading" id="uxo-NB-Z5L"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-cy-m5s">
-                                <rect key="frame" x="18" y="668" width="343" height="35"/>
+                                <rect key="frame" x="18" y="701" width="343" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="5pa-qA-bWT"/>
                                 </constraints>
@@ -580,17 +576,17 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <constraint firstItem="55o-Fe-56t" firstAttribute="centerX" secondItem="v7l-lT-L7d" secondAttribute="centerX" id="3TC-ki-PcC"/>
                             <constraint firstAttribute="trailing" secondItem="55o-Fe-56t" secondAttribute="trailing" id="3e3-Il-Pr3"/>
                             <constraint firstItem="55o-Fe-56t" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" id="7cl-Mx-i7r"/>
-                            <constraint firstItem="u7f-m9-vaa" firstAttribute="top" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="17" id="8ba-fp-4OD"/>
+                            <constraint firstItem="u7f-m9-vaa" firstAttribute="top" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="14" id="8ba-fp-4OD"/>
+                            <constraint firstItem="vsg-a2-18h" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="30" id="9HP-5N-Yvd"/>
                             <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="AAc-Zn-tPT"/>
-                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="top" secondItem="vsg-a2-18h" secondAttribute="bottom" id="F7D-pc-ycv"/>
-                            <constraint firstAttribute="trailing" secondItem="vsg-a2-18h" secondAttribute="trailing" constant="16" id="H0S-Bu-2AE"/>
-                            <constraint firstItem="nTK-cy-m5s" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="bottom" constant="18" id="MQu-O8-zJc"/>
+                            <constraint firstItem="nTK-cy-m5s" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="bottom" constant="4" id="MQu-O8-zJc"/>
+                            <constraint firstItem="vsg-a2-18h" firstAttribute="trailing" secondItem="v7l-lT-L7d" secondAttribute="trailingMargin" id="TIl-Sp-846"/>
                             <constraint firstItem="MZT-Vt-3I2" firstAttribute="trailing" secondItem="v7l-lT-L7d" secondAttribute="trailingMargin" id="UNp-iD-2Un"/>
-                            <constraint firstItem="vsg-a2-18h" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="W07-yD-gZB"/>
                             <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="18" id="Wwg-Th-DK7"/>
-                            <constraint firstItem="vsg-a2-18h" firstAttribute="top" secondItem="v7l-lT-L7d" secondAttribute="top" constant="50" id="eG5-eK-nsN"/>
+                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="top" secondItem="vsg-a2-18h" secondAttribute="bottom" constant="27" id="XJc-ov-HBv"/>
                             <constraint firstItem="MZT-Vt-3I2" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leadingMargin" id="fDf-G8-HPG"/>
                             <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="14" id="owu-g1-7Pd"/>
+                            <constraint firstItem="vsg-a2-18h" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leadingMargin" id="rcf-fR-oz9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -598,7 +594,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                             </mask>
                         </variation>
                     </view>
-                    <size key="freeformSize" width="375" height="720"/>
+                    <size key="freeformSize" width="375" height="750"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxt-yo-TO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4191,10 +4187,8 @@ c.) we don't know if we'll be able to find your loved one(s).
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsZ-8h-RiW">
                                 <rect key="frame" x="13" y="590" width="349" height="57"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="349" id="5da-VL-Vb1"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="349" id="8Ag-v3-WOb"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="57" id="MgB-P0-Yqf"/>
-                                    <constraint firstAttribute="height" constant="57" id="wph-N5-oPn"/>
+                                    <constraint firstAttribute="height" constant="57" id="Gdd-xa-oYW"/>
+                                    <constraint firstAttribute="width" constant="349" id="vIo-cR-ZNB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                 <state key="normal" title="Next" backgroundImage="pillBtn">
@@ -4208,15 +4202,16 @@ c.) we don't know if we'll be able to find your loved one(s).
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sw6-QM-18u" firstAttribute="top" secondItem="CGl-FG-8K8" secondAttribute="bottom" constant="18" id="31d-R4-dkZ"/>
+                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="top" secondItem="sw6-QM-18u" secondAttribute="bottom" constant="18" id="8Ht-Fw-WBB"/>
+                            <constraint firstItem="ang-ia-fPS" firstAttribute="top" secondItem="rsZ-8h-RiW" secondAttribute="bottom" constant="20" id="8eg-1B-yR4"/>
                             <constraint firstItem="CGl-FG-8K8" firstAttribute="top" secondItem="hll-m5-bKA" secondAttribute="bottom" constant="23" id="9tI-eX-6oZ"/>
                             <constraint firstItem="CGl-FG-8K8" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="HNr-jk-bja"/>
-                            <constraint firstItem="ang-ia-fPS" firstAttribute="top" secondItem="rsZ-8h-RiW" secondAttribute="bottom" constant="20" id="JYG-7O-Gf7"/>
-                            <constraint firstAttribute="trailing" secondItem="rsZ-8h-RiW" secondAttribute="trailing" constant="13" id="NI8-j3-Ckx"/>
+                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="13" id="HPl-Be-GUU"/>
+                            <constraint firstAttribute="trailing" secondItem="rsZ-8h-RiW" secondAttribute="trailing" constant="13" id="MnX-ah-b1Q"/>
+                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="ORn-sl-1Lo"/>
                             <constraint firstItem="sw6-QM-18u" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" id="SNo-Sd-OWU"/>
-                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="leading" secondItem="tdf-5V-6oE" secondAttribute="leading" constant="13" id="THz-g0-xQp"/>
                             <constraint firstAttribute="trailing" secondItem="sw6-QM-18u" secondAttribute="trailing" id="V1o-Aw-DDR"/>
                             <constraint firstItem="sw6-QM-18u" firstAttribute="centerX" secondItem="tdf-5V-6oE" secondAttribute="centerX" id="g8a-4Q-UbV"/>
-                            <constraint firstItem="rsZ-8h-RiW" firstAttribute="top" secondItem="sw6-QM-18u" secondAttribute="bottom" constant="18" id="q6z-4N-aco"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
