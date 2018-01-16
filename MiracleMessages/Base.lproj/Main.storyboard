@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dWw-pP-c7m">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -2427,7 +2427,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-Ew-3MP">
-                                                    <rect key="frame" x="8" y="8" width="359" height="198.5"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="193"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From: " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHx-d2-I6B">
                                                             <rect key="frame" x="8" y="8" width="59.5" height="27"/>
@@ -2436,13 +2436,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" text="Data" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fx-fN-uVN">
-                                                            <rect key="frame" x="8" y="43" width="343" height="147.5"/>
+                                                            <rect key="frame" x="8" y="43" width="329" height="142"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-ma-zCO">
-                                                            <rect key="frame" x="339" y="10.5" width="12" height="22"/>
+                                                            <rect key="frame" x="325" y="10.5" width="12" height="22"/>
                                                             <state key="normal" image="editBtn">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -2481,7 +2481,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVZ-d3-8ee">
-                                                    <rect key="frame" x="8" y="8" width="359" height="181.5"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="176"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Το:" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26U-eV-zhQ">
                                                             <rect key="frame" x="8" y="8" width="29" height="27"/>
@@ -2490,13 +2490,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" text="Data" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="327-ph-LUa">
-                                                            <rect key="frame" x="8" y="43" width="343" height="130.5"/>
+                                                            <rect key="frame" x="8" y="43" width="329" height="125"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPs-WS-jhm">
-                                                            <rect key="frame" x="339" y="10.5" width="12" height="22"/>
+                                                            <rect key="frame" x="325" y="10.5" width="12" height="22"/>
                                                             <state key="normal" image="editBtn">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -2535,10 +2535,10 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-rf-i8u">
-                                                    <rect key="frame" x="8" y="8" width="359" height="45.5"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Recipients yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNB-4u-1lE">
-                                                            <rect key="frame" x="8" y="8" width="166.5" height="29.5"/>
+                                                            <rect key="frame" x="8" y="8" width="166.5" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -2910,13 +2910,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Case Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIr-0Y-YrC">
-                                                    <rect key="frame" x="112" y="35" width="172" height="21"/>
+                                                    <rect key="frame" x="112" y="35" width="173" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-HH-eak">
-                                                    <rect key="frame" x="334" y="35" width="12" height="21"/>
+                                                    <rect key="frame" x="335" y="35" width="12" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="12" id="XJn-1x-jgT"/>
                                                     </constraints>
@@ -2951,7 +2951,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBj-Yo-zdF">
-                                                    <rect key="frame" x="8" y="8" width="359" height="198.5"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="193"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From: " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhM-gw-SQR">
                                                             <rect key="frame" x="8" y="8" width="59.5" height="27"/>
@@ -2960,13 +2960,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" text="Data" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcC-a8-LWL">
-                                                            <rect key="frame" x="8" y="43" width="343" height="147.5"/>
+                                                            <rect key="frame" x="8" y="43" width="329" height="142"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVZ-bX-Igs">
-                                                            <rect key="frame" x="339" y="10.5" width="12" height="22"/>
+                                                            <rect key="frame" x="325" y="10.5" width="12" height="22"/>
                                                             <state key="normal" image="editBtn">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -3005,7 +3005,7 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hog-AQ-2n0">
-                                                    <rect key="frame" x="8" y="8" width="359" height="181.5"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="176"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Το:" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-R9-0sg">
                                                             <rect key="frame" x="8" y="8" width="29" height="27"/>
@@ -3014,13 +3014,13 @@ c.) we don't know if we'll be able to find your loved one(s).
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" text="Data" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ML3-sO-vWc">
-                                                            <rect key="frame" x="8" y="43" width="343" height="130.5"/>
+                                                            <rect key="frame" x="8" y="43" width="329" height="125"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbx-I2-NPk">
-                                                            <rect key="frame" x="339" y="10.5" width="12" height="22"/>
+                                                            <rect key="frame" x="325" y="10.5" width="12" height="22"/>
                                                             <state key="normal" image="editBtn">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -3059,10 +3059,10 @@ c.) we don't know if we'll be able to find your loved one(s).
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="e6v-Eg-hp4">
-                                                    <rect key="frame" x="8" y="8" width="359" height="45.5"/>
+                                                    <rect key="frame" x="8" y="11" width="359" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Recipients yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhr-bb-sJf">
-                                                            <rect key="frame" x="8" y="8" width="166.5" height="29.5"/>
+                                                            <rect key="frame" x="8" y="8" width="166.5" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
