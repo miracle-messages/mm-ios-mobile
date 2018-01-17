@@ -820,7 +820,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_URL = "https://dev.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GE8VHP39HG;
 				FIREBASE = "GoogleService-Info_dev";
@@ -830,8 +830,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = "Dev MiracleMsg";
-				PROVISIONING_PROFILE = "b436fd3b-d92b-4aba-80da-2eb985b716d7";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "25bdbe4e-4873-41d7-8c49-af6344191029";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dist;
 				REGISTER_URL = "https://dev.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -848,7 +848,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GE8VHP39HG;
 				FIREBASE = "GoogleService-Info";
@@ -858,8 +858,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "b436fd3b-d92b-4aba-80da-2eb985b716d7";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "25bdbe4e-4873-41d7-8c49-af6344191029";
+				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dist;
 				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
