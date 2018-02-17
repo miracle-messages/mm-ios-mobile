@@ -392,17 +392,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s70-JI-P1t">
-                                <rect key="frame" x="16" y="186" width="343" height="400"/>
-                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
-a.) your video may be made public and shared widely;
-b.) we don't know how your loved one(s) will respond, if at all; and
-c.) we don't know if we'll be able to find your loved one(s).
-                                </string>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-5d-4ze">
                                 <rect key="frame" x="13" y="594" width="349" height="57"/>
                                 <constraints>
@@ -417,18 +406,44 @@ c.) we don't know if we'll be able to find your loved one(s).
                                     <segue destination="s3l-P6-vyx" kind="show" id="Bkd-ed-pGD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlG-bA-9Sc">
+                                <rect key="frame" x="13" y="174" width="346" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A. We don’t know how your loved one(s) will respond, if at all;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-hj-GO5">
+                                <rect key="frame" x="13" y="290" width="349" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B. We don’t know if we’ll be able to find your loved one(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COt-i9-hva">
+                                <rect key="frame" x="13" y="347" width="346" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H2-6c-U28">
+                                <rect key="frame" x="12" y="399" width="349" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fkh-z5-N80" firstAttribute="top" secondItem="GUQ-5d-4ze" secondAttribute="bottom" constant="16" id="2WM-Yr-NdX"/>
-                            <constraint firstAttribute="trailing" secondItem="s70-JI-P1t" secondAttribute="trailing" constant="16" id="7ud-1i-Vjt"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="FDZ-dT-bTc"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="leading" secondItem="GS4-Ok-gU7" secondAttribute="leading" id="GLU-rt-8p3"/>
-                            <constraint firstItem="GUQ-5d-4ze" firstAttribute="top" secondItem="s70-JI-P1t" secondAttribute="bottom" constant="8" id="JTK-6G-4QE"/>
-                            <constraint firstItem="s70-JI-P1t" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="16" id="b9l-Ym-dO0"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="13" id="cRu-aa-nAK"/>
                             <constraint firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" constant="18" id="fNg-72-N0a"/>
-                            <constraint firstItem="s70-JI-P1t" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="20" id="hKx-kR-gUV"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="top" secondItem="GS4-Ok-gU7" secondAttribute="bottom" id="hMp-p2-0hg"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" id="jym-0c-Yrx"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="top" secondItem="GZk-7A-xuk" secondAttribute="bottom" constant="37" id="ppQ-Yi-wxR"/>
