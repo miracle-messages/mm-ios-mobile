@@ -406,32 +406,28 @@
                                     <segue destination="s3l-P6-vyx" kind="show" id="Bkd-ed-pGD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlG-bA-9Sc">
-                                <rect key="frame" x="13" y="174" width="346" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlG-bA-9Sc">
+                                <rect key="frame" x="18" y="174" width="339" height="101.5"/>
                                 <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A. We don’t know how your loved one(s) will respond, if at all;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-hj-GO5">
-                                <rect key="frame" x="13" y="290" width="349" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A. We don’t know how your loved one(s) will respond, if at all;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-hj-GO5">
+                                <rect key="frame" x="18" y="283.5" width="339" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B. We don’t know if we’ll be able to find your loved one(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COt-i9-hva">
-                                <rect key="frame" x="13" y="347" width="346" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B. We don’t know if we’ll be able to find your loved one(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COt-i9-hva">
+                                <rect key="frame" x="18" y="332.5" width="339" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H2-6c-U28">
-                                <rect key="frame" x="12" y="399" width="349" height="126"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H2-6c-U28">
+                                <rect key="frame" x="18" y="381.5" width="339" height="101.5"/>
+                                <string key="text">C. The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -439,15 +435,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2H2-6c-U28" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="0f6-Kh-DtP"/>
                             <constraint firstItem="fkh-z5-N80" firstAttribute="top" secondItem="GUQ-5d-4ze" secondAttribute="bottom" constant="16" id="2WM-Yr-NdX"/>
+                            <constraint firstAttribute="trailing" secondItem="2H2-6c-U28" secondAttribute="trailing" constant="18" id="96Y-6Q-SPs"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="FDZ-dT-bTc"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="leading" secondItem="GS4-Ok-gU7" secondAttribute="leading" id="GLU-rt-8p3"/>
+                            <constraint firstAttribute="trailing" secondItem="0Sk-hj-GO5" secondAttribute="trailing" constant="18" id="GRo-vp-gXV"/>
+                            <constraint firstAttribute="trailing" secondItem="COt-i9-hva" secondAttribute="trailing" constant="18" id="HOw-0u-db4"/>
+                            <constraint firstItem="COt-i9-hva" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="KKp-8h-E0p"/>
+                            <constraint firstItem="2H2-6c-U28" firstAttribute="top" secondItem="COt-i9-hva" secondAttribute="bottom" constant="8" id="WFs-oK-tSJ"/>
+                            <constraint firstAttribute="trailing" secondItem="JlG-bA-9Sc" secondAttribute="trailing" constant="18" id="XcQ-K6-aAZ"/>
+                            <constraint firstItem="0Sk-hj-GO5" firstAttribute="top" secondItem="JlG-bA-9Sc" secondAttribute="bottom" constant="8" id="c2A-cB-87W"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="13" id="cRu-aa-nAK"/>
                             <constraint firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" constant="18" id="fNg-72-N0a"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="top" secondItem="GS4-Ok-gU7" secondAttribute="bottom" id="hMp-p2-0hg"/>
+                            <constraint firstItem="0Sk-hj-GO5" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="iKP-h6-2tR"/>
+                            <constraint firstItem="JlG-bA-9Sc" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="8" id="ixD-p7-yNF"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" id="jym-0c-Yrx"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="top" secondItem="GZk-7A-xuk" secondAttribute="bottom" constant="37" id="ppQ-Yi-wxR"/>
+                            <constraint firstItem="COt-i9-hva" firstAttribute="top" secondItem="0Sk-hj-GO5" secondAttribute="bottom" constant="8" id="qlH-tR-zHS"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="centerX" secondItem="Kqr-b4-8fb" secondAttribute="centerX" id="tKD-eK-00Y"/>
+                            <constraint firstItem="JlG-bA-9Sc" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="zer-Ep-JRf"/>
                             <constraint firstAttribute="trailing" secondItem="GUQ-5d-4ze" secondAttribute="trailing" constant="13" id="zgP-ap-21I"/>
                         </constraints>
                     </view>
@@ -477,101 +485,110 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Feb 17, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
                                 <rect key="frame" x="16" y="213" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Ygz-NU-mUQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-Fe-56t">
-                                <rect key="frame" x="0.0" y="241" width="375" height="426"/>
+                                <rect key="frame" x="8" y="241" width="359" height="426"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="426"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-3N-oCA">
-                                                <rect key="frame" x="16" y="16" width="343" height="183"/>
-                                                <string key="text">Without expectation of compensation or other remuneration, now or in the future, I hereby give my consent to Miracle Messages, its affiliates, agents, voluenteers, partners, and sponsors, to use my image and likeness and/or any interview statements and audio/video recordings from me in publications, advertising, and other media activities, online and/or offline.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <string key="userLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem neque, pulvinar nec facilisis ac, consectetur non eros. Maecenas accumsan sit amet magna ac elementum. Etiam at laoreet metus. Donec placerat, turpis non rhoncus lobortis, felis mauris convallis ligula, quis ornare leo arcu quis arcu. Nulla lacus risus, volutpat quis luctus sit amet, convallis sit amet mi. Proin turpis elit, dapibus vel condimentum et, mattis in elit. In non convallis arcu. Praesent tincidunt iaculis dolor, suscipit blandit ligula cursus at. Morbi quis mauris tincidunt, venenatis sapien sit amet, tempus tortor.  Morbi quis consequat ipsum. Nam sit amet ullamcorper leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus posuere nibh, sit amet cursus eros pharetra non. Quisque bibendum leo pellentesque lobortis vestibulum. Maecenas porta posuere ligula, ac suscipit ipsum sodales id. Integer consequat nisl tristique, auctor mauris eget, consequat enim. Integer laoreet tortor nec efficitur ornare. Mauris sit amet ipsum iaculis, rutrum quam a, dapibus nisl. Aenean vitae sollicitudin diam, condimentum sollicitudin sapien.  Vestibulum turpis leo, porta ut mollis quis, elementum ut odio. Mauris commodo risus a lectus posuere, non porttitor orci consectetur. Nunc ultrices, orci id rutrum tincidunt, velit justo aliquet risus, ac blandit velit lacus ac justo. Nulla varius tempor varius. Nulla accumsan orci nec quam ornare, in euismod magna fermentum. Cras vel consequat arcu. Etiam lobortis justo scelerisque ornare tincidunt. In condimentum, turpis nec rhoncus eleifend, enim orci placerat sapien, eu dapibus felis justo et ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum iaculis sem sed congue varius. Vivamus in congue neque, eu tempor ex.  Morbi rhoncus nulla eu finibus posuere. Ut efficitur tempor libero sit amet eleifend. Donec at tortor arcu. Donec gravida tortor eu sem fermentum facilisis. Vivamus sodales fringilla velit. Maecenas cursus tortor sit amet massa fringilla molestie. Ut posuere magna justo, eget pulvinar mi facilisis at.  Donec semper sapien ac cursus feugiat. Donec vulputate viverra odio, vel malesuada tortor placerat a. Vestibulum vel enim lobortis, vulputate elit id, bibendum nibh. Integer hendrerit, dolor vitae vehicula finibus, lectus ligula pretium lectus, non tincidunt orci tellus vel libero. Aliquam gravida ac justo quis bibendum. Quisque nisi felis, pellentesque id justo quis, porttitor suscipit turpis. Quisque eu lacinia nibh. Aenean quis quam luctus, cursus enim sed, accumsan sem. In molestie mattis ligula ac luctus. Phasellus cursus ultrices sodales.</string>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This consent includes, but is not limited to:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-eU-klR">
-                                                <rect key="frame" x="16" y="219" width="343" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCz-6U-Ra9">
-                                                <rect key="frame" x="16" y="260" width="343" height="57"/>
-                                                <string key="text">Permission to interview, film, photograph, tape, or otherwise make a video reproduction of me and/or related to Miracle Messages.</string>
-                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pio-G3-WuB">
-                                                <rect key="frame" x="16" y="337" width="343" height="114"/>
-                                                <string key="text">This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</string>
-                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-cy-m5s">
-                                                <rect key="frame" x="16" y="471" width="343" height="35"/>
+                                                <rect key="frame" x="8" y="383" width="343" height="35"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                                 <state key="normal" title="I have read the above consent."/>
                                                 <connections>
                                                     <segue destination="V3p-aX-g7j" kind="show" id="oij-uW-SGV"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I hereby give my consent to Miracle Messages:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-JP-p7q">
+                                                <rect key="frame" x="8" y="0.0" width="343" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permission to record my video message and photograph." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-FZ-3bu">
+                                                <rect key="frame" x="8" y="26" width="343" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNV-n3-5Z8">
+                                                <rect key="frame" x="8" y="70" width="343" height="72"/>
+                                                <string key="text">Permission to share this recording with your volunteers, as well as any additional information that I provide; in doing so, I understand that it may be shared elsewhere.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1la-XZ-jC6">
+                                                <rect key="frame" x="8" y="150" width="343" height="90"/>
+                                                <string key="text">Waiver and release of all liability, claims, and demands of whatever kind or nature, which arise or may hereafter arise from my participation in any of the above or other activities related to Miracle Messages.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-dM-mgq">
+                                                <rect key="frame" x="8" y="248" width="343" height="107.5"/>
+                                                <string key="text">This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="TB5-eU-klR" secondAttribute="trailing" constant="16" id="0st-zJ-3Sv"/>
-                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="1kD-SP-GLa"/>
-                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="top" secondItem="NCz-6U-Ra9" secondAttribute="bottom" constant="20" id="6VI-Vd-Psd"/>
-                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="top" secondItem="TB5-eU-klR" secondAttribute="bottom" constant="20" id="7QU-OD-lC4"/>
-                                            <constraint firstAttribute="trailing" secondItem="NCz-6U-Ra9" secondAttribute="trailing" constant="16" id="C79-4Y-30X"/>
-                                            <constraint firstItem="TB5-eU-klR" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="K2L-7a-yIQ"/>
-                                            <constraint firstItem="Pio-G3-WuB" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="NQY-Bq-ldc"/>
-                                            <constraint firstItem="NCz-6U-Ra9" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="Q5b-8I-DEn"/>
-                                            <constraint firstAttribute="trailing" secondItem="Pio-G3-WuB" secondAttribute="trailing" constant="16" id="W2j-xs-ALH"/>
-                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="top" secondItem="Pio-G3-WuB" secondAttribute="bottom" constant="20" id="W7Z-fx-IvS"/>
-                                            <constraint firstAttribute="trailing" secondItem="Nje-3N-oCA" secondAttribute="trailing" constant="16" id="c56-V5-33v"/>
-                                            <constraint firstItem="TB5-eU-klR" firstAttribute="top" secondItem="Nje-3N-oCA" secondAttribute="bottom" constant="20" id="d6v-v3-SwJ"/>
-                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" constant="16" id="nf5-Js-WVu"/>
-                                            <constraint firstAttribute="bottom" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="20" id="pO1-Xo-DdJ"/>
-                                            <constraint firstItem="Nje-3N-oCA" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="16" id="wKi-Ve-MP4"/>
-                                            <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="16" id="zfB-8E-cea"/>
+                                            <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="8" id="0ys-RL-dXS"/>
+                                            <constraint firstItem="1la-XZ-jC6" firstAttribute="top" secondItem="uNV-n3-5Z8" secondAttribute="bottom" constant="8" id="10p-9S-dZA"/>
+                                            <constraint firstAttribute="bottom" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="8" id="2Ae-T6-B9W"/>
+                                            <constraint firstAttribute="trailing" secondItem="uNV-n3-5Z8" secondAttribute="trailing" constant="8" id="3Hu-pm-fbh"/>
+                                            <constraint firstAttribute="trailing" secondItem="hZu-dM-mgq" secondAttribute="trailing" constant="8" id="CvB-4Q-Oss"/>
+                                            <constraint firstAttribute="trailing" secondItem="SMV-JP-p7q" secondAttribute="trailing" constant="8" id="Nje-RH-MaS"/>
+                                            <constraint firstItem="jOa-FZ-3bu" firstAttribute="top" secondItem="SMV-JP-p7q" secondAttribute="bottom" constant="8" id="Np1-9u-RpM"/>
+                                            <constraint firstItem="jOa-FZ-3bu" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="Q38-Lb-DIZ"/>
+                                            <constraint firstItem="uNV-n3-5Z8" firstAttribute="top" secondItem="jOa-FZ-3bu" secondAttribute="bottom" constant="8" id="QHC-We-CxO"/>
+                                            <constraint firstAttribute="trailing" secondItem="1la-XZ-jC6" secondAttribute="trailing" constant="8" id="RRq-Ne-vd3"/>
+                                            <constraint firstItem="uNV-n3-5Z8" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="bMR-NC-Tvq"/>
+                                            <constraint firstAttribute="trailing" secondItem="jOa-FZ-3bu" secondAttribute="trailing" constant="8" id="ekO-he-z8g"/>
+                                            <constraint firstItem="hZu-dM-mgq" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="g0g-vg-JJM"/>
+                                            <constraint firstItem="SMV-JP-p7q" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" id="lv9-H4-S2y"/>
+                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="psH-tQ-SIg"/>
+                                            <constraint firstItem="hZu-dM-mgq" firstAttribute="top" secondItem="1la-XZ-jC6" secondAttribute="bottom" constant="8" id="sYE-W4-o1Q"/>
+                                            <constraint firstItem="SMV-JP-p7q" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="xgp-2k-qFu"/>
+                                            <constraint firstItem="1la-XZ-jC6" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="zdU-dV-edA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="top" id="DAs-j8-dIV"/>
-                                    <constraint firstAttribute="trailing" secondItem="6jR-qY-Ejq" secondAttribute="trailing" id="GLh-K1-D56"/>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="leading" secondItem="55o-Fe-56t" secondAttribute="leading" id="QBS-I6-7C6"/>
-                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" id="lsR-eh-rfb"/>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerX" secondItem="55o-Fe-56t" secondAttribute="centerX" id="t0K-vt-mlv"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerY" secondItem="55o-Fe-56t" secondAttribute="centerY" id="93d-3B-pon"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="leading" secondItem="55o-Fe-56t" secondAttribute="leading" id="W8K-9W-d3y"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerX" secondItem="55o-Fe-56t" secondAttribute="centerX" id="WTh-s5-ltQ"/>
+                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="top" id="dv7-4e-IyZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="6jR-qY-Ejq" secondAttribute="trailing" id="tiF-H8-eUT"/>
+                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" id="txw-qm-9Ke"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MZT-Vt-3I2" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="1UR-kP-Bzu"/>
+                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="v7l-lT-L7d" secondAttribute="top" constant="241" id="2LN-xZ-TBg"/>
                             <constraint firstAttribute="trailing" secondItem="MZT-Vt-3I2" secondAttribute="trailing" constant="16" id="2TK-WW-AHE"/>
                             <constraint firstItem="MZT-Vt-3I2" firstAttribute="top" secondItem="vsg-a2-18h" secondAttribute="bottom" constant="38" id="FiB-iE-ONp"/>
-                            <constraint firstAttribute="bottom" secondItem="55o-Fe-56t" secondAttribute="bottom" id="IUt-gQ-egQ"/>
+                            <constraint firstItem="55o-Fe-56t" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="8" id="IE2-tf-3ku"/>
                             <constraint firstItem="vsg-a2-18h" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="37" id="SJg-qN-fZ1"/>
-                            <constraint firstItem="6jR-qY-Ejq" firstAttribute="width" secondItem="v7l-lT-L7d" secondAttribute="width" id="Sa9-Tc-PPu"/>
                             <constraint firstItem="vsg-a2-18h" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="THn-6X-ops"/>
-                            <constraint firstItem="55o-Fe-56t" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" id="dZK-sh-bn1"/>
+                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="Vvz-b2-uTG"/>
+                            <constraint firstAttribute="trailing" secondItem="55o-Fe-56t" secondAttribute="trailing" constant="8" id="dku-fO-kpo"/>
                             <constraint firstAttribute="trailing" secondItem="vsg-a2-18h" secondAttribute="trailing" constant="16" id="eBi-R4-UnG"/>
-                            <constraint firstAttribute="trailing" secondItem="55o-Fe-56t" secondAttribute="trailing" id="fSB-uW-lqi"/>
                             <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="jF8-a7-ypA"/>
+                            <constraint firstItem="u7f-m9-vaa" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="bottom" id="n6c-61-fzd"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -597,7 +614,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated May 18, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-LS-gC8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Feb 17, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-LS-gC8">
                                 <rect key="frame" x="16" y="175" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="BH1-Qq-JJO"/>
