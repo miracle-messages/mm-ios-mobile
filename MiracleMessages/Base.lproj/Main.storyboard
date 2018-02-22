@@ -375,16 +375,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GS4-Ok-gU7">
-                                <rect key="frame" x="18" y="101" width="339" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="mAY-lW-l7x"/>
-                                </constraints>
+                                <rect key="frame" x="31" y="82" width="313" height="42.5"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A script to guide you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gb1-KC-2gE">
-                                <rect key="frame" x="18" y="146" width="339" height="20"/>
+                                <rect key="frame" x="31" y="124.5" width="313" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="SWA-UG-tqC"/>
                                 </constraints>
@@ -403,59 +400,40 @@
                                     <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="s3l-P6-vyx" kind="show" id="Bkd-ed-pGD"/>
+                                    <segue destination="s3l-P6-vyx" kind="show" id="QTZ-Oi-Nsb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlG-bA-9Sc">
-                                <rect key="frame" x="18" y="174" width="339" height="101.5"/>
-                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A. We don’t know how your loved one(s) will respond, if at all;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-hj-GO5">
-                                <rect key="frame" x="18" y="283.5" width="339" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B. We don’t know if we’ll be able to find your loved one(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COt-i9-hva">
-                                <rect key="frame" x="18" y="332.5" width="339" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H2-6c-U28">
-                                <rect key="frame" x="18" y="381.5" width="339" height="101.5"/>
-                                <string key="text">C. The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X3n-YB-Amn">
+                                <rect key="frame" x="31" y="159.5" width="313" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="1fP-Yl-xUa"/>
+                                </constraints>
+                                <mutableString key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
+
+A. We don’t know how your loved one(s) will respond, if at all;
+
+B. We don’t know if we’ll be able to find your loved one(s).
+
+C. The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2H2-6c-U28" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="0f6-Kh-DtP"/>
                             <constraint firstItem="fkh-z5-N80" firstAttribute="top" secondItem="GUQ-5d-4ze" secondAttribute="bottom" constant="16" id="2WM-Yr-NdX"/>
-                            <constraint firstAttribute="trailing" secondItem="2H2-6c-U28" secondAttribute="trailing" constant="18" id="96Y-6Q-SPs"/>
-                            <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="FDZ-dT-bTc"/>
+                            <constraint firstItem="X3n-YB-Amn" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leadingMargin" constant="15" id="7B5-GO-Ee8"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="leading" secondItem="GS4-Ok-gU7" secondAttribute="leading" id="GLU-rt-8p3"/>
-                            <constraint firstAttribute="trailing" secondItem="0Sk-hj-GO5" secondAttribute="trailing" constant="18" id="GRo-vp-gXV"/>
-                            <constraint firstAttribute="trailing" secondItem="COt-i9-hva" secondAttribute="trailing" constant="18" id="HOw-0u-db4"/>
-                            <constraint firstItem="COt-i9-hva" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="KKp-8h-E0p"/>
-                            <constraint firstItem="2H2-6c-U28" firstAttribute="top" secondItem="COt-i9-hva" secondAttribute="bottom" constant="8" id="WFs-oK-tSJ"/>
-                            <constraint firstAttribute="trailing" secondItem="JlG-bA-9Sc" secondAttribute="trailing" constant="18" id="XcQ-K6-aAZ"/>
-                            <constraint firstItem="0Sk-hj-GO5" firstAttribute="top" secondItem="JlG-bA-9Sc" secondAttribute="bottom" constant="8" id="c2A-cB-87W"/>
+                            <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leadingMargin" constant="15" id="Ilp-Bc-fiK"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="13" id="cRu-aa-nAK"/>
-                            <constraint firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" constant="18" id="fNg-72-N0a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GS4-Ok-gU7" secondAttribute="trailing" constant="15" id="fwk-Qu-lXJ"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="top" secondItem="GS4-Ok-gU7" secondAttribute="bottom" id="hMp-p2-0hg"/>
-                            <constraint firstItem="0Sk-hj-GO5" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="iKP-h6-2tR"/>
-                            <constraint firstItem="JlG-bA-9Sc" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="8" id="ixD-p7-yNF"/>
+                            <constraint firstItem="GS4-Ok-gU7" firstAttribute="top" secondItem="GZk-7A-xuk" secondAttribute="bottom" constant="18" id="jFr-oE-5DO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="X3n-YB-Amn" secondAttribute="trailing" constant="15" id="jP5-Wl-3Ve"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="trailing" secondItem="GS4-Ok-gU7" secondAttribute="trailing" id="jym-0c-Yrx"/>
-                            <constraint firstItem="GS4-Ok-gU7" firstAttribute="top" secondItem="GZk-7A-xuk" secondAttribute="bottom" constant="37" id="ppQ-Yi-wxR"/>
-                            <constraint firstItem="COt-i9-hva" firstAttribute="top" secondItem="0Sk-hj-GO5" secondAttribute="bottom" constant="8" id="qlH-tR-zHS"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="centerX" secondItem="Kqr-b4-8fb" secondAttribute="centerX" id="tKD-eK-00Y"/>
-                            <constraint firstItem="JlG-bA-9Sc" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="18" id="zer-Ep-JRf"/>
+                            <constraint firstItem="X3n-YB-Amn" firstAttribute="top" secondItem="Gb1-KC-2gE" secondAttribute="bottom" constant="15" id="uWc-Dq-WpL"/>
                             <constraint firstAttribute="trailing" secondItem="GUQ-5d-4ze" secondAttribute="trailing" constant="13" id="zgP-ap-21I"/>
                         </constraints>
                     </view>
@@ -479,122 +457,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Miracle Messages Consent and Release" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-a2-18h">
-                                <rect key="frame" x="16" y="101" width="343" height="104"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="33"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Feb 17, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZT-Vt-3I2">
-                                <rect key="frame" x="16" y="213" width="343" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Ygz-NU-mUQ"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfH-BQ-d3X">
+                                <rect key="frame" x="16" y="624" width="343" height="35"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                <state key="normal" title="I have read the above consent."/>
+                                <connections>
+                                    <segue destination="V3p-aX-g7j" kind="show" id="u7D-SU-EA6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Feb 17, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQ6-g7-HCn">
+                                <rect key="frame" x="15" y="161" width="149.5" height="17"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-Fe-56t">
-                                <rect key="frame" x="8" y="241" width="359" height="426"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-qY-Ejq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="426"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTK-cy-m5s">
-                                                <rect key="frame" x="8" y="383" width="343" height="35"/>
-                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                                <state key="normal" title="I have read the above consent."/>
-                                                <connections>
-                                                    <segue destination="V3p-aX-g7j" kind="show" id="oij-uW-SGV"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I hereby give my consent to Miracle Messages:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-JP-p7q">
-                                                <rect key="frame" x="8" y="0.0" width="343" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permission to record my video message and photograph." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-FZ-3bu">
-                                                <rect key="frame" x="8" y="26" width="343" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNV-n3-5Z8">
-                                                <rect key="frame" x="8" y="70" width="343" height="72"/>
-                                                <string key="text">Permission to share this recording with your volunteers, as well as any additional information that I provide; in doing so, I understand that it may be shared elsewhere.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1la-XZ-jC6">
-                                                <rect key="frame" x="8" y="150" width="343" height="90"/>
-                                                <string key="text">Waiver and release of all liability, claims, and demands of whatever kind or nature, which arise or may hereafter arise from my participation in any of the above or other activities related to Miracle Messages.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-dM-mgq">
-                                                <rect key="frame" x="8" y="248" width="343" height="107.5"/>
-                                                <string key="text">This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="nTK-cy-m5s" secondAttribute="trailing" constant="8" id="0ys-RL-dXS"/>
-                                            <constraint firstItem="1la-XZ-jC6" firstAttribute="top" secondItem="uNV-n3-5Z8" secondAttribute="bottom" constant="8" id="10p-9S-dZA"/>
-                                            <constraint firstAttribute="bottom" secondItem="nTK-cy-m5s" secondAttribute="bottom" constant="8" id="2Ae-T6-B9W"/>
-                                            <constraint firstAttribute="trailing" secondItem="uNV-n3-5Z8" secondAttribute="trailing" constant="8" id="3Hu-pm-fbh"/>
-                                            <constraint firstAttribute="trailing" secondItem="hZu-dM-mgq" secondAttribute="trailing" constant="8" id="CvB-4Q-Oss"/>
-                                            <constraint firstAttribute="trailing" secondItem="SMV-JP-p7q" secondAttribute="trailing" constant="8" id="Nje-RH-MaS"/>
-                                            <constraint firstItem="jOa-FZ-3bu" firstAttribute="top" secondItem="SMV-JP-p7q" secondAttribute="bottom" constant="8" id="Np1-9u-RpM"/>
-                                            <constraint firstItem="jOa-FZ-3bu" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="Q38-Lb-DIZ"/>
-                                            <constraint firstItem="uNV-n3-5Z8" firstAttribute="top" secondItem="jOa-FZ-3bu" secondAttribute="bottom" constant="8" id="QHC-We-CxO"/>
-                                            <constraint firstAttribute="trailing" secondItem="1la-XZ-jC6" secondAttribute="trailing" constant="8" id="RRq-Ne-vd3"/>
-                                            <constraint firstItem="uNV-n3-5Z8" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="bMR-NC-Tvq"/>
-                                            <constraint firstAttribute="trailing" secondItem="jOa-FZ-3bu" secondAttribute="trailing" constant="8" id="ekO-he-z8g"/>
-                                            <constraint firstItem="hZu-dM-mgq" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="g0g-vg-JJM"/>
-                                            <constraint firstItem="SMV-JP-p7q" firstAttribute="top" secondItem="6jR-qY-Ejq" secondAttribute="top" id="lv9-H4-S2y"/>
-                                            <constraint firstItem="nTK-cy-m5s" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="psH-tQ-SIg"/>
-                                            <constraint firstItem="hZu-dM-mgq" firstAttribute="top" secondItem="1la-XZ-jC6" secondAttribute="bottom" constant="8" id="sYE-W4-o1Q"/>
-                                            <constraint firstItem="SMV-JP-p7q" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="xgp-2k-qFu"/>
-                                            <constraint firstItem="1la-XZ-jC6" firstAttribute="leading" secondItem="6jR-qY-Ejq" secondAttribute="leading" constant="8" id="zdU-dV-edA"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Sf2-dX-SPK">
+                                <rect key="frame" x="15" y="193" width="345" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerY" secondItem="55o-Fe-56t" secondAttribute="centerY" id="93d-3B-pon"/>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="leading" secondItem="55o-Fe-56t" secondAttribute="leading" id="W8K-9W-d3y"/>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="centerX" secondItem="55o-Fe-56t" secondAttribute="centerX" id="WTh-s5-ltQ"/>
-                                    <constraint firstItem="6jR-qY-Ejq" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="top" id="dv7-4e-IyZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="6jR-qY-Ejq" secondAttribute="trailing" id="tiF-H8-eUT"/>
-                                    <constraint firstAttribute="bottom" secondItem="6jR-qY-Ejq" secondAttribute="bottom" id="txw-qm-9Ke"/>
+                                    <constraint firstAttribute="height" constant="400" id="gbC-R0-wWK"/>
                                 </constraints>
-                            </scrollView>
+                                <mutableString key="text">I hereby give my consent to Miracle Messages:
+
+Permission to record my video message and photograph.
+
+Permission to share this recording with your volunteers, as well as any additional information that I provide; in doing so, I understand that it may be shared elsewhere.
+
+Waiver and release of all liability, claims, and demands of whatever kind or nature, which arise or may hereafter arise from my participation in any of the above or other activities related to Miracle Messages.
+
+This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle Messages Consent and Release" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y29-sQ-vWJ">
+                                <rect key="frame" x="15" y="79" width="345" height="74"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="1UR-kP-Bzu"/>
-                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="v7l-lT-L7d" secondAttribute="top" constant="241" id="2LN-xZ-TBg"/>
-                            <constraint firstAttribute="trailing" secondItem="MZT-Vt-3I2" secondAttribute="trailing" constant="16" id="2TK-WW-AHE"/>
-                            <constraint firstItem="MZT-Vt-3I2" firstAttribute="top" secondItem="vsg-a2-18h" secondAttribute="bottom" constant="38" id="FiB-iE-ONp"/>
-                            <constraint firstItem="55o-Fe-56t" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="8" id="IE2-tf-3ku"/>
-                            <constraint firstItem="vsg-a2-18h" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="37" id="SJg-qN-fZ1"/>
-                            <constraint firstItem="vsg-a2-18h" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="16" id="THn-6X-ops"/>
-                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="Vvz-b2-uTG"/>
-                            <constraint firstAttribute="trailing" secondItem="55o-Fe-56t" secondAttribute="trailing" constant="8" id="dku-fO-kpo"/>
-                            <constraint firstAttribute="trailing" secondItem="vsg-a2-18h" secondAttribute="trailing" constant="16" id="eBi-R4-UnG"/>
-                            <constraint firstItem="55o-Fe-56t" firstAttribute="top" secondItem="MZT-Vt-3I2" secondAttribute="bottom" constant="8" id="jF8-a7-ypA"/>
-                            <constraint firstItem="u7f-m9-vaa" firstAttribute="top" secondItem="55o-Fe-56t" secondAttribute="bottom" id="n6c-61-fzd"/>
+                            <constraint firstItem="Y29-sQ-vWJ" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="15" id="7PG-Lt-0Iq"/>
+                            <constraint firstItem="Sf2-dX-SPK" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leading" constant="15" id="8oY-1l-lTQ"/>
+                            <constraint firstItem="gQ6-g7-HCn" firstAttribute="leading" secondItem="Y29-sQ-vWJ" secondAttribute="leading" id="EhI-DW-IfL"/>
+                            <constraint firstAttribute="trailing" secondItem="Sf2-dX-SPK" secondAttribute="trailing" constant="15" id="GaT-IQ-HX0"/>
+                            <constraint firstItem="u7f-m9-vaa" firstAttribute="top" secondItem="WfH-BQ-d3X" secondAttribute="bottom" constant="8" symbolic="YES" id="Pgj-aA-KsO"/>
+                            <constraint firstItem="gQ6-g7-HCn" firstAttribute="top" secondItem="Y29-sQ-vWJ" secondAttribute="bottom" constant="8" id="U20-o6-Df3"/>
+                            <constraint firstItem="Sf2-dX-SPK" firstAttribute="top" secondItem="gQ6-g7-HCn" secondAttribute="bottom" constant="15" id="UeW-6B-pIh"/>
+                            <constraint firstItem="Y29-sQ-vWJ" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="15" id="cZx-fl-XQW"/>
+                            <constraint firstAttribute="trailing" secondItem="Y29-sQ-vWJ" secondAttribute="trailing" constant="15" id="mD3-tP-lmO"/>
+                            <constraint firstItem="WfH-BQ-d3X" firstAttribute="trailing" secondItem="v7l-lT-L7d" secondAttribute="trailingMargin" id="wkS-sz-uca"/>
+                            <constraint firstItem="WfH-BQ-d3X" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leadingMargin" id="zuo-xx-P7y"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxt-yo-TO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5400.8000000000002" y="44.527736131934034"/>
+            <point key="canvasLocation" x="5429.6000000000004" y="45.42728635682159"/>
         </scene>
         <!--Consent View Controller-->
         <scene sceneID="BqB-r4-RMC">
@@ -1489,7 +1409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODi-rX-5df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5680.8000000000002" y="1115.4422788605698"/>
+            <point key="canvasLocation" x="6284" y="1115"/>
         </scene>
         <!--Background Info Optional View Controller-->
         <scene sceneID="lbQ-3G-1nw">
