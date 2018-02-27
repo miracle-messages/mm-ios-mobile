@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>43</string>
+	<string>46</string>
 	<key>FIREBASE</key>
 	<string>$(FIREBASE_SERVICES_FILENAME)</string>
 	<key>Fabric</key>
