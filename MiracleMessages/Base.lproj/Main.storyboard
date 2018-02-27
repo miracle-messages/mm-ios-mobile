@@ -406,16 +406,13 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X3n-YB-Amn">
                                 <rect key="frame" x="31" y="159.5" width="313" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="1fP-Yl-xUa"/>
-                                </constraints>
-                                <mutableString key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
+                                <string key="text">We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that:
 
 A. We don’t know how your loved one(s) will respond, if at all;
 
 B. We don’t know if we’ll be able to find your loved one(s).
 
-C. The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</mutableString>
+C. The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try our best to deliver it. If you agree, please read and sign this form!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -424,6 +421,7 @@ C. The only guarantee is that this is an opportunity for you to record a video m
                         <constraints>
                             <constraint firstItem="fkh-z5-N80" firstAttribute="top" secondItem="GUQ-5d-4ze" secondAttribute="bottom" constant="16" id="2WM-Yr-NdX"/>
                             <constraint firstItem="X3n-YB-Amn" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leadingMargin" constant="15" id="7B5-GO-Ee8"/>
+                            <constraint firstItem="GUQ-5d-4ze" firstAttribute="top" secondItem="X3n-YB-Amn" secondAttribute="bottom" constant="34.5" id="A9P-aD-UYQ"/>
                             <constraint firstItem="Gb1-KC-2gE" firstAttribute="leading" secondItem="GS4-Ok-gU7" secondAttribute="leading" id="GLU-rt-8p3"/>
                             <constraint firstItem="GS4-Ok-gU7" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leadingMargin" constant="15" id="Ilp-Bc-fiK"/>
                             <constraint firstItem="GUQ-5d-4ze" firstAttribute="leading" secondItem="Kqr-b4-8fb" secondAttribute="leading" constant="13" id="cRu-aa-nAK"/>
@@ -472,12 +470,9 @@ C. The only guarantee is that this is an opportunity for you to record a video m
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Sf2-dX-SPK">
-                                <rect key="frame" x="15" y="193" width="345" height="400"/>
+                                <rect key="frame" x="15" y="193" width="345" height="401"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="gbC-R0-wWK"/>
-                                </constraints>
-                                <mutableString key="text">I hereby give my consent to Miracle Messages:
+                                <string key="text">I hereby give my consent to Miracle Messages:
 
 Permission to record my video message and photograph.
 
@@ -485,7 +480,7 @@ Permission to share this recording with your volunteers, as well as any addition
 
 Waiver and release of all liability, claims, and demands of whatever kind or nature, which arise or may hereafter arise from my participation in any of the above or other activities related to Miracle Messages.
 
-This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</mutableString>
+This consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -506,6 +501,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
                             <constraint firstItem="gQ6-g7-HCn" firstAttribute="top" secondItem="Y29-sQ-vWJ" secondAttribute="bottom" constant="8" id="U20-o6-Df3"/>
                             <constraint firstItem="Sf2-dX-SPK" firstAttribute="top" secondItem="gQ6-g7-HCn" secondAttribute="bottom" constant="15" id="UeW-6B-pIh"/>
                             <constraint firstItem="Y29-sQ-vWJ" firstAttribute="top" secondItem="Mxd-UR-a7Y" secondAttribute="bottom" constant="15" id="cZx-fl-XQW"/>
+                            <constraint firstItem="WfH-BQ-d3X" firstAttribute="top" secondItem="Sf2-dX-SPK" secondAttribute="bottom" constant="30" id="d8q-rE-WKW"/>
                             <constraint firstAttribute="trailing" secondItem="Y29-sQ-vWJ" secondAttribute="trailing" constant="15" id="mD3-tP-lmO"/>
                             <constraint firstItem="WfH-BQ-d3X" firstAttribute="trailing" secondItem="v7l-lT-L7d" secondAttribute="trailingMargin" id="wkS-sz-uca"/>
                             <constraint firstItem="WfH-BQ-d3X" firstAttribute="leading" secondItem="v7l-lT-L7d" secondAttribute="leadingMargin" id="zuo-xx-P7y"/>
@@ -1558,7 +1554,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96I-93-E9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6528.8000000000002" y="1754.1229385307347"/>
+            <point key="canvasLocation" x="7146" y="1115"/>
         </scene>
         <!--Background Info2 View Controller-->
         <scene sceneID="yuN-6N-Hta">
@@ -2101,7 +2097,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jn8-1r-lTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7583" y="1116"/>
+            <point key="canvasLocation" x="8090" y="1115"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="W4E-71-KcJ">
@@ -2997,7 +2993,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1iZ-ze-Wc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9486" y="868"/>
+            <point key="canvasLocation" x="9839" y="868"/>
         </scene>
         <!--Next View Controller-->
         <scene sceneID="HUu-a1-HbL">
@@ -3164,7 +3160,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeU-p8-rbS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8362" y="1022"/>
+            <point key="canvasLocation" x="9095" y="868"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qlO-Bo-cyh">
@@ -3193,6 +3189,7 @@ This consent is given in perpetuity, and does not require prior approval by me. 
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="DPT-vm-pHK"/>
         <segue reference="qoI-8l-v3Z"/>
         <segue reference="1GO-dG-DW3"/>
     </inferredMetricsTieBreakers>

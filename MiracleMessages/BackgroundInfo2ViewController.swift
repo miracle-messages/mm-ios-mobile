@@ -50,8 +50,7 @@ class BackgroundInfo2ViewController: BackgroundInfoViewController, UIPickerViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        hideKeyboardWithTap()
+        self.hideKeyboardWithTap()
 
         self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
         
