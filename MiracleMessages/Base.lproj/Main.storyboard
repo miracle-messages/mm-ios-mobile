@@ -3189,7 +3189,6 @@ This consent is given in perpetuity, and does not require prior approval by me. 
         <image name="recordBtn" width="640" height="583"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DPT-vm-pHK"/>
         <segue reference="qoI-8l-v3Z"/>
         <segue reference="1GO-dG-DW3"/>
     </inferredMetricsTieBreakers>

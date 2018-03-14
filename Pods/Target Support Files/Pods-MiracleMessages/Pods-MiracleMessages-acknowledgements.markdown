@@ -13,7 +13,7 @@ The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, w
 
 ## Alamofire
 
-Copyright (c) 2014-2017 Alamofire Software Foundation (http://alamofire.org/)
+Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ THE SOFTWARE.
 
 ## Crashlytics
 
-Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2017 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt
+Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2018 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt
 
 ## DatePickerDialog
 
@@ -62,35 +62,35 @@ THE SOFTWARE.
 
 ## Fabric
 
-Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
+Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
 
 ## Firebase
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseAnalytics
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseAuth
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseCore
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseDatabase
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseInstanceID
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## FirebaseStorage
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## GTMOAuth2
 
@@ -506,7 +506,7 @@ Copyright 2017 Google
 
 ## GoogleSignIn
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## GoogleToolboxForMac
 
