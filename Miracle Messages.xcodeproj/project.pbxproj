@@ -51,6 +51,7 @@
 		A07773A21F2CF9B700AD52C0 /* Reviewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077739D1F2CF9B700AD52C0 /* Reviewable.swift */; };
 		A07773A31F2CF9B700AD52C0 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A077739E1F2CF9B700AD52C0 /* State.swift */; };
 		A704579A05185801907D2948 /* Pods_MiracleMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1281109ED444D3B5FBD466C2 /* Pods_MiracleMessages.framework */; };
+		DE53F47D203E709C00D2BB91 /* UITapAroundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53F47C203E709C00D2BB91 /* UITapAroundExtension.swift */; };
 		EE0FA4881F006D3300B3A0D8 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */; };
 		EE0FA48A1F006DE200B3A0D8 /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */; };
 		EE0FA48C1F0082F500B3A0D8 /* Uploadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */; };
@@ -123,6 +124,7 @@
 		A077739C1F2CF9B700AD52C0 /* LovedOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedOne.swift; sourceTree = "<group>"; };
 		A077739D1F2CF9B700AD52C0 /* Reviewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reviewable.swift; sourceTree = "<group>"; };
 		A077739E1F2CF9B700AD52C0 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		DE53F47C203E709C00D2BB91 /* UITapAroundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapAroundExtension.swift; sourceTree = "<group>"; };
 		EE0FA4871F006D3300B3A0D8 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
 		EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploadable.swift; sourceTree = "<group>"; };
@@ -188,25 +190,25 @@
 		2390079B1E4D64FC00A4C1DB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				EED645A01FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift */,
-				23B0B7E71D98E466007DFDDE /* ViewController.swift */,
-				23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */,
-				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
-				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
 				23A105221DDCE62900276DDD /* BackgroundInfoViewController.swift */,
+				EED645A01FB0569D005B7F99 /* BackgroundInfoOptionalViewController.swift */,
 				23A1051E1DD074F700276DDD /* BackgroundInfo1ViewController.swift */,
 				23A105201DD42EE600276DDD /* BackgroundInfo2ViewController.swift */,
-				23E709741E25BA0E00E20582 /* StartViewController.swift */,
-				23E709761E25BF2900E20582 /* ProfileNavigationViewController.swift */,
-				23E709781E26DA1400E20582 /* GuideViewController.swift */,
-				23E709801E2956EF00E20582 /* MenuViewController.swift */,
-				239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */,
+				233E410C1DA0311D001E9B3F /* CameraViewController.swift */,
 				239C0C081E2C6D6400E0DE36 /* ConfirmViewController.swift */,
-				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
-				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
-				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
 				EE0FA4891F006DE200B3A0D8 /* ConsentViewController.swift */,
+				23E709781E26DA1400E20582 /* GuideViewController.swift */,
+				23F1776A1D9902FC00000C65 /* LoginSummaryViewController.swift */,
+				23E709801E2956EF00E20582 /* MenuViewController.swift */,
 				231CB4D91F2F2907009D2767 /* MyMessagesViewController.swift */,
+				23D040171E4C03CC0000D4A2 /* NextViewController.swift */,
+				23F5E5A01DA6430600CB1C4A /* PortraitNavigationControllerController.swift */,
+				23E709761E25BF2900E20582 /* ProfileNavigationViewController.swift */,
+				239C0C0C1E2C7C7B00E0DE36 /* ProfileViewController.swift */,
+				239C0C041E2BF06800E0DE36 /* ReviewViewController.swift */,
+				23E709741E25BA0E00E20582 /* StartViewController.swift */,
+				23B0B7E71D98E466007DFDDE /* ViewController.swift */,
+				23D040151E4BE3260000D4A2 /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -214,14 +216,13 @@
 		2390079C1E4D653200A4C1DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2369668D1F2F0BCA000D559C /* CaseSubject.swift */,
 				A07773991F2CF99500AD52C0 /* CaseInfo */,
-				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
-				2390079F1E4D662F00A4C1DB /* Video.swift */,
-				EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */,
-				A0530E071F2CFA5600D3DED6 /* Source.swift */,
 				231CB4DD1F2F3798009D2767 /* CaseSummary.swift */,
 				EED9C4051F92CE6B0044E401 /* Config.swift */,
+				A0530E071F2CFA5600D3DED6 /* Source.swift */,
+				EE0FA48B1F0082F500B3A0D8 /* Uploadable.swift */,
+				2390079F1E4D662F00A4C1DB /* Video.swift */,
+				239C0C0E1E2D701000E0DE36 /* VolunteerProfile.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -256,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				2393762B1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift */,
+				DE53F47C203E709C00D2BB91 /* UITapAroundExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +310,7 @@
 			children = (
 				A07773A41F2CF9C300AD52C0 /* Location */,
 				A077739A1F2CF9B700AD52C0 /* Case.swift */,
+				2369668D1F2F0BCA000D559C /* CaseSubject.swift */,
 				A077739C1F2CF9B700AD52C0 /* LovedOne.swift */,
 				A077739D1F2CF9B700AD52C0 /* Reviewable.swift */,
 				A02DABA61F3B498100FAA17A /* Partners.swift */,
@@ -396,7 +399,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = GE8VHP39HG;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -475,11 +478,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MiracleMessages/Pods-MiracleMessages-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -556,7 +560,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" f39ece77cd425095c57b4120435e0cff611a3acb 6851a7f08f4d7a444544a641d160e5e48c9453060dfe4306c703829d26034b39";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 03b3d8ea48ca474d223e51e844b3f3aaf036322f d1de6346212efb12ff21c23c7be11c9d98744de1c38009e5cc31e7f2e33fd373";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -587,6 +591,7 @@
 				2393762C1F4118EA00F7ADB3 /* UITextViewPlaceholder.swift in Sources */,
 				23F5E5A11DA6430600CB1C4A /* PortraitNavigationControllerController.swift in Sources */,
 				EED9C4061F92CE6B0044E401 /* Config.swift in Sources */,
+				DE53F47D203E709C00D2BB91 /* UITapAroundExtension.swift in Sources */,
 				A077739F1F2CF9B700AD52C0 /* Case.swift in Sources */,
 				23A105231DDCE62900276DDD /* BackgroundInfoViewController.swift in Sources */,
 				239C0C051E2BF06800E0DE36 /* ReviewViewController.swift in Sources */,
@@ -735,7 +740,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -784,7 +789,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -799,7 +804,8 @@
 				BASE_URL = "https://dev.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GE8VHP39HG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FIREBASE = "GoogleService-Info_dev";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info_dev";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -807,8 +813,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = "Dev MiracleMsg";
-				PROVISIONING_PROFILE = "b3a6b4e8-cc2d-43ba-857c-f6da0eeb1dd2";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_URL = "https://dev.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -826,7 +832,8 @@
 				BASE_URL = "https://my.miraclemessages.org";
 				CODE_SIGN_ENTITLEMENTS = MiracleMessages/MiracleMsg.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GE8VHP39HG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FIREBASE = "GoogleService-Info";
 				FIREBASE_SERVICES_FILENAME = "GoogleService-Info";
 				INFOPLIST_FILE = MiracleMessages/Info.plist;
@@ -834,8 +841,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winraguini.MiracleMessages;
 				PRODUCT_NAME = MiracleMsg;
-				PROVISIONING_PROFILE = "28453e43-3ba0-4936-a8de-30facb7a832b";
-				PROVISIONING_PROFILE_SPECIFIER = miraclemessages.dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_URL = "https://my.miraclemessages.org/#!/register";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

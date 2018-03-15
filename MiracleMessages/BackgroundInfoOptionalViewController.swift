@@ -24,8 +24,13 @@ class BackgroundInfoOptionalViewController: UIViewController {
         updateBackgroundInfo()
     }
     
+    @IBAction func textField(_ sender: AnyObject) {
+        self.view.endEditing(true);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWithTap()
         // Set placeholder text
         mLooseTouchReasonText.placeholder = "Answer (optional)"
         mHomelessReason.placeholder = "Answer (optional)"

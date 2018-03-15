@@ -453,13 +453,16 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 
     func generateVideoFileName() -> String {
         let defaults = UserDefaults.standard
-        let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased()
+        var videoName: String = ""
+        if let name = defaults.string(forKey: "name")?.replacingOccurrences(of: " ", with: "-").lowercased(){
+            videoName = name
+        }
+        
         let date = Date()
-
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MM-dd-yyyy-HHmmss"
         let stringDate = dayTimePeriodFormatter.string(from: date)
-        return "\(name!)-\(stringDate).mov"
+        return "\(videoName)-\(stringDate).mov"
     }
 
     func uploadtoS3(url: URL) -> Void {
