@@ -58,6 +58,10 @@ struct Logger {
             CLSLogv("\(level.toString()) |" +
                 "\((fileName as NSString).lastPathComponent)(\(line))-\(methodName) | " +
                 "\(encodeLog(message))", getVaList([]))
+            print("\(Date()) | " +
+                "\(level.toString()) | " +
+                "\((fileName as NSString).lastPathComponent)(\(line))-\(methodName) | " +
+                "\(encodeLog(message))")
         #endif
     }
     
@@ -80,6 +84,10 @@ struct Logger {
                 "\(error)")
         #else
             Crashlytics.sharedInstance().recordError(error)
+            print("\(Date()) | " +
+                "\(level.toString()) | " +
+                "\((fileName as NSString).lastPathComponent)(\(line))-\(methodName) | " +
+                "\(error)")
         #endif
     }
     
@@ -102,6 +110,10 @@ struct Logger {
                 "\(error.errorUserInfo)")
         #else
             Crashlytics.sharedInstance().recordError(error)
+            print("\(Date()) | " +
+                "\(level.toString()) | " +
+                "\((fileName as NSString).lastPathComponent)(\(line))-\(methodName) | " +
+                "\(error.errorUserInfo)")
         #endif
     }
     
