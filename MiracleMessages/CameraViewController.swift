@@ -267,6 +267,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             if (cameraSession?.canAddInput(deviceInput) == true) {
                 cameraSession?.addInput(deviceInput)
             }
+            
+            
 
             if (cameraSession?.canAddInput(audioInput) == true) {
                 cameraSession?.addInput(audioInput)
