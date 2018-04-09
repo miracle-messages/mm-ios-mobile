@@ -70,8 +70,8 @@ class BackgroundInfo1ViewController: BackgroundInfoViewController, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWithTap()
-
+//        self.hideKeyboardWithTap()
+        self.hideKeyboardWhenTappedAround()
         
         //  Current location
         pickerCurrentCountry.dataSource = self

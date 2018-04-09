@@ -96,6 +96,9 @@ class ConfirmViewController: UIViewController {
     }
 
     func submit() {
+        
+        // Uploads video first using self.bgUploadToS3(video: video).
+        // Once video is done uploading, then self.sendInfo() is called to upload the data.
         if let video = self.video {
             self.bgUploadToS3(video: video)
         }
